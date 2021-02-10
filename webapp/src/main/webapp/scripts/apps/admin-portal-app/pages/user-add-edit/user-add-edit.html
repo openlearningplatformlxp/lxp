@@ -1,0 +1,146 @@
+<!--
+    Edit User by Admin.
+
+    TODO: SAC: error handling
+    TODO: SAC: xlates
+-->
+<cms-block ctrl="ctrl" key="state-user-add-edit" ng-cloak>
+    <div class="admin-user-add-edit-view">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+                <h2 ng-if="ctrl.isAdd()" class="page-title" translate="user.user-add-edit.title.add"></h2>
+                <h2 ng-if="ctrl.isEdit() && !ctrl.data.deleted" class="page-title" translate="user.user-add-edit.title.edit" translate-values="{username: '{{ctrl.data.userLogin}}'}"></h2>
+            </div>
+        </div>
+        <form ng-if="!ctrl.data.deleted" name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-6">
+                    <div ng-if="ctrl.isLoaded()">
+                        <div class="form-group">
+                            <label for="login" translate="global.form.username"></label>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="{{'global.form.username.placeholder' | translate}}" ng-model="ctrl.data.user.login" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[a-z0-9]*$/">
+                            <div ng-show="form.login.$dirty && form.login.$invalid">
+                                <p class="help-block" ng-show="form.login.$error.required" translate="register.messages.validate.login.required"></p>
+                                <p class="help-block" ng-show="form.login.$error.minlength" translate="register.messages.validate.login.minlength"></p>
+                                <p class="help-block" ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength"></p>
+                                <p class="help-block" ng-show="form.login.$error.pattern" translate="register.messages.validate.login.pattern"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="no-margin"><input ng-model="ctrl.data.setPassword" type="checkbox"> <span ng-if="ctrl.isAdd()">Set Password</span><span ng-if="ctrl.isEdit()">Change Password</span></label>
+                        </div>
+                        <div uib-collapse="!ctrl.data.setPassword" class="password-container">
+                            <div class="form-group">
+                                <label for="password" class="required" translate="global.form.password"></label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="{{'global.form.password.placeholder' | translate}}" ng-model="ctrl.data.user.password" ng-minlength=5 ng-maxlength=50>
+                                <div ng-show="form.password.$dirty && form.password.$invalid">
+                                    <p class="help-block" ng-show="form.password.$error.minlength" translate="global.messages.validate.password.minlength"></p>
+                                    <p class="help-block" ng-show="form.password.$error.maxlength" translate="global.messages.validate.password.maxlength"></p>
+                                </div>
+                                <password-strength-bar password-to-check="ctrl.data.user.password"></password-strength-bar>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword" class="required" translate="global.form.confirmPassword"></label>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="{{'global.form.confirmPassword.placeholder' | translate}}" ng-model="ctrl.data.confirmPassword" ng-minlength=5 ng-maxlength=50>
+                                <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
+                                    <p class="help-block" ng-show="form.confirmPassword.$error.minlength" translate="global.messages.validate.confirmPassword.minlength"></p>
+                                    <p class="help-block" ng-show="form.confirmPassword.$error.maxlength" translate="global.messages.validate.confirmPassword.maxlength"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName" class="required" translate="global.form.firstName"></label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" ng-model="ctrl.data.user.firstName" ng-minlength=1 ng-maxlength=50 maxlength="50" required>
+                            <div ng-show="form.firstName.$dirty && form.firstName.$invalid">
+                                <p class="help-block" ng-show="form.firstName.$error.required" translate="settings.messages.validate.firstName.required"></p>
+                                <p class="help-block" ng-show="form.firstName.$error.minlength" translate="settings.messages.validate.firstName.minlength"></p>
+                                <p class="help-block" ng-show="form.firstName.$error.maxlength" translate="settings.messages.validate.firstName.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="required" translate="global.form.lastName"></label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" ng-model="ctrl.data.user.lastName" ng-minlength=1 ng-maxlength=50 maxlength="50" required>
+                            <div ng-show="form.lastName.$dirty && form.lastName.$invalid">
+                                <p class="help-block" ng-show="form.lastName.$error.required" translate="settings.messages.validate.lastName.required"></p>
+                                <p class="help-block" ng-show="form.lastName.$error.minlength" translate="settings.messages.validate.lastName.minlength"></p>
+                                <p class="help-block" ng-show="form.lastName.$error.maxlength" translate="settings.messages.validate.lastName.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="required" translate="global.form.email"></label>
+                            <input type="email" class="form-control" id="email" name="email" ng-model="ctrl.data.user.email" ng-minlength=5 ng-maxlength=254 maxlength="254" required>
+                            <div ng-show="form.email.$dirty && form.email.$invalid">
+                                <p class="help-block" ng-show="form.email.$error.required" translate="global.messages.validate.email.required"></p>
+                                <p class="help-block" ng-show="form.email.$error.email" translate="global.messages.validate.email.invalid"></p>
+                                <p class="help-block" ng-show="form.email.$error.minlength" translate="global.messages.validate.email.minlength"></p>
+                                <p class="help-block" ng-show="form.email.$error.maxlength" translate="global.messages.validate.email.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="user.user-add-edit.form.accountOptions"></label>
+                            <div class="options-container">
+                                <label><input ng-model="ctrl.data.user.activated" type="checkbox" ng-disabled="ctrl.data.userOrig.activated"> Activated</label><br>
+                                <label class="no-margin"><input ng-model="ctrl.data.user.disabled" type="checkbox"> Disabled</label>
+                            </div>
+                        </div>
+                        <div ng-if="ctrl.data.availableAuthorities" class="form-group">
+                            <label translate="user.user-add-edit.form.userAuthorities"></label>
+                            <div class="options-container" ng-repeat="authority in ctrl.data.availableAuthorities">
+                                <label class="authority-container" ng-class="{'no-margin': $last}"><input id="{{authority.id}}" ng-model="ctrl.data.userAuthorities[authority.name]" type="checkbox"><span ng-bind="authority.display"></span></label>
+                            </div>
+                        </div>
+                        <div ng-if="ctrl.isAdd()" class="form-group">
+                            <label translate="user.user-add-edit.form.accountOptions"></label>
+                            <div class="options-container">
+                                <label><input ng-model="ctrl.data.sendActivationEmail" type="checkbox"> Send Activation Email</label><br>
+                            </div>
+                        </div>
+                        <p>
+                            <button type="submit" ng-disabled="ctrl.isFormDisabled(form)" class="btn btn-primary" translate="global.buttons.save"></button>
+                            <button type="button" class="btn btn-default" ng-click="ctrl.cancel(form)" translate="global.buttons.cancel"></button>
+                        </p>
+                    </div>
+                </div>
+                <div ng-if="ctrl.isLoaded() && ctrl.isEdit()" class="col-md-4">
+                    <div class="person-info">
+                        <div class="form-group">
+                            <label translate="user.user-add-edit.labels.lastLoginDate"></label>
+                            <p ng-if="ctrl.data.user.lastLoginDate" class="form-control-static" ng-bind="ctrl.data.user.lastLoginDate | date : 'medium'"></p>
+                            <p ng-if="!ctrl.data.user.lastLoginDate" class="form-control-static" translate="user.user-add-edit.never"></p>
+                        </div>
+                        <div ng-if="ctrl.data.user.createdDate" class="form-group">
+                            <label translate="global.labels.createdDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.user.createdDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.user.createdBy" class="form-group">
+                            <label translate="global.labels.createdBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.user.createdBy"></p>
+                        </div>
+                        <div ng-if="ctrl.data.user.lastModifiedDate" class="form-group">
+                            <label translate="global.labels.lastModifiedDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.user.lastModifiedDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.user.lastModifiedBy" class="form-group">
+                            <label translate="global.labels.lastModifiedBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.user.lastModifiedBy"></p>
+                        </div>
+                        <div ng-if="!ctrl.data.userOrig.activated && ctrl.data.user.activationToken">
+                            <label translate="global.labels.ActivationToken"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.user.activationToken"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <div ng-if="ctrl.hasActions()" class="person-info actions-container">
+                        <b>Actions</b>
+                        <p ng-if="ctrl.canDelete()" class="text-center"><a class="btn btn-danger" ng-click="ctrl.deleteUser()" ng-disabled="form.$dirty" translate="user.user-add-edit.buttons.deleteUser"></a></p>
+                        <p ng-if="ctrl.canImpersonate()" class="text-center"><a class="btn btn-primary" ng-click="ctrl.impersonate()" ng-disabled="form.$dirty" translate="user.user-add-edit.buttons.impersonateUser"></a></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div ng-if="ctrl.data.deleted">
+            <button type="button" class="btn btn-primary" ng-click="ctrl.goToAdminUsers()" translate="global.buttons.OK"></button>
+        </div>
+    </div>
+</cms-block>

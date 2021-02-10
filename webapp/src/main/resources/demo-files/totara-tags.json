@@ -1,0 +1,156 @@
+[
+  {
+    "id": 1,
+    "name": "english",
+    "rawname": "English",
+    "description": "English",
+    "flag": true
+  },
+  {
+    "id": 2,
+    "name": "japanese",
+    "rawname": "Japanese",
+    "description": "Japanese",
+    "flag": true
+  },
+  {
+    "id": 3,
+    "name": "spanish",
+    "rawname": "Spanish",
+    "description": "Spanish",
+    "flag": true
+  },
+  {
+    "id": 4,
+    "name": "chinese",
+    "rawname": "Chinese",
+    "description": "Chinese",
+    "flag": true
+  },
+  {
+    "id": 5,
+    "name": "all associates",
+    "rawname": "All Associates",
+    "description": "All Associates",
+    "flag": true
+  },
+  {
+    "id": 6,
+    "name": "consultant",
+    "rawname": "Consultant",
+    "description": "Consultant",
+    "flag": true
+  },
+  {
+    "id": 7,
+    "name": "developer",
+    "rawname": "Developer",
+    "description": "Developer",
+    "flag": true
+  },
+  {
+    "id": 8,
+    "name": "software engineer",
+    "rawname": "Software Engineer",
+    "description": "Software Engineer",
+    "flag": true
+  },
+  {
+    "id": 9,
+    "name": "experienced",
+    "rawname": "Experienced",
+    "description": "Experienced",
+    "flag": true
+  },
+  {
+    "id": 10,
+    "name": "advanced",
+    "rawname": "Advanced",
+    "description": "Advanced",
+    "flag": true
+  },
+  {
+    "id": 11,
+    "name": "foundational or knowledgeable",
+    "rawname": "Foundational or Knowledgeable",
+    "description": "Foundational or Knowledgeable",
+    "flag": true
+  },
+  {
+    "id": 12,
+    "name": "expert",
+    "rawname": "Expert",
+    "description": "Expert",
+    "flag": true
+  },
+  {
+    "id": 13,
+    "name": "account planning",
+    "rawname": "Account planning",
+    "description": "Account planning",
+    "flag": true
+  },
+  {
+    "id": 14,
+    "name": "infrastructure",
+    "rawname": "Infrastructure",
+    "description": "Infrastructure",
+    "flag": true
+  },
+  {
+    "id": 15,
+    "name": "personal development",
+    "rawname": "Personal Development",
+    "description": "Personal Development",
+    "flag": true
+  },
+  {
+    "id": 16,
+    "name": "cloud",
+    "rawname": "Cloud",
+    "description": "Cloud",
+    "flag": true
+  },
+  {
+    "id": 4,
+    "name": "Parent Tag 1",
+    "rawname": "Parent Tag 1",
+    "description": "Parent Tag 1",
+    "flag": true
+  },
+  {
+    "id": 5,
+    "name": "Parent Tag 2",
+    "rawname": "Parent Tag 2",
+    "description": "Parent Tag 2",
+    "flag": true
+  },
+  {
+    "id": 6,
+    "name": "Parent Tag 3",
+    "rawname": "Parent Tag 3",
+    "description": "Parent Tag 3",
+    "flag": true
+  },
+  {
+    "id": 7,
+    "name": "Sub Tag 1",
+    "rawname": "Sub Tag 1",
+    "description": "Sub Tag 1",
+    "flag": true
+  },
+  {
+    "id": 8,
+    "name": "Sub Tag 2",
+    "rawname": "Sub Tag 2",
+    "description": "Sub Tag 2",
+    "flag": true
+  },
+  {
+    "id": 9,
+    "name": "Sub Tag 3",
+    "rawname": "Sub Tag 3",
+    "description": "Sub Tag 3",
+    "flag": true
+  }
+]

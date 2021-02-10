@@ -1,0 +1,57 @@
+<cms-block ctrl="ctrl" key="state-cms-blocks" ng-cloak>
+    <div class="admin-cms-blocks-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="cms-blocks.title"></h2>
+                <div class="search-buttons-container">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.gotoNewUser()">
+                        <span class="glyphicon glyphicon-plus"></span> <span translate="cms-blocks.newCmsBlock"></span>
+                    </button>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'cms-blocks.noUsersFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="key" label="{{'global.labels.Key' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="name" label="{{'global.labels.Name' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="description" label="{{'global.labels.Description' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="user in ctrl.pagedSearch.getContent()" ng-if="!user['_empty_']">
+                                            <td ng-bind="user.key"></td>
+                                            <td ng-bind="user.name"></td>
+                                            <td ng-bind="user.description"></td>
+                                            <td class="st-actions">
+                                                <a class="affordance" href="#editCmsBlock" ng-click="ctrl.editCmsBlock(user, $event)">Edit</a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="user['_empty_']">
+                                            <td colspan="6">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

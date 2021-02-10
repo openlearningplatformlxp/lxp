@@ -1,0 +1,37 @@
+<cms-block ctrl="ctrl" key="state-audits" ng-cloak>
+    <div class="audits-view">
+        <h2 class="page-title" translate="audits.title"></h2>
+        <div class="row">
+            <div class="col-md-5">
+                <h4 translate="audits.filter.title"></h4>
+                <p class="input-group">
+                    <span class="input-group-addon" translate="audits.filter.from"></span>
+                    <input type="date" class="input-sm form-control" name="start" ng-model="ctrl.data.fromDate" ng-change="ctrl.onChangeDate()" required />
+                    <span class="input-group-addon" translate="audits.filter.to"></span>
+                    <input type="date" class="input-sm form-control" name="end" ng-model="ctrl.data.toDate" ng-change="ctrl.onChangeDate()" required />
+                </p>
+            </div>
+        </div>
+        <div class="table-responsive-plain">
+            <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th ng-click="predicate = 'timestamp'; reverse=!reverse"><span translate="audits.table.header.date"></span></th>
+                        <th ng-click="predicate = 'principal'; reverse=!reverse"><span translate="audits.table.header.principal"></span></th>
+                        <th ng-click="predicate = 'type'; reverse=!reverse"><span translate="audits.table.header.status"></span></th>
+                        <th ng-click="predicate = 'data.message'; reverse=!reverse"><span translate="audits.table.header.data"></span></th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="audit in ctrl.getAudits() | filter:filter | orderBy:predicate:reverse" ng-hide="audit.filtered">
+                    <td><span ng-bind="audit.timestamp | date:'medium'"></span></td>
+                    <td><small ng-bind="audit.principal"></small></td>
+                    <td ng-bind="audit.type"></td>
+                    <td>
+                        <span ng-show="audit.data.message" ng-bind="audit.data.message"></span>
+                        <span ng-show="audit.data.remoteAddress"><span translate="audits.table.data.remoteAddress"></span> <span ng-bind="audit.data.remoteAddress"></span></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</cms-block>

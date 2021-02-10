@@ -1,0 +1,7 @@
+<div ng-controller="ScormActivityExternalController as ctrl" class="scorm-activity">
+
+    <activity-header activity-type="ctrl.data.activity.type" activity-type-display-name="'Online self-paced'" activity-name="ctrl.data.activity.name"></activity-header>
+
+    <iframe id="scromIframe" ng-src="{{ctrl.data.resourceUrl}}" class="scorm-resource-box" frameBorder="0"></iframe>
+
+</div>

@@ -1,0 +1,3 @@
+<ol ng-if="breadcrumbs.length > 0" class="breadcrumbs-directive breadcrumb">
+    <li ng-repeat="crumb in breadcrumbs" ng-class="{active: $last}"><a ui-sref="{{crumb.stateName}}" ng-if="!$last" translate="{{crumb.name}}">&nbsp;</a><span ng-show="$last" translate="{{crumb.name}}"></span></li>
+</ol>

@@ -1,0 +1,116 @@
+<div class="evidence-view">
+    <h1 class="profile__panel-title">Add external learning</h1>
+    <p class="profile__panel-text">Track your participation in a learning activity.</p>
+    <div class="container-fluid">
+        <div ng-if="showSuccess">
+            <h5>External learning submitted successfully!</h5>
+            <div>
+                <button class="btn negative-primary-round" ng-click="ctrl.addAnother()">Add another</button>
+            </div>
+        </div>
+
+        <form class="form-horizontal" name="form" role="form" novalidate show-validation ng-if="!showSuccess" enctype="multipart/form-data">
+            <div class="text-center error-message" ng-if="ctrl.data.showErrorMessage" ng-bind="ctrl.data.errorMessage"></div>
+            <div class="">
+                <div class="form-group">
+                    <label class="control-label col-sm-4">External learning type<span class="required-star">*</span></label>
+                    <div class="col-sm-8">
+                        <select id="issueType" class="form-control" ng-model="evidence.activityType" ng-required="true">
+                            <option value="">Select an activity type</option>
+                            <option value="Course">Course</option>
+                            <option value="Conference">Conference</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Other formal event">Other formal event</option>
+                            <option value="Whitepaper">Whitepaper</option>
+                            <option value="Article">Article</option>
+                            <option value="Book">Book</option>
+                            <option value="Blog">Blog</option>
+                            <option value="Video">Video</option>
+                            <option value="Coaching">Coaching</option>
+                            <option value="Certification Exam">Certification Exam</option>
+                            <option value="Mentoring">Mentoring</option>
+                            <option value="Stretch Assignment">Stretch Assignment</option>
+                            <option value="other">Other (please describe in the activity name field)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">External learning name<span class="required-star">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ng-model="evidence.name" ng-required="true">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0">
+                    <label class="control-label col-sm-4">External learning activity url</label>
+                    <div class="col-sm-8 pb-0">
+                        <div class="inline-groups">
+                            <div class="form-group">
+
+                                <label class="control-label col-sm-2">Url</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="evidence.url">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Text</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="evidence.text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4"></label>
+                    <div class="col-sm-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="evidence.newWindow"> Open in new window
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4">External learning activity institution</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ng-model="evidence.institution">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Date completed<span class="required-star">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ng-model="evidence.date" datepicker ng-required="true" date-input placeholder="mm/dd/yyyy">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4">File attachment</label>
+                    <div class="col-sm-8">
+                        <a ngf-select="ctrl.uploadFile($file)" ngf-multiple="true">
+                            Upload File
+                        </a>
+
+                        <div class="file-thumbnails" ng-if="ctrl.data.showFileImage">
+                            <img ngf-thumbnail="ctrl.data.file || '/thumb.jpg'">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="evidence-button">
+                            <button class="primary" ng-click="ctrl.sendEvidence()" ng-disabled="ctrl.isFormDisabled(form) || ctrl.data.isSubmitting">Submit external learning
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>

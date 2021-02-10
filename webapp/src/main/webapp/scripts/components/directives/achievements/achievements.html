@@ -1,0 +1,107 @@
+<div ng-class="clazz" class="achievements">
+    <div class="achievements-header clearfix">
+        <div class="pull-right dropdown-container">
+            <div class="dropdown-label">Sort by</div>
+            <div class="dropdown">
+                <button class="primary-negative" type="button" id="sortTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span ng-bind="sortType.name"></span>&#xA0;&#xA0;<i class="fa fa-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="sortTypeDropdown">
+                    <li ng-repeat="type in sortTypes"><a href="" ng-click="selectSortType(type)"><span ng-bind="type.name"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!loading">
+        <div ng-repeat="achievement in achievements | filter: achievementFilter | orderBy: achievement: true: achievementSortBy track by $index" class="achievement-list">
+
+
+            <div class="team-card team-card-debug" ng-click="goToActivity(achievement)" tabindex="0" role="button" ng-if="achievement.type != 'EVIDENCE'">
+                <div class="team-card-icon">
+                    <div class="team-card-icon-content-type">
+                        <img class="svg svg-black" src="assets/images/learningpath.svg" ng-if="achievement.type === 'LEARNING_PATH'" />
+                        <img class="svg svg-black" src="assets/images/book.svg" ng-if="achievement.type != 'LEARNING_PATH'" />
+                    </div>
+                </div>
+                <div class="team-card-text">
+                    <div class="title"><span ng-bind="achievement.title"></span></div>
+                    <div class="desc">
+                        <span class="meta" ng-if="achievement.type" ng-bind="achievement.type | capitalize"></span>
+                        <span class="meta" ng-if="achievement.timeEnrolled">Enrolled on <span ng-bind="achievement.timeEnrolled | date: 'MMM dd, yyyy'"></span></span>
+                    </div>
+                </div>
+                <div class="team-card-progress">
+                    <div class="percent-text">
+                        <em><span ng-bind="achievement.progress"></span>%</em>
+                        <span class="progression-status-box progression-status-box-notstarted" ng-if="achievement.progress === 0">
+                            <img class="svg" src="assets/images/circle.svg"></i> Enrolled</span>
+                        <span class="progression-status-box progression-status-box-inprogress" ng-if="achievement.progress !== 0 && achievement.progress !== 100">
+                            <img class="svg" src="assets/images/disc.svg"> In progress</span>
+                        <span class="progression-status-box progression-status-box-completed" ng-if="achievement.progress === 100">
+                            <img class="svg" src="assets/images/check.svg"> Completed</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card team-card-debug" ng-click="goToActivity(achievement)" tabindex="0" role="button" ng-if="achievement.type == 'EVIDENCE'">
+                <div class="team-card-icon">
+                    <div class="team-card-icon-content-type">
+                        <img class="svg svg-black" src="assets/images/file.svg" />
+                    </div>
+                </div>
+                <div class="team-card-text">
+                    <div class="title"><span ng-bind="achievement.title"></span></div>
+                    <div class="desc">
+                        <span class="meta">External Learning</span>
+                    </div>
+                </div>
+                <div class="team-card-progress">
+                    <div class="percent-text">
+                        <span class="progression-status-box progression-status-box-inprogress" ng-if="achievement.status < 97">
+                            <img class="svg" src="assets/images/disc.svg"><b>Submitted</b> on <span ng-bind="achievement.completedDate|date:shortDate"></span></span>
+                        <span class="progression-status-box progression-status-box-completed" ng-if="achievement.status >= 98">
+                            <img class="svg" src="assets/images/check.svg"> <b>Approved</b> on <span ng-bind="achievement.completedDate|date:shortDate"></span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- SKELETON LOADING -->
+    <div class="achievement-list skeleton-view" ng-if="loading">
+        <div class="skeleton-row">
+            <div class="skeleton-column">
+                <h2></h2>
+                <h3></h3>
+            </div>
+            <div class="skeleton-column right">
+                <h5></h5>
+                <h2></h2>
+            </div>
+        </div>
+        <hr>
+        <div class="skeleton-row">
+            <div class="skeleton-column">
+                <h2></h2>
+                <h3></h3>
+            </div>
+            <div class="skeleton-column right">
+                <h5></h5>
+                <h2></h2>
+            </div>
+        </div>
+        <hr>
+        <div class="skeleton-row">
+            <div class="skeleton-column">
+                <h2></h2>
+                <h3></h3>
+            </div>
+            <div class="skeleton-column right">
+                <h5></h5>
+                <h2></h2>
+            </div>
+        </div>
+    </div>
+</div>

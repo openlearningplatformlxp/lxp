@@ -1,0 +1,45 @@
+{
+    "featuredSearch": {
+        "featuredSearches": {
+            "title": "Featured Searches",
+            "createTitle": "Create a Featured Search",
+            "editTitle": "Edit a Featured Search",
+            "id": "Id",
+            "keywords": "Keywords",
+            "noEntriesFound": "No Entries Found!",
+            "instances": "Instances",
+            "results": "Results",
+            "filters": "Filters",
+            "searchTerm": "Search Term",
+            "searchSearches": {
+                "inputPlaceholder": "Search Featured entries...",
+                "totalSearchesCount": "Total Search entries: {{count}}"
+            }
+        },
+        "button": {
+            "add": "Add Keyword",
+            "create": "Create",
+            "edit": "Update"
+        },
+        "titles": {
+            "create": "Create Featured Search",
+            "edit": "Edit Featured Search"
+        },
+        "form": {
+            "keywords": "Keywords",
+            "searchText": "Search for courses and programs",
+            "placeholder": {
+                "keywords": "Comma separated values like management, Red Hat, class",
+                "searchText": "Red Hat Architecture Course..."
+            },
+            "selections": "Selected courses and programs for the keywords",
+            "search": "Search",
+            "validate": {
+                "keywords": {
+                    "required": "The keywords is a required field",
+                    "maxlength": "The keywords cannot be longer than 255 characters."
+                }
+            }
+        }
+    }
+}

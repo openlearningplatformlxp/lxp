@@ -1,0 +1,75 @@
+<div class="searchbar-directive clearfix">
+    <form ng-class="{'disabled': ctrl.isSearching()}">
+        <table ng-if="ctrl.isNotPagerOnly()" class="full-width searchbar-row">
+            <tr>
+                <td ng-if="ctrl.showSearchbox()">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div ng-if="ctrl.showSearchOperationsSelector()" class="input-group-btn">
+                                <label for="searchInput_{{ctrl.data.unique}}" class="btn btn-default btn-operation"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    <div class="operation-text" ng-bind="ctrl.data.searchOperation.name"></div>
+                                </label>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="searchOperation in ctrl.getSearchOperations()"><a ng-click="ctrl.setSearchOperation(searchOperation)" ng-bind="searchOperation.name"></a></li>
+                                </ul>
+                            </div>
+                            <label ng-if="!ctrl.showSearchOperationsSelector()" class="input-group-addon" for="searchInput_{{ctrl.data.unique}}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+                            <div class="input-group-overlay-addon">
+                                <input id="searchInput_{{ctrl.data.unique}}" type="text" class="form-control" ng-disabled="ctrl.isSearching()" ng-model="ctrl.data.searchValue" placeholder="{{ctrl.getTextKey('searchInputPlaceholder') | translate:ctrl.getTextValues('searchInputPlaceholder')}}">
+                                <div ng-if="ctrl.data.searchValue" ng-click="ctrl.clearSearch()" class="glyphicon glyphicon-remove-circle"></div>
+                            </div>
+                            <div class="input-group-btn">
+                                <input class="btn btn-default" type="submit" ng-click="ctrl.search()" ng-disabled="ctrl.isSearching()" value="{{ctrl.getTextKey('searchButtonLabel') | translate:ctrl.getTextValues('searchButtonLabel')}}">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="form-inline" nowrap ng-if="ctrl.showCountPicker()">
+                    <div class="form-group">
+                        <label for="numResults_{{ctrl.data.unique}}" translate="{{ctrl.getTextKey('resultsLabel')}}" translate-values="ctrl.getTextValues('resultsLabel')"></label>
+                        <select class="form-control" id="numResults_{{ctrl.data.unique}}" ng-change="ctrl.onNumResultsChange()" ng-disabled="ctrl.isSearching()" ng-model="ctrl.data.numResults" ng-options="c.name for c in ctrl.getResults()"></select>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div ng-if="ctrl.isNotPagerOnly()" class="form-group searchbar-row" ng-repeat="searchOption in ctrl.getSearchOptions()">
+            <label for="option_{{$index}}_{{ctrl.data.unique}}" translate><span ng-bind="searchOption.text.label"></span></label>
+            <select class="form-control" id="option_{{$index}}_{{ctrl.data.unique}}" ng-change="ctrl.onSearchOptionsChange(searchOption)" ng-disabled="ctrl.isSearching()" ng-model="searchOption.data.value" ng-options="c.name for c in searchOption.choices"></select>
+        </div>
+        <hr ng-if="ctrl.isNotPagerOnly() && ctrl.hasResults() && ctrl.getSearchOptions().length > 0">
+        <div ng-if="ctrl.hasResults()" class="searchbar-row">
+            <div ng-if="ctrl.isNotPagerOnly()" class="pull-left">
+                <div ng-if="ctrl.getTextKey('totalItemsCount')" class="current-total-container form-control-static" translate="{{ctrl.getTextKey('totalItemsCount')}}" translate-values="ctrl.getTextValues('totalItemsCount')"></div>
+                <div ng-if="ctrl.showMultiSelect()" style="display: inline-block;">
+                    &middot; <span translate="global.directives.searchbar.multiSelect"></span>:
+                    <div style="display: inline-block;">
+                        <div class="btn-group btn-group-xs">
+                            <label class="btn btn-primary" ng-model="ctrl.selected.getState().visible" uib-btn-radio="true" translate="global.On"></label>
+                            <label class="btn btn-primary" ng-model="ctrl.selected.getState().visible" uib-btn-radio="false" translate="global.Off"></label>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.selected.getState().visible" style="display: inline-block;">
+                        &middot; <span translate="global.directives.searchbar.Selected"></span>:
+                        <div style="display: inline-block;" ng-bind="ctrl.selected.getSelectedCount()"></div>
+                        <div ng-if="ctrl.selected.hasSelected()" style="display: inline-block;">
+                            &middot;
+                            <button class="btn btn-primary btn-xs" ng-click="ctrl.selected.clear(true)">Clear Selected</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline pull-right">
+                <div class="current-page-container" translate="{{ctrl.getTextKey('pageXofY')}}" translate-values="ctrl.getTextValues('pageXofY')"></div>
+                <div class="btn-group searchbar-pager clearfix">
+                    <button class="btn btn-default" ng-click="ctrl.pagePrev()" ng-disabled="!ctrl.hasPagePrev() || ctrl.isSearching()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                    <select ng-if="ctrl.showPagePicker() && ctrl.getPager().pageSelected" class="pull-left form-control" ng-change="ctrl.onPagerChange()" ng-disabled="ctrl.isSearching()" ng-model="ctrl.getPager().pageSelected" ng-options="c.display for c in ctrl.getPager().pages"></select>
+                    <button class="btn btn-default" ng-click="ctrl.pageNext()" ng-disabled="!ctrl.hasPageNext() || ctrl.isSearching()"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

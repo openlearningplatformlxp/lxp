@@ -1,0 +1,37 @@
+/**
+ * Search Sort directive styles.
+ */
+
+.searchsort-directive {
+    div {
+        display: inline-block;
+    }
+
+    .sortable {
+        .sort-label {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+    }
+
+    .sort-icon {
+        position: relative;
+
+        .fa {
+            color: #000000;
+            left: 0px;
+            padding: 3px 0px;
+            position: absolute;
+            top: 0px;
+        }
+
+        .fa.sort-secondary {
+            color: #333333;
+            opacity: 0.40;
+        }
+
+        .fa-sort {
+            opacity: 0.15;
+        }
+    }
+}

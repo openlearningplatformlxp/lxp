@@ -1,0 +1,10 @@
+{
+    "notifications": {
+        "title": "Notifications",
+        "noNotificationsFound": "No Notifications Found!",
+        "searchNotifications": {
+            "inputPlaceholder": "Search Notifications...",
+            "totalNotificationsCount": "Total Notifications: {{count}}"
+        }
+    }
+}

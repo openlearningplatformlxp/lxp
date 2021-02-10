@@ -1,0 +1,92 @@
+<cms-block ctrl="ctrl" key="state-feedbacks" ng-cloak>
+    <div class="admin-feedbacks-view">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="header-container col-xs-6">
+                    <h2 class="page-title" translate="feedback.feedbacks.title"></h2>
+                </div>
+                <div class="header-container col-xs-6">
+                    <a ng-href="api/csv/feedback" class="download-link" target="_blank">
+                        <button class="pull-right">Download</button>
+                    </a>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'feedback.feedbacks.noFeedbacksFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="st-min-width"><span translate="feedback.feedbacks.id"></span></th>
+                                            <th class="" style="width: 155px;">
+                                                <searchsort search-state="ctrl.pagedSearch" field="createdDate" label="{{'global.labels.createdDate' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-min-width">
+                                                <searchsort search-state="ctrl.pagedSearch" field="type" label="{{'global.labels.Type' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-min-width"><span translate="feedback.feedbacks.url"></span></th>
+                                            <th class="st-min-width"><span translate="feedback.feedbacks.region"></span>
+                                            </th>
+                                            <th class="st-min-width"><span translate="feedback.feedbacks.jobTitle"></span>
+                                            </th>
+                                            <th class="st-min-width"><span translate="feedback.feedbacks.email"></span></th>
+                                            <th class=""><span translate="feedback.feedbacks.message"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="feedback in ctrl.pagedSearch.getContent()" ng-if="!feedback['_empty_']">
+                                            <td ng-bind="feedback.id"></td>
+                                            <td ng-bind="feedback.createdDate |date:'short'"></td>
+                                            <td ng-bind="feedback.type"></td>
+                                            <td ng-bind="feedback.url"></td>
+                                            <td ng-bind="feedback.region"></td>
+                                            <td ng-bind="feedback.jobTitle"></td>
+                                            <td ng-bind="feedback.email"></td>
+                                            <td class="message-text-container" ng-bind="feedback.message"></td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="feedback['_empty_']">
+                                            <td colspan="8">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>
+
+
+<div class="search-filters modal right fade" id="readMoreModal" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="header-title">
+                    <div class="header-title-text">
+                        <h4 class="modal-title" id="myModalLabel2">Message</h4>
+                    </div>
+                </div>
+                <div class="header-close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img class="svg svg-black" src="assets/images/x.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <span ng-bind="popupFeedback"></span>
+            </div>
+
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div><!-- modal -->

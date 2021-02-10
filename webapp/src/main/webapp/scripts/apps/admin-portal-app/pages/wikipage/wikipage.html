@@ -1,0 +1,78 @@
+<cms-block ctrl="ctrl" key="state-admin-wikipages" ng-cloak>
+    <div class="admin-wikipage-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="wikipage.title"></h2>
+
+                <div class="search-buttons-container">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.goToWikipageTree()">
+                        <span class="glyphicon glyphicon-tree-conifer"></span>
+                        <span translate="wikipage.button.folders"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="ctrl.goToCreateWikipage()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span translate="wikipage.button.create"></span>
+                    </button>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'wikipage.noWikipagesFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="st-min-width"><span translate="wikipage.id"></span></th>
+                                            <th class="">
+                                                <searchsort search-state="ctrl.pagedSearch" field="url" label="{{'wikipage.url' | translate}}"></searchsort>
+                                            </th>
+                                            <th class=""><span translate="wikipage.form.title"></span></th>
+                                            <th class="st-min-width"><span translate="wikipage.form.status"></span></th>
+                                            <th class="st-min-width"><span translate="wikipage.form.indexOnSearch"></span>
+                                            </th>
+                                            <th class="" style="width: 155px;">
+                                                <searchsort search-state="ctrl.pagedSearch" field="createdDate" label="{{'global.labels.createdDate' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="wikipage in ctrl.pagedSearch.getContent()" ng-if="!wikipage['_empty_']">
+                                            <td ng-bind="wikipage.id"></td>
+                                            <td>/pages<span ng-bind="wikipage.url"></span></td>
+                                            <td ng-bind="wikipage.title"></td>
+                                            <td>
+                                                <div class="label label-published" ng-if="wikipage.status=='PUBLISHED'" ng-bind="wikipage.status">
+                                                </div>
+                                                <div class="label label-draft" ng-if="wikipage.status=='DRAFT'" ng-bind="wikipage.status">
+                                                </div>
+                                                <div class="label label-archived" ng-if="wikipage.status=='ARCHIVED'" ng-bind="wikipage.status">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="label label-published" ng-if="wikipage.indexOnSearch">Yes</div>
+                                                <div class="label label-archived" ng-if="!wikipage.indexOnSearch">No</div>
+                                            </td>
+                                            <td ng-bind="wikipage.createdDate |date:'short'"></td>
+                                            <td class="st-actions">
+                                                <a class="affordance" href="#edit" ng-click="ctrl.goToEditWikipage(wikipage, $event)">Edit</a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="wikipage['_empty_']">
+                                            <td colspan="7">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

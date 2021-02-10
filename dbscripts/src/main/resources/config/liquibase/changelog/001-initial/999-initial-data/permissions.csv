@@ -1,0 +1,5 @@
+group_name;permission_name;operation
+USERS;ROLE;VIEW
+USERS;ROLE;CREATE
+USERS;ROLE;UPDATE
+USERS;ROLE;DELETE

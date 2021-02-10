@@ -1,0 +1,43 @@
+<div ng-controller="FeedbackActivityController as ctrl" class="feedback-activity">
+
+    <div class="watermark">DRAFT</div>
+
+    <div ng-repeat="question in ctrl.data.activity.content.questions track by $index">
+        <div class="question-card">
+            <span ng-if="question.required==1">*</span>
+
+            <div ng-bind-html="question.questionText" />
+            <div class="choice-container">
+                <div ng-if="question.subtype=='check'">
+                    <div class="choices" ng-repeat="choice in question.choices track by $index">
+                        <label>
+                            <input type="checkbox" value="{{$index+1}}" ng-checked="question.answer.indexOf($index+1)!=-1" ng-click="ctrl.selectMultiOption($parent.$index, $index+1)" ng-disabled="ctrl.data.isSubmitting">
+                            {{choice}}
+                        </label>
+                    </div>
+                </div>
+                <div ng-if="question.subtype=='radio'">
+                    <div class="choices" ng-repeat="choice in question.choices track by $index">
+                        <label>
+                            <input type="radio" value="{{$index+1}}" ng-model="question.answer" ng-disabled="ctrl.data.isSubmitting">
+                            {{choice | feedbackratedfilter}}
+                        </label>
+                    </div>
+                </div>
+                <div ng-if="question.subtype=='dropdown'">
+
+                    <select class="form-control" ng-model="question.answer" ng-options="choice for choice in question.choices track by $index" ng-disabled="ctrl.data.isSubmitting"></select>
+
+                </div>
+
+                <div class="text" ng-if="question.type=='textarea' || question.type=='textfield'">
+                    <textarea rows="4" class="form-control" ng-model="question.answer" ng-disabled="ctrl.data.isSubmitting"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary btn-lg" ng-click="ctrl.submit()" ng-disabled="ctrl.data.isSubmitting">Submit</button>
+    </div>
+</div>

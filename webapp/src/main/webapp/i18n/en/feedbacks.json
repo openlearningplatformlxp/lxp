@@ -1,0 +1,19 @@
+{
+    "feedback": {
+        "feedbacks": {
+            "id": "Id",
+            "title": "Feedbacks",
+            "noFeedbacksFound": "No Feedbacks Found!",
+            "url": "Url",
+            "region": "Region",
+            "businessLine": "Business Line",
+            "jobTitle": "Job Title",
+            "email": "Email",
+            "message": "Message",
+            "searchFeedbacks": {
+                "inputPlaceholder": "Search Feedbacks...",
+                "totalFeedbacksCount": "Total Feedbacks: {{count}}"
+            }
+        }
+    }
+}

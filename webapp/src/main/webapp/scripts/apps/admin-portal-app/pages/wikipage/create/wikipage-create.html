@@ -1,0 +1,98 @@
+<!--
+    Create Wikipage by Admin.
+-->
+<cms-block ctrl="ctrl" key="state-add-wikipage" ng-cloak>
+    <div class="admin-wikipage-create-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="wikipage.button.create" ng-if="!ctrl.data.wikipage.id"></h2>
+                <h2 class="page-title" translate="wikipage.button.edit" ng-if="ctrl.data.wikipage.id"></h2>
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+            </div>
+        </div>
+        <form name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <div class="form-group">
+                            <label for="title" translate="wikipage.form.title"></label><span class="required-star">*</span>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="{{'wikipage.form.placeholder.title' | translate}}" ng-model="ctrl.data.wikipage.title" ng-required="true" ng-maxlength=50>
+                            <div ng-show="form.title.$dirty && form.title.$invalid">
+                                <p class="help-block" ng-show="form.title.$error.required" translate="wikipage.form.validate.title.required"></p>
+                                <p class="help-block" ng-show=" form.title.$error.maxlength" translate="wikipage.form.validate.title.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="slug" translate="wikipage.form.slug"></label><span class="required-star">*</span>
+                            <input type="text" class="form-control" id="slug" name="slug" placeholder="{{'wikipage.form.placeholder.slug' | translate}}" ng-model="ctrl.data.wikipage.slug" ng-required="true" ng-maxlength=50>
+                            <div ng-show="form.slug.$dirty && form.slug.$invalid">
+                                <p class="help-block" ng-show="form.slug.$error.required" translate="wikipage.form.validate.title.required"></p>
+                                <p class="help-block" ng-show="form.slug.$error.maxlength" translate="wikipage.form.validate.title.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="wikipage.form.index"></label>
+                            <checkbox ng-model="ctrl.data.wikipage.indexOnSearch" class="checkbox"></checkbox>
+                        </div>
+                        <div class="form-group">
+                            <label for="tags" translate="wikipage.form.tags"></label>
+                            <div class="profile-preferences-panel--add-interest-box">
+                                <div class="profile-preferences-panel--add-interest-box-search">
+                                    <div angucomplete-alt id="interestsPlaceHolder" placeholder="Search interests..." pause="500" selected-object="ctrl.selectTag" remote-url="/api/admin/wikipages/tags/unmatched?id={{ctrl.data.wikipage.id}}&q=" remote-url-request-formatter="remoteUrlRequestFn" title-field="name" minlength="1" input-changed="ctrl.tagChanged" input-class="form-control form-control-small" match-class="highlight">
+                                    </div>
+                                </div>
+                                <div class="profile-preferences-panel--add-interest-box-button">
+                                    <button class="primary" ng-click="ctrl.addTag()" ng-disabled="!ctrl.data.selectedTag">Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="profile-preferences-panel--labels">
+                                <div class="info-label" ng-repeat="tag in ctrl.data.wikipage.tags track by $index">
+                                    <div class="label">
+                                        <div class="">
+                                            <span ng-bind="tag.name"></span>
+                                            <i class="icon-circle-cross icon-3x" ng-click="ctrl.removeTag(tag, $index)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Page Content<span class="required-star">*</span></h3>
+                        <p>Notes:
+                        <ul>
+                            <li>Actual styling of the page will vary from that of this editor. Preview to view final formatting.</li>
+                            <li>Content copy and pasted here from sources like Mojo or Google Docs will bring along extra HTML styling tags and impact the display of the page. We suggest that you paste with out formatting and then use the editor tools to style the text. On a Mac do this by pressing Command+Option+Shift+V.</li>
+                        </ul>
+                        </p>
+                        <div class="form-group">
+                            <a ng-href="/#/pages{{ctrl.data.wikipage.slug}}" target="_blank">Preview Page</a>
+                        </div>
+                        <div ng-if="ctrl.data.editor == 'quill'">
+                            <a href="javascript:;" ng-click="ctrl.switchEditor('text')"> Switch to HTML editor</a>
+                            <ng-quill-editor ng-model="ctrl.data.wikipage.htmlContent">
+
+                            </ng-quill-editor>
+                        </div>
+                        <div ng-if="ctrl.data.editor == 'text'" class="text-editor">
+                            <a href="javascript:;" ng-click="ctrl.switchEditor('quill')"> Switch to WYSIWYG editor</a>
+                            <textarea ng-model="ctrl.data.wikipage.htmlContent">
+                                 </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions-container well">
+                    <div class="actions-container-body">
+                        <a type="button" class="btn btn-default" ng-click="ctrl.cancel(form)" translate="global.buttons.cancel"></a>
+                        <a class="btn btn-default" ng-click="ctrl.saveDraft(form)" ng-show="ctrl.data.wikipage.status === 'DRAFT'" translate="wikipage.save.draft"></a>
+                        <a class="btn btn-primary" ng-click="ctrl.savePublish(form)" ng-disabled="ctrl.isFormDisabled(form)" translate="wikipage.save.publish"></a>
+                        <a class="btn btn-default" ng-click="ctrl.saveArchive(form)" ng-show="ctrl.data.wikipage.status === 'PUBLISHED'" translate="wikipage.save.archive"></a>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+    </div>
+</cms-block>

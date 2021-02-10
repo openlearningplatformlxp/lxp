@@ -1,0 +1,15 @@
+<div class="course-player-external-view">
+    <div class="lesson">
+        <div class="lesson-content">
+
+            <div class="activity-view">
+
+                <div ng-if="ctrl.data.activityConfig" class="activity-box">
+                    <activity-content-external config="ctrl.data.activityConfig" on-next-activity-click="ctrl.goToNextActivity()" class="activity-content"></activity-content-external>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

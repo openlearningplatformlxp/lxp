@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>$utils.xlate("email.activation.title")</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p>
+#if($activationToken.person.firstName)
+            $utils.xlate("email.activation.greeting", $activationToken.person.firstName)
+#elseif($activationToken.person.login)
+            $utils.xlate("email.activation.greeting", $activationToken.person.login)
+#else
+            $utils.xlate("email.activation.greetingNoName")
+#end
+        </p>
+        <p>
+            $utils.xlate("email.activation.text1")
+        </p>
+        <p>
+            <a href="${baseUrl}/#/activate?key=${activationToken.token}">$utils.xlate("email.activation.activateAccount")</a>
+        </p>
+        <p>
+            $utils.xlate("email.activation.text2")
+            <br/>
+            <em>$utils.xlate("email.signature")</em>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+{
+    "login": {
+        "title": "Open Learning Platform Demo Login",
+        "demolinks": "Use the links below to automatically access the demo system",
+        "form": {
+            "password": "Password",
+            "password.placeholder": "Your password",
+            "rememberme": "Automatic Login",
+            "button": "Authenticate"
+        },
+        "messages": {
+            "error": {
+                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
+            }
+        },
+        "password" : {
+            "forgot": "Did you forget your password?"
+        }
+    }
+}

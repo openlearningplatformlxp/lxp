@@ -1,0 +1,27 @@
+/**
+ * Admin Announcements Send View styles.
+ */
+
+.common-app .admin-announcements-send-view {
+    .actions-container {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+
+        .btn {
+            min-width: 140px;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+
+        .actions-container-title {}
+
+        .actions-container-body {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+    }
+}

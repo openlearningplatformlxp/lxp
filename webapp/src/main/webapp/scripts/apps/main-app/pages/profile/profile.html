@@ -1,0 +1,118 @@
+<div class="profile-view">
+    <div class="page-content-section">
+        <div class="container-fluid">
+            <div class="layout-2-column-sidebar">
+                <div class="column-sidebar profile-left-column">
+                    <div class="profile-left-bar">
+                        <div class="profile-image" ng-if="profile">
+                            <img ng-src="{{profileImageUrl}}" on-error-src="profile-default-image" />
+                            <img class="img-responsive default-image" id="profile-default-image" src="assets/images/rover-default-profile.png" alt="image-cover" />
+                            <button class="profile-pencil" onclick="$('#angular-upload input').click()" ng-if="profile" uib-tooltip="Edit picture" tooltip-placement="bottom">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </div>
+                        <angular-file-upload-button accept=".jpg, .png" filters="jpg, png" required="true" uploader="uploader" id="angular-upload" ng-if="profile">
+                            <button style="display: none"></button>
+                        </angular-file-upload-button>
+                        <div class="profile-user-info" ng-if="profile">
+                            <h4 class="name" ng-bind="profile.displayName"></h4>
+                            <div class="location">
+                                <span ng-if="profile.city" ng-bind="profile.city"></span>
+                                <span ng-if="profile.city && profile.country">, </span>
+                                <span ng-if="profile.country" ng-bind="profile.country"></span>
+                            </div>
+                        </div>
+                        <div class="profile-user-info skeleton-view" ng-if="loading">
+                            <div class="skeleton-row">
+                                <div class="skeleton-column center">
+                                    <h5></h5>
+                                    <h3></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-user-data" ng-if="profile">
+                            <div class="profile-user-data-area">
+                                <h6 class="info-label">Email Address</h6>
+                                <div class="info" ng-bind="profile.emailAddress"></div>
+                            </div>
+                            <div class="profile-user-data-area">
+                                <h6 class="info-label">Language</h6>
+                                <div class="info">
+                                    <span ng-bind-html="'main.languages.' +profile.language | lowercase | translate"></span>
+                                </div>
+                            </div>
+
+                            <div class="profile-user-data-area">
+                                <h6 class="info-label">Timezone</h6>
+                                <div class="info">
+                                    <span ng-bind-html="profile.timezone"></span>
+                                </div>
+                            </div>
+                            <div class="profile-user-data-area">
+                                <h6 class="info-label">Manager(s)</h6>
+                                <div class="">
+                                    <div class="profile-manager" ng-repeat="manager in profile.managers">
+                                        <div class="profile-manager-image-container">
+                                            <div class="profile-manager-image">
+                                                <img ng-src="{{manager.pictureUrl}}" on-error-src="manager-default-image" />
+                                                <img class="img-responsive default-image" id="manager-default-image" src="assets/images/rover-default-profile.png" alt="image-cover" />
+                                            </div>
+                                        </div>
+                                        <div class="profile-manager-text">
+                                            <div class="manager-name" ng-bind="manager.displayName"></div>
+                                            <div class="manager-location text-muted">
+                                                <span ng-if="manager.city" ng-bind="manager.city"></span>
+                                                <span ng-if="manager.city && manager.country">, </span>
+                                                <span ng-if="manager.country" ng-bind="manager.country"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-user-info2 skeleton-view" ng-if="loading">
+                            <div class="skeleton-row">
+                                <div class="skeleton-column">
+                                    <h5></h5>
+                                    <h3></h3>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="skeleton-row">
+                                <div class="skeleton-column">
+                                    <h5></h5>
+                                    <h4></h4>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="skeleton-row">
+                                <div class="skeleton-column">
+                                    <h5></h5>
+                                    <h6></h6>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="skeleton-row">
+                                <div class="skeleton-column">
+                                    <h5></h5>
+                                    <h6></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column-main profile-right-column">
+                    <div class="profile-header-nav">
+                        <ul class="list-unstyled">
+                            <li><a href="#/profile/main" ui-sref-active="active" ui-sref="profile-main">Profile</a></li>
+                            <li><a href="#/profile/external-learning" ui-sref-active="active" ui-sref="profile-external-learning">External Learning</a></li>
+                            <li><a href="#/profile/preferences" ui-sref-active="active" ui-sref="profile-preferences">Preferences</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ui-view="profile_content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

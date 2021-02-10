@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="generator">
+    <createTable tableName="persistent_audit_event_data">
+      <column name="event_id" type="BIGINT">
+        <constraints foreignKeyName="fk_persistent_audit_event_data_event_id" nullable="false" referencedTableName="persistent_audit_event" referencedColumnNames="event_id"/>
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="value" type="VARCHAR(1000)"/>
+    </createTable>
+    <addPrimaryKey tableName="persistent_audit_event_data" columnNames="event_id, name" constraintName="pk_persistent_audit_event_data"/>
+    <createIndex indexName="idx_persistent_audit_event_data" tableName="persistent_audit_event_data" unique="false">
+      <column name="event_id" type="BIGINT"/>
+    </createIndex>
+  </changeSet>
+</databaseChangeLog>

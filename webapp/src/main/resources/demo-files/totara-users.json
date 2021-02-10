@@ -1,0 +1,46 @@
+[
+  {
+    "firstName": "Demo",
+    "lastName": "User",
+    "email": "demo.user@rhl.com",
+    "city": "Anywhere",
+    "country": "USA",
+    "timezone": "CST",
+    "language": "EN",
+    "id": "1",
+    "certId": "1"
+  },
+  {
+    "firstName": "Demo",
+    "lastName": "User2",
+    "email": "demo.user2@rhl.com",
+    "city": "Anywhere",
+    "country": "USA",
+    "timezone": "CST",
+    "language": "EN",
+    "id": "2",
+    "certId": "2"
+  },
+  {
+    "firstName": "Manager",
+    "lastName": "User1",
+    "email": "manager.user1@rhl.com",
+    "city": "Anywhere",
+    "country": "USA",
+    "timezone": "CST",
+    "language": "EN",
+    "id": "3",
+    "certId": "3"
+  },
+  {
+    "firstName": "Manager",
+    "lastName": "User2",
+    "email": "manager.user2@rhl.com",
+    "city": "Anywhere",
+    "country": "USA",
+    "timezone": "CST",
+    "language": "EN",
+    "id": "6",
+    "certId": "4"
+  }
+]

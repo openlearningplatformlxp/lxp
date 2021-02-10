@@ -1,0 +1,70 @@
+<div class="profile-learning-view">
+
+    <h1 class="profile__panel-title">Personal Learning Paths</h1>
+
+    <div class="card-header-area">
+        <div class="header-button">
+            <a ui-sref="learning-path-create" ng-if="totalCount < maxNumber">
+                <button class="primary"><i class="fa fa-plus"></i> New</button>
+            </a>
+        </div>
+        <div class="header-title">
+            <p class="profile__panel-text">You have created <strong><span ng-bind="totalCount"></span></strong> of
+                available <strong><span ng-bind="maxNumber"></span></strong> plans</p>
+        </div>
+        <div class="header-switcher">
+            <card-view-switcher></card-view-switcher>
+        </div>
+    </div>
+
+    <div class="profile-learning-body">
+        <div class="row">
+            <div class="card-container-{{cardView}}" ng-repeat="card in learningPathCards track by $index">
+                <card item="card"></card>
+            </div>
+        </div>
+        <div class="row" ng-if="loading">
+            <card-fake amount="3" card-view="cardView"></card-fake>
+        </div>
+    </div>
+
+    <div class="card-header-area" ng-if="sharedPathsCards.length > 0">
+        <div class="header-button"></div>
+        <div class="header-title">
+            <p class="profile__panel-text">Plans that are shared with you</p>
+        </div>
+        <div class="header-switcher">
+            <card-view-switcher></card-view-switcher>
+        </div>
+    </div>
+
+    <div class="profile-learning-body ">
+        <div class="row">
+            <div class="card-container-{{cardView}}" ng-repeat="card in sharedPathsCards track by $index">
+                <card item="card"></card>
+            </div>
+        </div>
+        <div class="row" ng-if="loading">
+            <card-fake amount="3" card-view="cardView"></card-fake>
+        </div>
+    </div>
+
+
+    <div class="card-header-area" ng-if="archivedLearningPathCards.length > 0">
+        <div class="header-title">
+            <p class="profile__panel-text">These are your archived personal learning plans</p>
+        </div>
+        <div class="header-switcher">
+            <card-view-switcher></card-view-switcher>
+        </div>
+    </div>
+
+    <div class="profile-learning-body">
+        <div class="row">
+            <div class="card-container-{{cardView}}" ng-repeat="card in archivedLearningPathCards track by $index">
+                <card item="card"></card>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+{
+    "register": {
+        "title": "Création de compte utilisateur",
+        "form": {
+            "button": "Enregistrement"
+        },
+        "messages": {
+            "error": {
+                "userexists": "<strong>Ce compte utilisateur existe déjà !</strong> Veuillez en choisir un autre.",
+                "emailexists": "<strong>Cet Email est déjà utilisé!</strong> Veuillez en choisir un autre."
+            },
+            "success": {
+                "activated": "<p><strong>Registration saved and account activated!</strong></p><p>Please <a class=\"affordance\" href=\"#/login\">authenticate</a>.</p>",
+                "registered": "<p><strong>Registration saved!</strong></p><p>Please check your email for confirmation and instructions to activate your account.</p>"
+            },
+            "validate": {
+                "login": {
+                    "required": "Votre nom d'utilisateur est obligatoire.",
+                    "minlength": "Votre nom d'utilisateur doit contenir plus d'un caractère.",
+                    "maxlength": "Votre nom d'utilisateur ne peut pas contenir plus de 50 caractères.",
+                    "pattern": "Votre nom d'utilisateur ne peut contenir que des lettres minuscules ou des nombres."
+                }
+            }
+        }
+    }
+}

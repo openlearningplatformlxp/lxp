@@ -1,0 +1,32 @@
+{
+    "cms-blocks": {
+        "title": "CMS Blocks",
+        "newCmsBlock": "New CMS Block",
+        "noUsersFound": "No CMS Blocks Found!",
+        "searchUsers": {
+            "inputPlaceholder": "Search CMS Blocks...",
+            "totalUsersCount": "Total CMS Blocks: {{count}}"
+        }
+    },
+
+    "cms-block-add-edit": {
+        "no-content": "There is no content yet!",
+        "title": {
+            "add": "Add CMS Block",
+            "edit": "Edit CMS Block: <b>{{blockName}}</b>"
+        },
+        "form": {
+            "content": "HTML Content",
+            "content.placeholder": "Enter html content...",
+            "description.placeholder": "Enter description...",
+            "key.placeholder": "Enter key...",
+            "name.placeholder": "Enter name..."
+        },
+        "messages": {
+            "success": {
+                "save-add-success": "CMS Block has been created.",
+                "save-edit-success": "CMS Block has been updated."
+            }
+        }
+    }
+}

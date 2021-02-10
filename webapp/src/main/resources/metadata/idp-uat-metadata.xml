@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  ~ Copyright 2016 Red Hat, Inc. and/or its affiliates
+  ~ and other contributors as indicated by the @author tags.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  
+-->
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" Name="urn:keycloak">
+  <EntityDescriptor entityID="https://auth.stage.redhat.com/auth/realms/EmployeeIDP">
+    <IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <KeyDescriptor use="signing">
+        <dsig:KeyInfo>
+          <dsig:KeyName>EWU_o-ifXg7IJQwyhb8ry6WkAv5mmRpagyOcK353IlA</dsig:KeyName>
+          <dsig:X509Data>
+            <dsig:X509Certificate>MIIE+zCCA+OgAwIBAgIED/4AJTANBgkqhkiG9w0BAQsFADBBMRAwDgYDVQQKDAdSZWQgSGF0MQ0wCwYDVQQLDARwcm9kMR4wHAYDVQQDDBVDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwHhcNMTcwNjIwMTI1MTEwWhcNMjIwNjE5MTI1MTEwWjCBqjELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdSYWxlaWdoMRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMQwwCgYDVQQLDANJQU0xIzAhBgNVBAMMGlJlZCBIYXQgU3RhZ2UgRW1wbG95ZWUgU1NPMSUwIwYJKoZIhvcNAQkBFhZzZXJ2aWNlZGVza0ByZWRoYXQuY29tMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAwKVe5MH66uvRvs7NnVNrhlEwd45kJmaen5Digf4PcB8IxY4a9MrXD7xuhTPPZuNX0lLNuWDvBkQNzY0DwsHvLW3mTAZLnQG90EWMFWziQJfSAQ60epGkSlMkd4IL9HUuZa2/tGDy9Bt5pdSfqhrbAA932Zg1BGCL9cY20lfc+4arqY1qUyMkMz210RG3yLWq80dXKD8ziEeRbzGv8V1HBJE0M15GsKxcfD/tzx95E3WTcGxJJhqnFFEEdVgB/yvMM4E2WlyI+XWmHhIe2NCmhofD7wdOokpuAKhgdIUlsKi79o760F123DbzWk7sprErG6p0VkJ+LZESv8/mqtlEXHz8zgzTkDhlUH3IJm829ouGXFSRoRDEea6We8VHJbLODSAlIeAAXylnsg9czVdnkXqBBnnHkeERblpccTfMysTFWYMeTykHIitnINBoTOz/7jLNf/TgvTFwHHL6TvD5TSq5FsID9YJ60kyucqWELEVt18VMgy3O8HA4B4kxL4hpSoO+7a2ahOROTvdDEP2ZyE7jsIL4mmSUrsEthM+9jFIPRjDHJD40uTbHEXhImKFPQ3nqHi8SgI4qSoZ5YE+3RO1ZnqtMoSP1C6TvPKo0ymH9xWXpvAmyX5afcKNXD00wcjgAgRkF0oAbSp4IuAO7Zw6wNCKDuc5HmGgW29FSifECAwEAAaOBkDCBjTAfBgNVHSMEGDAWgBR72gn1SV3Z11zJNvhV0huXnhEvfjA7BggrBgEFBQcBAQQvMC0wKwYIKwYBBQUHMAGGH2h0dHA6Ly9vY3NwLnJlZGhhdC5jb20vY2Evb2NzcC8wDgYDVR0PAQH/BAQDAgTwMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjANBgkqhkiG9w0BAQsFAAOCAQEARAXHV66CAJp8MqvNBw+/I1DRmnpF0J+LDlGBHgYPNJfVSJwVsZVTcQz+0RT267pNJ7grg3iXbiGXf3tA4CAePxBalQM81GwQcHebbQ0ndFEw4TJEBwTx+q9CoIDGt4HH9qPAIZMYFmzZxgToWAyJXuGCfENtHtYWKbfnSZHbMs1Ern8AM3YmP9g7sFzqBkZLjE07LytmkFBx9DOJBdU48IVpCFCrDpyQ49pU/aLYEKWJlCLdbDxDHVPbt6DVQqf6occXOMcg5mDYOTUmMECiADPEojVuOZ9+Qegtd/NA8AZgzX0EAcUxhJqJ+oIGAbQ8lzN1mMc7EqQYLeXOnlA01A==</dsig:X509Certificate>
+          </dsig:X509Data>
+        </dsig:KeyInfo>
+      </KeyDescriptor>
+      <KeyDescriptor use="signing">
+        <dsig:KeyInfo>
+          <dsig:KeyName>pa-Ee8RfJ4L3s8eOmhqZmpKC3C-tP62cnRSHzc461ZU</dsig:KeyName>
+          <dsig:X509Data>
+            <dsig:X509Certificate>MIICpTCCAY0CBgFceOBzBjANBgkqhkiG9w0BAQsFADAWMRQwEgYDVQQDDAtFbXBsb3llZUlEUDAeFw0xNzA2MDUxNTI4MTRaFw0yNzA2MDUxNTI5NTRaMBYxFDASBgNVBAMMC0VtcGxveWVlSURQMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhdKuM7RXsjB3l2b2tGi0VmxcvfQ5OJZuXcXstuiZG5EUzLk0mn/iYVDkisLF8ijLVKA5le8g/9K5mU6zTx+7r1UhPHp2cF07+VnKLCtH0JyLDo6QIgVne5uwiaPSPJ0koLN9MU2aCAf8w3VgiNBG3Y5edEU93REB6WQMp39Z4asHYZneciibojE9Ia0eURhydSVoqU24rRkWs7BLcCIDdRC4iVefdut/frqbxz0AVJQVrNtyoLJhD4Lh6prpcjBYl8FAxEwmoyfpPMdgMMM0Uij99apY1AsEWZTiMFpVaZ5TjrcM6Eqmj/I8XuRHFmSvKz0maMKV+UB3HeeAQgSxSQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAz1TUyfXSqYkeUH7IfCYU7ihRuAaa3BsmdbuNX49+TDbU13p1QxIztJ0zEcqQs/IaorKW9Ky97e4cL96aU0N2YN6m9U86utVRCYO4ZmW7Qy46ehTTcFpJxchOK3w773f0O0USPIooNWuLqsF74sRUIhVZszl/cxXYVBUFX2mH0diPrDPJAqucj9w4txG22EKDWfR3WpVRGItMhDv+0niWaZhmB7wQrebF5W553Jd96DhaiUN7NNrSygEFBq9l3bbwb46cbO3i4p8yUoJbA0NlRG4ThL3tpud1+7Y3P7sQGeHDOow0KIn2c0QKhgJtIiIOJpNsUOW/p/Nj4jZbr0eb/</dsig:X509Certificate>
+          </dsig:X509Data>
+        </dsig:KeyInfo>
+      </KeyDescriptor>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://auth.stage.redhat.com/auth/realms/EmployeeIDP/protocol/saml"/>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://auth.stage.redhat.com/auth/realms/EmployeeIDP/protocol/saml"/>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://auth.stage.redhat.com/auth/realms/EmployeeIDP/protocol/saml"/>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://auth.stage.redhat.com/auth/realms/EmployeeIDP/protocol/saml"/>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://auth.stage.redhat.com/auth/realms/EmployeeIDP/protocol/saml"/>
+    </IDPSSODescriptor>
+  </EntityDescriptor>
+</EntitiesDescriptor>

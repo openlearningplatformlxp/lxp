@@ -1,0 +1,64 @@
+{
+  "totaraActivities" : [
+    {
+      "name": null,
+      "status": null,
+      "id": "1",
+      "courseId": null
+    }
+  ],
+  "totaraCoursesInProgress" : [
+    {
+      "courseId": "1",
+      "userId": "3"
+    },
+    {
+      "courseId" : "2",
+      "userId" : "3"
+    }
+  ],
+  "totaraProgramsInProgress" : [
+    {
+      "programId": "2",
+      "userId": "3"
+    },
+    {
+      "programId" : "3",
+      "userId" : "3"
+    }
+  ],
+  "totaraSubmittedEvidences" : [
+    {
+      "name": null,
+      "status": null,
+      "timeModified": null
+    }
+  ],
+  "totaraUsers" : [
+    {
+      "firstName": "User 1 First Name",
+      "lastName": "User 1 Last Name",
+      "email": "User 1 Email",
+      "city": "Chicago",
+      "country": "USA",
+      "timezone": "Central",
+      "language": "English",
+      "id": 1,
+      "certId": "1",
+      "rhnId": "1"
+    }
+  ],
+  "learningPathProgression" : [
+    {
+      "programName": "Program 1 Name",
+      "programId": "1",
+      "userId": "3",
+      "courseId": "2",
+      "status": "1",
+      "duration": "1.56",
+      "timecompleted": "1",
+//      "timeCompletedFormatted": "Sat Jun 01 12:53:10 IST 2013",
+      "cccompletion":"1"
+    }
+  ]
+}

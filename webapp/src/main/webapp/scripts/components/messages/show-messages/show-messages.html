@@ -1,0 +1,23 @@
+<div class="show-messages-directive">
+    <a id="{{ctrl.showMessagesId}}"></a>
+    <div class="alert alert-success alert-dismissable" ng-show="ctrl.messages.getNumSuccess() == 1">
+        <button ng-if="ctrl.isDismissable()" type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="ctrl.messages.resetSuccess()">&times;</button>
+        <div ng-bind-html="ctrl.messages.data.success[0]"></div>
+    </div>
+    <div class="alert alert-success alert-dismissable" ng-show="ctrl.messages.getNumSuccess() > 1">
+        <button ng-if="ctrl.isDismissable()" type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="ctrl.messages.resetSuccess()">&times;</button>
+        <ul>
+            <li ng-repeat="successMessage in ctrl.messages.data.success track by $index" ng-bind-html="successMessage"></li>
+        </ul>
+    </div>
+    <div class="alert alert-danger alert-dismissable" ng-show="ctrl.messages.getNumErrors() == 1">
+        <button ng-if="ctrl.isDismissable()" type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="ctrl.messages.resetErrors()">&times;</button>
+        <div ng-bind-html="ctrl.messages.data.error[0]"></div>
+    </div>
+    <div class="alert alert-danger alert-dismissable" ng-show="ctrl.messages.getNumErrors() > 1">
+        <button ng-if="ctrl.isDismissable()" type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="ctrl.messages.resetErrors()">&times;</button>
+        <ul>
+            <li ng-repeat="errorMessage in ctrl.messages.data.error track by $index" ng-bind-html="errorMessage"></li>
+        </ul>
+    </div>
+</div>

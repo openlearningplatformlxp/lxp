@@ -1,0 +1,97 @@
+<cms-block ctrl="ctrl" key="state-users" ng-cloak>
+    <div class="admin-users-view">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header-container col-xs-6">
+                    <h2 class="page-title" translate="user.users.title"></h2>
+                </div>
+                <div class="header-container col-xs-6">
+                    <a href="javascript:;" class="download-link" ng-click="ctrl.gotoNewUser()">
+                        <button type="button" class="pull-right">
+                            <span class="glyphicon glyphicon-plus"></span> New User
+                        </button>
+                    </a>
+                    <a ng-href="api/csv/users" class="download-link" target="_blank">
+                        <button type="button" class="pull-right">
+                            <span class="glyphicon glyphicon-plus"></span> Download
+                        </button>
+                    </a>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'user.users.noUsersFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped" ng-class="{'st-multi-select': ctrl.pagedSearch.selected.getState().visible}">
+                                    <thead>
+                                        <tr ng-if="ctrl.pagedSearch.selected.getState().visible">
+                                            <th class="st-checkbox-actions-checkbox">&nbsp;</th>
+                                            <th class="st-checkbox-actions" colspan="6">
+                                                <button class="btn btn-primary btn-sm" ng-click="ctrl.deleteUsers()" ng-disabled="!ctrl.pagedSearch.selected.hasSelected()">Delete Users</button>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th ng-if="ctrl.pagedSearch.selected.getState().visible" class="st-checkbox">
+                                                <selected-items-checkbox state="ctrl.pagedSearch.selected"></selected-items-checkbox>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="firstName" label="{{'global.labels.firstName' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="lastName" label="{{'global.labels.lastName' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="login" label="{{'global.labels.login' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="email" label="{{'global.labels.email.EmailAddress' | translate}}"></searchsort>
+                                            </th>
+                                            <th>Status</th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="user in ctrl.pagedSearch.getContent()" ng-if="!user['_empty_']" ng-class="{'st-selected': ctrl.pagedSearch.selected.isSelected(user.id)}">
+                                            <td ng-if="ctrl.pagedSearch.selected.getState().visible" class="st-checkbox">
+                                                <selected-items-checkbox state="ctrl.pagedSearch.selected" item-id="user.id"></selected-items-checkbox>
+                                            </td>
+                                            <td ng-bind="user.firstName"></td>
+                                            <td ng-bind="user.lastName"></td>
+                                            <td ng-bind="user.login"></td>
+                                            <td ng-bind="user.email"></td>
+                                            <td>
+                                                <div class="label label-success" ng-show="!user.disabled && user.activated">Activated</div>
+                                                <div class="label label-danger" ng-show="!user.disabled && !user.activated">Not Activated</div>
+                                                <div class="label label-danger" ng-show="user.disabled">Disabled</div>
+                                            </td>
+                                            <td class="st-actions">
+                                                <a class="affordance" href="#editUser" ng-click="ctrl.editUser(user, $event)">Edit</a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="user['_empty_']">
+                                            <td ng-if="ctrl.pagedSearch.selected.getState().visible" class="st-checkbox">&nbsp;</td>
+                                            <td colspan="6">&nbsp;</td>
+                                        </tr>
+                                        <tr ng-if="ctrl.pagedSearch.selected.getState().visible">
+                                            <td class="st-checkbox-actions-checkbox">
+                                                &nbsp;
+                                            </td>
+                                            <td class="st-checkbox-actions" colspan="6">
+                                                <button class="btn btn-primary btn-sm" ng-click="ctrl.deleteUsers()" ng-disabled="!ctrl.pagedSearch.selected.hasSelected()">Delete Users</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

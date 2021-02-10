@@ -1,0 +1,182 @@
+// Borrowing from Bootstrap 4
+$font-family-base: 'Overpass', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$link-color: #0066cb;
+$link-decoration: none;
+$link-hover-color: #004080;
+$link-hover-decoration: underline;
+
+$font-size-base: $scale0
+$font-size-xl: $scale6
+$font-size-lg: $scale2
+$font-size-md: $scale0
+$font-size-sm: $scale-1
+$font-size-xs: $scale-2
+
+$font-weight-light: 300
+$font-weight-normal: 400
+$font-weight-bold: 700
+
+$h1-font-size: $font-size-base * 2.5
+$h2-font-size: $font-size-base * 2
+$h4-font-size: $font-size-base * 1.5
+$h5-font-size: $font-size-base * 1.25
+$h3-font-size: $font-size-base * 1.75
+$h6-font-size: $font-size-base
+
+html
+  -ms-text-size-adjust: 100%
+  -moz-text-size-adjust: 100%
+  box-sizing: border-box
+  -webkit-text-size-adjust: none
+  min-height: 100vh
+  font-size: 100%
+
+*, *::before, *::after
+  box-sizing: border-box
+
+body
+  position: relative
+  margin: 0
+  padding: 0
+  min-height: 100vh
+  font-size: $font-size-base
+  font-family: $font-family-base
+
+$headings-margin-bottom: $scale2
+$headings-font-weight: 500
+$headings-line-height: 2.4rem
+$headings-color: inherit
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6
+  margin-top: 0
+  margin-bottom: $headings-margin-bottom
+  font-family: $font-family-base
+  font-weight: $headings-font-weight
+  line-height: $headings-line-height
+  color: $headings-color
+
+h1, .h1
+  font-size: $h1-font-size
+h2, .h2
+  font-size: $h2-font-size
+h3, .h3
+  font-size: $h3-font-size
+h4, .h4
+  font-size: $h4-font-size
+  margin-bottom: $scale0
+h5, .h5
+  font-size: $h5-font-size
+  margin-bottom: $scale0
+h6, .h6
+  font-size: $h6-font-size
+  margin-bottom: $scale-1
+  font-weight: 600
+
+$content-margin-bottom: $scale2
+$content-font-weight: 400
+$content-line-height:  $scale3
+$content-color: inherit
+
+p, a, ul, ol, li, pre, td, th, dl, dd, dt
+  font-family: $font-family-base
+  font-weight: $content-font-weight
+  line-height: $content-line-height
+  color: $content-color
+  margin: 0
+
+p, ul, ol, blockquote, pre
+  margin-bottom: $content-margin-bottom
+
+a, a:visited
+  color: $link-color
+  text-decoration: $link-decoration
+
+a:hover, a:active
+  color: $link-hover-color
+  text-decoration: $link-hover-decoration
+
+strong
+  font-weight: 700
+
+em
+  font-style: italic
+
+small, .small
+  font-size: $font-size-sm
+  line-height: $scale4
+
+ul, ol
+  padding-left: 0
+  margin-left: $scale0
+
+ul
+  list-style: disc outside
+
+ol
+  list-style: decimal outside
+
+ul li, ol li
+  margin-left: $scale0
+  margin-bottom: 0
+
+ul ul, ol ol, ul ol, ol ul
+  margin: 0 0 0 $scale2
+
+ol ol
+  list-style: lower-alpha
+
+ol ol ol
+  list-style: lower-roman
+
+ul ul
+  list-style: circle
+
+hr
+  border: none
+  border-bottom: 1px solid rgba(0,0,0,.2)
+  margin: scale0 0
+  padding: 0
+
+svg:not(:root)
+  overflow: hidden
+
+img
+  vertical-align: middle
+
+%list-horizontal
+  overflow: hidden
+  margin: 0
+  padding: 0
+  position: relative
+  li
+    list-style: none
+    float: left
+
+%list-plain
+  margin: 0
+  padding: 0
+  list-style: none
+  li
+    margin-left: 0
+    padding-left: 0
+
+.list-plain
+  @extend %list-plain
+
+.list-plain-horizontal
+  @extend .list-plain
+  li
+    display: inline
+
+.required-star
+    color: red
+    font-size: 14px
+    vertical-align: top
+
+.error-message
+    color: red
+    font-size: 14px
+    padding-left: 10px
+

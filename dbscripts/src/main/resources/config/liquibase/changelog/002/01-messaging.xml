@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="skarlovitz">
+    <createTable tableName="messaging">
+      <column name="id" type="BIGSERIAL" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_messaging" nullable="false"/>
+      </column>
+      <column name="object_type" type="VARCHAR(254)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="parent_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="message" type="TEXT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP" defaultValueDate="${now}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="skarlovitz">
+    <addUniqueConstraint columnNames="object_type, parent_id" constraintName="uniq_message_type_parent" deferrable="true" disabled="true" initiallyDeferred="true" tableName="messaging"/>
+  </changeSet>
+  <changeSet id="3" author="skarlovitz">
+    <addColumn tableName="messaging">
+      <column name="action_buttons" type="VARCHAR(255)"/>
+      <column name="deliver_to" type="VARCHAR(255)"/>
+      <column name="title" type="VARCHAR(50)"/>
+      <column name="message_type" type="VARCHAR(50)"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="4" author="skarlovitz">
+    <addColumn tableName="messaging">
+      <column name="message_origin" type="VARCHAR(255)"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="5" author="skarlovitz">
+    <addColumn tableName="messaging">
+      <column name="active" type="boolean"/>
+    </addColumn>
+    <sql>update messaging set active = false where active is null;</sql>
+    <addNotNullConstraint columnName="active" tableName="messaging"/>
+  </changeSet>
+  <changeSet id="6" author="skarlovitz">
+    <addColumn tableName="messaging">
+      <column name="response" type="VARCHAR(255)"/>
+    </addColumn>
+    <dropUniqueConstraint constraintName="uniq_message_type_parent" tableName="messaging" uniqueColumns="object_type, parent_id"/>
+  </changeSet>
+  <changeSet id="7" author="skarlovitz">
+    <sql>CREATE UNIQUE INDEX uniq_message_type_parent ON messaging (object_type, parent_id) WHERE (active = true);</sql>
+  </changeSet>
+  <changeSet id="8" author="skarlovitz">
+    <addColumn tableName="messaging">
+      <column name="totara_notification_id" type="BIGINT"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="9" author="skarlovitz">
+    <dropIndex indexName="uniq_message_type_parent" tableName="messaging"/>
+    <sql>CREATE UNIQUE INDEX uniq_message_type_parent ON messaging (object_type, parent_id, totara_notification_id) WHERE (active = true);</sql>
+  </changeSet>
+  <changeSet id="10" author="skarlovitz">
+    <createTable tableName="ilt_batch_job">
+      <column name="id" type="BIGSERIAL" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_ilt_batch" nullable="false"/>
+      </column>
+      <column name="locked" type="Boolean"/>
+      <column name="last_run_time" type="TIMESTAMP"/>
+    </createTable>
+    <sql>insert into ilt_batch_job (locked,last_run_time) values ('false', now());</sql>
+  </changeSet>
+</databaseChangeLog>

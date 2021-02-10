@@ -1,0 +1,5 @@
+authority_name;permission_group_name;permission_permission_name;permission_operation
+ROLE_ADMIN;USERS;ROLE;VIEW
+ROLE_ADMIN;USERS;ROLE;CREATE
+ROLE_ADMIN;USERS;ROLE;UPDATE
+ROLE_ADMIN;USERS;ROLE;DELETE

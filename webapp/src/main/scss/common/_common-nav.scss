@@ -1,0 +1,35 @@
+.nav {
+    margin: $scale2 $scale6;
+    display: block;
+    height: 53px;
+    border-bottom: 2px solid $grey1;
+
+    li {
+        a {
+            padding-bottom: $scale1;
+            color: #7a8b8e;
+            text-decoration: none;
+            border-bottom: 2px solid $grey1;
+        }
+
+        a:hover {
+            background-color: inherit;
+            border: none;
+            border-bottom: 2px solid $grey7;
+        }
+    }
+
+    li.active {
+        a {
+            background-color: inherit;
+            border: none;
+            border-bottom: 2px solid $grey7;
+        }
+
+        a:hover {
+            background-color: inherit;
+            border: none;
+            border-bottom: 2px solid $grey7;
+        }
+    }
+}

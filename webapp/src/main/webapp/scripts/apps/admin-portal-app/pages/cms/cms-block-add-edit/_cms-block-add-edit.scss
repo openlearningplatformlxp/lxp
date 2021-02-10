@@ -1,0 +1,20 @@
+/**
+ * Admin CMS Block Add/Edit View styles.
+ */
+
+.common-app .admin-cms-block-add-edit-view {
+
+    .display-info.well {
+        background-color: #FFFFFF;
+    }
+
+    .no-content {
+        font-style: italic;
+        padding: 50px 10px;
+        text-align: center;
+    }
+
+    pre {
+        background-color: #EEE;
+    }
+}

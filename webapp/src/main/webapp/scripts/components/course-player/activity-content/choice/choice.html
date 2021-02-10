@@ -1,0 +1,43 @@
+<div class="choice-activity" ng-controller="ChoiceActivityController as ctrl">
+
+    <activity-header activity-type="ctrl.data.activity.type" activity-type-display-name="'Choice'" activity-name="ctrl.data.activityData.name"></activity-header>
+
+
+    <h2 ng-bind="ctrl.data.choice.name" class="text-center"></h2>
+    <hr>
+    <div class="choice-contents">
+        <p ng-bind-html="ctrl.data.choice.intro"></p>
+        <div ng-if="ctrl.data.content.status!='COMPLETE'">
+            <div ng-repeat="option in ctrl.data.choice.options | orderBy:'optionid'" ng-if="!ctrl.data.choice.allowmultiple">
+                <label>
+                    <input type="radio" ng-model="option.selected" value="true" name="selectedOption" ng-change="ctrl.singleChoiceIsSelected(option.optionid)">
+                    <span ng-bind="option.optiontext"></span>
+                </label>
+            </div>
+            <div ng-repeat="option in ctrl.data.choice.options | orderBy:'optionid'" ng-if="ctrl.data.choice.allowmultiple">
+                <label>
+                    <input type="checkbox" ng-model="option.selected" value="true" name="selectedOption" ng-change="ctrl.multipleChoicesAreSelected()">
+                    <span ng-bind="option.optiontext"></span>
+                </label>
+            </div>
+            <hr>
+            <button class="btn btn-primary" ng-click="ctrl.submit()" ng-disabled="ctrl.data.isDisabled">Submit</button>
+        </div>
+        <div ng-if="ctrl.data.content.status=='COMPLETE'">
+            <div class="row" ng-repeat="option in ctrl.data.choice.options | orderBy:'optionid'">
+                <div class="col-md-6 text-right">
+                    <span ng-bind="option.optiontext"></span>
+                </div>
+                <div class="col-md-6">
+                    <uib-progressbar value="option.percentage">
+                        <i ng-bind="ctrl.getPercentage(option.percentage)"></i>
+                    </uib-progressbar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <activity-manual-completion activity="ctrl.data.activity"></activity-manual-completion>
+
+    <activity-footer next-activity="ctrl.data.nextActivity" on-next-activity-click="ctrl.goToNextActivity()"></activity-footer>
+</div>

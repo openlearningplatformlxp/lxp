@@ -1,0 +1,20 @@
+<cms-block ctrl="ctrl" key="state-email-view" ng-cloak>
+    <div class="email-view-view">
+        <ul>
+            <li><b translate="global.labels.email.Subject"></b>: <span ng-bind="ctrl.email.subject"></span></li>
+            <li><b translate="global.labels.email.From"></b>: <span ng-bind="ctrl.email.from"></span></li>
+            <li><b translate="global.labels.email.To"></b>: <span ng-bind="ctrl.email.to"></span></li>
+            <li ng-if="ctrl.email.cc"><b translate="global.labels.email.Cc"></b>: <span ng-bind="ctrl.email.cc"></span></li>
+            <li ng-if="ctrl.email.bcc"><b translate="global.labels.email.Bcc"></b>: <span ng-bind="ctrl.email.bcc"></span></li>
+        </ul>
+        <hr>
+        <div ng-if="ctrl.email.htmlText" class="htmlTextContainer">
+            <label translate="email-view.label.htmlEmailBody"></label>
+            <iframe iframe-resizer="ctrl.iframeResizerHtml"></iframe>
+        </div>
+        <div ng-if="ctrl.email.plainText" class="plainTextContainer">
+            <label translate="email-view.label.plainTextEmailBody"></label>
+            <pre ng-bind="ctrl.email.plainText"></pre>
+        </div>
+    </div>
+</cms-block>

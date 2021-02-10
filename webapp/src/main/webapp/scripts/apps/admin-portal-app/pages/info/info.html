@@ -1,0 +1,74 @@
+<cms-block ctrl="ctrl" key="state-info" ng-cloak>
+    <div class="info-view">
+        <h2 class="page-title" translate="info.title"></h2>
+        <div class="alert alert-warning" translate="info.page-warning"></div>
+        <div class="panel panel-default panel-table">
+            <div class="panel-body">
+                <div class="table-responsive-plain">
+                    <table class="panel-table table table-striped">
+                        <thead>
+                            <tr>
+                                <th translate="info.Name"></th>
+                                <th translate="info.Value"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="info in ctrl.getGeneralInfo()">
+                                <td class="info-name info-cap" nowrap width="1" ng-bind="info.name"></td>
+                                <td ng-bind="info.value"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a ng-if="ctrl.getPropertyInfo().length > 0 && !ctrl.more" href="#/info?more"><span translate="info.more"></span>...</a>
+                    <a ng-if="ctrl.more" href="#/info"><span translate="info.less"></span>...</a>
+                </div>
+            </div>
+        </div>
+        <div ng-if="ctrl.getHeaderInfo().length > 0">
+            <b>&nbsp; <span translate="info.headersSectionTitle"></span></b>
+            <div class="panel panel-default panel-table">
+                <div class="panel-body">
+                    <div class="table-responsive-plain">
+                        <table class="panel-table table table-striped">
+                            <thead>
+                                <tr>
+                                    <th translate="info.Name"></th>
+                                    <th translate="info.Value"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="info in ctrl.getHeaderInfo()">
+                                    <td class="info-name" nowrap width="1" ng-bind="info.name"></td>
+                                    <td ng-bind="info.value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="ctrl.getPropertyInfo().length > 0">
+            <b>&nbsp; <span translate="info.propertyInfoSectionTitle"></span></b>
+            <div class="panel panel-default panel-table">
+                <div class="panel-body">
+                    <div class="table-responsive-plain">
+                        <table class="panel-table table table-striped">
+                            <thead>
+                                <tr>
+                                    <th translate="info.Name"></th>
+                                    <th translate="info.Value"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="info in ctrl.getPropertyInfo()">
+                                    <td class="info-name" nowrap width="1" ng-bind="info.name"></td>
+                                    <td ng-bind="info.value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

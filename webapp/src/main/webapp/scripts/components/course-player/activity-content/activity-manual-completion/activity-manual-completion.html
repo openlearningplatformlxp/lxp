@@ -1,0 +1,15 @@
+<div ng-if="ctrl.data.showControls" class="activity-manual-completion">
+
+    <div class="completion-box">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <span>I've completed this lesson</span>
+                <label class="switch">
+                    <input type="checkbox" ng-model="ctrl.data.activityCompleted" ng-disabled="ctrl.data.activityCompleted" ng-click="ctrl.toggleCompletion()" />
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,14 @@
+[
+  {
+    "audienceId": 1,
+    "courseId": 1
+  },
+  {
+    "audienceId": 2,
+    "courseId": 1
+  },
+  {
+    "audienceId": 3,
+    "courseId": 2
+  }
+]

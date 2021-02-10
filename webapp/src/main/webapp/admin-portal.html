@@ -1,0 +1,441 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="pageTitle">Red Hat University</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css assets/styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="bower_components/v-modal/dist/v-modal.css" />
+    <link rel="stylesheet" href="bower_components/videogular-themes-default/videogular.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-carousel/dist/ui-carousel.css" />
+    <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
+    <link rel="stylesheet" href="bower_components/feather-icons-sass/feather.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css assets/styles/main.css -->
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <!-- endbuild -->
+
+    <link href="https://fonts.googleapis.com/css?family=Overpass:100,100i,200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <script type="text/javascript">
+        // Polyfill for IE 11
+        if (typeof Object.assign != 'function') {
+            Object.assign = function(target) {
+                'use strict';
+                if (target == null) {
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
+                target = Object(target);
+                for (var index = 1; index < arguments.length; index++) {
+                    var source = arguments[index];
+                    if (source != null) {
+                        for (var key in source) {
+                            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                                target[key] = source[key];
+                            }
+                        }
+                    }
+                }
+                return target;
+            };
+        }
+    </script>
+</head>
+
+<body class="common-app admin-portal-app background-speckled" onload="bootstrap()">
+
+    <div id="bootstrap-content" class="hidden" ng-class="{'app-visible': initialPageLoaded}">
+        <!--[if lt IE 9]>
+                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+        <div has-authority="ROLE_PREVIOUS_ADMINISTRATOR" class="impersonate-user-container">
+            Impersonating... &nbsp; <a class="btn btn-default btn-xs" href="admin/impersonate/stop">Stop</a>
+        </div>
+        <div ui-view="content-container"></div>
+    </div>
+    <div id="bootstrap-loading" class="bootstrap-message">
+        <div id="bootstrap-loading-message" class="hidden">
+            <i class="fa fa-circle-o-notch fa-spin"></i> Loading application....
+        </div>
+    </div>
+    <div id="bootstrap-error" class="bootstrap-message hidden">
+        Error loading application... Please try refreshing the page.
+    </div>
+    <script type="text/javascript">
+        function bootstrap() {
+            angular.lazy('app.apps.admin-portal-app')
+                .resolve(function($http) {
+                    var postData = {};
+
+                    return $http.post('api/system/bootstrap/config', postData).then(
+                        function success(response) {
+                            appGlobal.config.setAll(response.data);
+                        }
+                    );
+                })
+                .error(function() {
+                    angular.element('#bootstrap-loading').addClass('hidden');
+                    angular.element('#bootstrap-error').removeClass('hidden');
+                })
+                .done(function() {
+                    angular.element('#bootstrap-loading').addClass('hidden');
+                    angular.element('#bootstrap-content').removeClass('hidden');
+                })
+                .bootstrap();
+
+            setTimeout(function() {
+                angular.element('#bootstrap-loading-message').removeClass('hidden');
+            }, 300);
+        }
+    </script>
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
+    <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/messageformat/messageformat.js"></script>
+    <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+    <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/iframe-resizer/js/iframeResizer.js"></script>
+    <script src="bower_components/iframe-resizer/js/iframeResizer.contentWindow.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="bower_components/clipboard/dist/clipboard.js"></script>
+    <script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/v-modal/dist/v-modal.js"></script>
+    <script src="bower_components/videogular/videogular.js"></script>
+    <script src="bower_components/videogular-controls/vg-controls.js"></script>
+    <script src="bower_components/angular-ui-carousel/dist/ui-carousel.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+    <script src="bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
+    <script src="scripts/components/dnd-lists/angular-drag-and-drop-lists.js"></script>
+    <script src="scripts/components/ng-quill/quill-1.3.6.min.js"></script>
+    <script src="scripts/components/ng-quill/ng-quill.js"></script>
+    <script src="scripts/common/app.constants.js"></script>
+    <script src="scripts/common/app.constants.js"></script>
+    <script src="scripts/common/app.global.js"></script>
+    <script src="scripts/common/bootstrap.js"></script>
+    <script src="scripts/common/common.js"></script>
+    <script src="scripts/services/services.js"></script>
+    <script src="scripts/services/announcement-service.js"></script>
+    <script src="scripts/services/admin-discovery-service.js"></script>
+    <script src="scripts/services/course-service.js"></script>
+    <script src="scripts/services/course-player-service.js"></script>
+    <script src="scripts/services/course-enrollment-service.js"></script>
+    <script src="scripts/services/scorm-value-service.js"></script>
+    <script src="scripts/services/messages-service.js"></script>
+    <script src="scripts/services/team-service.js"></script>
+    <script src="scripts/services/personal-plan-service.js"></script>
+    <script src="scripts/components/components.js"></script>
+    <script src="scripts/components/activity-logout/activity-logout.js"></script>
+    <script src="scripts/components/activity-logout/activity-logout.controller.js"></script>
+    <script src="scripts/components/activity-monitor/activity-monitor.js"></script>
+    <script src="scripts/components/auth/auth.service.js"></script>
+    <script src="scripts/components/auth/authority.directive.js"></script>
+    <script src="scripts/components/auth/principal.service.js"></script>
+    <script src="scripts/components/auth/services/account.service.js"></script>
+    <script src="scripts/components/auth/services/activate.service.js"></script>
+    <script src="scripts/components/auth/services/password.service.js"></script>
+    <script src="scripts/components/auth/services/register.service.js"></script>
+    <script src="scripts/components/breadcrumbs/breadcrumbs.directive.js"></script>
+    <script src="scripts/components/card/card.service.js"></script>
+    <script src="scripts/components/card/card.directive.js"></script>
+    <script src="scripts/components/card/card-fake.directive.js"></script>
+    <script src="scripts/components/card-item/card-item.directive.js"></script>
+    <script src="scripts/components/card-view-switcher/card-view-switcher.directive.js"></script>
+    <script src="scripts/components/datepicker/datepicker.directive.js"></script>
+    <script src="scripts/components/overview-card/overview-card.service.js"></script>
+    <script src="scripts/components/overview-card/overview-card.directive.js"></script>
+    <script src="scripts/components/download-card/download-card.directive.js"></script>
+    <script src="scripts/components/progress-card/progress-card.directive.js"></script>
+    <script src="scripts/components/progression-details/progression-details.directive.js"></script>
+    <script src="scripts/components/message-card/message-card.directive.js"></script>
+    <script src="scripts/components/search-box/search-box.directive.js"></script>
+    <script src="scripts/components/team-subheader/team-subheader.directive.js"></script>
+    <script src="scripts/components/team-manager-list/team-manager-list.directive.js"></script>
+    <script src="scripts/components/team-card/team-card.directive.js"></script>
+    <script src="scripts/components/team-course-card/team-course-card.directive.js"></script>
+    <script src="scripts/components/team-individual-card/team-individual-card.directive.js"></script>
+    <script src="scripts/components/upcoming-class-card/upcoming-class-card.directive.js"></script>
+    <script src="scripts/components/content-containers/full-page/full-page.controller.js"></script>
+    <script src="scripts/components/content-containers/left-sidebar/left-sidebar.controller.js"></script>
+    <script src="scripts/components/directives/announcement/announcement.directive.js"></script>
+    <script src="scripts/components/directives/achievements/achievements.directive.js"></script>
+    <script src="scripts/components/directives/cms-block/cms-block.directive.js"></script>
+    <script src="scripts/components/directives/default-image.directive.js"></script>
+    <script src="scripts/components/directives/include-template.directive.js"></script>
+    <script src="scripts/components/directives/textarea-tab.directive.js"></script>
+    <script src="scripts/components/directives/date-input.directive.js"></script>
+    <script src="scripts/components/form/form.directive.js"></script>
+    <script src="scripts/components/form/maxbytes.directive.js"></script>
+    <script src="scripts/components/form/minbytes.directive.js"></script>
+    <script src="scripts/components/headers/header-main/header-main.controller.js"></script>
+    <script src="scripts/components/footers/footer-main/footer-main.controller.js"></script>
+    <script src="scripts/components/headers/header-external/header-external.controller.js"></script>
+    <script src="scripts/components/iframe-resizer/iframe-resizer.js"></script>
+    <script src="scripts/components/impersonate-user/impersonate-user.js"></script>
+    <script src="scripts/components/modal/alerts-service/alerts-service.js"></script>
+    <script src="scripts/components/admin/audits.service.js"></script>
+    <script src="scripts/components/admin/logs.service.js"></script>
+    <script src="scripts/components/admin/configuration.service.js"></script>
+    <script src="scripts/components/admin/monitoring.service.js"></script>
+    <script src="scripts/components/interceptor/auth.interceptor.js"></script>
+    <script src="scripts/components/angular-file-upload-button/angular-file-upload-button.js"></script>
+    <script src="scripts/components/messages/messages.service.js"></script>
+    <script src="scripts/components/messages/show-messages/show-messages.js"></script>
+    <script src="scripts/components/navbar/navbar.directive.js"></script>
+    <script src="scripts/components/navbar/navbar.controller.js"></script>
+    <script src="scripts/components/readonly-checkbox/readonly-checkbox.js"></script>
+    <script src="scripts/components/search/search.service.js"></script>
+    <script src="scripts/components/search/searchbar/searchbar.js"></script>
+    <script src="scripts/components/search/searchlist/searchlist.js"></script>
+    <script src="scripts/components/search/locationfilter/locationfilter.js"></script>
+    <script src="scripts/components/search/searchfilter/searchfilter.js"></script>
+    <script src="scripts/components/search/searchsort/searchsort.js"></script>
+    <script src="scripts/components/code-editor/code-editor.controller.js"></script>
+    <script src="scripts/components/code-editor/code-editor.js"></script>
+    <script src="scripts/components/user/user.service.js"></script>
+    <script src="scripts/components/util/base64.service.js"></script>
+    <script src="scripts/components/util/learner-source.filter.js"></script>
+    <script src="scripts/components/util/truncate.filter.js"></script>
+    <script src="scripts/components/util/make-range.filter.js"></script>
+    <script src="scripts/components/util/complete-date.filter.js"></script>
+    <script src="scripts/components/geolocation.service.js"></script>
+    <script src="scripts/components/selected-items/selected-items.service.js"></script>
+    <script src="scripts/pages/pages.js"></script>
+    <script src="scripts/pages/account/account.js"></script>
+    <script src="scripts/pages/account/activate/activate.js"></script>
+    <script src="scripts/pages/account/activate/activate.controller.js"></script>
+    <script src="scripts/pages/account/login/login.js"></script>
+    <script src="scripts/pages/account/login/login.controller.js"></script>
+    <script src="scripts/pages/account/logout/logout.js"></script>
+    <script src="scripts/pages/account/password/password.js"></script>
+    <script src="scripts/pages/account/password/password.controller.js"></script>
+    <script src="scripts/pages/account/password/password.directive.js"></script>
+    <script src="scripts/pages/account/register/register.js"></script>
+    <script src="scripts/pages/account/register/register.controller.js"></script>
+    <script src="scripts/pages/account/reset/finish/reset.finish.controller.js"></script>
+    <script src="scripts/pages/account/reset/finish/reset.finish.js"></script>
+    <script src="scripts/pages/account/reset/request/reset.request.controller.js"></script>
+    <script src="scripts/pages/account/reset/request/reset.request.js"></script>
+    <script src="scripts/pages/account/settings/settings.js"></script>
+    <script src="scripts/pages/account/settings/settings.controller.js"></script>
+    <script src="scripts/pages/error/error.js"></script>
+    <script src="scripts/pages/email/email-view/email-view.js"></script>
+    <script src="scripts/pages/email/email-view/email-view.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/admin-portal-app.js"></script>
+    <script src="scripts/apps/admin-portal-app/components/headers/header-main/header-main.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/admin-status/admin-status.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/admin-status/admin-status.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/main/main.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/main/main.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/admin.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/asset/asset-add-edit/asset-add-edit.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/asset/asset-add-edit/asset-add-edit.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/asset/assets/assets.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/asset/assets/assets.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/audits/audits.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/audits/audits.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/audit-searches/audit-searches.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/audit-searches/audit-searches.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/featured-searches/featured-searches.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/featured-searches/featured-searches.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/featured-searches/create/featured-searches-create.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/featured-searches/create/featured-searches-create.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/cms/cms-block-add-edit/cms-block-add-edit.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/cms/cms-block-add-edit/cms-block-add-edit.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/cms/cms-blocks/cms-blocks.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/cms/cms-blocks/cms-blocks.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/configuration/configuration.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/configuration/configuration.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/docs/docs.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/health/health.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/health/health.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/health/health.modal.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/feedback/feedbacks/feedbacks.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/feedback/feedbacks/feedbacks.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/info/info.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/info/info.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/logs/logs.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/logs/logs.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/email-list/email-list.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/email-list/email-list.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/metrics/metrics.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/metrics/metrics.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/metrics/metrics.modal.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/discovery/discovery.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/discovery/discovery.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/discovery/program-upsert/discovery-program-upsert.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/discovery/program-upsert/discovery-program-upsert.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/announcements/announcements.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/announcements/announcements.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/announcements/send/announcements-send.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/announcements/send/announcements-send.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/notifications/notifications.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/notifications/notifications.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/notifications/send/notifications-send.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/notifications/send/notifications-send.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/user-add-edit/user-add-edit.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/user-add-edit/user-add-edit.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/user-role/user-role-add-edit/user-role-add-edit.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/user-role/user-role-add-edit/user-role-add-edit.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/user-role/user-roles/user-roles.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/user-role/user-roles/user-roles.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/users/users.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/users/users.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/wikipage/wikipage.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/wikipage/wikipage.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/wikipage/create/wikipage-create.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/wikipage/create/wikipage-create.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/wikipage/tree/wikipage-tree.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/wikipage/tree/wikipage-tree.controller.js"></script>
+    <script src="scripts/apps/main-app/main-app.js"></script>
+    <script src="scripts/apps/main-app/pages/main/main.js"></script>
+    <script src="scripts/apps/main-app/pages/main/main.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/discover/discover.js"></script>
+    <script src="scripts/apps/main-app/pages/discover/discover.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/calendar/calendar.js"></script>
+    <script src="scripts/apps/main-app/pages/calendar/calendar.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/catalog.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/catalog.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/catalog-course.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/catalog-course.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/overview/catalog-course-overview.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/overview/catalog-course-overview.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/activity/catalog-course-activity.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/activity/catalog-course-activity.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/totara/catalog-course-totara.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/totara/catalog-course-totara.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/upcoming/catalog-course-upcoming.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/upcoming/catalog-course-upcoming.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/requirements/catalog-course-requirements.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/requirements/catalog-course-requirements.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/resources/catalog-course-resources.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/course/resources/catalog-course-resources.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/course-player/course-player.js"></script>
+    <script src="scripts/apps/main-app/pages/course-player/course-player.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/course-player/activity/course-player-activity.js"></script>
+    <script src="scripts/apps/main-app/pages/course-player/activity/course-player-activity.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/course-player-external/course-player-external.js"></script>
+    <script src="scripts/apps/main-app/pages/course-player-external/course-player-external.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/learning-path/learning-path.js"></script>
+    <script src="scripts/apps/main-app/pages/catalog/learning-path/learning-path.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/support/support.js"></script>
+    <script src="scripts/apps/main-app/pages/support/support.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/notifications/notifications.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/notifications/notifications.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-main/profile-main.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-main/profile-main.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-learning/profile-learning.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-learning/profile-learning.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-preferences/profile-preferences.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-preferences/profile-preferences.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-evidence/profile-evidence.js"></script>
+    <script src="scripts/apps/main-app/pages/profile/profile-evidence/profile-evidence.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/search/search.js"></script>
+    <script src="scripts/apps/main-app/pages/search/search.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/team/modal/team-progression-details-modal.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-course/team-learning-path.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-course/team-course.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-course/team-course.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-course/modal/team-course-manager-modal.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-individual/team-individual.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-individual/team-individual.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-individual/modal/team-individual-manager-modal.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-personal-plans/team-personal-plans.js"></script>
+    <script src="scripts/apps/main-app/pages/team/team-personal-plans/team-personal-plans.controller.js"></script>
+    <script src="scripts/apps/main-app/pages/wikipage/wikipage.js"></script>
+    <script src="scripts/apps/main-app/pages/wikipage/wikipage.controller.js"></script>
+    <script src="bower_components/messageformat/locale/en.js"></script>
+    <script src="bower_components/messageformat/locale/fr.js"></script>
+    <script src="scripts/components/language/language.service.js"></script>
+    <script src="scripts/components/language/language.controller.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/spring-session-list/spring-session-list.js"></script>
+    <script src="scripts/apps/admin-portal-app/pages/spring-session-list/spring-session-list.controller.js"></script>
+    <script src="scripts/components/auth/services/sessions.service.js"></script>
+    <script src="scripts/components/auth/provider/auth.session.service.js"></script>
+    <script src="scripts/pages/account/sessions/sessions.js"></script>
+    <script src="scripts/pages/account/sessions/sessions.controller.js"></script>
+
+    <!-- Course Player scripts -->
+    <script src="scripts/components/course-player/activity-content/activity-content.js"></script>
+    <script src="scripts/components/course-player/activity-content/activity-header/activity-header.directive.js"></script>
+    <script src="scripts/components/course-player/activity-content/activity-footer/activity-footer.directive.js"></script>
+    <script src="scripts/components/course-player/activity-content/activity-manual-completion/activity-manual-completion.directive.js"></script>
+    <script src="scripts/components/course-player/activity-content/certificate/certificateActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/feedback/feedbackActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/label/labelActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/locked/lockedActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/page/pageActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/pdf/pdfActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/quiz/quizActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/quiz/modal/last-question-modal.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/resource/resourceActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/scorm/scormActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/url/urlActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/video/videoActivity.controller.js"></script>
+    <script src="scripts/components/course-player/activity-content/video/video-player/video-player.directive.js"></script>
+    <script src="scripts/components/course-player/activity-content/choice/choiceActivity.controller.js"></script>
+
+    <!-- Course Player External scripts -->
+    <script src="scripts/components/course-player-external/activity-content-external/activity-content-external.js"></script>
+    <script src="scripts/components/course-player-external/activity-content-external/locked/lockedActivity-external.controller.js"></script>
+    <script src="scripts/components/course-player-external/activity-content-external/scorm/scormActivity-external.controller.js"></script>
+
+    <!-- endbuild -->
+</body>
+
+</html>

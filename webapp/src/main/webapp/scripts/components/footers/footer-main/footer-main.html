@@ -1,0 +1,22 @@
+<div class="footer-container">
+    <div class="container-fluid">
+        <div class="site-footer-mobile" ng-if="authenticated">
+            <ul class="site-footer-nav-mobile">
+                <li><a ui-sref="home">Home</a></li>
+                <li><a ui-sref="search">Catalog</a></li>
+                <li><a ui-sref="calendar">Calendar</a></li>
+                <li><a ng-href="{{ctrl.data.helpUrl}}" target="_blank">Help</a></li>
+            </ul>
+        </div>
+        <div class="site-footer">
+            <div class="site-footer-logo">
+            </div>
+            <ul class="site-footer-nav" ng-if="authenticated">
+                <li><a ui-sref="home">Home</a></li>
+                <li><a ui-sref="search">Catalog</a></li>
+                <li><a ui-sref="calendar">Calendar</a></li>
+                <li><a href="" data-toggle="modal" data-target="#helpModal">Help</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

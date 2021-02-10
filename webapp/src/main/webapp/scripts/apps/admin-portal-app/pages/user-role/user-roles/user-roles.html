@@ -1,0 +1,49 @@
+<cms-block ctrl="ctrl" key="state-user-roles" ng-cloak>
+    <div class="admin-user-roles-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="user-role.user-roles.title"></h2>
+                <div ng-if="ctrl.data.authorities.USERS_ROLE_CREATE" class="search-buttons-container">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.gotoNewRole()">
+                        <span class="glyphicon glyphicon-plus"></span> New Role
+                    </button>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'user-role.user-roles.noRolesFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="name" label="{{'global.labels.roleName' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="role in ctrl.pagedSearch.getContent()" ng-if="!role['_empty_']">
+                                            <td ng-bind="ctrl.displayName(role)"></td>
+                                            <td class="st-actions">
+                                                <a class="affordance" href="#editRole" ng-click="ctrl.editRole(role, $event)"><span ng-if="ctrl.data.authorities.USERS_ROLE_UPDATE" translate="global.links.edit"></span><span ng-if="!ctrl.data.authorities.USERS_ROLE_UPDATE" translate="global.links.view"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="role['_empty_']">
+                                            <td colspan="2">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

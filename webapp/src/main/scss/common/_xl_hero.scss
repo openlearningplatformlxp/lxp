@@ -1,0 +1,198 @@
+.page-header-hero-general {
+    position: relative;
+    background-color: $hero-bgcolor-general-top;
+    color: $hero-font-color;
+    padding: $scale5 0 $scale5 0;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(180deg, $hero-bgcolor-general-top 0%, $hero-bgcolor-general-bottom 100%)
+    }
+}
+
+// Hero section
+.page-header-section {
+    @extend .page-header-hero-general;
+    background-image: url('../images/hero.png');
+    background-size: cover;
+    background-position: bottom;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 1;
+
+    .site-hero {
+        padding: $scale5 0;
+        grid-area: sitehero;
+        display: grid;
+        grid-template: ". siteherocontent ."auto / 1fr $content-width-large 1fr;
+    }
+
+    .site-hero-content {
+        grid-area: siteherocontent;
+        color: white;
+        text-shadow: 1px 1px rgba(0, 0, 0, .5);
+    }
+
+    .site-hero-display {
+        display: grid;
+        color: #fff;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: $scale6;
+
+        .current-path {
+            h1 {
+                font-weight: 700;
+            }
+
+            h2 {
+                @extend .h6;
+                margin-bottom: $scale5;
+            }
+
+            .path-progress {
+                margin-top: $scale6;
+                margin-bottom: $scale5;
+            }
+
+            p {
+                color: $text-dim-color-negative;
+
+                em {
+                    color: #fff;
+                    font-weight: 600;
+                    font-style: normal;
+                }
+            }
+        }
+
+        .next-steps {
+            align-self: start;
+            display: grid;
+            grid-template: ". title"1fr "step step"auto / $scale6 1fr;
+            grid-gap: $scale1;
+
+            h1 {
+                grid-area: title;
+                @extend .h6;
+                margin-bottom: 0;
+            }
+
+            ul {
+                @extend .list-plain;
+                grid-area: step;
+            }
+
+            li {
+                display: grid;
+                grid-template: "icon details"auto / $scale6 1fr;
+                grid-gap: $scale1;
+                align-content: start;
+                margin-bottom: $scale1;
+            }
+
+            .icon {
+                grid-area: icon;
+                justify-self: center;
+            }
+
+            .details {
+                grid-area: details;
+
+                .title {
+                    @extend h5;
+                    margin-bottom: none;
+                }
+
+                .metadata {
+                    display: block;
+                    color: $text-dim-color-negative;
+                }
+            }
+
+        }
+    }
+
+    .hero-time-left {
+        color: $learningpath-color-hero-mutedtext;
+
+        i.fa {
+            color: $learningpath-color-hero-mutedtext;
+            margin-left: $base-value;
+            margin-right: $base-value-quarter;
+        }
+    }
+
+    .hero-resume-message {
+        h4 {
+            @extend h5;
+            color: $learningpath-color-hero-mutedtext;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .hero-main-content {
+        margin-top: $scale1;
+        margin-bottom: $scale5;
+    }
+
+    .hero-main-message {
+        h1 {
+            font-weight: 700;
+        }
+
+        p {
+            color: #fff; //$text-dim-color-negative;
+        }
+    }
+
+    .hero-nav-section {
+        .nav-ul {
+            margin: 0 0 $scale4 0;
+            border-bottom: 2px solid $text-dim-color-negative;
+
+            li {
+                display: inline;
+                margin: 0 $scale6 0 0;
+                font-size: $font-size-lg;
+
+                a {
+                    display: inline-block;
+                    position: relative;
+                    padding-bottom: $scale1;
+                    color: $text-dim-color-negative;
+                    text-decoration: none;
+
+                }
+
+                a.active {
+                    color: white;
+
+                    div {
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        right: 0;
+                        height: 2px;
+                        background-color: white;
+                    }
+                }
+            }
+
+            li:first-of-type {
+                margin-left: 0;
+            }
+        }
+    }
+
+
+}

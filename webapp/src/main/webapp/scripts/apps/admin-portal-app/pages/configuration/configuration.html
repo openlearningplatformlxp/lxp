@@ -1,0 +1,32 @@
+<cms-block ctrl="ctrl" key="state-configuration" ng-cloak>
+    <div class="configuration-view">
+        <show-messages messages="ctrl.pageMessages"></show-messages>
+        <h2 class="page-title" translate="configuration.title"></h2>
+        <div ng-if="!ctrl.pageMessages.hasErrorMessages()">
+            <p><span translate="configuration.filter"></span> <input type="text" ng-model="filter" class="form-control"></p>
+            <div class="table-responsive-plain">
+                <table class="config-table table table-condensed table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th ng-click="predicate = 'prefix'; reverse=!reverse" translate="configuration.table.prefix"></th>
+                            <th translate="configuration.table.properties"></th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="entry in ctrl.getConfig() | filter:filter | orderBy:predicate:reverse">
+                        <td><span ng-bind="entry.prefix"></span></td>
+                        <td class="config-value-container">
+                            <table class="table table-condensed table-hover table-striped" style="border-color-top: transparent;">
+                                <tr ng-repeat="(key, value) in entry.properties">
+                                    <td ng-bind="key"></td>
+                                    <td>
+                                        <div class="config-value pull-right label label-info" ng-bind="ctrl.getValue(value)"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</cms-block>

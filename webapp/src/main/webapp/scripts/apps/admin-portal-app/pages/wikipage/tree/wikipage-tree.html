@@ -1,0 +1,101 @@
+<!--
+    Wikipage Tree by Admin.
+-->
+<cms-block ctrl="ctrl" key="state-wikipage-tree" ng-cloak>
+    <div class="admin-wikipage-tree-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="wikipage.button.folders"></h2>
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+            </div>
+        </div>
+        <p>
+            <strong>Click on a page or folder and drag it to reorder pages. Click the Update button when done.</strong>
+        </p>
+        <form name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <!-- Markup for lists inside the dropzone. It's inside a seperate template
+      because it will be used recursively. The dnd-list directive enables
+      to drop elements into the referenced array. The dnd-draggable directive
+      makes an element draggable and will transfer the object that was
+      assigned to it. If an element was dragged away, you have to remove
+      it from the original list yourself using the dnd-moved attribute -->
+                    <script type="text/ng-template" id="list.html">
+                        <ul dnd-list="list">
+                            <li ng-repeat="item in list"
+                                dnd-draggable="item"
+                                dnd-effect-allowed="move"
+                                dnd-moved="list.splice($index, 1)"
+                                dnd-selected="ctrl.data.models.selected = item"
+                                ng-class="{selected: ctrl.data.models.selected === item}"
+                                ng-include="item.type + '.html'">
+                            </li>
+                        </ul>
+                    </script>
+
+                    <!-- This template is responsible for rendering a container element. It uses
+                         the above list template to render each container column -->
+                    <script type="text/ng-template" id="folder.html">
+                        <div class="container-element box box-blue">
+                            <h3 ng-bind="item.slug"></h3>
+                            <div class="column" ng-init="list = item.columns" ng-include="'list.html'"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </script>
+
+                    <!-- Template for a normal list item -->
+                    <script type="text/ng-template" id="item.html">
+                        <div class="item"><i class="fa fa-file"></i>&nbsp;<span ng-bind="item.slug"></span></div>
+                    </script>
+
+                    <!-- Main area with dropzones and source code -->
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div ng-repeat="(zone, list) in ctrl.data.models.dropzones" class="col-md-12">
+                                <div class="dropzone box box-yellow">
+                                    <!-- The dropzone also uses the list template -->
+                                    <h3 ng-bind="zone"></h3>
+                                    <div ng-include="'list.html'"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div view-source="nested"></div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="col-md-3">
+                        <div class="toolbox box box-grey box-padding">
+                            <ul>
+                                <li>
+                                    <button type="button" class="primary" ng-click="ctrl.updateTree()" style="white-space: normal; height: auto; line-height:
+1.2rem;">
+                                        Update structure
+                                    </button>
+                                </li>
+                                <li ng-repeat="item in ctrl.data.models.templates" dnd-draggable="item" dnd-effect-allowed="copy" dnd-copied="item.id = item.id + 1">
+                                    <button type="button" class="btn btn-default btn-lg" style="white-space: normal; height: auto; line-height:
+1.2rem;">
+                                        Drag to add a <b><span ng-bind="item.type"></span></b>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-if="ctrl.data.models.selected" class="box box-grey box-padding">
+                            <h3>Selected</h3>
+                            <strong>Type: </strong> <span ng-bind="ctrl.data.models.selected.type"></span><br>
+                            <input type="text" ng-model="ctrl.data.models.selected.slug" class="form-control" style="margin-top: 5px" />
+                            <br />
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</cms-block>

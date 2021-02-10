@@ -1,0 +1,32 @@
+
+<div class="team-card-container">
+    <div class="team-card team-card-debug" ng-class="{ 'disabled': team.program.type === 'COURSE' }" ng-click="goToProgramView()">
+        <div class="team-card-icon">
+            <div class="team-card-icon-content-type">
+                <img class="svg svg-black" src="assets/images/learningpath.svg" ng-if="type === 'LEARNING_PATH'" />
+                <img class="svg svg-black" src="assets/images/book.svg" ng-if="type != 'LEARNING_PATH'" />
+            </div>
+        </div>
+        <div class="team-card-text">
+            <div class="title" ng-bind="team.program.title"></div>
+            <div class="desc">
+                <span class="meta" ng-if="team.program.courseType" ng-bind="team.program.courseType | capitalize"></span>
+                <span class="meta" ng-if="team.timeEnrolled">Enrolled on <span ng-bind="team.timeEnrolled | date: 'MMM dd, yyyy'"></span></span>
+            </div>
+        </div>
+        <div class="team-card-progress">
+            <div class="percent-text">
+                <em><span ng-bind="team.percentComplete"></span>%</em>
+                <span class="progression-status-box progression-status-box-notstarted" ng-if="team.percentComplete === 0">
+                    <img class="svg" src="assets/images/circle.svg"> Enrolled<em ng-if="team.daysInProgress"> <span ng-bind="team.daysInProgress"></span> days ago</em>
+                </span>
+                <span class="progression-status-box progression-status-box-inprogress" ng-if="team.percentComplete !== 0 && team.percentComplete !== 100">
+                    <img class="svg" src="assets/images/disc.svg"> In progress<em ng-if="team.daysInProgress"> for <span ng-bind="team.daysInProgress"></span> days</em>
+                </span>
+                <span class="progression-status-box progression-status-box-completed" ng-if="team.percentComplete === 100">
+                    <img class="svg" src="assets/images/check.svg"> Completed<em ng-if="team.timeCompleted"> on <span ng-bind="team.timeCompleted | date: 'MMM dd, yyyy'"></span></em>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

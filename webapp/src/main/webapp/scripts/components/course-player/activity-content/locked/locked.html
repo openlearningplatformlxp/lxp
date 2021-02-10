@@ -1,0 +1,22 @@
+<div ng-controller="LockedActivityController as ctrl" class="locked-activity">
+    <h2 class="text-center locked-header">
+        <i class="fa fa-lock"></i>
+        This activity is locked.
+    </h2>
+
+    <div ng-if="ctrl.data.requiredAction" class="locked-content">
+        <div>Not available unless:</div>
+        <ul>
+            <li ng-repeat="action in ctrl.data.requiredAction">
+                <div ng-if="action.type=='completion'">
+                    The activity <strong ng-bind="action.activityName"></strong> is marked complete
+                </div>
+                <div ng-if="action.type=='grade'">
+                    You achieve a required score in <strong ng-bind="action.activityName"></strong>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="text-center"></div>
+</div>

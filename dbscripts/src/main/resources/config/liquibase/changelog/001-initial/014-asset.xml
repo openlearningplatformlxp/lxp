@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="scarlson">
+    <createTable tableName="asset_type">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_asset_type" nullable="false"/>
+      </column>
+      <column name="name" type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="enabled" type="BOOLEAN" defaultValueBoolean="true">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable tableName="asset_subtype">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_asset_subtype" nullable="false"/>
+      </column>
+      <column name="name" type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="default_content_type" type="varchar(64)"/>
+      <column name="is_text" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false"/>
+      </column>
+      <column name="enabled" type="BOOLEAN" defaultValueBoolean="true">
+        <constraints nullable="false"/>
+      </column>
+      <column name="asset_type_id" type="BIGINT">
+        <constraints foreignKeyName="fk_asset_subtype_asset_type_id" nullable="false" referencedTableName="asset_type" referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="scarlson">
+    <createTable tableName="asset">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_asset" nullable="false"/>
+      </column>
+      <column name="asset_store_type" type="varchar(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="asset_type_id" type="BIGINT">
+        <constraints foreignKeyName="fk_asset_asset_type_id" nullable="false" referencedTableName="asset_type" referencedColumnNames="id"/>
+      </column>
+      <column name="asset_subtype_id" type="BIGINT">
+        <constraints foreignKeyName="fk_asset_asset_subtype_id" nullable="false" referencedTableName="asset_subtype" referencedColumnNames="id"/>
+      </column>
+      <column name="name" type="varchar(255)">
+        <constraints nullable="false" unique="true" uniqueConstraintName="ux_asset_name"/>
+      </column>
+      <column name="filename" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="path" type="varchar(4096)"/>
+      <column name="description" type="varchar(4096)"/>
+      <column name="created_by" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP" defaultValueDate="${now}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="3" author="scarlson">
+    <createIndex tableName="asset" indexName="ux_asset_path_filename" unique="true">
+      <column name="path" type="VARCHAR(4096)"/>
+      <column name="filename" type="VARCHAR(255)"/>
+    </createIndex>
+  </changeSet>
+  <changeSet id="4" author="scarlson">
+    <createIndex tableName="asset" indexName="ux_asset_path_null_filename" unique="true">
+      <column name="filename" type="VARCHAR(255)"/>
+    </createIndex>
+    <modifySql>
+      <append value=" WHERE (path is null)"/>
+    </modifySql>
+  </changeSet>
+  <changeSet id="5" author="scarlson">
+    <createTable tableName="asset_db">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints foreignKeyName="fk_asset_db_id_asset_id" primaryKey="true" primaryKeyName="pk_asset_db" nullable="false" referencedTableName="asset" referencedColumnNames="id"/>
+      </column>
+      <column name="content" type="longblob"/>
+      <column name="content_type" type="varchar(64)"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="6" author="scarlson">
+    <createTable tableName="asset_s3">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints foreignKeyName="fk_asset_s3_id_asset_id" primaryKey="true" primaryKeyName="pk_asset_s3" nullable="false" referencedTableName="asset" referencedColumnNames="id"/>
+      </column>
+      <column name="content_type" type="varchar(64)"/>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

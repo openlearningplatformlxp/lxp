@@ -1,0 +1,62 @@
+/**
+ * General Alert Service styles.
+ */
+v-modal.alerts-service {
+    v-dialog {
+        border-radius: 4px;
+        padding: 15px;
+        padding-bottom: 0px;
+
+        -webkit-box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 1);
+        -moz-box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 1);
+        box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 1) !important;
+
+        .alert-include {
+            background-color: #F8F7F7;
+        }
+
+        .alert-title {
+            font-size: 120%;
+            font-weight: bold;
+            margin-bottom: 15px;
+            min-height: 10px;
+        }
+
+        .alert-text {
+            margin-bottom: 15px;
+        }
+
+        .alert-buttons-container {
+            margin-bottom: 15px;
+
+            .alert-buttons-left {
+                float: left;
+
+                .btn {
+                    margin-right: 4px;
+                }
+            }
+
+            .alert-buttons-right {
+                float: right;
+
+                .btn {
+                    margin-left: 4px;
+                }
+
+                .btn-cancel {
+                    background-color: #FFFFFF;
+                }
+
+                .btn-cancel:hover,
+                .btn-cancel:focus {
+                    background-color: #EFEFEF;
+                }
+            }
+
+            .btn {
+                min-width: 100px;
+            }
+        }
+    }
+}

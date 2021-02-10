@@ -1,0 +1,26 @@
+{
+    "register": {
+        "title": "Registration",
+        "form": {
+            "button": "Register"
+        },
+        "messages": {
+            "error": {
+                "userexists": "<strong>Login name already registered!</strong> Please choose another one.",
+                "emailexists": "<strong>Email is already in use!</strong> Please choose another one."
+            },
+            "success": {
+                "activated": "<p><strong>Registration saved and account activated!</strong></p><p>Please <a class=\"affordance\" href=\"#/login\">authenticate</a>.</p>",
+                "registered": "<p><strong>Registration saved!</strong></p><p>Please check your email for confirmation and instructions to activate your account.</p>"
+            },
+            "validate": {
+                "login": {
+                    "required": "Your login is required.",
+                    "minlength": "Your login is required to be at least 1 character.",
+                    "maxlength": "Your login cannot be longer than 50 characters.",
+                    "pattern": "Your login can only contain lower-case letters and digits."
+                }
+            }
+        }
+    }
+}

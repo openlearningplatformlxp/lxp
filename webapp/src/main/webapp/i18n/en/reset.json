@@ -1,0 +1,27 @@
+{
+    "reset": {
+        "request": {
+            "title": "Reset your password",
+            "form": {
+                "button": "Reset password"
+            },
+            "messages": {
+                "info": "Enter the email address you used to register",
+                "success": "Check your emails for details on how to reset your password.",
+                "notfound": "<p><strong>Account with given email address isn't found or isn't activated!</strong></p><p>Please check your email address and try again.</p>"
+            }
+        },
+        "finish" : {
+            "title": "Reset password",
+            "form": {
+                "button": "Validate new password"
+            },
+            "messages": {
+                "info": "Choose a new password",
+                "success": "<strong>Your password has been reset.</strong> Please <a class=\"affordance\" href=\"#/login\">authenticate</a>.",
+                "keymissing": "The reset key is missing.",
+                "error": "Your password couldn't be reset. Remember a password request is only valid for 24 hours."
+            }
+        }
+    }
+}

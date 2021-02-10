@@ -1,0 +1,40 @@
+{
+    "discovery": {
+        "title": "Discovery",
+        "noDiscoveryProgramsFound": "No Discovery Programs Found!",
+        "add": {
+            "button": "Add Discovery Program"
+        },
+        "table": {
+            "type": "Type",
+            "programId": "Program Id",
+            "textField": "Text Field",
+            "active": "Active",
+            "edit": "Edit",
+            "delete": "Delete"
+        },
+        "upsert": {
+            "addTitle": "Add Discovery Program",
+            "editTitle": "Edit Discovery Program",
+            "saveButton": "Save",
+            "form":{
+                "type": "Type",
+                "programId": "Program ID",
+                "textField": "Text Field",
+                "active": "Active",
+                "placeholder": {
+                    "programId": "Insert a Program ID",
+                    "select": "-- please select a program --",
+                    "typeSelect": "-- please select a type --",
+                    "textField": "Text Field"
+                },
+                "validate":{
+                    "programId":{
+                        "required": "The Program ID is a required field",
+                        "maxlength": "The Program ID cannot be longer than 50 characters."
+                    }
+                }
+            }
+        }
+    }
+}

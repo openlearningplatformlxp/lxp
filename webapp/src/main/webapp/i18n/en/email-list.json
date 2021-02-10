@@ -1,0 +1,11 @@
+{
+    "email-list": {
+        "title": "Email",
+        "viewEmailTitle": "Email",
+        "noEmailFound": "No Email Found!",
+        "searchEmail": {
+            "inputPlaceholder": "Search Email...",
+            "totalEmailCount": "Total Email: {{count}}"
+        }
+    }
+}

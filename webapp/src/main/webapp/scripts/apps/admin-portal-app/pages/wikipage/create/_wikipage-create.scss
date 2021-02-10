@@ -1,0 +1,71 @@
+/**
+ * Admin Notification Send View styles.
+ */
+
+[ng-quill-editor] {
+    display: block;
+}
+
+.common-app .admin-wikipage-create-view {
+    .actions-container {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+
+        .btn {
+            min-width: 140px;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+
+        .actions-container-title {}
+
+        .actions-container-body {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+    }
+
+    .ql-toolbar {
+        @extend .papershadow-m;
+        position: sticky;
+        top: $header-height-large - 9px;
+        border: 1px solid $grey4;
+        border-bottom: 2px solid $blue-shade3;
+        z-index: 1;
+        background-color: rgba(230, 230, 230, .95);
+
+        .ql-formats {
+            border-radius: $radius-base;
+            border: 1px solid $grey3;
+            background-color: $grey2;
+        }
+    }
+
+    .ql-editor {
+        @extend .wiki-content-editor;
+        @extend .papershadow-m;
+        margin: 0;
+        background-color: white;
+
+    }
+
+    .text-editor {
+        display: flex;
+        flex-direction: column;
+
+        textarea {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+        }
+    }
+
+    .checkbox {
+        width: 35px;
+        height: 35px;
+    }
+}

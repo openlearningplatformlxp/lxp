@@ -1,0 +1,28 @@
+{
+    "health": {
+        "title": "Diagnostics",
+        "refresh.button": "Rafraichir",
+        "stacktrace": "Stacktrace",
+        "details": {
+            "details": "D√©tails",
+            "properties": "Propri√©t√©s",
+            "name": "Nom",
+            "value": "Valeur",
+            "error": "Erreur"
+        },
+        "indicator": {
+            "diskSpace": "Espace disque",
+            "mail": "Email",
+            "db": "Base de données"
+        },
+        "table": {
+            "service": "Nom du service",
+            "status": "Etat"
+        },
+        "status": {
+            "UNKNOWN": "Unknown",
+            "UP": "DISPONIBLE",
+            "DOWN": "HORS SERVICE"
+        }
+    }
+}

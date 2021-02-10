@@ -1,0 +1,237 @@
+.course-player-view {
+    min-height: 100vh;
+    display: flex;
+
+    .cover {
+        position: fixed;
+        background-color: white;
+        display: flex;
+        top: 55px;
+        height: calc(100vh - 55px);
+        flex-direction: column;
+        width: 350px;
+        max-width: 350px;
+
+        .course-details-box {
+            background-color: #3e474f;
+            color: white;
+            position: relative;
+            padding: 10px $scale4 $scale4 $scale4;
+            display: flex;
+            flex-direction: column;
+
+            .return-button {
+                outline: none;
+                font-size: 20px;
+            }
+
+            .card-content {
+                justify-content: flex-end;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                vertical-align: center;
+                padding-top: $scale4;
+
+                h1 {
+                    @extend .h5;
+                    margin-bottom: $scale4;
+                    line-height: $scale4;
+                    font-weight: 600;
+                    min-height: 50px;
+                }
+
+                .card-progress {
+
+                    .status-progress-bar {
+                        height: 4px;
+                        position: relative;
+                        background-color: #7a8b8e;
+                        margin-top: $scale3;
+                        margin-bottom: $scale0;
+                        border-radius: 3px;
+
+                        .status-progress-bar-bar {
+                            height: 4px;
+                            position: absolute;
+                            left: 0;
+                            background-color: #ffffff;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .course-nav-box {
+            background-color: #edeff0;
+            position: relative;
+            padding: $scale4 $scale4 $scale4 0px;
+            flex-grow: 1;
+
+            .nav-content {
+
+                hr {
+                    background-color: #BABABA;
+                    border: 0 none;
+                    color: #BABABA;
+                    height: 1px;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    margin-left: $scale4;
+                }
+
+                .nav-section {
+                    outline: none;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    padding-left: $scale4;
+                    font-weight: bold;
+                }
+
+                .nav-activity {
+                    outline: none;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    padding-left: $scale4;
+                    font-size: 14px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    .activities-left {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+
+                        span:first-child {
+                            margin-right: 10px;
+
+                            i {
+                                margin-top: 5px;
+                            }
+                        }
+                    }
+
+                    .completion-icon {
+                        font-size: 20px;
+                    }
+
+                    .completion-icon.fa-circle-thin {
+                        color: #BABABA;
+                    }
+                }
+
+                .nav-activity.selected {
+                    border-left: 4px solid #3e474f;
+                    padding-left: $scale3;
+                }
+
+                .nav-activity.locked {
+                    color: #CCCCCC;
+                }
+            }
+        }
+    }
+
+    .lesson {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        background-color: white;
+
+        left: 350px;
+        max-width: calc(100vw - 350px);
+        position: relative;
+
+        .activity-view {
+            height: 100%;
+        }
+
+        .lesson-nav {}
+
+        .lesson-content {
+
+            height: 100%;
+            display: block;
+            margin: $scale8 $scale11;
+
+
+            h1 {
+                font-size: $font-size-lg;
+                color: $gray-dark;
+                font-weight: $font-weight-bold;
+                margin-top: $scale3;
+                margin-bottom: 0;
+            }
+
+            h1:first-child {
+                margin-top: 0;
+            }
+
+            h2 {
+                font-size: $font-size-md;
+                color: $gray-light;
+                margin-bottom: $scale6;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            .lesson-content-body {
+                h4 {
+                    margin-top: $scale6;
+                }
+
+                ul {
+                    list-style: none;
+                    margin-left: 0;
+
+                    li {
+                        margin-left: 0;
+                        margin-bottom: $scale3;
+
+                        i {
+                            margin-right: $scale2;
+                        }
+                    }
+                }
+
+                .info-label {
+                    margin-top: $scale5;
+                    font-size: $font-size-md;
+                    margin-bottom: 5px;
+                }
+
+                .info {
+                    .label {
+                        background-color: #7a8b8e;
+                        margin-right: 2px;
+                    }
+                }
+
+
+                .category {
+                    h6 {
+                        color: #7a8b8e;
+                        margin-bottom: 0;
+                    }
+
+                    .book-tag {
+                        background-color: #7a8b8e;
+                        display: inline-block;
+                        padding: 1px 7px;
+                        border-radius: $radius-full;
+
+                        color: white;
+                        font-weight: $font-weight-normal;
+                        margin-right: 2px;
+                    }
+
+                    margin-bottom: $scale0;
+                }
+            }
+        }
+    }
+}

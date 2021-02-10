@@ -1,0 +1,29 @@
+<div class="search-filter--box">
+    <div class="search-filter--header" ng-click="ctrl.toggleContent()">
+        <div class="search-filter--title">
+            <h5 ng-bind="ctrl.title"></h5>
+        </div>
+        <div class="search-filter--arrow">
+            <img class="svg svg-black chevron-down" src="assets/images/chevron-down.svg" ng-if="!ctrl.open" />
+            <img class="svg svg-black chevron-up" src="assets/images/chevron-up.svg" ng-if="ctrl.open" />
+        </div>
+    </div>
+    <div class="search-filter--body" ng-if="ctrl.open">
+        <ul>
+            <li ng-class="{active: !ctrl.filters[ctrl.filter]}">
+                <a href="javascript:;" ng-click="ctrl.selectAll()">All</a>
+            </li>
+            <li ng-if='ctrl.values' ng-class="{active: ctrl.filters[ctrl.filter] == value || ctrl.filters[ctrl.filter].indexOf(value) >= 0}" ng-repeat="value in ctrl.values" ng-click="ctrl.select(value, false)">
+
+                <readonly-checkbox readonly-fn="ctrl.filters[ctrl.filter] == value || ctrl.filters[ctrl.filter].indexOf(value) >= 0"></readonly-checkbox>
+
+                <a ng-if="ctrl.filter === 'content'" href="javascript:;" ng-bind="value | learnerSource"></a>
+                <a ng-if="ctrl.filter != 'content'" href="javascript:;" ng-bind="value | capitalize"></a>
+            </li>
+            <li ng-if='ctrl.tags' ng-class="{active: ctrl.isTagActive(tag)}" ng-repeat="tag in ctrl.tags" ng-click="ctrl.select(tag, true)">
+                <readonly-checkbox readonly-fn="ctrl.isTagActive(tag)"></readonly-checkbox>
+                <a href="javascript:;" ng-bind="tag.name | capitalize"></a>
+            </li>
+        </ul>
+    </div>
+</div>

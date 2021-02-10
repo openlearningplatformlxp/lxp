@@ -1,0 +1,10 @@
+<div class="lesson-content-requirements">
+
+    <div ng-repeat="section in ctrl.data.sections" class="section-box">
+        <div class="section-title"><span ng-bind-html="section.name"></span></div>
+        <div class="section-description">
+            <span ng-bind-html="section.summary"></span>
+        </div>
+    </div>
+
+</div>

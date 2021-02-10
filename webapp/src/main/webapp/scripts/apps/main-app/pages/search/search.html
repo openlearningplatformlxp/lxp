@@ -1,0 +1,144 @@
+<div class="search-view">
+    <div class="page-content-section">
+        <div class="container-fluid">
+            <div class="filters-section">
+                <div class="search-results-header">
+                    <h4 ng-if="firstLoading && loading">Searching ...</h4>
+                    <h4 ng-if="!loading && total"><em><span ng-bind="total"></span></em> results found</h4>
+                    <h4 ng-if="!loading && !total"><em>0</em> results found</h4>
+
+                    <div class="matching-filters" ng-if="
+                            filters.topic || filters.role || (filters.type && filters.type.length > 0) || filters.status || (filters.content && filters.content.length > 0)
+                            || filters.delivery || filters.skill || filters.language || filters.country || filters.city
+                        ">
+                        <div class="search-tag clear-tag" ng-if="
+                            filters.topic || filters.role || (filters.type && filters.type.length > 0) || filters.status || (filters.content && filters.content.length > 0)
+                            || filters.delivery || filters.skill || filters.language || filters.country || filters.city
+                        " ng-click="ctrl.clearAllFilters()">
+                            <span>Remove all filters</span>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.topic">
+                            <span ng-bind="filters.topic | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('topic')"></i>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.role">
+                            <span ng-bind="filters.roleName | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('role')"></i>
+                        </div>
+
+                        <div class="search-tag" ng-repeat="type in filters.type">
+                            <span ng-bind="type | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearArrayFilter('type', type)"></i>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.status">
+                            <span ng-bind="filters.status | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('status')"></i>
+                        </div>
+
+                        <div class="search-tag" ng-repeat="content in filters.content">
+                            <span ng-bind="content | learnerSource"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearArrayFilter('content', content)"></i>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.delivery && filters.delivery.name">
+                            <span ng-bind="filters.delivery.name | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('delivery')"></i>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.skill && filters.skill !==''">
+                            <span ng-bind="filters.skill.name | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('skill')"></i>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.language">
+                            <span ng-bind="filters.language.name | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('language')"></i>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.country">
+                            <span ng-bind="filters.country | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('country'); ctrl.clearFilter('city')"></i>
+                        </div>
+
+                        <div class="search-tag" ng-if="filters.city">
+                            <span ng-bind="filters.city | capitalize"></span>
+                            <img class="svg" src="assets/images/x.svg" ng-click="ctrl.clearFilter('city')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-section-options">
+                    <span class="filters-button">
+                        <a href="" data-toggle="modal" data-target="#myModal2" class="sliders" uib-tooltip="Filters" tooltip-placement="bottom"><span class="options-label">Filters</span>
+                            <img class="svg" src="assets/images/sliders.svg" />
+                        </a>
+                    </span>
+                    <card-view-switcher></card-view-switcher>
+                </div>
+
+            </div>
+            <div class="search-results search-results-featured clearfix" ng-if="featuredCards && featuredCards.length > 0">
+                <div>
+                    <h4>Recommended Results</h4>
+                </div>
+                <div class="card-container-{{cardView}}" ng-repeat="card in featuredCards ">
+                    <card ng-if="card.type == 'LEARNING_PATH'" item="card"></card>
+                    <card ng-if="card.type != 'LEARNING_PATH'" item="card" show-open-in-lms="showOpenInLms" source="'search'"></card>
+                </div>
+            </div>
+            <div class="search-results clearfix" infinite-scroll='ctrl.loadMore()' infinite-scroll-disabled='loading' infinite-scroll-distance='1'>
+                <div ng-if="featuredCards && featuredCards.length > 0">
+                    <h4></h4>
+                </div>
+                <div class="card-container-{{cardView}}" ng-repeat="card in itemCards ">
+                    <card ng-if="card.type == 'LEARNING_PATH'" item="card"></card>
+                    <card ng-if="card.type != 'LEARNING_PATH'" item="card" show-open-in-lms="showOpenInLms" source="'search'"></card>
+                </div>
+                <card-fake amount="3" card-view="cardView" ng-if="firstLoading && loading"></card-fake>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="search-filters modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="header-title">
+                    <div class="header-title-icon">
+                        <img class="svg svg-black" src="assets/images/sliders.svg" />
+                    </div>
+                    <div class="header-title-text">
+                        <h4 class="modal-title" id="myModalLabel2">Filters</h4>
+                    </div>
+                </div>
+                <div class="header-close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img class="svg svg-black" src="assets/images/x.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <searchfilter title="Type" open="true" values="['LEARNING_PATH', 'COURSE', 'CLASSROOM', 'WIKIPAGE']" filters="filters" filter="type" refresh="ctrl.refresh()" isarray="true"></searchfilter>
+
+
+                <searchfilter title="Delivery Mode" open="false" tags="filterTags.deliveries" filters="filters" filter="delivery" refresh="ctrl.refresh()"></searchfilter>
+
+                <searchfilter ng-if="filterTags.skillLevels && filterTags.skillLevels.length !== 0" title="Skill Level" open="false" tags="filterTags.skillLevels" filters="filters" filter="skill" refresh="ctrl.refresh()"></searchfilter>
+
+                <searchfilter ng-if="filterTags.languages && filterTags.languages.length !== 0" title="Language" open="false" tags="filterTags.languages" filters="filters" filter="language" refresh="ctrl.refresh()"></searchfilter>
+
+                <locationfilter ng-if="filterTags.locations && filterTags.locations.length !== 0" title="Location" open="false" tags="filterTags.locations" filters="filters" filter="location" refresh="ctrl.refresh()"></locationfilter>
+
+            </div>
+
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div><!-- modal -->

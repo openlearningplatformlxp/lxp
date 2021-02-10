@@ -1,0 +1,66 @@
+<cms-block ctrl="ctrl" key="state-featured-searches" ng-cloak>
+    <div class="admin-featured-searches-view">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="header-container col-xs-6">
+                    <h2 class="page-title" translate="featuredSearch.featuredSearches.title"></h2>
+                </div>
+                <div class="header-container col-xs-6">
+                    <a ui-sref="featured-searches-create" class="download-link" href="javascript:;">
+                        <button class="pull-right"><span translate="featuredSearch.button.add"></span></button>
+                    </a>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'featuredSearch.featuredSearches.noEntriesFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="st-min-width"><span translate="featuredSearch.featuredSearches.id"></span>
+                                            </th>
+                                            <th class="st-min-width">
+                                                <searchsort search-state="ctrl.pagedSearch" field="createdDate" label="{{'global.labels.createdDate' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-min-width"><span translate="featuredSearch.featuredSearches.keywords"></span></th>
+                                            <th><span translate="featuredSearch.featuredSearches.instances"></span>
+                                            </th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="featuredSearch in ctrl.pagedSearch.getContent()" ng-if="!featuredSearch['_empty_']">
+                                            <td ng-bind="featuredSearch.featuredSearchId"></td>
+                                            <td ng-bind="featuredSearch.createdDate |date:'short'"></td>
+                                            <td ng-bind="featuredSearch.keywords"></td>
+                                            <td>
+                                                <div>
+                                                    <div class="selections-instances" ng-repeat="instance in featuredSearch.instances">
+                                                        <div>#<span ng-bind="instance.instanceId"></span> - <span ng-bind="instance.instanceType | capitalize"></span> - <span ng-bind-html="instance.instanceName"></span> </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="st-actions">
+                                                <a class="edit" href="#edit" ng-click="ctrl.edit(featuredSearch, $event)">Edit</a>
+                                                <a class="remove" href="javascript:;" ng-click="ctrl.deleteSearch(featuredSearch, $event)">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="featuredSearch['_empty_']">
+                                            <td colspan="8">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

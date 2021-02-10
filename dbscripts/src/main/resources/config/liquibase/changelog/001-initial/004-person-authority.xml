@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="generator">
+    <createTable tableName="person_authority">
+      <column name="person_id" type="BIGINT">
+        <constraints foreignKeyName="fk_person_authority_person_id" nullable="false" referencedTableName="person" referencedColumnNames="id"/>
+      </column>
+      <column name="authority_name" type="VARCHAR(50)">
+        <constraints foreignKeyName="fk_person_authority_authority_name" nullable="false" referencedTableName="authority" referencedColumnNames="name"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="person_id, authority_name" constraintName="pk_person_authority" tableName="person_authority"/>
+  </changeSet>
+</databaseChangeLog>

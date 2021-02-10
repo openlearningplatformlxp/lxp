@@ -1,0 +1,423 @@
+$color-header: rgb(0, 99, 167);
+$color-content: #333;
+$color-bar: #999;
+$color-shaded: #eee;
+
+.wiki-page-content {
+    background-color: white;
+
+    .container-fluid,
+    .container {
+        width: 760px;
+        max-width: 760px;
+    }
+
+    @media (max-width: 760px) {
+
+        .container-fluid,
+        .container {
+            width: auto;
+            max-width: auto;
+        }
+    }
+
+}
+
+.wiki-content {
+    // BEGIN RESET
+
+    //font-family: Georgia,Times,Times New Roman,serif;
+    font-family: 'Overpass', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    background: white;
+
+    * {
+        margin: unset;
+        padding: unset;
+        border: unset;
+        border-radius: unset;
+        background: unset;
+        background-color: unset;
+        color: unset;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-family: inherit;
+        color: $color-header;
+
+        &:first-child {
+            margin-top: 0 !important;
+        }
+    }
+
+    h1,
+    .h1 {
+        font-size: $scale6;
+        line-height: $scale7;
+        margin-bottom: $scale7;
+        font-weight: 400;
+        letter-spacing: -.05rem;
+    }
+
+    h2,
+    .h2 {
+        font-size: $scale5;
+        line-height: $scale5;
+        margin-top: $scale6;
+        margin-bottom: $scale1;
+        font-weight: 400;
+        letter-spacing: -.02rem;
+    }
+
+    h3,
+    .h3 {
+        font-size: $scale3;
+        line-height: $scale5;
+        margin-bottom: $scale1;
+        font-weight: 500;
+    }
+
+    h4,
+    .h4 {
+        font-size: $scale2;
+        line-height: $scale3;
+        margin-top: $scale6;
+        margin-bottom: $scale1;
+        font-weight: 600;
+    }
+
+    h5,
+    .h5 {
+        font-size: $scale1;
+        line-height: $scale3;
+        margin-top: $scale5;
+        margin-bottom: $scale1;
+        font-weight: 600;
+    }
+
+    h6,
+    .h6 {
+        font-size: $scale0;
+        line-height: $scale2;
+        margin-top: $scale5;
+        margin-bottom: $scale1;
+        font-weight: 600;
+    }
+
+    p,
+    a,
+    ul,
+    ol,
+    li,
+    blockquote,
+    pre,
+    td,
+    th,
+    dl,
+    dd,
+    dt {
+        font-family: inherit;
+        font-size: $scale1;
+        font-weight: 400;
+        letter-spacing: -.02rem;
+        margin: 0;
+        line-height: $scale4;
+        color: $color-content;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote,
+    pre {
+        margin-bottom: $scale2;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    hr {
+        border: none;
+        border-bottom: 2px solid $color-bar;
+        margin: $scale7 0;
+        padding: 0;
+    }
+
+    b,
+    strong {
+        font-weight: 600;
+    }
+
+    i,
+    em {
+        font-style: italic;
+    }
+
+    small,
+    .small {
+        font-size: $scale-1;
+        line-height: $scale2;
+    }
+
+    pre,
+    code {
+        display: block;
+        margin: $scale3 0;
+        padding: $scale4;
+        font-size: $scale0;
+        background-color: #fff;
+        border: 1px solid $color-shaded;
+        font-family: "Andale Mono", AndaleMono, "Lucida Console", "Lucida Sans Typewriter", monaco, "Bitstream Vera Sans Mono", monospace;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    blockquote {
+        margin: $scale8 0;
+        padding: $scale4;
+        background-color: $color-shaded;
+        border-left: 2px solid $color-bar;
+        font-size: $scale2;
+        line-height: $scale5;
+        font-style: oblique;
+    }
+
+    ul,
+    ol {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    ul {
+        list-style: disc outside;
+    }
+
+    ol {
+        list-style: decimal outside;
+    }
+
+    li {
+        margin-left: $scale0;
+        margin-bottom: $scale-2 / 2;
+    }
+
+    ul ul,
+    ol ol,
+    ul ol,
+    ol ul {
+        margin: 0 0 0 $scale2;
+    }
+
+    ol ol {
+        list-style: lower-alpha;
+    }
+
+    ol ol ol {
+        list-style: lower-roman;
+    }
+
+    ul ul {
+        list-style: circle;
+    }
+
+    li li:first-of-type {
+        margin-top: $scale-2 / 2;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    img.image-block {
+        display: block;
+        margin: $scale4 auto;
+    }
+
+    img.image-full {
+        position: relative;
+        width: 100vw;
+        max-width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin: $scale4 -50vw; // <760 wide then -50%
+    }
+
+    figcaption {
+        @extend small;
+    }
+
+    img.image-block+figcaption {
+        text-align: right;
+        font-style: oblique;
+        margin-top: -$scale3;
+        margin-bottom: $scale4;
+    }
+
+    img.image-full+figcaption {
+        text-align: right;
+        font-style: oblique;
+        margin-top: -$scale3;
+        margin-bottom: $scale4;
+    }
+
+    a,
+    a:visited {
+        @include transition-all();
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        color: $blue-shade2;
+        text-decoration: underline;
+        border-radius: 5px;
+    }
+
+    a:hover,
+    a:active {
+        color: $link-hover-color;
+        text-decoration: underline;
+        background-color: $yelloworange-tint2;
+    }
+
+    a[href^="https://"],
+    a[href^="http://"] {
+        &:after {
+            display: inline-block;
+            content: '\f08e';
+            position: relative;
+            bottom: 0.1rem;
+            font-family: FontAwesome;
+            font-size: .6rem;
+            margin: 0 0 0 0.3rem;
+            text-decoration: none !important;
+        }
+    }
+
+    a[href^="mailto:"] {
+        &:after {
+            display: inline-block;
+            content: '\f003';
+            position: relative;
+            bottom: 0.1rem;
+            font-family: FontAwesome;
+            font-size: .6rem;
+            margin: 0 0 0 0.3rem;
+            text-decoration: none !important;
+        }
+    }
+
+    // Indenting text in the WYSIWYG editor
+    .ql-indent-1 {
+        margin-left: $scale5;
+        //ul {
+        //  list-style: circle;
+        //}
+        //ol {
+        //  list-style: lower-alpha;
+        //}
+    }
+
+    .ql-indent-2 {
+        margin-left: $scale6;
+        //ul {
+        //  list-style: square;
+        //}
+        //ol {
+        //  list-style: upper-roman;
+        //}
+    }
+
+    .ql-indent-3 {
+        margin-left: $scale7;
+        //ul {
+        //  list-style: circle;
+        //}
+        //ol {
+        //  list-style: lower-roman;
+        //}
+    }
+
+    .ql-indent-4 {
+        margin-left: $scale8;
+        //ul {
+        //  list-style: square;
+        //}
+        //ol {
+        //  list-style: lower-alpha;
+        //}
+    }
+
+    .ql-align-justify {}
+
+    .ql-size-huge {
+        @extend .h3;
+    }
+
+    .ql-size-large {
+        @extend .h4;
+    }
+
+    .ql-size-small {
+        @extend .small;
+    }
+
+}
+
+// Class .ql-editor extends this in _wikipage-create.scss for formatting WYSIWYG
+.wiki-content-editor {
+    background-color: white;
+    @extend .wiki-content
+}
+
+
+// Styles for the wrapper div on the user view wiki page
+.wiki-page-container {
+    background-color: white;
+    //@extend .papershadow-xs;
+    margin: $scale7 0;
+    //margin-bottom: $scale5;
+    //border-radius: $radius-base;
+    //padding: $scale5;
+}
+
+
+// Bottom of the user wiki page view
+.wiki-content-metadata {
+    margin-bottom: $scale7;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &>div {
+        margin-left: $scale0;
+    }
+
+    .wiki-created-date,
+    .wiki-modified-date {
+        font-style: italic;
+        color: $grey7;
+        font-size: 1rem;
+    }
+
+    .wiki-tag-list {
+        .wiki-tag {
+            @extend .tag-bold;
+            font-size: 1rem;
+            margin-left: $base-value-half;
+            margin-bottom: $base-value-half;
+        }
+    }
+}

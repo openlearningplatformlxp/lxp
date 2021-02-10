@@ -1,0 +1,9 @@
+The 404.html file is listed in the .htaccess file.
+
+The goal of this file is to provide 404 error page for people using a front-end proxy/router in front of JHipster (for
+example, an Apache HTTP server, this is why the .htaccess file is here).
+
+If JHipster is down, then this front-end can still show the errors correctly, using those files.
+
+See: https://github.com/jhipster/generator-jhipster/issues/1711
+See: https://github.com/h5bp/html5-boilerplate/blob/master/dist/404.html

@@ -1,0 +1,19 @@
+.wikipage-view {
+    .page-content-section {
+        .container {
+            margin-top: $scale4;
+        }
+
+        @media (max-width: $screen-sm-max) {
+            .container-fluid {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .container {
+                margin-bottom: $scale4;
+                padding: 0;
+            }
+        }
+    }
+}

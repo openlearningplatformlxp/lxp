@@ -1,0 +1,10 @@
+<div>
+    <p translate="activity-logout.sessionExpiresSoon"></p>
+    <div class="progress" style="background-color: #CDCDCD;">
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" aria-valuenow="{{ctrl.data.secondsRemaining}}" aria-valuemin="0" aria-valuemax="{{ctrl.data.seconds}}" ng-style="ctrl.getBarStyles()">
+            <span class="sr-only" translate="activity-logout.secondsRemaining" translate-values="{secondsRemaining: '{{ctrl.data.secondsRemaining}}'}"></span>
+            <span style="font-size: 16px;" ng-bind="ctrl.data.secondsRemaining"></span>
+        </div>
+    </div>
+    <p translate="activity-logout.extendSession"></p>
+</div>

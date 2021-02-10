@@ -1,0 +1,44 @@
+{
+    "asset": {
+        "assets": {
+            "title": "Assets",
+            "newAsset": "New Asset",
+            "noAssetsFound": "No Assets Found!",
+            "searchUsers": {
+                "inputPlaceholder": "Search Assets...",
+                "totalUsersCount": "Total Assets: {{count}}"
+            }
+        },
+        "asset-add-edit": {
+            "copyFullUrlClipboard": "Copy Full URL to Clipboard",
+            "copyRelativeUrlClipboard": "Copy Relative URL to Clipboard",
+            "no-content": "There is no content yet!",
+            "title": {
+                "add": "Add Asset",
+                "edit": "Edit Asset: <b>{{assetName}}</b>"
+            },
+            "form": {
+                "content": "Text Content",
+                "content.placeholder": "Enter html content...",
+                "contentType.placeholder": "Enter content-type...",
+                "description.placeholder": "Enter description...",
+                "file": "File",
+                "filename.placeholder": "Enter filename...",
+                "key.placeholder": "Enter key...",
+                "name.placeholder": "Enter name...",
+                "path.placeholder": "Enter path..."
+            },
+            "messages": {
+                "success": {
+                    "save-add-success": "Asset has been created.",
+                    "save-edit-success": "Asset has been updated."
+                },
+                "validate": {
+                    "path": {
+                        "pattern": "Path must start with \"\/\" and contain at least one additional character."
+                    }
+                }
+            }
+        }
+    }
+}

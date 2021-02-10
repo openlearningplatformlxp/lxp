@@ -1,0 +1,39 @@
+.activity-footer {
+
+    .next-activity-box {
+
+        hr {
+            background-color: #BABABA;
+            border: 0 none;
+            color: #BABABA;
+            height: 1px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .upcoming-box {
+
+            .up-next-label {
+                padding-left: 28px;
+                font-size: 13px;
+            }
+
+            .activity-title {
+                font-weight: bold;
+            }
+
+            .next-activity-btn {
+                height: 2.5rem;
+                line-height: inherit;
+                background-color: #000000;
+                color: #FFFFFF;
+            }
+
+            .next-activity-btn.locked {
+                background-color: #CCCCCC;
+                border: 2px solid #CCCCCC;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,47 @@
+{
+    "wikipage": {
+        "id": "Id",
+        "title": "Wikipage",
+        "noWikipagesFound": "No Wikipages Found!",
+        "url": "Url",
+        "button": {
+            "create": "Create Wikipage",
+            "edit": "Edit Wikipage",
+            "folders": "Folders Tree"
+        },
+        "searchWikipages": {
+            "inputPlaceholder": "Search Wikipages...",
+            "totalWikipagesCount": "Total Wikipages: {{count}}"
+        },
+        "form": {
+            "title": "Title",
+            "slug": "/pages",
+            "tags": "Tags",
+            "index": "Index page on search results?",
+            "indexOnSearch": "Indexed",
+            "status": "Status",
+            "html_content": "HTML Content",
+            "css_content": "CSS Content",
+            "placeholder": {
+                "title": "A helpful page",
+                "slug": "a-helpful-page",
+                "html_content": "",
+                "css_content": ""
+            },
+            "validate": {
+                "title": {
+                    "required": "The title is a required field",
+                    "maxlength": "The title cannot be longer than 50 characters."
+                },
+                "slug": {
+                    "required": "The slug is a required field"
+                }
+            }
+        },
+        "save": {
+            "draft": "Save as Draft",
+            "publish": "Save & Publish",
+            "archive": "Archive"
+        }
+    }
+}

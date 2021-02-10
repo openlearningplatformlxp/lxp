@@ -1,0 +1,17 @@
+{
+    "spring-session-list": {
+        "title": "Sessions",
+        "noSessionsFound": "No Sessions Found!",
+        "labels": {
+            "creationTime": "Created",
+            "lastAccessTime": "Last Access",
+            "maxInactiveInterval": "Max Inactive Interval",
+            "principalName": "User",
+            "sessionId": "Session"
+        },
+        "searchSessions": {
+            "inputPlaceholder": "Search Sessions...",
+            "totalSessionsCount": "Total Sessions: {{count}}"
+        }
+    }
+}

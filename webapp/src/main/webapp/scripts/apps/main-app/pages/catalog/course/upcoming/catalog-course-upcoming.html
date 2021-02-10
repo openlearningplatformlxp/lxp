@@ -1,0 +1,20 @@
+<div class="lesson-content-requirements">
+
+    <h1>When would you like to start?</h1>
+
+    <h2>We'll help guide you through the sign-up process for the available date.</h2>
+
+    <div class="clearfix">
+        <div class="pull-left">
+            <h5 class="card-section-header">
+                Upcoming classes
+            </h5>
+        </div>
+        <div class="pull-right card-section-options">
+            <button ng-click="ctrl.notYetImplemented()">Any location <i class="fa fa-chevron-down"></i></button>
+        </div>
+    </div>
+
+    <upcoming-class-card item="item" ng-repeat="item in ctrl.data.upcoming.upcomingClassList track by $index"></upcoming-class-card>
+
+</div>

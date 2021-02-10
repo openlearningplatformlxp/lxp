@@ -1,0 +1,38 @@
+{
+    "user-role": {
+        "user-role-add-edit": {
+            "buttons": {
+                "delete": "Delete Role"
+            },
+            "delete": {
+                "text": "Are you sure you want to delete role <b>{{roleName}}</b>?",
+                "success": "Role <b>{{roleName}}</b> has been deleted.",
+                "title": "Delete Role: {{roleName}}"
+            },
+            "messages": {
+                "added": "Role has been created.",
+                "edited": "<p>Role has been updated.</p><p><b>IMPORTANT NOTE: Permission changes do not effect current user sessions. The permission changes will be reflected for new sessions (logins) only.</b></p>",
+                "validate": {
+                    "name": {
+                        "maxlength": "This field cannot be longer than 50 characters.",
+                        "pattern": "Only characters A thru Z and underscores are allowed.",
+                        "required": "This field is required."
+                    }
+                }
+            },
+            "title": {
+                "add": "Add Role",
+                "edit": "Edit Role: <b>{{roleName}}</b>",
+                "view": "View Role: <b>{{roleName}}</b>"
+            }
+        },
+        "user-roles": {
+            "title": "Roles",
+            "noRolesFound": "No Roles Found!",
+            "searchRoles": {
+                "inputPlaceholder": "Search Roles...",
+                "totalRolesCount": "Total Roles: {{count}}"
+            }
+        }
+    }
+}

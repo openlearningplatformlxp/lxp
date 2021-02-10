@@ -1,0 +1,52 @@
+.lesson-content-resources {
+    .section-box {
+        margin-bottom: 50px;
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            font-size: 16px;
+            font-weight: lighter;
+            margin-bottom: 10px;
+        }
+
+        .activity-expander {
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        .nav-activity {
+            outline: none;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .nav-activity.disabled {
+            cursor: default;
+        }
+    }
+
+    .help-links {
+        div {
+            margin-bottom: $scale1;
+
+            a,
+            a:visited,
+            a:hover,
+            a:focus {
+                color: $gray-dark;
+                font-weight: normal;
+                text-decoration: none;
+
+                i {
+                    margin-right: $scale1;
+                }
+            }
+        }
+
+    }
+}

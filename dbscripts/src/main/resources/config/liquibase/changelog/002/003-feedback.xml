@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="tdepriede">
+    <createTable tableName="feedback">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="feedback_pk"/>
+      </column>
+      <column name="person_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="message" type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="url" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="business_line" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP" defaultValueDate="${now}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="tdepriede">
+    <addColumn tableName="feedback">
+      <column name="job_title" type="varchar(255)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="region" type="varchar(255)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+    <dropNotNullConstraint tableName="feedback" columnName="business_line"/>
+  </changeSet>
+</databaseChangeLog>

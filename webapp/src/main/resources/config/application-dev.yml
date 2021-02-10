@@ -1,0 +1,195 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+app:
+    assets:
+        storage:
+            enabled: true
+            storageDirectory: /tmp/asset.tmp.storage
+    aws:
+        s3:
+            #The following values are required by the application to handle uploads.
+            accessKey:
+            bucket:
+            endpoint:
+            environment:
+            secretKey:
+            urlPrefix:
+    security:
+        client:
+            session:
+                timeout:
+                    idleSecsBeforeWarning: 1800
+                    secsBeforeLogout: 27000
+                cookie:
+                    domainNamePattern:
+                    httpOnly: true
+                    name:
+                    path:
+                    secure: true
+    config:
+        supporturl:
+
+metrics:
+    jmx.enabled: true
+    graphite:
+        enabled: false
+        host:
+        port:
+
+cache:
+    timeToLiveSeconds: 3600
+    ehcache:
+        maxBytesLocalHeap: 16M
+
+liquibase:
+    context: dev
+
+logging:
+    level:
+        com:
+            redhat: INFO
+        org:
+            hibernate:
+                SQL: DEBUG=
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: INFO
+
+server:
+    port: 8080
+
+spring:
+    profiles:
+        active: dev
+    session:
+        store-type: jdbc
+    data:
+        solr:
+            host: http://127.0.0.1:8983/solr
+            core: reduxl
+    datasource:
+        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+        url:
+        databaseName: reduxl
+        serverName: localhost
+        port: 5432
+        username: localuser
+        password: localuser
+        maximumPoolSize: 50
+    totara:
+        datasource:
+            # The following values are required by the application.
+            dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+#            databaseName: postgres
+#            serverName: rhl-db.c2w1ugvbewyt.us-west-2.rds.amazonaws.com
+#            username: postgres
+#            password: synegen13
+#            maximumPoolSize: 3
+            databaseName: reduxl
+            serverName: localhost
+            username: localuser
+            password: localuser
+            maximumPoolSize: 3
+
+    jpa:
+        database-platform: com.redhat.uxl.dataobjects.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
+        openInView: false
+        show_sql: true
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming:
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+
+    messages:
+        cache-seconds: 1
+
+    thymeleaf:
+        mode: XHTML
+        cache: false
+
+totara:
+    webservice:
+        # These values are required to use the totara web services.
+        token:
+        baseurl:
+    url:
+      file: localhost/totara
+    activity:
+        baseurl: https://rhl.dev.synegen.com/totara/mod/
+    course:
+        baseurl: https://rhl.dev.synegen.com/totara/rawcontent.php?target=https://rhl.dev.synegen.com/totara/course/view.php?id=
+    classroom:
+        baseurl: https://rhl.dev.synegen.com/totara/rawcontent.php?target=https://rhl.dev.synegen.com/totara/mod/facetoface/signup.php?s=
+    file:
+        upload: https://rhl.dev.synegen.com/totara/webservice/upload_xl.php?token=
+
+saml:
+    redirect:
+        enabled: false
+        url: /saml/login
+
+
+demo:
+    file:
+        location: demo-files/
+    users: totara-users.json
+    managers: totara-managers.json
+    audiences: totara-audiences.json
+    userAudiences: totara-user-audiences.json
+    tags: totara-tags.json
+    userInterests: user-interests.json
+    courses: totara-courses.json
+    activeCourses: totara-active-courses.json
+    programs: totara-programs.json
+    activePrograms: totara-active-programs.json
+    roles: roles.json
+    userRoles: user-roles.json
+    userFeedback: user-feedback.json
+    programTags: totara-program-tags.json
+    courseTags: totara-course-tags.json
+    events: totara-events.json
+    userPrograms: user-programs.json
+    programCourses: totara-program-courses.json
+    activeCourseAudiences: totara-active-course-audience.json
+    programsCompleted: totara-programs-in-progress.json
+    userCourses: user-courses.json
+    userEvents: user-events.json
+    activeEvents: totara-active-events.json
+    inProgressPrograms: totara-programs-completed
+    messages: messages.json
+    ceCredits: cecredits-user.json
+    coursesInProgress: totara-courses-in-progress.json
+    activity: totara-activity.json
+    activityInstance: totara-activity-instance.json
+    userActivities: user-activities.json
+    totaraTags: totara-tags.json
+    tagsSkillLevel: totara-tags-skill-level.json
+    tagsLanguageLevel: totara-tags-language-level.json
+    tagsRoleLevel: totara-tags-role-level.json
+    tagsTopicLevel: totara-tags-topic-level.json
+    courseTagsTopic: totara-tags-course-topic.json
+    courseTagsSkill: totara-tags-course-skill.json
+    courseTagsLanguage: totara-tags-course-language.json
+    parentTags: parent-tags.json
+    mode:
+        enabled: true
+

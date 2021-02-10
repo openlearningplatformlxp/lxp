@@ -1,0 +1,27 @@
+<div class="admin-status-view" ng-cloak>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="page-title" translate="Status"></h2><!-- TODO: SAC: XLATE -->
+            <br>
+        </div>
+    </div>
+    <div ng-if="!ctrl.data.hasErrorsOrWarnings">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="alert alert-success"><i class="fa fa-check" aria-hidden="true"></i> Congratulations! System is beautiful!</h4><!-- TODO: SAC: XLATE -->
+            </div>
+        </div>
+    </div>
+    <div ng-if="ctrl.data.hasErrorsOrWarnings">
+        <div class="row">
+            <div ng-repeat="error in ctrl.data.errors" class="col-sm-6 col-md-4">
+                <div class="alert alert-danger"><i class="fa" aria-hidden="true" ng-class="error.iconClass"></i> <span ng-bind="error.label"></span>: <span ng-bind="error.value"></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-repeat="warning in ctrl.data.warnings" class="col-sm-6 col-md-4">
+                <div class="alert alert-warning"><i class="fa" aria-hidden="true" ng-class="warning.iconClass"></i> <span ng-bind="warning.label"></span>: <span ng-bind="warning.value"></span></div>
+            </div>
+        </div>
+    </div>
+</div>

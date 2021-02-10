@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+    solr:
+        image: solr:7.7.2
+        entrypoint:
+            - bash
+            - "-c"
+            - "precreate-core reduxl; exec solr -f"
+        ports:
+            - "8983:8983"
+        volumes:
+            - ./solr-data:/opt/solr/server/solr/core2/
+    db:
+        image: postgres:9.4
+        environment:
+            - POSTGRES_USER=localuser
+            - POSTGRES_PASSWORD=localuser
+            - POSTGRES_DB=reduxl
+        ports:
+            - 5432:5432
+        networks:
+            - public
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/9.4/reduxl/data:rw
+volumes:
+    solr_volume:
+    db_volume:
+networks:
+    public:
+        driver: bridge

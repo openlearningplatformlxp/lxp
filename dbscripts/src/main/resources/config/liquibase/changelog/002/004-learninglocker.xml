@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="tdepriede">
+    <createTable tableName="job_execution_learning_locker">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="job_execution_learning_locker_pk"/>
+      </column>
+      <column name="type" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="activities_found" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="activities_course_notfound" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="activities_completed" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP" defaultValueDate="${now}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="tdepriede">
+    <addColumn tableName="job_execution_learning_locker">
+      <column name="execution_date" type="TIMESTAMP">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+  </changeSet>
+  <changeSet id="3" author="tdepriede">
+    <createTable tableName="job_execution_learning_locker_detail">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="job_execution_learning_locker_detail_pk"/>
+      </column>
+      <column name="job_execution_learning_locker_id" type="bigint">
+        <constraints foreignKeyName="job_execution_learning_locker_fk" references="job_execution_learning_locker(id)" nullable="false"/>
+      </column>
+      <column name="url_key" type="varchar(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="url" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="author" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="verb" type="varchar(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="course_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="person_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP" defaultValueDate="${now}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="4" author="tdepriede">
+    <addColumn tableName="job_execution_learning_locker_detail">
+      <column name="type" type="varchar(50)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+  </changeSet>
+  <changeSet id="5" author="tdepriede">
+    <dropColumn tableName="job_execution_learning_locker_detail" columnName="course_id"/>
+  </changeSet>
+  <changeSet id="6" author="tdepriede">
+    <addColumn tableName="job_execution_learning_locker_detail">
+      <column name="timestamp" type="varchar(100)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+  </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,193 @@
+/**
+ * Common-app additions/overridden styles.
+ *
+ * User: scarlson
+ * Date: 2/14/16
+ * Time: 9:21 PM
+ */
+
+.common-app {
+    #bootstrap-content {
+        opacity: 0;
+        transition: opacity 300ms;
+
+        &.app-visible {
+            opacity: 1;
+        }
+    }
+
+    .bootstrap-message {
+        color: #FFF;
+        padding: 10px;
+    }
+
+    .browserupgrade {
+        margin: 0.2em 0;
+        background: #ccc;
+        color: #000;
+        padding: 0.2em 0;
+    }
+
+    .error {
+        color: white;
+        background-color: red;
+    }
+
+    .footer {
+        color: #EEEEEE;
+        text-align: center;
+    }
+
+    h2.page-title {
+        margin-top: 0px;
+    }
+
+    .hand {
+        cursor: pointer;
+    }
+
+    .header {
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        top: 0;
+
+        .header-info {
+            background-color: #e7e7e7;
+            border-bottom: 1px solid #000000;
+            color: #f8f8f8;
+
+            .header-info-tab {
+                background-color: #333;
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+                font-size: 12px;
+                margin-bottom: 4px;
+                margin-right: 40px;
+                padding: 1px 6px 2px 6px;
+
+                a,
+                a:hover {
+                    color: #f8f8f8;
+                }
+
+                .greeting {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+
+    .container-full {
+        margin-top: 55px;
+    }
+
+    .hipster {
+        display: inline-block;
+        width: 347px;
+        height: 497px;
+        background: url("../images/hipster.png") no-repeat center top;
+        background-size: contain;
+    }
+
+    .pad {
+        padding: 10px;
+    }
+
+    #threadDump .popover,
+    #healthCheck .popover {
+        top: inherit;
+        display: block;
+        font-size: 10px;
+        max-width: 1024px;
+    }
+
+    #healthCheck .popover {
+        margin-left: -50px;
+    }
+
+    .health-details {
+        min-width: 400px;
+    }
+
+    .alert .popover pre {
+        font-size: 10px;
+    }
+
+    /* wait autoprefixer update to allow simple generation of high pixel density media query */
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+        .hipster {
+            background: url("../images/hipster2x.png") no-repeat center top;
+            background-size: contain;
+        }
+    }
+
+    /* start Password strength bar style */
+    ul#strengthBar {
+        display: inline;
+        list-style: none;
+        margin: 0;
+        margin-left: 15px;
+        padding: 0;
+        vertical-align: 2px;
+    }
+
+    .point:last {
+        margin: 0 !important;
+    }
+
+    .point {
+        background: #DDD;
+        border-radius: 2px;
+        display: inline-block;
+        height: 5px;
+        margin-right: 1px;
+        width: 20px;
+    }
+
+    /* end Password strength bar style */
+
+    /* Custom alerts for notification */
+    .alerts .alert {
+        text-overflow: ellipsis;
+    }
+
+    .alert pre {
+        background: none;
+        border: none;
+        font: inherit;
+        color: inherit;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* end of Custom alerts for notification */
+
+    /* NO GUTTERS */
+    .row.no-gutters {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .row.no-gutters>[class^="col-"],
+    .row.no-gutters>[class*=" col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    img.default-image {
+        display: none;
+    }
+
+    .ui-tour-backdrop {
+        background-color: rgba(0, 0, 0, .5);
+        fill: rgba(0, 0, 0, .5);
+        z-index: 1000;
+    }
+
+}

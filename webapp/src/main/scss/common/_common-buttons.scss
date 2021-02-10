@@ -1,0 +1,159 @@
+button {
+    height: $scale6;
+    line-height: $scale6;
+    padding: 0 $scale5;
+    border-radius: $radius-base;
+    background-color: transparent;
+    border: 2px solid $button-primary-color;
+    color: $button-primary-color;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    //border: 1px solid red !important;
+    white-space: nowrap;
+
+    img.svg {
+        @extend .svg-blue-shade2;
+        position: relative;
+        width: 18px;
+        height: 18px;
+        top: -2px;
+        margin-right: $base-value;
+    }
+
+    i.fa {
+        margin-right: $base-value-quarter;
+    }
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, .1);
+    border: 2px solid $button-primary-color-over;
+    color: $button-primary-color-over;
+    cursor: pointer;
+}
+
+button.primary {
+    background: $button-primary-color;
+    color: #fff;
+
+    img.svg {
+        @extend .svg-white;
+    }
+}
+
+button.primary:hover {
+    background: $button-primary-color-over;
+    border: 2px solid $button-primary-color-over;
+}
+
+button.secondary {
+    border: 2px solid $button-secondary-color;
+    background: $button-secondary-color;
+    color: #fff;
+}
+
+button.secondary:hover {
+    background: $button-secondary-color-over;
+    border: 2px solid $button-secondary-color-over;
+}
+
+button.negative {
+    border: 2px solid $button-primary-color-negative;
+    color: $button-primary-color-negative;
+
+    img.svg {
+        @extend .svg-white;
+    }
+}
+
+button.negative:hover {
+    border: 2px solid $button-primary-color-negative-over;
+    color: $button-primary-color-negative-over;
+}
+
+button.alternative {
+    border: 2px solid $grey7;
+    color: $grey7;
+    background-color: $button-primary-color-negative;
+}
+
+button.alternative:hover {
+    border: 2px solid $grey7;
+    color: $grey7;
+    background-color: $button-primary-color-negative;
+}
+
+button.negative-primary {
+    border: 2px solid $button-primary-color-negative;
+    background: $button-primary-color-negative;
+    color: $blue-shade2;
+}
+
+button.negative-primary-round {
+    border: 2px solid $grey7;
+    background: $button-primary-color-negative;
+    color: $blue-shade2;
+}
+
+button.negative-primary-bordered:hover {
+    border: 2px solid $grey7;
+}
+
+button.negative-primary:hover {
+    background-color: $button-primary-color-negative-over;
+    border: 2px solid $button-primary-color-negative-over;
+}
+
+button.cta-positive {
+    background: $button-cta-positive-color;
+    border: 2px solid $button-cta-positive-color;
+    color: #fff;
+}
+
+button.cta-positive:hover {
+    background: $button-cta-positive-color-over;
+    border: 2px solid $button-cta-positive-color-over;
+}
+
+button.cta-negative {
+    background: $button-cta-negative-color;
+    border: 2px solid $button-cta-negative-color;
+    color: #fff;
+}
+
+button.cta-negative:hover {
+    background: $button-cta-negative-color-over;
+    border: 2px solid $button-cta-negative-color-over;
+}
+
+button.overflow {
+    max-width: 230px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+button.disabled {
+    cursor: default;
+    background-color: 2px solid $grey3;
+}
+
+button:disabled {
+    cursor: default;
+    border-color: $grey3;
+    background-color: $grey3;
+    color: white;
+}
+
+.button-container {
+    padding-top: $scale5;
+    padding-bottom: $scale5;
+}
+
+.button-rounded {
+    border-radius: $radius-full;
+}
+
+.button-small {
+    padding: 0 $scale1;
+}

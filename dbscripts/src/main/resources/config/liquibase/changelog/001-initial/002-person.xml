@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="generator">
+    <createTable tableName="person">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_person" nullable="false"/>
+      </column>
+      <column name="login" type="VARCHAR(50)"/>
+      <column name="password" type="VARCHAR(100)"/>
+      <column name="first_name" type="VARCHAR(50)"/>
+      <column name="last_name" type="VARCHAR(50)"/>
+      <column name="email" type="VARCHAR(254)"/>
+      <column name="activated" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false"/>
+      </column>
+      <column name="disabled" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false"/>
+      </column>
+      <column name="deleted" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false"/>
+      </column>
+      <column name="lang_key" type="VARCHAR(5)"/>
+      <column name="created_by" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP" defaultValueDate="${now}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="scarlson">
+    <createIndex tableName="person" indexName="ux_person_login_lower_when_not_deleted" unique="true">
+      <column name="lower(login)" type="VARCHAR(50)"/>
+    </createIndex>
+    <modifySql>
+      <append value=" WHERE (deleted = false)"/>
+    </modifySql>
+  </changeSet>
+  <changeSet id="3" author="scarlson">
+    <createIndex tableName="person" indexName="ux_person_email_lower_when_not_deleted" unique="true">
+      <column name="lower(email)" type="VARCHAR(254)"/>
+    </createIndex>
+    <modifySql>
+      <append value=" WHERE (deleted = false)"/>
+    </modifySql>
+  </changeSet>
+</databaseChangeLog>

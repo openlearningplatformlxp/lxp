@@ -1,0 +1,74 @@
+
+<div class="team-card" ng-class="{'opened': open}" ng-click="open = !open">
+    <div class="team-card-icon">
+        <div class="team-card-icon-content-type">
+            <img class="svg svg-black" src="assets/images/learningpath.svg" ng-if="progressionOverview.program.type === 'LEARNING_PATH'" />
+            <img class="svg svg-black" src="assets/images/book.svg" ng-if="progressionOverview.program.type != 'LEARNING_PATH'" />
+        </div>
+    </div>
+    <div class="team-card-text">
+        <div class="title">
+            <span ng-bind="progressionOverview.program.title"></span>
+        </div>
+        <div class="desc">
+            <span ng-if="progressionOverview.program.courseType" class="meta" ng-bind="progressionOverview.program.courseType | capitalize"></span>
+        </div>
+    </div>
+    <div class="team-card-progress">
+        <div class="percent-text">
+            <em><span ng-bind="progressionOverview.percentComplete | number:0"></span>%</em>
+        </div>
+        <div class="percent-bar">
+            <div class="percent-bar-bar" ng-style="{ width: progressionOverview.percentComplete + '%'}" ng-if="progressionOverview.percentComplete < 100"></div>
+            <div class="percent-bar-bar percent-bar-bar-completed" ng-style="{ width: progressionOverview.percentComplete + '%'}" ng-if="progressionOverview.percentComplete == 100"></div>
+        </div>
+        <div class="percent-date text-muted" ng-bind="progressionOverview.program.dueDate | date: 'MMM dd, yyyy'"></div>
+    </div>
+    <div class="team-card-arrow">
+        <i class="fa fa-chevron-down" ng-if="!open"></i>
+        <i class="fa fa-chevron-up" ng-if="open"></i>
+    </div>
+</div>
+<div class="team-member-content" ng-if="open">
+    <div class="team-member-box" ng-repeat="teamMemberProgression in progressionOverview.teamMemberCompletionList | orderBy: 'teamMember.lastName' | orderBy: 'teamMember.firstName' track by $index">
+        <div class="team-card" ng-class="{ 'disabled': progressionOverview.program.type === 'COURSE' }" ng-click="goToMemberView(teamMemberProgression.teamMember, progressionOverview.program)">
+            <div class="team-card-icon">
+                <div class="team-card-icon-user-profile">
+                    <img ng-if="teamMemberProgression.teamMember.avatar" ng-src="{{teamMemberProgression.teamMember.avatar}}" on-error-src="profile-default-image" />
+                    <p id="profile-default-image" class="default-image"><span ng-bind="teamMemberProgression.teamMember.firstName.charAt(0) | capitalize"></span><span ng-bind="teamMemberProgression.teamMember.lastName.charAt(0) | capitalize"></span> </p>
+                </div>
+            </div>
+            <div class="team-card-text">
+                <div class="title">
+                    <span class="team-card-title-modal-icon" ng-if="progressionOverview.program.type === 'LEARNING_PATH'" class="team-member-link">
+                        <i class="fa fa-external-link"></i>
+                    </span>
+                    <span ng-bind="teamMemberProgression.teamMember.firstName | capitalize"></span>
+                    <span ng-bind="teamMemberProgression.teamMember.lastName | capitalize"></span>
+                </div>
+                <div class="desc">
+                    <div class="meta" ng-if="teamMemberProgression.timeEnrolled">
+                        <span ng-if="!shared">Enrolled</span>
+                        <span ng-if="shared">Shared</span>
+                        <span class="date-container">on <span ng-bind="teamMemberProgression.timeEnrolled | date: 'MMM dd, yyyy'"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card-progress">
+                <div class="percent-text">
+                    <em><span ng-bind="teamMemberProgression.percentComplete"></span>%</em>
+                    <span class="progression-status-box progression-status-box-notstarted" ng-if="teamMemberProgression.percentComplete === 0">
+                        <img class="svg" src="assets/images/circle.svg"> Enrolled<em ng-if="teamMemberProgression.daysInProgress"> <span ng-bind="teamMemberProgression.daysInProgress"></span> days ago</em>
+                    </span>
+                    <span class="progression-status-box progression-status-box-inprogress" ng-if="teamMemberProgression.percentComplete !== 0 && teamMemberProgression.percentComplete !== 100">
+                        <img class="svg" src="assets/images/disc.svg"> In progress<em ng-if="teamMemberProgression.daysInProgress"> for <span ng-bind="teamMemberProgression.daysInProgress"></span> days</em>
+                    </span>
+                    <span class="progression-status-box progression-status-box-completed" ng-if="teamMemberProgression.percentComplete === 100">
+                        <img class="svg" src="assets/images/check.svg"> Completed<em ng-if="team.timeCompleted"> on <span ng-bind="teamMemberProgression.completedDate | date: 'MMM dd, yyyy'"></span></em>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

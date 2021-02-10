@@ -1,0 +1,23 @@
+<div class="profile-main-view">
+    <div class="stats-number-container">
+
+        <div class="stats-number">
+            <h3 class="number number-loading" ng-if="ctrl.data.loading"></h3>
+            <div class="number" ng-if="ctrl.data.profileProgress" ng-bind="ctrl.data.profileProgress.paths"></div>
+            <span>Enrolled Paths</span>
+        </div>
+        <div class="stats-number">
+            <h3 class="number number-loading" ng-if="ctrl.data.loading"></h3>
+            <div class="number" ng-if="ctrl.data.profileProgress" ng-bind="ctrl.data.profileProgress.courses"></div>
+            <span>Enrolled Courses</span>
+        </div>
+        <div class="stats-number">
+            <h3 class="number number-loading" ng-if="ctrl.data.loading"></h3>
+            <div class="number" ng-if="ctrl.data.profileProgress" ng-bind="ctrl.data.profileProgress.activities"></div>
+            <span>Activities</span>
+        </div>
+    </div>
+</div>
+<achievements clazz="profile-achievements" achievements="ctrl.data.profileProgress.achievements" activity-records="ctrl.data.profileProgress.activityRecords" loading="ctrl.data.loading"></achievements>
+
+</div>

@@ -1,0 +1,12 @@
+<div class="course-totara">
+    <iframe ng-src="{{ctrl.getIframeSrc()}}" id="totara-iframe" frameborder="0" width="100%" marginheight="0" marginwidth="0" scrolling="no" allow="fullscreen" allowfullscreen>
+
+    </iframe>
+    <div class="" style="position: fixed;bottom: 15px;left: 20px;">
+
+        <button ng-if="ctrl.buttonReturnLabel" ng-click="ctrl.navigateBack()" class="negative-primary-round" style="color:black">
+            <i class="fa fa-chevron-left" src="assets/images/chevron-up.svg"></i>
+            <span ng-bind="ctrl.buttonReturnLabel"></span>
+        </button>
+    </div>
+</div>

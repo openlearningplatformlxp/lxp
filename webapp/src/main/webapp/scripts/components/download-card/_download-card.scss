@@ -1,0 +1,47 @@
+/**
+ * Download Card Directive styles.
+ */
+.download-card-container {
+    display: flex;
+    flex-direction: row;
+    @extend .dropshadow-m;
+    border-radius: $card-radius;
+    margin-bottom: $scale3;
+    background: $grey1;
+    cursor: pointer;
+
+    .download-card-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: $scale0;
+    }
+
+    .download-card-details {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: center;
+        padding-left: $scale0;
+
+        .download-card-details-title {
+            color: $gray-dark;
+            font-weight: $font-weight-bold;
+        }
+
+        .download-card-details-text {
+            color: $gray-light;
+        }
+    }
+
+    .download-card-download {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            margin-left: $scale0;
+            margin-right: $scale0;
+        }
+    }
+}

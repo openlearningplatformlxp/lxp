@@ -1,0 +1,73 @@
+/**
+ * Location Filter container directive styles.
+ */
+
+.location-filter--box {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $scale1;
+
+    .location-filter--header {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid $grey1;
+        cursor: pointer;
+
+        .location-filter--title {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+
+            h5 {
+                margin-bottom: 0;
+            }
+        }
+
+        .location-filter--arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .location-filter--body {
+        margin-top: $scale0;
+
+        select {
+            margin-bottom: $scale2;
+        }
+    }
+}
+
+.calendar-view {
+    .location-filter--header {
+        display: none;
+    }
+
+    .location-filter--body {
+        margin-top: $scale0;
+        margin-bottom: $scale5;
+        padding-bottom: $scale5;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+
+        div {
+            display: inline;
+            margin-right: $scale5;
+            width: 50%;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+
+            label {
+                color: $blue-shade2;
+            }
+        }
+
+        select {
+            margin-bottom: inherit;
+        }
+    }
+}

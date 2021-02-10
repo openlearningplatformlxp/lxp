@@ -1,0 +1,15 @@
+/**
+ * Email View styles.
+ */
+
+.email-view-view {
+    .htmlTextContainer {}
+
+    .plainTextContainer {
+        margin-top: 10px;
+
+        pre {
+            background-color: #FFFFFF;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+.common-app .admin-asset-add-edit-view {
+    .file-select-table {
+        width: 100%;
+
+        tr {
+            td.upload-button-container {
+                padding-right: 10px;
+            }
+
+            td.upload-drop-target {
+                border-radius: 4px;
+                padding-left: 10px;
+                width: 100%;
+            }
+        }
+    }
+
+    .no-content {
+        font-style: italic;
+        padding: 50px 10px;
+        text-align: center;
+    }
+
+    table.path-table {
+        margin-bottom: 0px;
+
+        tr:first-child {
+
+            td,
+            th {
+                border-top: none;
+            }
+        }
+
+        tr {
+
+            td,
+            th {
+                &:first-child {
+                    padding-left: 0px;
+                }
+
+                &:last-child {
+                    padding-right: 0px;
+                }
+            }
+        }
+    }
+
+    pre {
+        background-color: #EEE;
+    }
+}

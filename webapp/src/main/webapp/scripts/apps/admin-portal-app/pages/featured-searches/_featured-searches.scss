@@ -1,0 +1,27 @@
+/**
+ * Admin Featured View styles.
+ */
+
+.common-app .admin-featured-searches-view {
+    .header-container {
+        padding-top: 20px;
+    }
+
+    .message-text-container {
+        max-height: 130px;
+        display: block;
+        overflow-y: scroll;
+    }
+}
+
+.admin-featured-searches-view {
+    .edit {
+        cursor: pointer;
+    }
+
+    .remove {
+        margin-left: 20px;
+        color: red;
+        cursor: pointer;
+    }
+}

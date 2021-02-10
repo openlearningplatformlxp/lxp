@@ -1,0 +1,15 @@
+/**
+ * Admin Feedbacks View styles.
+ */
+
+.common-app .admin-audit-searches-view {
+    .header-container {
+        padding-top: 20px;
+    }
+
+    .message-text-container {
+        max-height: 130px;
+        display: block;
+        overflow-y: scroll;
+    }
+}

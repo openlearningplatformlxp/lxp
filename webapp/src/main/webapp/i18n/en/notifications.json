@@ -1,0 +1,34 @@
+{
+    "notifications": {
+        "title": "Notifications",
+        "noNotificationsFound": "No Notifications Found!",
+        "send": {
+            "button": "Send notification"
+        },
+        "form":{
+            "title": "Title",
+            "message": "Message",
+            "placeholder": {
+                "title": "Insert a title",
+                "message": "Insert the message for the users",
+                "select": "-- please select a program --"
+            },
+            "show": {
+                "programs": "Send notification to learners of the learning path"
+            },
+            "validate":{
+                "title":{
+                    "required": "The title is a required field",
+                    "maxlength": "The title cannot be longer than 50 characters."
+                },
+                "message":{
+                    "required": "The message is a required field"
+                }
+            }
+        },
+        "searchNotifications": {
+            "inputPlaceholder": "Search Notifications...",
+            "totalNotificationsCount": "Total Notifications: {{count}}"
+        }
+    }
+}

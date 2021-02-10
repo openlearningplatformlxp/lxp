@@ -1,0 +1,112 @@
+.course-player-external-view {
+
+    margin-top: -55px;
+
+    .lesson {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        background-color: white;
+
+        position: relative;
+
+        .activity-view {
+            height: 100%;
+        }
+
+        .lesson-nav {}
+
+        .lesson-content {
+
+            height: 100%;
+            display: block;
+            margin: 80px 176px 176px 176px;
+
+
+            h1 {
+                font-size: $font-size-lg;
+                color: $gray-dark;
+                font-weight: $font-weight-bold;
+                margin-top: $scale3;
+                margin-bottom: 0;
+            }
+
+            h1:first-child {
+                margin-top: 0;
+            }
+
+            h2 {
+                font-size: $font-size-md;
+                color: $gray-light;
+                margin-bottom: $scale6;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            .activity-view {
+
+                height: 100%;
+
+                .activity-box {
+                    height: 100%;
+
+                    .activity-content {
+                        height: 100%;
+                    }
+                }
+            }
+
+            /*
+            .lesson-content-body {
+                h4 {
+                    margin-top: $scale6;
+                }
+                ul {
+                    list-style: none;
+                    margin-left: 0;
+                    li {
+                        margin-left: 0;
+                        margin-bottom: $scale3;
+                        i {
+                            margin-right: $scale2;
+                        }
+                    }
+                }
+                .info-label{
+                    margin-top: $scale5;
+                    font-size:$font-size-md;
+                    margin-bottom: 5px;
+                }
+
+                .info{
+                    .label{
+                        background-color:#7a8b8e;
+                        margin-right: 2px;
+                    }
+                }
+
+
+                .category {
+                    h6 {
+                        color: #7a8b8e;
+                        margin-bottom: 0;
+                    }
+                    .book-tag {
+                        background-color: #7a8b8e;
+                        display: inline-block;
+                        padding: 1px 7px;
+                        border-radius: $radius-full;
+
+                        color: white;
+                        font-weight: $font-weight-normal;
+                        margin-right: 2px;
+                    }
+                    margin-bottom: $scale0;
+                }
+            }
+            */
+        }
+    }
+}

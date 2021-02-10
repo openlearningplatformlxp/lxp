@@ -1,0 +1,49 @@
+<div ng-controller="ResourceActivityController as ctrl" class="resource-activity">
+
+    <activity-header activity-type="ctrl.data.type" activity-type-display-name="ctrl.data.typeDisplayName" activity-name="ctrl.data.activity.name"></activity-header>
+
+    <!--START PDF-->
+    <div ng-if="ctrl.data.type === 'PDF'" class="pdf-resource-box">
+        <div class="row">
+            <div class="instruction-box col-xs-12">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>&#xA0;&#xA0;<b>Instructions:</b> Please read the following information. Let us know when you’re finished down below.
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-xs-12">
+                <iframe ng-src="{{ctrl.data.pdfUrl}}" class="resource-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+    <!--END PDF-->
+
+    <!--START VIDEO-->
+    <div ng-show="ctrl.data.type === 'VIDEO'" class="video-resource-box">
+        <videogular vg-theme="ctrl.getVideoConfig.theme.url" vg-update-time="ctrl.playerOnUpdateTime($currentTime, $duration)" vg-cue-points="ctrl.getVideoConfig.cuePoints" vg-player-ready="ctrl.playerOnReady($API)" vg-complete="ctrl.playerOnComplete()">
+            <vg-media vg-src="ctrl.getVideoConfig.sources" vg-tracks="ctrl.getVideoConfig.tracks">
+            </vg-media>
+
+            <vg-controls vg-autohide="ctrl.getVideoConfig.plugins.controls.autoHide" vg-autohide-time="ctrl.getVideoConfig.plugins.controls.autoHideTime">
+                <vg-play-pause-button></vg-play-pause-button>
+                <vg-time-display><span ng-bind="currentTime | date:'mm:ss':'+0000'"></span></vg-time-display>
+                <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                </vg-scrub-bar>
+                <vg-time-display><span ng-bind=" timeLeft | date:'mm:ss':'+0000'"></span></vg-time-display>
+                <vg-time-display><span ng-bind="totalTime | date:'mm:ss':'+0000' "></span></vg-time-display>
+                <vg-volume>
+                    <vg-mute-button></vg-mute-button>
+                    <vg-volume-bar></vg-volume-bar>
+                </vg-volume>
+                <vg-playback-button></vg-playback-button>
+                <vg-fullscreen-button></vg-fullscreen-button>
+            </vg-controls>
+        </videogular>
+    </div>
+    <!--END VIDEO-->
+
+    <activity-manual-completion activity="ctrl.data.activity"></activity-manual-completion>
+
+    <activity-footer next-activity="ctrl.data.nextActivity" on-next-activity-click="ctrl.goToNextActivity()"></activity-footer>
+
+</div>

@@ -1,0 +1,131 @@
+server:
+    port: 10344
+    address: localhost
+
+# security configuration (this key should be unique for your application, and kept secret)
+jhipster.security.rememberme.key: 5654473507e856501b47220c61fa6d9a38145966
+
+app:
+    analytics:
+        googleAnalytics:
+            domainName:
+            trackingId:
+
+    assets:
+        storage:
+            enabled: false
+            storageDirectory: /mnt/asset.tmp.storage
+
+    aws:
+        s3:
+            accessKey:
+            bucket:
+            endpoint:
+            environment:
+            secretKey:
+            urlPrefix:
+
+    healthCheck:
+        externalUrls:
+
+    mail:
+        sendEmailJob:
+            enabled: false
+            maxAttempts: 10
+            sendDelayMS: 1000
+            taskDelayMS: 60000
+            taskInitialDelayMS: 60000
+
+    passwordResetTokens:
+        removeExpiredJob:
+            enabled: false
+            cronSchedule: 0 0 1 * * ?
+
+    persistentTokens:
+        removeOldJob:
+            enabled: false
+            cronSchedule: 0 0 0 * * ?
+
+    persons:
+        removeNotActivatedJob:
+            enabled: false
+            cronSchedule: 0 0 1 * * ?
+
+    scheduling:
+        corePoolSize: 5
+
+    security:
+        activation:
+            hoursTokenValid: 8760
+        client:
+            session:
+                timeout:
+                    idleSecsBeforeWarning: 1770 # 30 minutes minus 30 secs
+                    secsBeforeLogout: 30
+        csrf:
+            enabled: false # is CSRF protection enabled - turned off because it causes problems
+        impersonate:
+            enabled: false
+            password: $2a$08$C0Oop6FUiMNlPHpTkYErt.oSMrB.P6SrZ4vn0LkMjs1mxuVEc4bsO
+            passwordRequired: true
+            targetURL: /
+        password:
+            reset:
+                hoursTokenValid: 24
+
+async:
+    corePoolSize: 2
+    maxPoolSize: 50
+    queueCapacity: 10000
+
+liquibase:
+    context: test
+    startup:
+        shouldRun: true # enable liquibase run for tests
+
+mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+    protocol: smtp
+    tls: false
+    auth: false
+
+metrics:
+    jmx.enabled: false
+
+spring:
+    datasource:
+        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        url: jdbc:h2:mem:reduxl;DB_CLOSE_DELAY=-1
+        databaseName:
+        serverName:
+        username:
+        password:
+
+    jpa:
+        database-platform: com.redhat.uxl.dataobjects.domain.util.FixedH2Dialect
+        database: H2
+        openInView: false
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        properties:
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+            hibernate.hbm2ddl.auto: validate
+
+swagger:
+    apiDocsLocation: http://localhost:8080
+    contact:
+    version: 0.0.1
+    description: reduxl applications and beyond!
+    includePatterns: /api/.*
+    license: Apache 2.0
+    licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+    termsOfServiceUrl: http://jhipster.github.io/
+    title: reduxl API

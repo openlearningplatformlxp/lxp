@@ -1,0 +1,64 @@
+/**
+ * Searchbar directive styles.
+ */
+
+.searchbar-directive {
+    .btn-operation {
+        background-color: rgb(238, 238, 238);
+
+        .operation-text {
+            display: inline-block;
+            min-width: 80px;
+            padding-left: 10px;
+            text-align: left;
+        }
+    }
+
+    .current-page-container {
+        display: inline-block;
+        padding-right: 5px;
+    }
+
+    .current-total-container {
+        display: inline-block;
+    }
+
+    select.form-control {
+        width: auto;
+    }
+
+    .form-group {
+        margin-bottom: 0px;
+
+        .input-group {
+            label {
+                padding-top: 13px;
+            }
+
+            input,
+            label {
+                height: 48px;
+            }
+        }
+    }
+
+    hr {
+        margin: 10px 0px;
+    }
+
+    .searchbar-pager {
+        button {
+            margin: 0px;
+        }
+
+        select {
+            border-left: 0px;
+            border-radius: 0;
+            border-right: 0px;
+        }
+    }
+
+    .searchbar-row:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}

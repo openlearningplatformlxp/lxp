@@ -1,0 +1,10 @@
+<div class="lesson-content-resources">
+
+    <div ng-repeat="section in ctrl.data.sections" ng-if="section.activities && section.activities.length" class="section-box">
+        <div class="section-title"><span ng-bind-html="section.name"></span></div>
+        <div class="section-description">
+            <span ng-bind-html="section.summary"></span>
+        </div>
+    </div>
+
+</div>

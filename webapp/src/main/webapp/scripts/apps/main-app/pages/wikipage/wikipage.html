@@ -1,0 +1,19 @@
+<div class="page-content-section wiki-page-content">
+    <div class="container-fluid">
+
+        <div class='container' ng-if="ctrl.data.wikipage">
+
+            <div class='content wiki-page-container wiki-content' ng-bind-html="ctrl.data.trustedWikipageHtml"></div>
+            <div class='content wiki-content-metadata'>
+                <div class="wiki-created-date">Created <span ng-bind="ctrl.data.wikipage.createdDate | date"></span></div>
+                <div class="wiki-modified-date">Modified <span ng-bind="ctrl.data.wikipage.lastModifiedDate | date"></span></div>
+                <div class="wiki-tag-list">
+                    <span class="wiki-tag" ng-repeat="tag in ctrl.data.wikipage.tags"><span ng-bind="tag.name"></span></span>
+                </div>
+            </div>
+            <div style='clear:both'></div>
+
+        </div>
+
+    </div>
+</div>

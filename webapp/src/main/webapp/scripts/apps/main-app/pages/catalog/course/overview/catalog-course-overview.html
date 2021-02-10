@@ -1,0 +1,17 @@
+<div class="lesson-content-overview">
+
+    <div class="lesson-content-body">
+
+        <div ng-bind-html="ctrl.data.overview.description"></div>
+
+        <div class="category" ng-repeat="item in overview.tagsTypes">
+            <div class="info-label"><span ng-bind="item.name"></span></div>
+            <div class="info">
+                <div class="label" ng-repeat="tag in item.tags"><span ng-bind="tag"></span></div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

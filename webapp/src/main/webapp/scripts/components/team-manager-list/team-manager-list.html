@@ -1,0 +1,17 @@
+<div class="team-individual-card-container team-manager-list">
+    <h5>View the progress of the teams under you</h5>
+    <div class="team-card" ng-if="showManagers" ng-repeat="manager in managers track by $index">
+        <div class="team-card-icon">
+            <div class="team-card-icon-content-type">
+                <img class="svg svg-black" src="assets/images/users.svg" />
+            </div>
+        </div>
+        <div class="team-card-text">
+            <div class="title"><span ng-bind="manager.firstName | capitalize"></span> <span ng-bind="manager.lastName | capitalize"></span></div>
+        </div>
+        <div class="team-card-manager" ng-click="goToManagerView(manager)">
+            View sub-team<i class="fa fa-sitemap"></i>
+        </div>
+    </div>
+</div>
+</div>

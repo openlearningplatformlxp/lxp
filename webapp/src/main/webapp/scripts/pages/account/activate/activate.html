@@ -1,0 +1,11 @@
+<cms-block ctrl="ctrl" key="state-activate" ng-cloak>
+    <div class="activate-view">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 translate="activate.title"></h1>
+                <div class="alert alert-success" ng-show="ctrl.getSuccess()" translate="activate.messages.success"></div>
+                <div class="alert alert-danger" ng-show="ctrl.getError()" translate="activate.messages.error"></div>
+            </div>
+        </div>
+    </div>
+</cms-block>

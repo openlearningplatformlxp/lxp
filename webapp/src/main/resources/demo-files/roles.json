@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "all associates",
+    "rawname": "all associates",
+    "description": "all associates",
+    "flag": true
+  },
+  {
+    "id": 2,
+    "name": "consultant",
+    "rawname": "consultant",
+    "description": "consultant",
+    "flag": true
+  },
+  {
+    "id": 3,
+    "name": "customer success manager ",
+    "rawname": "customer success manager ",
+    "description": "customer success manager ",
+    "flag": true
+  }
+]

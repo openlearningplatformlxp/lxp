@@ -1,0 +1,116 @@
+<div class="profile-preferences-view">
+
+    <div class="profile-preferences-panel">
+        <h1 class="profile__panel-title">Role</h1>
+        <p class="profile__panel-text">Tell us about the role(s) your job covers. Select all that apply.</p>
+
+        <div class="profile-preferences-panel--body profile-preferences-panel--roles" ng-if="preferences">
+            <div class="" ng-repeat="role in preferences.allRoles track by $index">
+                <input type="checkbox" name="checkbox1" id="role-{{role.id}}" class="css-checkbox" ng-change="ctrl.onCheckChange(role)" ng-model="role.checked">
+                <label for="role-{{role.id}}" class="css-label" >
+                    <span ng-bind="role.name"></span>
+                </label>
+            </div>
+        </div>
+        <div class="skeleton-view" ng-if="loading">
+            <div class="skeleton-row">
+                <div class="skeleton-column ">
+                    <h3></h3>
+                    <h2></h2>
+                    <h3></h3>
+                    <h3></h3>
+                </div>
+                <div class="skeleton-column">
+                    <h2></h2>
+                    <h3></h3>
+                    <h2></h2>
+                    <h3></h3>
+                </div>
+                <div class="skeleton-column">
+                    <h2></h2>
+                    <h3></h3>
+                    <h3></h3>
+                    <h2></h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="profile-preferences-panel">
+        <h1 class="profile__panel-title">Personal interests</h1>
+        <p class="profile__panel-text">Tell us what interests you and we'll find content that you like.</p>
+        <p class="profile__panel-text">Not every role/interest is listed. As role- and interest-specific content is added to
+            the gateway more roles and interests will be added. If you have any questions or
+            concerns, please click the Feedback icon above.
+        <p><i class="fa fa-info fa-inline-icon"></i><a data-toggle="modal" ng-click="ctrl.updateInterestList()" data-target="#interestModal">View a full list</a> of available choices</p>
+        <div class="profile-preferences-panel--body" ng-if="preferences">
+
+            <form>
+                <div class="profile-preferences-panel--add-interest-box">
+                    <div class="profile-preferences-panel--add-interest-box-search">
+
+                        <div angucomplete-alt id="interestsPlaceHolder" placeholder="Search interests..." pause="500" selected-object="ctrl.selectInterest" remote-url="api/profile/interests?q=" remote-url-request-formatter="remoteUrlRequestFn" title-field="name" minlength="1" input-changed="ctrl.interestChanged" input-class="form-control form-control-small" match-class="highlight">
+                        </div>
+                    </div>
+                    <div class="profile-preferences-panel--add-interest-box-button">
+                        <button class="primary" ng-click="ctrl.addInterest()" ng-disabled="!selectedInterest">Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="profile-preferences-panel--labels">
+                <div class="info-label" ng-repeat="interest in preferences.interests track by $index">
+                    <div class="label">
+                        <div class="" ng-bind="interest.name">
+                            <i class="icon-circle-cross icon-3x" ng-click="ctrl.removeInterest(interest, $index)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="skeleton-view" ng-if="loading">
+            <div class="skeleton-row">
+                <div class="skeleton-column ">
+                    <h3></h3>
+                    <br>
+                    <h1></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="interest-modal modal fade" id="interestModal" tabindex="-1" role="dialog" aria-labelledby="interestModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="header-title">
+                    <div class="header-title-text">
+                        <h4 class="modal-title" id="notificationsModalLabel2">Available Interest Choices</h4>
+                    </div>
+                </div>
+                <div class="header-close">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <img class="svg svg-black" src="assets/images/x.svg">
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="profile-preferences-panel--labels profile-preferences-panel--labels-grid">
+                    <div class="info-label" ng-repeat="interest in interests track by $index">
+                        <button ng-click="ctrl.addInterest(interest, $index)" class="label btn">
+                            <div class="" ng-bind="interest.name">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+    </div><!-- modal -->

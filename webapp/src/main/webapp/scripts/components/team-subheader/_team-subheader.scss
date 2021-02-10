@@ -1,0 +1,130 @@
+/**
+ * Team Subheader Directive styles.
+ */
+
+.team-subheader-container {
+    .team-subheader-nav {
+        @extend .subpage-tabs;
+    }
+
+    .team-subheader-filters {
+        display: flex;
+    }
+
+    .team-subheader-search {
+        @include transition-all();
+        position: relative;
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        background-color: #FFFFFF;
+        color: #000000;
+        border: 1px solid $blue-shade2;
+        border-radius: $radius-base;
+        padding-left: $scale1;
+        align-items: center;
+        height: 45px;
+
+        &:focus-within {
+            @extend .border-style-active;
+        }
+
+        >form {
+            flex-grow: 1;
+        }
+
+        .icon-button-left {
+            cursor: pointer;
+            padding-right: 0;
+            top: 0;
+            color: rgba(0, 0, 0, .65);
+        }
+
+        i {
+            font-size: 20px;
+            padding-right: 0;
+        }
+
+        input {
+            width: calc(100% - 50px);
+            border: 0;
+            background-color: transparent;
+            outline: none;
+        }
+
+        ::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: rgba(0, 0, 0, .65);
+            opacity: 1;
+            /* Firefox */
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: white;
+        }
+
+        :-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: white;
+        }
+
+    }
+
+    .team-subheader-date-picker {
+        @include transition-all();
+        position: relative;
+        flex-grow: 1;
+        display: flex;
+        color: #000000;
+        margin-left: $scale1;
+        align-items: center;
+        height: 45px;
+
+        &:focus-within {
+            @extend .border-style-active;
+        }
+
+        ul li,
+        ol li {
+            margin-left: 0 !important;
+        }
+
+        input {
+            width: calc(100% - 40px);
+            height: 45px;
+            background-color: transparent;
+            outline: none;
+            border: 1px solid $blue-shade2;
+            border-right: 0;
+            border-radius: $radius-base 0 0 $radius-base;
+            background-color: #fff;
+        }
+
+        .calendar-container {
+            height: 45px;
+            border: 1px solid $blue-shade2;
+            border-radius: 0 $radius-base $radius-base 0;
+            background-color: $blue-shade2;
+            color: #fff;
+        }
+
+        ::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: rgba(0, 0, 0, .65);
+            opacity: 1;
+            /* Firefox */
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: white;
+        }
+
+        :-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: white;
+        }
+
+    }
+}

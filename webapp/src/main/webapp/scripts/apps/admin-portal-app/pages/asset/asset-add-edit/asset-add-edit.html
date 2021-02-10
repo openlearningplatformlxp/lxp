@@ -1,0 +1,164 @@
+<!--
+    Add/Edit Asset by Admin.
+-->
+<cms-block ctrl="ctrl" key="state-asset-add-edit" ng-cloak>
+    <div class="admin-asset-add-edit-view" uploader="ctrl.data.uploader" nv-file-drop>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+                <h2 ng-if="ctrl.isAdd()" class="page-title" translate="asset.asset-add-edit.title.add"></h2>
+                <h2 ng-if="ctrl.isEdit()" class="page-title" translate="asset.asset-add-edit.title.edit" translate-values="{assetName: '{{ctrl.data.asset.name}}'}"></h2>
+            </div>
+        </div>
+        <form ng-if="ctrl.isLoaded()" name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-6">
+                    <div class="form-group">
+                        <label for="name" class="required" translate="global.labels.Name"></label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="{{'asset.asset-add-edit.form.name.placeholder' | translate}}" ng-change="ctrl.onFormChange(form)" ng-model="ctrl.data.asset.name" ng-minlength="1" ng-maxlength="50" required>
+                        <div ng-show="form.name.$dirty && form.name.$invalid">
+                            <p class="help-block" ng-show="form.name.$error.required" translate="global.messages.validate.field.required"></p>
+                            <p class="help-block" ng-show="form.name.$error.minlength" translate="global.messages.validate.field.minlength" translate-values="{minlength: 1}"></p>
+                            <p class="help-block" ng-show="form.name.$error.maxlength" translate="global.messages.validate.field.maxlength" translate-values="{maxlength: 50}"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" translate="global.labels.Description"></label>
+                        <textarea type="text" class="form-control" id="description" name="description" placeholder="{{'asset.asset-add-edit.form.description.placeholder' | translate}}" ng-change="ctrl.onFormChange(form)" ng-model="ctrl.data.asset.description" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="assetStoreType" class="required" translate="global.labels.AssetStoreType"></label>
+                        <select class="form-control" id="assetStoreType" name="assetStoreType" ng-disabled="ctrl.isEdit()" ng-model="ctrl.data.assetStoreType.selected" ng-options="assetStoreType as ('global.asset.storeType.' + assetStoreType.name + '.name' | translate) for assetStoreType in ctrl.data.assetStoreType.available" required></select>
+                    </div>
+                    <div ng-if="ctrl.showFormFile()" class="form-group">
+                        <label translate="asset.asset-add-edit.form.file"></label>
+                        <table class="file-select-table">
+                            <tr>
+                                <td class="upload-button-container">
+                                    <angular-file-upload-button uploader="ctrl.data.uploader">
+                                        <button class="btn btn-default" type="button" translate="global.file.selectFile"></button>
+                                    </angular-file-upload-button>
+                                </td>
+                                <td class="upload-drop-target" uploader="ctrl.data.uploader" nv-file-over>
+                                    <p class="form-control-static pull-left">
+                                        <span ng-if="ctrl.data.uploader.queue.length == 0" translate="global.file.orDropHere"></span>
+                                    </p>
+                                    <div ng-if="ctrl.data.uploader.queue.length > 0">
+                                        <div ng-bind="ctrl.data.uploader.queue[0].file.name"></div>
+                                        <div><span ng-bind="ctrl.data.uploader.queue[0].file.size | number"></span> <span translate="global.file.bytes"></span></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div ng-if="ctrl.showFormContentType()" class="form-group">
+                        <label for="contentType" class="required" translate="global.labels.contentType"></label>
+                        <input type="text" class="form-control" id="contentType" name="contentType" placeholder="{{'asset.asset-add-edit.form.contentType.placeholder' | translate}}" ng-change="ctrl.onContentTypeChange(form)" ng-model="ctrl.data.asset.contentType" ng-minlength="1" ng-maxlength="64" required>
+                        <div ng-show="form.contentType.$dirty && form.contentType.$invalid">
+                            <p class="help-block" ng-show="form.contentType.$error.required" translate="global.messages.validate.field.required"></p>
+                            <p class="help-block" ng-show="form.contentType.$error.minlength" translate="global.messages.validate.field.minlength" translate-values="{minlength: 1}"></p>
+                            <p class="help-block" ng-show="form.contentType.$error.maxlength" translate="global.messages.validate.field.maxlength" translate-values="{maxlength: 64}"></p>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.showFormAssetType()" class="form-group">
+                        <label for="assetType" class="required" translate="global.labels.AssetType"></label>
+                        <select class="form-control" id="assetType" name="assetType" ng-change="ctrl.switchAssetType()" ng-model="ctrl.data.assetType.selected" ng-options="assetType as ('global.asset.type.' + assetType.name + '.name' | translate) for assetType in ctrl.data.assetType.available" required></select>
+                    </div>
+                    <div ng-if="ctrl.showFormAssetSubtype()" class="form-group">
+                        <label for="assetSubtype" class="required" translate="global.labels.AssetSubtype"></label>
+                        <select class="form-control" id="assetSubtype" name="assetSubtype" ng-change="ctrl.switchAssetSubtype()" ng-disabled="!ctrl.data.assetType.selected" ng-model="ctrl.data.assetSubtype.selected" ng-options="assetSubtype as ('global.asset.subtype.' + ctrl.data.assetType.selected.name + '_' + assetSubtype.name + '.name' | translate) for assetSubtype in ctrl.data.assetType.selected.subtypes" required></select>
+                    </div>
+                    <div ng-if="ctrl.showStoreTypeNotSupported()" class="alert alert-warning">
+                        <span ng-bind="ctrl.data.assetStoreType.selected.name"></span> storage not supported yet!
+                    </div>
+                </div>
+                <div ng-if="ctrl.isEdit()" class="col-md-4">
+                    <div class="well info-well">
+                        <div ng-if="ctrl.data.asset.createdDate" class="form-group">
+                            <label translate="global.labels.createdDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.asset.createdDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.asset.createdBy" class="form-group">
+                            <label translate="global.labels.createdBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.asset.createdBy"></p>
+                        </div>
+                        <div ng-if="ctrl.data.asset.lastModifiedDate" class="form-group">
+                            <label translate="global.labels.lastModifiedDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.asset.lastModifiedDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.asset.lastModifiedBy" class="form-group">
+                            <label translate="global.labels.lastModifiedBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.asset.lastModifiedBy"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <table ng-if="ctrl.showFormFullPath()" class="table path-table">
+                        <tr>
+                            <td width="70%">
+                                <div class="form-group">
+                                    <label for="path" translate="global.labels.path"></label>
+                                    <input type="text" class="form-control" id="path" name="path" placeholder="{{'asset.asset-add-edit.form.path.placeholder' | translate}}" ng-change="ctrl.onFormChange(form)" ng-model="ctrl.data.asset.path" ng-minlength="1" ng-maxlength="4096" ng-pattern="/^\/.+$/">
+                                    <div ng-show="form.path.$dirty && form.path.$invalid">
+                                        <p class="help-block" ng-show="form.path.$error.minlength" translate="global.messages.validate.field.minlength" translate-values="{minlength: 1}"></p>
+                                        <p class="help-block" ng-show="form.path.$error.maxlength" translate="global.messages.validate.field.maxlength" translate-values="{maxlength: 4096}"></p>
+                                        <p class="help-block" ng-show="form.path.$error.pattern" translate="asset.asset-add-edit.messages.validate.path.pattern"></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding-left: 0px; padding-right: 0px;">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <p class="form-control-static">/</p>
+                                </div>
+                            </td>
+                            <td width="30%">
+                                <div class="form-group">
+                                    <label for="filename" class="required" translate="global.labels.filename"></label>
+                                    <input type="text" class="form-control" id="filename" name="filename" placeholder="{{'asset.asset-add-edit.form.filename.placeholder' | translate}}" ng-change="ctrl.onFormChange(form)" ng-model="ctrl.data.asset.filename" ng-minlength=1 ng-maxlength="255" required>
+                                    <div ng-show="form.filename.$dirty && form.filename.$invalid">
+                                        <p class="help-block" ng-show="form.filename.$error.required" translate="global.messages.validate.field.required"></p>
+                                        <p class="help-block" ng-show="form.filename.$error.minlength" translate="global.messages.validate.field.minlength" translate-values="{minlength: 1}"></p>
+                                        <p class="help-block" ng-show="form.filename.$error.maxlength" translate="global.messages.validate.field.maxlength" translate-values="{maxlength: 255}"></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div ng-if="ctrl.showAssetUrl()" class="form-group">
+                        <label translate="global.labels.relativeUrl"></label>
+                        <div class="input-group">
+                            <input class="form-control" disabled="true" ng-model="ctrl.getUrl()">
+                            <div class="input-group-btn">
+                                <button data-clipboard-text="{{ctrl.getUrl()}}" type="button" class="btn btn-default" ngclipboard><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li data-clipboard-text="{{ctrl.getUrl(true)}}" ngclipboard><a href="#copy-full-url" onClick="return false;" translate="asset.asset-add-edit.copyFullUrlClipboard"></a></li>
+                                    <li data-clipboard-text="{{ctrl.getUrl()}}" ngclipboard><a href="#copy-relative-url" onClick="return false;" translate="asset.asset-add-edit.copyRelativeUrlClipboard"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.showFormContent()" class="form-group">
+                        <div>
+                            <label translate="asset.asset-add-edit.form.content"></label>
+                            <button type="button" class="btn btn-default btn-xs pull-right" ng-click="ctrl.editContent(form)" ng-disabled="ctrl.areButtonsDisabled()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button>
+                        </div>
+                        <pre ng-if="ctrl.data.asset.content" ng-click="ctrl.editContent(form)" ng-bind="ctrl.data.asset.content"></pre>
+                        <pre ng-if="!ctrl.data.asset.content" class="no-content" ng-click="ctrl.editContent(form)" translate="asset.asset-add-edit.no-content"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <p>
+                        <button type="submit" ng-disabled="ctrl.isFormDisabled(form) || ctrl.areButtonsDisabled()" class="btn btn-primary" translate="global.buttons.save"></button>
+                        <button type="button" class="btn btn-default" ng-click="ctrl.cancel(form)" ng-disabled="ctrl.areButtonsDisabled()" translate="global.buttons.cancel"></button>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</cms-block>

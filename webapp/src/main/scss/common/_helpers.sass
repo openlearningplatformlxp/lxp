@@ -1,0 +1,206 @@
+.align-baseline
+  vertical-align: baseline !important
+
+.align-top
+  vertical-align: top !important
+
+.align-middle
+  vertical-align: middle !important
+
+.align-bottom
+  vertical-align: bottom !important
+
+.align-text-bottom
+  vertical-align: text-bottom !important
+
+.align-text-top
+  vertical-align: text-top !important
+  
+.align-right
+  text-align: right
+
+.pull-left
+  float: left !important
+
+.pull-right
+  float: right !important
+
+.hidden
+  display: none !important
+
+.visible
+  display: block !important
+
+.text-left
+  text-align: left !important
+
+.text-right
+  text-align: right !important
+
+.text-center
+  text-align: center !important
+
+.padding-none
+  padding: 0 !important
+
+.padded
+  padding: $base-value
+
+.padding-right
+  padding-right: $base-value !important
+
+.padding-right-double
+  padding-right: $base-value*2 !important
+
+.padding-left
+  padding-left: $base-value !important
+
+.padding-left-double
+  padding-left: $base-value*2 !important
+
+.margin-none
+  margin: 0 !important
+
+.width-200px
+  width: 200px !important
+
+.width-50pct
+  width: 50% !important
+
+.padding-top
+  padding-top: $base-value !important
+
+.margin-top
+  margin-top: $base-value !important
+
+.margin-top-double
+  margin-top: $base-value*2 !important
+
+.margin-top-tripple
+  margin-top: $base-value*3 !important
+
+.margin-bottom
+  margin-bottom: $base-value !important
+
+.margin-bottom-double
+  margin-bottom: $base-value*2 !important
+
+.margin-bottom-triple
+  margin-bottom: $base-value*3 !important
+
+.margin-right
+  margin-right: $base-value
+
+.margin-left
+  margin-left: $base-value
+
+.margin-center
+  margin: 0 auto !important
+
+=image-cover
+  background-size: cover
+
+=background-cover-image($url)
+  background: url($url) no-repeat center center fixed
+  +image-cover
+
+%full-background-coverage
+  position: fixed
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+
+  // Container for any 3d transforms
+.threedwrapper
+  position: relative
+  perspective: 800px
+
+// Base styles for any 3d transformed object
+.threedobject
+  transform-style: preserve-3d
+  transform-origin: 50% 50% 0
+
+%prevent-text-selection
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+//http://kenneth.io/blog/2012/03/04/word-wrapping-hypernation-using-css/
+=force-break-all-words
+  -ms-word-break: break-all
+  word-break: break-all
+  word-break: break-word
+  -webkit-hyphens: auto
+  -moz-hyphens: auto
+  -ms-hyphens: auto
+  hyphens: auto
+
+// Optional hyphenation
+=hyphens($mode: auto)
+  word-wrap: break-word
+  -webkit-hyphens: $mode
+  -moz-hyphens: $mode
+  -ms-hyphens: $mode
+  // IE10+
+  -o-hyphens: $mode
+  hyphens: $mode
+
+.rh-flex
+    display: flex
+    display: -webkit-flex
+
+.rh-flex-row
+    flex-direction: row
+    -webkit-flex-direction: row
+
+.rh-flex-column
+    flex-direction: column
+    -webkit-flex-direction: column
+
+.rh-flex-justify-content-space-around
+    justify-content: space-around
+    -webkit-justify-content: space-around
+
+.rh-flex-justify-content-space-between
+    justify-content: space-between
+    -webkit-justify-content: space-between
+
+.rh-flex-justify-content-center
+    justify-content: center
+    -webkit-justify-content: center
+
+.rh-flex-justify-content-end
+    justify-content: flex-end
+    -webkit-justify-content: flex-end
+
+.rh-flex-align-content-center
+    align-content: center
+    -webkit-align-content: center
+
+.rh-flex-align-items-start
+    align-items: flex-start
+    -webkit-align-items: flex-start
+
+.rh-flex-align-items-center
+    align-items: center
+    -webkit-align-items: center
+
+.rh-flex-grow-0
+  flex-grow: 0
+  -webkit-flex-grow: 0
+
+.rh-flex-grow-1
+    flex-grow: 1
+    -webkit-flex-grow: 1
+
+.rh-flex-grow-2
+  flex-grow: 2
+  -webkit-flex-grow: 1
+
+.rh-flex-wrap
+    flex-wrap: wrap
+    -webkit-flex-wrap: wrap

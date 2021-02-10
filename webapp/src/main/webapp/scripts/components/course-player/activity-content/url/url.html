@@ -1,0 +1,31 @@
+<div ng-controller="UrlActivityController as ctrl" class="url-activity">
+
+    <activity-header activity-type="ctrl.data.activity.type" activity-type-display-name="'External exercise'" activity-name="ctrl.data.activity.name"></activity-header>
+
+    <div class="resource-box">
+        <div class="row">
+            <div class="instruction-box col-xs-12">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>&#xA0;&#xA0;<b>Instructions:</b> Go to the external site and read the article. Let us know when you're finished down below.
+            </div>
+        </div>
+        <div class="row resource-content-box">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div ng-bind-html="ctrl.data.resourceDescription" class="resource-description-box"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="external-link-btn" ng-click="ctrl.launchExternalLink()">Launch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <activity-manual-completion activity="ctrl.data.activity"></activity-manual-completion>
+
+    <activity-footer next-activity="ctrl.data.nextActivity" on-next-activity-click="ctrl.goToNextActivity()"></activity-footer>
+
+</div>

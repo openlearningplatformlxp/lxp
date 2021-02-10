@@ -1,0 +1,63 @@
+<cms-block ctrl="ctrl" key="state-notifications" ng-cloak>
+    <div class="admin-notifications-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="notifications.title"></h2>
+                <div class="search-buttons-container">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.goToSendNotification()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span translate="notifications.send.button"></span>
+                    </button>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'notifications.noNotificationsFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="title" label="{{'global.labels.personId' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="createdDate" label="{{'global.labels.dateTimeBegin' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="name" label="{{'global.labels.Name' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="type" label="{{'global.labels.Type' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="title" label="{{'global.labels.Title' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="message" label="{{'global.labels.Message' | translate}}"></searchsort>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in ctrl.pagedSearch.getContent()">
+                                            <td ng-bind="item.personId" />
+                                            <td ng-bind="item.createDate|date:'short'"></td>
+                                            <td><span ng-bind="item.firstName | capitalize"></span> <span ng-bind="item.lastName | capitalize"></span></td>
+                                            <td ng-bind="item.messageActionType"></td>
+                                            <td ng-bind="item.title"></td>
+                                            <td ng-bind="item.message"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

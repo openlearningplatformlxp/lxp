@@ -1,0 +1,443 @@
+.calendar-legend {
+    margin: $scale0 0;
+
+    ul {
+        @extend %list-horizontal;
+
+        li {
+            @extend .tag-bold;
+            margin: 0 $scale0 $base-value-half 0;
+        }
+
+        .manager {
+            background-color: $class-color-managerteam;
+        }
+
+        .professional {
+            background-color: $class-color-profdevlead;
+        }
+
+        .sales {
+            background-color: $class-color-sales;
+        }
+
+        .technical {
+            background-color: $class-color-technical;
+        }
+    }
+
+}
+
+.calendar-view {
+    .page-header-section {
+        margin-bottom: $scale5;
+    }
+
+    .location-filter--body {
+        border: none;
+        margin: $scale4 0;
+        padding: 0;
+    }
+
+    h5 {
+        color: $blue-shade2;
+        font-size: 32px;
+    }
+
+    .location-filter--arrow {
+        background: $blue;
+        color: #fff;
+        width: 59px;
+        line-height: 1rem;
+        border-radius: 0.3125rem;
+        height: 34px;
+
+        img {
+            filter: invert(1);
+        }
+    }
+
+    .calendar {
+        @extend .panel-low;
+        margin: 0 auto;
+        width: 100%;
+
+        .fc-scroller {
+            height: 100% !important;
+            min-height: 50px !important;
+        }
+
+        .fc-toolbar {
+            color: $blue-shade2;
+            margin-bottom: $scale5;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+
+            .fc-left {
+
+                // Month title
+                h2 {
+                }
+            }
+
+            .fc-right {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-content: center;
+
+            }
+
+            .fc-center {
+                display: none;
+            }
+
+            .fc-clear {
+                display: none;
+            }
+
+            .fc-state-default,
+            .fc-state-active {
+                @extend .primary;
+                text-shadow: none;
+                border: 1px solid transparent !important;
+                margin: 0;
+                margin-left: $scale0;
+                padding: $base-value-half $scale0;
+                line-height: 1rem;
+                border-radius: $radius-base;
+                box-shadow: none;
+                text-transform: capitalize;
+            }
+
+            .fc-state-active {
+                background: transparent !important;
+                color: $blue-shade2 !important;
+                border: 1px solid $blue !important;
+            }
+
+            .fc-state-hover {
+                padding: $base-value-half $scale0;
+                transition: none;
+                transform: none;
+                border: 1px solid transparent;
+                background-image: none;
+                background: $blue !important;
+            }
+
+            .fc-state-disabled {
+                transition: none;
+                transform: none;
+            }
+
+        }
+
+        .fc-view-container {
+        }
+
+        .fc-head {
+            .fc-head-container {
+                border: none;
+                padding-bottom: $base-value-half;
+
+                .fc-row {
+                    th {
+                        text-align: left;
+                    }
+
+                    .fc-day-header {
+                        border: none;
+                        font-size: 1rem;
+                        font-weight: 300;
+                        color: #333;
+                    }
+
+                    .fc-sun,
+                    .fc-sat {
+                        background: transparent;
+                    }
+                }
+            }
+        }
+
+        .fc-body {
+            @extend .papershadow-xs;
+            background: #fff;
+
+        }
+
+        .fc-other-month {
+            background-color: $grey1;
+        }
+
+        .fc-day {}
+
+        .fc-widget-content {
+            .fc-event-container {
+                .fc-day-grid-event {
+                    .fc-content {
+                        .fc-time {
+                            display: none;
+                        }
+
+                        .fc-title {}
+                    }
+
+                }
+            }
+        }
+
+        .fc-popover {
+            @extend .panel-medium;
+            padding: 0 !important;
+            border: 1px solid $grey7;
+
+            .fc-header {
+                padding: $scale0;
+
+                .fc-title {}
+            }
+
+            .fc-body {
+                padding: $scale0;
+
+                .fc-event-container {
+                    padding: 0;
+
+                    .fc-day-grid-event {
+                        padding: $base-value-quarter;
+                    }
+
+                    .fc-content .fc-time {
+                        display: inline !important;
+                        margin-right: $scale0;
+                    }
+                }
+            }
+
+        }
+
+        span.fc-day-number {
+            font-size: 1.2rem;
+            margin-top: $scale0;
+            margin-right: $scale0;
+            color: #333;
+            font-weight: 300;
+        }
+
+        .fc-past {
+            span.fc-day-number {
+                color: $grey5;
+            }
+        }
+
+        .fc-today {
+            border-color: $blue;
+
+            span.fc-day-number {
+                color: $blue-shade2;
+                font-weight: 600;
+            }
+        }
+
+        .fc-future {}
+
+        .fc-sun,
+        .fc-sat {
+            background-color: rgba(0, 0, 0, .02);
+        }
+
+        .fc-other-month {
+            background-color: rgba(0, 0, 0, .1);
+        }
+
+        .fc-more-cell {
+            display: flex;
+            justify-content: center;
+        }
+
+        .fc-event {
+            height: 20px;
+            text-align: left;
+            vertical-align: middle;
+            padding-top: 5px;
+            padding-left: 5px;
+        }
+
+        .fc-popover {
+            width: 500px;
+        }
+
+        // Disable the annoying classes for not border in long events
+        .fc-not-end {
+            margin-right: 1px;
+            border-radius: 3px;
+        }
+
+        .fc-list-empty-wrap1 {
+            display: flex;
+            text-align: center;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+
+            .fc-list-empty {
+                background-color: #eee;
+                padding: $base-value-half $scale0;
+                border-radius: $radius-base;
+            }
+        }
+
+        .fc-list-view {
+            @extend .panel-low;
+            padding-top: 0;
+            border: none;
+        }
+
+        .fc-list-table {
+
+            table,
+            tbody,
+            tr,
+            td {
+                border: none;
+            }
+
+            .fc-list-heading {
+
+                .fc-widget-header {
+                    background-color: white;
+                    padding: $scale7 0 $scale0 0;
+
+                    .fc-list-heading-main {
+                        // Weekday
+                        color: $grey6;
+                        font-weight: 400;
+                        float: right;
+                    }
+
+                    .fc-list-heading-alt {
+                        // Date
+                        color: $blue-shade2;
+                        font-weight: 400;
+                        font-size: 1.4rem;
+                        float: none;
+                    }
+                }
+            }
+
+            .fc-list-item {
+                &:nth-child(even) {
+                    background-color: $grey1;
+                }
+
+                td {
+                    padding: $scale0 $base-value-half;
+                }
+
+                .fc-list-item-time {}
+
+                .fc-list-item-marker {
+                    .fc-event-dot {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                .fc-list-item-title {
+                    a {
+                        color: $link-color !important;
+                        text-decoration: underline;
+                    }
+
+                    .fc-list-item-location {
+                        float: right;
+                        @extend .dim-tag;
+
+                        .fc-list-item-country {}
+
+                        .fc-list-item-city {
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .external-event {
+        float: left;
+        width: 150px;
+        text-align: left;
+        margin: 10px 0;
+        padding: 2px 4px;
+        background: $header-color-background;
+        color: #fff;
+        font-size: .85em;
+        cursor: pointer;
+
+        h4 {
+            font-size: 16px;
+            margin-top: 0;
+            padding-top: 1em;
+        }
+
+        p {
+            margin: 1.5em 0;
+            font-size: 11px;
+            color: #666;
+
+            input {
+                margin: 0;
+                vertical-align: middle;
+            }
+        }
+    }
+
+
+    @media (max-width: $screen-sm-max) {
+        .container-fluid {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .container {
+            margin-bottom: $scale4;
+            padding: 0;
+
+            .calendar {
+                .fc-toolbar {
+                    padding: 5px;
+
+                    .fc-right {
+                        width: 100%;
+                    }
+                }
+            }
+
+            th.fc-widget-header {
+                height: 30px;
+                vertical-align: middle;
+
+                span {
+                    overflow: hidden;
+                    max-width: 10px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+
+            th.fc-widget-header:nth-child(2) span,
+            th.fc-widget-header:nth-child(4) span {
+                max-width: 12px;
+            }
+
+            th.fc-widget-header:nth-child(6) span {
+                max-width: 8px;
+            }
+        }
+    }
+}

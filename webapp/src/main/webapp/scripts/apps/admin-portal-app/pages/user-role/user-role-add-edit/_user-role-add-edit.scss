@@ -1,0 +1,32 @@
+/**
+ * User Role Upsert View styles.
+ */
+
+.common-app .admin-user-role-add-edit-view {
+    .panel-default {
+        border-color: #838383;
+        box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .panel-default>.panel-heading {
+        background-color: #616161;
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+
+    .permission-container {
+        margin-bottom: 15px;
+
+        .checkbox-inline {
+            margin-left: 15px;
+        }
+
+        .permission-title {
+            font-weight: bold;
+        }
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
+}

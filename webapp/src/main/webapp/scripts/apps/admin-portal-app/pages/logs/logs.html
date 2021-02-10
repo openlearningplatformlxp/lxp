@@ -1,0 +1,31 @@
+<cms-block ctrl="ctrl" key="state-logs" ng-cloak>
+    <div class="logs-view">
+        <h2 class="page-title" translate="logs.title"></h2>
+        <p translate="logs.nbloggers" translate-values="{total: '{{ctrl.getLoggersCount()}}'}"></p>
+        <p><span translate="logs.filter"></span> <input type="text" ng-model="filter" class="form-control"></p>
+        <div class="panel panel-default panel-table">
+            <div class="panel-body">
+                <div class="table-responsive-plain">
+                    <table class="panel-table table table-condensed table-striped">
+                        <thead>
+                            <tr title="click to order">
+                                <th ng-click="predicate = 'name'; reverse=!reverse" translate="logs.table.name"></th>
+                                <th ng-click="predicate = 'level'; reverse=!reverse" translate="logs.table.level"></th>
+                            </tr>
+                        </thead>
+                        <tr ng-repeat="logger in ctrl.getLoggers() | filter:filter | orderBy:predicate:reverse">
+                            <td><small><span ng-bind="logger.name | characters:140"></span></small></td>
+                            <td nowrap>
+                                <button ng-click="ctrl.changeLevel(logger.name, 'TRACE')" ng-class="(logger.level=='TRACE') ? 'btn-danger' : 'btn-default'" class="btn btn-default btn-xs">TRACE</button>
+                                <button ng-click="ctrl.changeLevel(logger.name, 'DEBUG')" ng-class="(logger.level=='DEBUG') ? 'btn-warning' : 'btn-default'" class="btn btn-default btn-xs">DEBUG</button>
+                                <button ng-click="ctrl.changeLevel(logger.name, 'INFO')" ng-class="(logger.level=='INFO') ? 'btn-info' : 'btn-default'" class="btn btn-default btn-xs">INFO</button>
+                                <button ng-click="ctrl.changeLevel(logger.name, 'WARN')" ng-class="(logger.level=='WARN') ? 'btn-success' : 'btn-default'" class="btn btn-default btn-xs">WARN</button>
+                                <button ng-click="ctrl.changeLevel(logger.name, 'ERROR')" ng-class="(logger.level=='ERROR') ? 'btn-primary' : 'btn-default'" class="btn btn-default btn-xs">ERROR</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

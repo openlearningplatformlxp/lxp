@@ -1,0 +1,21 @@
+<div class="course-view">
+    <div class="cover">
+        <card type="'cover'" item="ctrl.data.courseData" return-path="ctrl.data.returnPath" show-resume="ctrl.data.showResume" on-resume-click="ctrl.resumeCourse()" show-enroll="ctrl.data.showEnroll" on-enroll-click="ctrl.enrollInCourse()"></card>
+    </div>
+    <div class="lesson">
+
+        <div class="lesson-nav">
+            <ul class="nav nav-tabs">
+                <li ui-sref-active="active"><a ui-sref="course-overview">Overview</a></li>
+                <li ui-sref-active="active" class="hidden"><a ui-sref="course-requirements">Requirements</a></li>
+                <li ui-sref-active="active"><a ui-sref="course-activity">Activities</a></li>
+                <li ui-sref-active="active"><a ui-sref="course-upcoming">Upcoming Classes</a></li>
+                <li ui-sref-active="active"><a ui-sref="course-resources">Resources</a></li>
+            </ul>
+        </div>
+
+        <div class="lesson-content">
+            <div ui-view="lesson"></div>
+        </div>
+    </div>
+</div>

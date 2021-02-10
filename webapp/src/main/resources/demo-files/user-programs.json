@@ -1,0 +1,30 @@
+[
+  {
+    "userId": 1,
+    "programId": 1,
+    "complete": false,
+    "enrollmentDate": "23223",
+    "status": "AVAILABLE"
+  },
+  {
+    "userId": 1,
+    "programId": 2,
+    "complete": false,
+    "enrollmentDate": "23223",
+    "status": "AVAILABLE"
+  },
+  {
+    "userId": 1,
+    "programId": 3,
+    "complete": false,
+    "enrollmentDate": "23223",
+    "status": "AVAILABLE"
+  },
+  {
+    "userId": 2,
+    "programId": 2,
+    "complete": false,
+    "enrollmentDate": "23223",
+    "status": "AVAILABLE"
+  }
+]

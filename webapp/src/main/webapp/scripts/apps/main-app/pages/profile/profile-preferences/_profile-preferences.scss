@@ -1,0 +1,199 @@
+.profile-preferences-view {
+    .profile-preferences-panel {
+        @extend .panel-low;
+        margin-bottom: $scale1;
+        margin-top: $scale4;
+
+        .profile-preferences-panel--title {
+            margin-bottom: $scale0;
+
+            h4 {
+                margin-bottom: 0;
+            }
+
+            h6 {
+                font-size: $font-size-sm;
+                color: $gray-light;
+                margin-bottom: 0;
+            }
+        }
+
+        .profile-preferences-panel--item {
+            display: flex;
+            flex-direction: row;
+
+            .profile-preferences-panel--item-title {
+                flex-grow: 1;
+
+                h6 {
+                    margin-bottom: 0;
+                }
+            }
+
+            label {
+                margin-bottom: 0;
+            }
+        }
+
+        .profile-preferences-panel--avatar {
+            .profile-preferences-panel--avatar-body {
+                display: flex;
+                flex-direction: row;
+
+                .profile-preferences-panel--avatar-image {
+                    margin-right: $scale0;
+
+                    img {
+                        border-radius: 50px;
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+
+                .profile-preferences-panel--avatar-button {
+                    margin-top: 5px;
+                }
+            }
+        }
+
+        .profile-preferences-panel--roles {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            >div {
+                margin-bottom: $scale-2;
+                width: 250px;
+
+                label {
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .angucomplete-dropdown {
+            @extend .papershadow-sm;
+            border-radius: $radius-base;
+        }
+
+        .angucomplete-row {
+            @include transition-all(.1s);
+            padding: 5px;
+            color: $blue-shade3;
+            margin-bottom: 4px;
+            clear: both;
+            border-radius: $radius-base;
+
+            .highlight {
+                background-color: rgba(0, 0, 0, .1);
+                border-radius: 2px;
+            }
+        }
+
+        .angucomplete-selected-row {
+            background-color: $blue-shade2;
+            color: #ffffff;
+        }
+
+        .profile-preferences-panel--add-interest-box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .profile-preferences-panel--add-interest-box-search {
+                margin-right: $scale0;
+                flex-grow: 1;
+
+                input {
+                    height: $scale6;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+
+.profile-preferences-panel--labels {
+    @extend .rh-flex;
+    @extend .rh-flex-wrap;
+    margin-top: $scale4;
+
+    .info-label {
+        margin-bottom: $scale-2;
+
+
+        .label {
+            border: 2px solid $gray-light;
+            background-color: white;
+            color: $gray-dark;
+            height: 35px;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 3px 5px;
+
+            >div {
+                padding: 0 1px 0 5px;
+
+                i {
+                    color: $red;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $red-shade2;
+                    }
+                }
+            }
+
+        }
+
+        .label:hover {}
+    }
+
+}
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 75%;
+    }
+}
+
+.interest-modal {
+    .modal-content {
+        @extend .papershadow-xl;
+        padding: $scale5;
+    }
+}
+
+.profile-preferences-panel--labels-grid {
+    display: grid;
+    grid-gap: $base-value-half/2;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    align-items: center;
+    width: 100%;
+
+    .info-label {
+        max-width: 100%;
+
+        .label {
+            max-width: 95%;
+            width: 95%;
+            white-space: normal;
+            margin: 0;
+            border: none;
+            border-radius: $radius-base;
+            background-color: rgba(0, 0, 0, .1);
+            font-weight: normal;
+            font-size: 1rem;
+            padding: $base-value-half $base-value-half;
+            height: auto;
+
+            &:hover {
+                color: #fff;
+                background-color: $blue;
+            }
+        }
+    }
+}

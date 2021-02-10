@@ -1,0 +1,34 @@
+<div class="team-individual-view">
+
+    <team-subheader on-search="ctrl.search(searchValue)" placeholder-message="'Who are you looking for?'" on-start-date="ctrl.setStartDate(startDate)" on-end-date="ctrl.setEndDate(endDate)"></team-subheader>
+
+    <div class="team-progress-section">
+        <div class="team-progress-section-header clearfix">
+            <div id="teamProgress">
+            </div>
+            <div ng-if="!ctrl.data.isLoading">
+                <a ng-href="api/csv/team-associate-progress/export?q={{ctrl.data.searchValue}}&startDate={{ctrl.data.startDate}}&endDate={{ctrl.data.endDate}}" class="download-link" target="_blank">
+                    <button class="primary"><img class="svg" src="assets/images/download.svg" /> Download</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="row" ng-if="!ctrl.data.isLoading">
+            <div class="col-md-12">
+                <div ng-if="ctrl.managerHasManagers()">
+                    <h5>View the progress of the teams under you</h5>
+                    <team-individual-card team-member="teamMember" open="false" on-manager-click="ctrl.goToManagerView(manager)" on-member-click="ctrl.goToMemberView(member, program)" ng-repeat="teamMember in ctrl.data.teamMembers | filter: ctrl.teamMemberFilter | filter: ctrl.isManagerFilter" ng-if="!ctrl.data.isLoading"></team-individual-card>
+
+                </div>
+                <h5>View the progress of your direct reports</h5>
+                <team-individual-card team-member="teamMember" open="false" on-manager-click="ctrl.goToManagerView(manager)" on-member-click="ctrl.goToMemberView(member, program)" ng-repeat="teamMember in ctrl.data.teamMembers | filter: ctrl.teamMemberFilter | filter: ctrl.isNotManagerFilter" ng-if="!ctrl.data.isLoading"></team-individual-card>
+            </div>
+        </div>
+
+        <div class="text-center" ng-if="ctrl.data.isLoading">
+            <h3>Loading, please wait&nbsp;&nbsp;&nbsp;<div class="loader">loading</div>
+            </h3>
+        </div>
+    </div>
+
+</div>

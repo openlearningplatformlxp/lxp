@@ -1,0 +1,105 @@
+<div class="content-containers left-sidebar">
+    <div class="sidebar-header">
+        <div ui-view="header" ng-cloak=""></div>
+    </div>
+    <div class="sidebar-content">
+        <div class="wrapper" ng-class="{'toggled': ctrl.data.toggled}">
+            <div class="sidebar-wrapper background-speckled">
+                <div class="sidebar-welcome">
+                    <h1>Welcome!</h1>
+                    <div class="h5" ng-bind="ctrl.data.name"></div>
+                </div>
+                <ul class="sidebar-nav" has-any-authority="ROLE_ADMIN,ROLE_WIKI_EDITOR,USERS_ROLE_VIEW,USERS_ROLE_CREATE,USERS_ROLE_UPDATE,USERS_ROLE_DELETE">
+                    <li has-any-authority="ROLE_ADMIN,USERS_ROLE_VIEW,USERS_ROLE_CREATE,USERS_ROLE_UPDATE,USERS_ROLE_DELETE">
+                        <hr>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a ui-sref="email-list" ng-click="ctrl.onMenuClick()"><i class="fa fa-envelope"></i> &#xA0;<span translate="global.menu.admin.email-list"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a ui-sref="users" ng-click="ctrl.onMenuClick()"><i class="fa fa-users"></i> &#xA0;<span translate="global.menu.admin.users"></span></a>
+                    </li>
+                    <li has-any-authority="USERS_ROLE_VIEW,USERS_ROLE_CREATE,USERS_ROLE_UPDATE,USERS_ROLE_DELETE" ui-sref-active="active">
+                        <a ui-sref="user-roles" ng-click="ctrl.onMenuClick()"><i class="fa fa-id-card-o"></i> &#xA0;<span>Roles</span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN">
+                        <hr>
+                    </li>
+
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a ui-sref="discovery" ng-click="ctrl.onMenuClick()"><i class="fa fa-id-card-o"></i> &#xA0;<span translate="global.menu.admin.discovery"></span></a>
+                    </li>
+
+                    <li has-any-authority="ROLE_WIKI_EDITOR" ui-sref-active="active">
+                        <a href="" ui-sref="wikipages" ng-click="ctrl.onMenuClick()"><i class="fa fa-columns" aria-hidden="true"></i> &#xA0;<span translate="global.menu.admin.wikipage"></span></a>
+                    </li>
+
+                    <li has-any-authority="ROLE_ADMIN">
+                        <hr>
+                    </li>
+
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="feedbacks" ng-click="ctrl.onMenuClick()"><i class="fa fa-comment-o" aria-hidden="true"></i> &#xA0;<span translate="global.menu.admin.feedback"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="notifications" ng-click="ctrl.onMenuClick()"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &#xA0;<span translate="global.menu.admin.notifications"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="announcements" ng-click="ctrl.onMenuClick()"><i class="fa fa-bullhorn" aria-hidden="true"></i> &#xA0;<span translate="global.menu.admin.announcements"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN">
+                        <hr>
+                    </li>
+
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="featured-searches" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-search"></span> &#xA0;<span translate="global.menu.admin.featured-searches"></span></a>
+                    </li>
+
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="audit-searches" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-search"></span> &#xA0;<span translate="global.menu.admin.audit-searches"></span></a>
+                    </li>
+
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="audits" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-bell"></span> &#xA0;<span translate="global.menu.admin.audits"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="configuration" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-list-alt"></span> &#xA0;<span translate="global.menu.admin.configuration"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="health" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-heart"></span> &#xA0;<span translate="global.menu.admin.health"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="logs" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-tasks"></span> &#xA0;<span translate="global.menu.admin.logs"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="metrics" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-dashboard"></span> &#xA0;<span translate="global.menu.admin.metrics"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="info" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-info-sign"></span> &#xA0;<span translate="global.menu.admin.info"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="spring-session-list" ng-click="ctrl.onMenuClick()"><span class="fa fa-user-secret"></span> &#xA0;<span translate="global.menu.admin.spring-session-list"></span></a>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN">
+                        <hr>
+                    </li>
+                    <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
+                        <a href="" ui-sref="docs" ng-click="ctrl.onMenuClick()"><span class="glyphicon glyphicon-book"></span> &#xA0;<span translate="global.menu.admin.apidocs"></span></a>
+                    </li>
+                    <li>
+                        <hr>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href="" ng-click="ctrl.logout()"><i class="fa fa-sign-out"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="page-content-wrapper">
+                <div class="container-fluid">
+                    <breadcrumbs></breadcrumbs>
+                    <div ui-view="content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

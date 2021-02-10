@@ -1,0 +1,86 @@
+# ===================================================================
+# Spring Boot configuration for the "prod" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+app:
+    mail:
+        sendEmailJob:
+            enabled: true
+
+    passwordResetTokens:
+        removeExpiredJob:
+            enabled: true
+
+    persistentTokens:
+        removeOldJob:
+            enabled: true
+
+    persons:
+        removeNotActivatedJob:
+            enabled: true
+
+liquibase:
+    context: prod
+
+server:
+    port: 8080
+
+spring:
+    profiles:
+        active: prod
+    datasource:
+        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+        url:
+        databaseName: reduxl
+        serverName: localhost
+        username: localuser
+        password: localuser
+    jpa:
+        database-platform: com.redhat.uxl.dataobjects.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
+        openInView: false
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+
+    thymeleaf:
+        mode: XHTML
+        cache: true
+
+http:
+    cache:
+        timeToLiveInDays: 31
+
+cache:
+    timeToLiveSeconds: 3600
+    ehcache:
+        maxBytesLocalHeap: 256M
+
+# TODO: (WJK) Reconfigure these for RedHat prod
+totara:
+    webservice:
+        # These values are required to use Totara web services.
+        token:
+        baseurl:
+    url:
+      file:
+
+saml:
+    redirect:
+        enabled: false
+        url: /saml/login

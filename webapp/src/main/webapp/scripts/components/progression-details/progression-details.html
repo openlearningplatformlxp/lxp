@@ -1,0 +1,52 @@
+<div class="progression-details">
+    <div class="container-fluid">
+        <div class="progression-data-box">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="activity-status-text">
+                        <b><span ng-bind="progressionOverview.activityCompleteCount"></span></b> of <b><span ng-bind="progressionOverview.activityCount"></span> activities completed</b>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="percent-complete-text pull-right">
+                        <span ng-bind="progressionOverview.percentComplete"></span>% Complete
+                    </div>
+                </div>
+            </div>
+            <div ng-if="!progressionOverview.hideProgressEvents">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="line-separator"></div>
+                    </div>
+                </div>
+                <div class="row progression-table-header">
+                    <div class="col-sm-1 text-center">
+                        STATUS
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        CATEGORY
+                    </div>
+                    <div class="col-sm-7 text-center">
+                        ACTIVITY
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        COMPLETED
+                    </div>
+                </div>
+                <div class="row progression-table-row" ng-repeat="progressEvent in progressionOverview.progressEvents" ng-class-odd="'progression-table-row-odd'">
+                    <div class="col-sm-1 text-center">
+                        <i class="fa status-icon" ng-class="getProgressEventStatusClass(progressEvent.status)"></i>
+                    </div>
+                    <div class="col-sm-2 text-center" ng-bind="progressEvent.categoryName">
+                    </div>
+                    <div class="col-sm-7" ng-bind="progressEvent.description">
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div ng-if="progressEvent.date" ng-bind="progressEvent.date | date: 'MMM d, yyyy'"></div>
+                        <div ng-if="!progressEvent.date">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

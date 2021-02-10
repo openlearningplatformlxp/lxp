@@ -1,0 +1,4 @@
+<div>
+    <input ng-if="!ctrl.itemId" type="checkbox" ng-change="ctrl.selectedItems.setAll(ctrl.selectedItems.getState().allSelected)" ng-model="ctrl.selectedItems.getState().allSelected">
+    <input ng-if="ctrl.itemId" type="checkbox" ng-change="ctrl.selectedItems.onItemChange()" ng-model="ctrl.selectedItems.get(ctrl.itemId).selected">
+</div>

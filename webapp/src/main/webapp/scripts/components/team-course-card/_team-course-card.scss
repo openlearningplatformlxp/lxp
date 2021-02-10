@@ -1,0 +1,12 @@
+.team-course-card-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-card-icon-user-profile {
+    img {
+        width: 56px;
+        height: 56px;
+        border-radius: 50px;
+    }
+}

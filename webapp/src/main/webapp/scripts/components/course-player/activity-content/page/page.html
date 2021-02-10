@@ -1,0 +1,32 @@
+<div ng-controller="PageActivityController as ctrl" class="page-activity">
+
+    <activity-header activity-type="ctrl.data.activity.type" activity-type-display-name="'Reading'" activity-name="ctrl.data.activity.name"></activity-header>
+
+    <div class="resource-box">
+        <div class="row">
+            <div class="instruction-box col-xs-12">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>&#xA0;&#xA0;<b>Instructions:</b> Please read the following information. Let us know when you’re finished down below.
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-xs-12">
+                <div ng-bind-html="ctrl.data.resourceDescription" class="resource-description-box"></div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-xs-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-xs-12">
+                <div ng-bind-html="ctrl.data.resourceContent" class="resource-content-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <activity-manual-completion activity="ctrl.data.activity"></activity-manual-completion>
+
+    <activity-footer next-activity="ctrl.data.nextActivity" on-next-activity-click="ctrl.goToNextActivity()"></activity-footer>
+
+</div>

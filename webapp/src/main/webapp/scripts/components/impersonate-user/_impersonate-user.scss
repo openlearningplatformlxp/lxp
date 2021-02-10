@@ -1,0 +1,43 @@
+/**
+ * Impersonate User
+ */
+
+.impersonate-user-modal-view {
+    background-color: #F8F7F7;
+}
+
+.impersonate-user-container {
+    background-color: #F00;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px;
+    position: absolute;
+    right: 0px;
+    top: 55px;
+    z-index: 100;
+
+    animation: impersonate-user-pulse 2s infinite;
+}
+
+@keyframes impersonate-user-pulse {
+    0% {
+        background-color: #F00;
+    }
+
+    35% {
+        background-color: #F00;
+    }
+
+    50% {
+        background-color: #D00;
+    }
+
+    65% {
+        background-color: #F00;
+    }
+
+    100% {
+        background-color: #F00;
+    }
+}

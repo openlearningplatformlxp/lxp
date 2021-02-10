@@ -1,0 +1,369 @@
+{
+    "global": {
+        "title": "Red Hat",
+        "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
+        "Off": "Off",
+        "On": "On",
+        "showValue": "{{value}}",
+        "alerts": {
+            "confirmCancel": {
+                "text": "Do you want to discard your changes?",
+                "title": "Confirm Cancel"
+            }
+        },
+        "asset": {
+            "storeType": {
+                "DB": {
+                    "name": "DB"
+                },
+                "S3": {
+                    "name": "S3"
+                }
+            },
+            "subtype": {
+                "AUDIO_MP4": {
+                    "name": "MP4"
+                },
+                "AUDIO_MPEG": {
+                    "name": "MPEG"
+                },
+                "AUDIO_OTHER": {
+                    "name": "Other"
+                },
+                "DOCUMENT_OTHER": {
+                    "name": "Other"
+                },
+                "DOCUMENT_PDF": {
+                    "name": "PDF"
+                },
+                "IMAGE_BMP": {
+                    "name": "BMP"
+                },
+                "IMAGE_GIF": {
+                    "name": "GIF"
+                },
+                "IMAGE_JPG": {
+                    "name": "JPG"
+                },
+                "IMAGE_OTHER": {
+                    "name": "Other"
+                },
+                "IMAGE_PNG": {
+                    "name": "PNG"
+                },
+                "IMAGE_TIFF": {
+                    "name": "TIFF"
+                },
+                "TEXT_CSS": {
+                    "name": "CSS"
+                },
+                "TEXT_CSV": {
+                    "name": "CSV"
+                },
+                "TEXT_HTML": {
+                    "name": "HTML"
+                },
+                "TEXT_PLAIN": {
+                    "name": "Plain"
+                },
+                "VELOCITY_TEMPLATE_EMAIL": {
+                    "name": "Email"
+                },
+                "VELOCITY_TEMPLATE_PDF": {
+                    "name": "PDF"
+                },
+                "VELOCITY_TEMPLATE_OTHER": {
+                    "name": "Other"
+                },
+                "VIDEO_JPEG": {
+                    "name": "JPEG"
+                },
+                "VIDEO_MP4": {
+                    "name": "MP4"
+                },
+                "VIDEO_MPEG": {
+                    "name": "MPEG"
+                },
+                "VIDEO_OTHER": {
+                    "name": "Other"
+                }
+            },
+            "type": {
+                "AUDIO": {
+                    "name": "Audio"
+                },
+                "DOCUMENT": {
+                    "name": "Document"
+                },
+                "IMAGE": {
+                    "name": "Image"
+                },
+                "TEXT": {
+                    "name": "Text"
+                },
+                "VELOCITY_TEMPLATE": {
+                    "name": "Velocity Template"
+                },
+                "VIDEO": {
+                    "name": "Video"
+                }
+            }
+        },
+        "breadcrumbs": {
+            "asset-add": "Add",
+            "asset-edit": "Edit",
+            "assets": "Assets",
+            "cms-block-add": "Add CMS Block",
+            "cms-block-edit": "Edit CMS Block",
+            "cms-blocks": "CMS Blocks",
+            "home": "Home",
+            "user-add": "Add User",
+            "user-edit": "Edit User",
+            "user-role-add": "Add Role",
+            "user-role-edit": "Role",
+            "user-roles": "Roles",
+            "users": "Users"
+        },
+        "buttons": {
+            "cancel": "Cancel",
+            "Close": "Close",
+            "extendSession": "Extend Session",
+            "ImportFromFile": "Import from File",
+            "logout": "Log Out",
+            "OK": "OK",
+            "save": "Save"
+        },
+        "directives": {
+            "searchbar": {
+                "multiSelect": "Multi-select",
+                "pageXofY": "Page {{X}} of {{Y}}",
+                "searchInputPlaceholder": "Search for ...",
+                "Selected": "Selected",
+                "totalItemsCount": "Total Items: {{count}}"
+            }
+        },
+        "file": {
+            "bytes": "bytes",
+            "orDropHere": "... or drop file here ...",
+            "selectFile": "Select File"
+        },
+        "menu": {
+            "home": "Home",
+            "account": {
+                "main": "Account",
+                "settings": "Settings",
+                "password": "Password",
+                "sessions": "Sessions",
+                "login": "Authenticate",
+                "logout": "Log out",
+                "register": "Register"
+            },
+            "admin": {
+                "announcements": "Announcements",
+                "assets": "Assets",
+                "cms": "CMS",
+                "email-list": "Email",
+                "feedback": "Feedback",
+                "main": "Administration",
+                "tracker": "User tracker",
+                "metrics": "Metrics",
+                "health": "Health",
+                "configuration": "Configuration",
+                "logs": "Logs",
+                "audits": "Audits",
+                "apidocs": "API",
+                "database": "Database",
+                "info": "Node Information",
+                "discovery": "Discovery",
+                "notifications": "Notifications",
+                "audit-searches": "Audit Searches",
+                "featured-searches": "Featured Searches",
+                "spring-session-list": "Sessions",
+                "wikipage": "Wikipages",
+                "users": "Users"
+            },
+            "language": "Language"
+        },
+        "field": {
+            "id": "ID"
+        },
+        "form": {
+            "firstName": "First Name",
+            "firstName.placeholder": "Your first name",
+            "lastName": "Last Name",
+            "lastName.placeholder": "Your last name",
+            "username": "Login",
+            "username.placeholder": "Your login",
+            "newPassword": "New password",
+            "newPassword.placeholder": "New password",
+            "password": "Password",
+            "password.placeholder": "Password",
+            "confirmPassword": "New password confirmation",
+            "confirmPassword.placeholder": "Confirm the new password",
+            "currentPassword": "Current password",
+            "currentPassword.placeholder": "Current password",
+            "email": "Email Address",
+            "email.placeholder": "Your email address",
+            "authority": {
+                "name": "Role",
+                "name.placeholder": "Role name"
+            }
+        },
+        "labels": {
+            "ActivationToken": "Activation Token",
+            "AssetType": "Type",
+            "AssetStoreType": "Storage",
+            "AssetSubtype": "Subtype",
+            "attemptCount": "Attempts Made",
+            "contentType": "Content-Type",
+            "createdBy": "Created By",
+            "createdDate": "Created Date",
+            "dateTimeBegin": "Start Date / Time",
+            "dateTimeEnd": "End Date / Time",
+            "Description": "Description",
+            "Enabled": "Enabled",
+            "filename": "Filename",
+            "firstName": "First Name",
+            "Id": "Id",
+            "Key": "Key",
+            "lastActivity": "Last Activity",
+            "lastModifiedBy": "Last Modified By",
+            "lastModifiedDate": "Last Modified Date",
+            "lastName": "Last Name",
+            "login": "Login",
+            "Message": "Message",
+            "Name": "Name",
+            "path": "Path",
+            "personId": "Person Id",
+            "Priority": "Priority",
+            "relativeUrl": "Relative URL",
+            "Results": "Results",
+            "roleName": "Role Name",
+            "Search": "Search",
+            "Title": "Title",
+            "Type": "Type",
+            "URL": "URL",
+            "email": {
+                "Bcc": "Bcc",
+                "Cc": "Cc",
+                "EmailAddress": "Email Address",
+                "From": "From",
+                "Subject": "Subject",
+                "To": "To"
+            },
+            "status": {
+                "Failed": "Failed",
+                "Pending": "Pending",
+                "Sent": "Sent"
+            }
+        },
+        "links": {
+            "edit": "Edit",
+            "view": "View",
+            "ViewEmail": "View Email"
+        },
+        "messages": {
+            "info": {
+                "authenticated": "If you want to <a class=\"affordance\" href=\"#/login\">authenticate</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
+                "register": "You don't have an account yet? <a class=\"affordance\" href=\"#/register\">Register a new account</a>"
+            },
+            "error": {
+                "dontmatch": "The password and its confirmation do not match!",
+                "errorOccurred": "An error occurred!",
+                "title": "Error"
+            },
+            "success": {
+                "title": "Success"
+            },
+            "validate": {
+                "confirmPassword": {
+                    "required": "Your confirmation password is required.",
+                    "minlength": "Your confirmation password is required to be at least 5 characters",
+                    "maxlength": "Your confirmation password cannot be longer than 50 characters"
+                },
+                "email": {
+                    "required": "Your email is required.",
+                    "invalid": "Your email is invalid.",
+                    "minlength": "Your email is required to be at least 5 characters",
+                    "maxlength": "Your email cannot be longer than 50 characters"
+                },
+                "field": {
+                    "maxlength": "The maximum length for this field is {{maxlength}} characters.",
+                    "minlength": "The minimum length for this field is {{minlength}} characters.",
+                    "required": "This field is required."
+                },
+                "firstName": {
+                    "required": "Your first name is required.",
+                    "minlength": "Your first name is required to be at least 1 character",
+                    "maxlength": "Your first name cannot be longer than 50 characters"
+                },
+                "lastName": {
+                    "required": "Your last name is required.",
+                    "minlength": "Your last name is required to be at least 1 character",
+                    "maxlength": "Your last name cannot be longer than 50 characters"
+                },
+                "newPassword": {
+                    "required": "Your password is required.",
+                    "minlength": "Your password is required to be at least 5 characters",
+                    "maxlength": "Your password cannot be longer than 50 characters",
+                    "strength": "Password strength:"
+                },
+                "password": {
+                    "required": "Your password is required.",
+                    "minlength": "Your password is required to be at least 5 characters",
+                    "maxlength": "Your password cannot be longer than 50 characters",
+                    "strength": "Password strength:"
+                }
+            }
+        },
+        "services": {
+            "selected-items": {
+                "clear": {
+                    "clearSelections": "Clear Selections",
+                    "clearSelectionsText": "<p>There are {{selectedCount}} selected items.</p><p>Are you sure you want to clear all selections?</p>",
+                    "clearSelectionsTitle": "Clear Selections"
+                }
+            }
+        },
+        "text": {
+            "LoadingDDD": "Loading..."
+        }
+    },
+    "error": {
+        "serverNotReachable": "Server not reachable",
+        "NotNull": "Field {{fieldName}} cannot be empty!"
+    },
+    "footer": "This is your footer",
+    "header": {
+        "greeting": "Welcome <b>{{name}}</b>"
+    },
+    "activity-logout": {
+        "extendSession": "Select <b><i>Extend Session</i></b> to extend your session or <b><i>Log Out</i></b> to end your session.",
+        "secondsRemaining": "{{secondsRemaining}} Seconds Before Logout",
+        "sessionExpiresSoon": "Your session is about to expire.",
+        "sessionExpiresTitle": "Session Expiration Warning"
+    },
+    "impersonate-user": {
+        "error": {
+            "text": "Failed to impersonate user!"
+        },
+        "modal": {
+            "para1": "Are you sure you want to impersonate {{userDisplayName}}?",
+            "para2": "When impersonating a user, all actions performed will be done against the impersonated user's account!",
+            "title": "Impersonate",
+            "buttons": {
+                "ok": "Impersonate User"
+            }
+        },
+        "success": {
+            "impersonatingUser": "You are now impersonating  {{userDisplayName}}!"
+        }
+    },
+    "server": {
+        "error": {
+            "personservice": {
+                "bad_password": "Current password is incorrect."
+            }
+        }
+    }
+}

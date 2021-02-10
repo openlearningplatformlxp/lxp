@@ -1,0 +1,48 @@
+.fa.fa-borders {
+    border: 2px solid $gray-light;
+    border-radius: $radius-base;
+    padding: 5px;
+}
+
+.fa.fa-round {
+    background-color: #EEEEEE;
+    border-radius: 50%;
+    padding: 6px 10px;
+}
+
+.fa.fa-actions,
+.icon-actions {
+    color: $gray-light;
+    cursor: pointer;
+}
+
+.text-muted,
+.fa.text-muted {
+    color: #bbbcb9;
+}
+
+.text-small {
+    font-size: $font-size-sm;
+}
+
+.text-two-lines {
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+}
+
+.icon-2x {
+    font-size: $font-size-md;
+}
+
+.icon-3x {
+    font-size: $font-size-lg;
+}
+
+.icon-4x {
+    font-size: $scale4;
+}
+
+.icon-5x {
+    font-size: $font-size-xl;
+}

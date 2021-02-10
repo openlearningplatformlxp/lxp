@@ -1,0 +1,71 @@
+.profile-learning-view {
+
+    margin-top: $scale6;
+
+    .card-header-area {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-bottom: $scale3;
+
+        .header-button {}
+
+        .header-title {
+            padding: 0 $scale0;
+            flex: 1;
+
+            p {
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .header-switcher {}
+    }
+
+
+    .profile-learning-title {
+        margin-top: $scale4;
+
+        h4 {
+            margin-bottom: 0;
+        }
+
+        .text-muted {
+            font-size: $font-size-sm;
+            color: $gray-light;
+
+        }
+    }
+
+    .profile-learning-body {
+        .settings {
+            i {
+                margin-top: $scale-1;
+                font-size: $scale4;
+            }
+        }
+
+        .card-container-grid {
+            @extend .col-sm-6;
+        }
+
+        .card {
+        }
+    }
+
+    .section-new {
+        .pull-left {
+            display: flex;
+
+            button {
+                margin-right: 20px;
+                margin-bottom: 20px;
+            }
+
+            h6 {
+                line-height: 3rem;
+            }
+        }
+    }
+}

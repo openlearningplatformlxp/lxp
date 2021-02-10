@@ -1,0 +1,27 @@
+<v-modal class="alerts-service vModal--default" ng-class="ctrl.getModalClass()" ng-style="ctrl.getModalStyle()" onclose="close(ctrl.getOnX(), true)">
+    <v-dialog heading="{{ctrl.getTitle()}}" ng-style="ctrl.getDialogStyle()" fit middle>
+        <v-close ng-if="ctrl.showCloseIcon()" label="Close"></v-close>
+        <div ng-if="ctrl.hasTitle()" class="alert-title" ng-bind-html="ctrl.getTitle()"></div>
+        <div ng-if="!ctrl.hasTitle()" class="alert-title"></div>
+        <div ng-if="ctrl.hasText()" class="alert-text well" ng-bind-html="ctrl.getText()"></div>
+        <div ng-if="ctrl.hasInclude()" class="alert-include well" include-controller="ctrl.getIncludeController()" include-resolve="ctrl.getIncludeResolve()" include-template-url="ctrl.getIncludeTemplateUrl()"></div>
+        <div ng-if="ctrl.hasButtons()" class="alert-buttons-container clearfix">
+            <div ng-if="ctrl.hasButtonsLeft()" class="alert-buttons-left">
+                <div ng-repeat="button in ctrl.getButtonsLeft()">
+                    <button ng-if="!button.file" class="btn" ng-class="button.class" ng-click="close(button.onClick)" type="button" ng-bind-html="button.text"></button>
+                    <angular-file-upload-button ng-if="button.file" accept="{{button.file.accept}}" filters="{{button.file.filters}}" uploader="button.file.uploader">
+                        <button class="btn" ng-class="button.class" ng-click="close(button.onClick)" ng-disabled="button.disabled" type="button" ng-bind-html="button.text"></button>
+                    </angular-file-upload-button>
+                </div>
+            </div>
+            <div ng-if="ctrl.hasButtonsRight()" class="alert-buttons-right">
+                <div ng-repeat="button in ctrl.getButtonsRight()" style="display: inline-block;">
+                    <button ng-if="!button.file" class="btn" ng-class="button.class" ng-click="close(button.onClick)" ng-disabled="button.disabled" type="button" ng-bind-html="button.text"></button>
+                    <angular-file-upload-button ng-if="button.file" accept="{{button.file.accept}}" filters="{{button.file.filters}}" uploader="button.file.uploader">
+                        <button class="btn" ng-class="button.class" ng-click="close(button.onClick)" ng-disabled="button.disabled" type="button" ng-bind-html="button.text"></button>
+                    </angular-file-upload-button>
+                </div>
+            </div>
+        </div>
+    </v-dialog>
+</v-modal>

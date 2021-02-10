@@ -1,0 +1,24 @@
+<div class="lesson-content-activity">
+
+
+
+    <h1>Here’s what we’ll cover</h1>
+
+    <h2>Step by step roadmap for helping you reach your learning goals.</h2>
+
+    <div ng-repeat="section in ctrl.data.sections" ng-if="section.activities && section.activities.length" class="section-box">
+        <div class="section-title"><span ng-bind="section.name"></span></div>
+        <div class="section-description">
+            <span ng-bind-html="section.summary"></span>
+        </div>
+        <div ng-click="section.showActivities = !section.showActivities" class="activity-expander">
+            <i class="fa expander-icon" aria-hidden="true" ng-class="{'fa-angle-down': section.showActivities, 'fa-angle-right': !section.showActivities}"></i>&#xA0;&#xA0;<span ng-bind="section.activities.length"></span> <span ng-bind="(section.activities.length === 1) ? 'activity' : 'activities'"></span>
+        </div>
+        <div ng-if="section.showActivities">
+            <div ng-repeat="activity in section.activities" ng-click="ctrl.goToCoursePlayer(section, activity)" class="nav-activity" ng-class="{ disabled: !ctrl.data.isUserEnrolled || ctrl.isActivityLocked(activity) }">
+                <i class="fa completion-icon" ng-class="ctrl.getActivityCompletionIconClass(activity)" aria-hidden="true"></i><i class="fa" ng-class="ctrl.getActivityTypeIconClass(activity)" aria-hidden="true"></i>&#xA0;&#xA0;<span ng-bind="activity.name"></span>
+            </div>
+        </div>
+    </div>
+
+</div>

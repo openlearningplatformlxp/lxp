@@ -1,0 +1,67 @@
+<div class="team-personal-plans-view">
+
+    <team-subheader on-search="ctrl.search(searchValue)" placeholder-message="'Who are you looking for?'" on-start-date="ctrl.setStartDate(startDate)" on-end-date="ctrl.setEndDate(endDate)"></team-subheader>
+
+    <div class="team-progress-section" ng-if="!ctrl.data.isLoading">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Your Team at a Glance</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 team-card-summary">
+                <div class="team-card disabled" ng-repeat="individual in ctrl.data.stats.individuals track by $index">
+                    <div class="team-card-icon">
+                        <div class="team-card-icon-user-profile">
+                            <img ng-if="individual.avatar" ng-src="{{individual.avatar}}" on-error-src="profile-default-image" />
+                            <p id="profile-default-image" class="default-image"><span ng-bind="individual.firstName.charAt(0) |
+                                    capitalize"></span><span ng-bind="individual.lastName.charAt(0)
+                                    | capitalize"></span></p>
+                        </div>
+                    </div>
+                    <div class="team-card-text" style="z-index: 1">
+                        <div class="title" ng-bind="individual.name"></div>
+                    </div>
+                    <div class="team-card-moreinfo">
+                        <p><b><span ng-bind="individual.plans"></span></b> path(s)</p>
+                        <p ng-if="individual.sharedWithYou > 0"><b><span ng-bind="individual.sharedWithYou"></span></b> shared with you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-progress-section" ng-if="!ctrl.data.isLoading">
+        <div class="row">
+            <div class="col-md-10 pull-left">
+                <h5>Shared Learning Paths</h5>
+            </div>
+            <div class="col-md-2 pull-right">
+                <a ng-href="api/csv/team-personal-plans/export?q={{ctrl.data.searchValue}}&startDate={{ctrl.data.startDate}}&endDate={{ctrl.data.endDate}}" class="download-link" target="_blank">
+                    <button class="primary"><img class="svg" src="assets/images/download.svg" /> Download</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h6>A view of your direct-reports progress through learning paths which you've shared with them.</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <team-course-card progression-overview="teamProgression" open="false" type="LEARNING_PATH" shared="true" on-member-click="ctrl.goToMemberView(member, program)" ng-repeat="teamProgression in ctrl.data.progressionOverview | filter: ctrl.teamProgressionFilter | filter: ctrl.isNotManagerFilter | orderBy: 'program.title' track by $index" ng-if="!ctrl.data.isLoading"></team-course-card>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="team-progress-section" ng-if="ctrl.data.isLoading">
+        <div class="text-center">
+            <h3>Loading, please wait&nbsp;&nbsp;&nbsp;<div class="loader">loading</div>
+            </h3>
+        </div>
+    </div>
+
+
+</div>

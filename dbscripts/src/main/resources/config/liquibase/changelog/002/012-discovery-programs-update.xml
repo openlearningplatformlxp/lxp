@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <changeSet id="1" author="wang">
+    <addColumn tableName="discovery_programs">
+      <column name="type" type="varchar(50)"/>
+      <column name="discovery_program_text" type="VARCHAR(1000)"/>
+    </addColumn>
+    <sql>update discovery_programs set type = 'PROGRAM' where type is null;</sql>
+    <addNotNullConstraint tableName="discovery_programs" columnName="type"/>
+    <dropNotNullConstraint tableName="discovery_programs" columnName="program_id"/>
+  </changeSet>
+</databaseChangeLog>

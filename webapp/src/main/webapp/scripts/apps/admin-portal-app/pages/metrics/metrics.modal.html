@@ -1,0 +1,44 @@
+<div class="metrics-modal-view">
+    <span class="label label-primary" ng-click="threadDumpFilter = {}">All&nbsp;<span class="badge">{{ctrl.data.threadDumpAll}}</span></span>&nbsp;
+    <span class="label label-success" ng-click="threadDumpFilter = {threadState: 'RUNNABLE'}">Runnable&nbsp;<span class="badge">{{ctrl.data.threadDumpRunnable}}</span></span>&nbsp;
+    <span class="label label-info" ng-click="threadDumpFilter = {threadState: 'WAITING'}">Waiting&nbsp;<span class="badge">{{ctrl.data.threadDumpWaiting}}</span></span>&nbsp;
+    <span class="label label-warning" ng-click="threadDumpFilter = {threadState: 'TIMED_WAITING'}">Timed Waiting&nbsp;<span class="badge">{{ctrl.data.threadDumpTimedWaiting}}</span></span>&nbsp;
+    <span class="label label-danger" ng-click="threadDumpFilter = {threadState: 'BLOCKED'}">Blocked&nbsp;<span class="badge">{{ctrl.data.threadDumpBlocked}}</span></span>&nbsp;
+    <div class="voffset2">&nbsp;</div>
+    Filter
+    <input type="text" ng-model="threadDumpFilter.threadState" class="form-control" disabled>
+    <div class="row pad" ng-repeat="(k, v) in ctrl.data.threadDump | filter:threadDumpFilter">
+        <h5><span class="label" ng-class="ctrl.getLabelClass(v.threadState)">{{v.threadState}}</span>&nbsp;{{v.threadName}} (ID {{v.threadId}})
+            <a ng-click="show = !show">
+                <span ng-show="!show" translate="metrics.jvm.threads.dump.show"></span>
+                <span ng-show="show" translate="metrics.jvm.threads.dump.hide"></span>
+            </a>
+        </h5>
+        <div class="well" ng-show="show">
+            <div ng-repeat="(stK, stV) in v.stackTrace">
+                {{stV.className}}.{{stV.methodName}}({{stV.fileName}}:{{stV.lineNumber}})
+                <span class="voffset1"></span>
+            </div>
+        </div>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th class="text-right" translate="metrics.jvm.threads.dump.blockedtime"></th>
+                    <th class="text-right" translate="metrics.jvm.threads.dump.blockedcount"></th>
+                    <th class="text-right" translate="metrics.jvm.threads.dump.waitedtime"></th>
+                    <th class="text-right" translate="metrics.jvm.threads.dump.waitedcount"></th>
+                    <th translate="metrics.jvm.threads.dump.lockname"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{v.blockedTime}}</td>
+                    <td>{{v.blockedCount}}</td>
+                    <td>{{v.waitedTime}}</td>
+                    <td>{{v.waitedCount}}</td>
+                    <td>{{v.lockName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

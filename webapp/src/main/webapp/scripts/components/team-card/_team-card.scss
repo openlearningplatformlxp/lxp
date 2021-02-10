@@ -1,0 +1,269 @@
+$team-card-accent-color: $blue-shade2;
+
+// Large card like view on the Team / PLP screen
+.team-card-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: $scale2;
+    margin-top: $scale3;
+
+    @media (max-width: 1000px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (max-width: 760px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .team-card {
+        @extend .papershadow-sm;
+        flex-direction: column;
+        overflow: visible;
+        margin: 0;
+        margin-bottom: $scale-2;
+
+        .team-card-icon,
+        .team-card-text {
+            margin-right: 0;
+        }
+
+        .team-card-text {
+            .title {
+                font-size: $scale1;
+            }
+        }
+
+        .team-card-icon {
+            margin-top: -$scale3;
+            margin-bottom: $base-value-half;
+        }
+
+        .team-card-moreinfo {
+            margin-top: $base-value-half;
+
+            p {
+                font-size: $scale-1;
+                text-align: center;
+            }
+        }
+    }
+}
+
+
+.team-card {
+    @extend .card-row-base;
+    padding: $base-value-half;
+    margin-bottom: 1px;
+    display: flex;
+    flex-direction: row;
+    border-radius: $radius-base;
+    background: #fff;
+    overflow: hidden;
+    align-content: center;
+
+    &:hover {
+        @extend .card-hover-active-base;
+    }
+
+    .team-card-icon {
+        position: relative;
+        margin-right: $scale2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        .team-card-icon-content-type {
+            @extend .icon-content-type;
+        }
+
+        .team-card-icon-user-profile {
+            @extend .icon-user-profile;
+        }
+
+    }
+
+    .team-card-text {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-self: center;
+        margin-right: $scale0;
+
+        .title {
+            font-size: $scale0;
+            font-weight: 600;
+            color: $blue-shade2;
+
+            .team-card-title-modal-icon {
+                margin-right: $scale-2;
+            }
+        }
+
+        .desc {}
+
+        .label {
+            background-color: $gray-light;
+        }
+
+        .meta {
+            @extend .dim-tag;
+        }
+    }
+
+    .team-card-moreinfo {
+        align-self: center;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .team-card-arrow {
+        margin-left: $scale5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    // view sub-team button on a row for a manager
+    .team-card-manager {
+        outline: none;
+        margin-left: $scale5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: $base-value-quarter $base-value-half;
+        background-color: #eee;
+        color: $blue-shade2;
+        border-radius: $border-radius-base;
+
+        i.fa {
+            padding-left: $scale0;
+        }
+    }
+}
+
+.team-member-content-name {
+    color: $blue-shade2;
+    font-weight: 600;
+}
+
+.team-card-text-meta {
+    @extend .dim-tag;
+    margin-left: $scale5;
+}
+
+.team-card.opened {
+    margin-bottom: 0;
+    border: 1px solid $blue-shade2;
+    border-radius: $radius-base $radius-base 0 0;
+    border-bottom: none;
+}
+
+.team-card.manager {
+    background: $card-course-color;
+}
+
+.team-individual-card-container.manager {
+    // row for a manager
+}
+
+.opened-card-content {
+    background-color: #eeeeee;
+    border: 1px solid $blue-shade2;
+    border-radius: 0 0 $radius-base $radius-base;
+    border-top: none;
+    padding: $scale0;
+}
+
+.team-member-content {
+    @extend .opened-card-content;
+
+    .team-member-box {
+        .table {
+
+            padding: $base-value-half;
+            background-color: #fff;
+            margin: 0;
+
+            >tbody>tr>td {
+                border: none;
+                padding: $base-value-half;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .progression-status-box {
+                margin-bottom: 0;
+            }
+
+            .team-member-link {
+                padding-top: 6px;
+                margin-right: 5px;
+            }
+
+            .team-member-name {
+                padding-top: 6px;
+            }
+
+            .team-member-percent {
+                padding-top: 6px;
+            }
+        }
+    }
+
+    .team-member-row.disabled {
+        cursor: default;
+    }
+}
+
+.team-individual-card-content {
+    @extend .opened-card-content;
+
+    .team-individual-card {}
+
+    .team-individual-card-empty {
+        height: 100px;
+        text-align: center;
+
+        .team-individual-card-empty-text {
+            padding-top: 35px;
+        }
+    }
+}
+
+.team-card.disabled {
+    cursor: default;
+}
+
+.team-card-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: center;
+    white-space: nowrap;
+
+    .fa.fa-check-circle {
+        font-size: $font-size-lg;
+    }
+
+    .percent-text {
+
+        // this is the 50% text
+        em {
+            @extend .text-small;
+            font-weight: 700;
+            font-style: normal;
+        }
+    }
+
+    .percent-bar {
+        width: 150px;
+    }
+
+    .progression-status-box {
+        margin-left: $scale0;
+    }
+}

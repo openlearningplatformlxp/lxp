@@ -1,0 +1,78 @@
+.main-app .main-view {
+
+    .percent-bar {
+        margin-top: $scale6;
+        margin-bottom: $scale1;
+    }
+
+    .page-content-section {
+        padding-top: $scale4;
+    }
+
+    .card-section-header {
+        line-height: 60px;
+    }
+
+    .card-section-options {
+        display: flex;
+        align-items: center;
+        padding-bottom: $scale1;
+
+        button {
+            top: 5px;
+            margin-right: $scale0;
+        }
+    }
+
+    .learning-path-section {
+        margin-top: $scale3;
+    }
+
+    .course-section {
+        margin-top: $scale5;
+    }
+
+    .class-section {
+        margin-top: $scale5;
+        margin-bottom: $scale3;
+    }
+
+    .no-enrolled-container {
+        background-color: $grey1;
+        padding: 30px;
+        border-radius: 5px;
+    }
+
+    .button-container {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width: $screen-sm-max) {
+    .main-app .main-view {
+        .list-unstyled {
+            display: flex;
+            justify-content: space-between;
+
+            li {
+                margin-right: 0;
+            }
+        }
+
+        .next-steps-list {
+            margin-top: $scale3;
+            margin-left: 0;
+            display: block;
+
+            li {
+                margin-left: 0;
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}

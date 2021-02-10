@@ -1,0 +1,162 @@
+.profile-view {
+
+
+    .profile-header-nav {
+        padding-top: $scale6;
+        @extend .subpage-tabs;
+    }
+
+    .profile-left-column {
+        position: relative;
+        display: inline-block;
+        padding: $scale3 $scale0;
+        background-color: white;
+    }
+
+    .profile-right-column {}
+
+    .profile-left-bar {
+        position: relative;
+        padding: 1px;
+
+        h4 {
+            margin-bottom: 0;
+        }
+
+        .location {
+            color: $gray-light;
+        }
+
+        .profile-image {
+            height: 200px;
+            width: 200px;
+            background: lightgrey;
+            position: absolute;
+            border-radius: 50%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            -webkit-transform: translate(-50%, 0);
+            -moz-transform: translate(-50%, 0);
+            -ms-transform: translate(-50%, 0);
+            -o-transform: translate(-50%, 0);
+
+            img {
+                border-radius: 50%;
+                height: 200px;
+                width: 200px;
+            }
+        }
+
+        .profile-pencil {
+            @extend .papershadow-sm;
+            @extend .rh-flex;
+            position: absolute;
+            right: 5px;
+            bottom: 0;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 0 8px;
+            color: $grey7;
+            background-color: white;
+            cursor: pointer;
+            height: 35px;
+        }
+
+        // Hides input for angular upload so tabbing does not receive focus
+        #angular-upload input {
+            display: none;
+        }
+
+        .profile-user-info {
+            margin-top: $scale9;
+            padding-top: $scale0;
+            text-align: center;
+            padding-bottom: $scale4;
+            margin-bottom: $scale4;
+        }
+
+        .profile-user-data {
+            display: flex;
+            flex-direction: column;
+
+            .profile-user-data-area {}
+
+            @media (max-width: 1000px) {
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                .profile-user-data-area {
+                    margin-right: $scale0;
+                    min-width: 25%;
+
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .info-label {
+            margin-top: $scale5;
+            font-size: $font-size-sm;
+            margin-bottom: 5px;
+        }
+
+        h6.info-label {
+            margin-bottom: 0;
+            font-weight: $font-weight-bold;
+        }
+
+        .info {
+            @extend .tag-bold;
+            display: inline-block;
+        }
+
+        .text-muted {
+            font-size: $font-size-sm;
+            color: $gray-light;
+
+        }
+
+        .profile-manager {
+            margin-top: $scale0;
+            display: grid;
+            grid-template-areas: "image text";
+            grid-template-columns: 50px 1fr;
+            align-items: center;
+            justify-content: flex-start;
+
+            .profile-manager-image-container {
+                grid-area: image;
+
+                .profile-manager-image {
+                    height: 40px;
+                    width: 40px;
+                    margin: 0 auto;
+                    border-radius: 50%;
+                    background-color: lightgrey;
+
+                    img {
+                        border-radius: 50%;
+                        height: 40px;
+                        width: 40px;
+                    }
+                }
+            }
+
+            .profile-manager-text {
+                grid-area: text;
+                padding-left: $scale0;
+                .manager-name {
+                    font-weight: 700;
+                    justify-self: flex-start;
+                }
+
+                .manager-location {
+                    font-size: $font-size-sm;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,51 @@
+<!--
+    Send Notification by Admin.
+-->
+<cms-block ctrl="ctrl" key="state-add-announcement" ng-cloak>
+    <div class="admin-announcements-send-view">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h2 class="page-title" translate="announcements.send.button"></h2>
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+            </div>
+        </div>
+        <form name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-6">
+                    <div>
+                        <div class="form-group">
+                            <label for="message" translate="announcements.form.message"></label><span class="required-star">*</span>
+                            <textarea type="text" class="form-control" id="message" name="message" placeholder="{{'announcements.form.placeholder.message' | translate}}" ng-model="ctrl.data.announcement.message" ng-required="true"></textarea>
+                            <div ng-show="form.message.$dirty && form.message.$invalid">
+                                <p class="help-block" ng-show="form.message.$error.required" translate="announcements.form.validate.message.required"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="linkText" translate="announcements.form.linkText"></label>
+                            <input type="text" class="form-control" id="linkText" name="linkText" placeholder="{{'announcements.form.placeholder.linkText' | translate}}" ng-model="ctrl.data.announcement.linkText" ng-maxlength="250">
+                            <div ng-show="form.title.$dirty && form.title.$invalid">
+                                <p class="help-block" ng-show="form.title.$error.maxlength" translate="announcements.form.validate.title.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="linkUrl" translate="announcements.form.linkUrl"></label>
+                            <input type="text" class="form-control" id="linkUrl" name="linkUrl" placeholder="{{'announcements.form.placeholder.linkUrl' | translate}}" ng-model="ctrl.data.announcement.linkUrl" ng-maxlength="250">
+                            <div ng-show="form.title.$dirty && form.title.$invalid">
+                                <p class="help-block" ng-show="form.title.$error.maxlength" translate="announcements.form.validate.title.maxlength"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions-container well">
+                        <div class="actions-container-title">
+                            <h6>Actions</h6>
+                        </div>
+                        <div class="actions-container-body">
+                            <a type="button" class="btn btn-default" ng-click="ctrl.cancel(form)" translate="global.buttons.cancel"></a>
+                            <a class="btn btn-primary" ng-click="ctrl.send(form)" ng-disabled="ctrl.isFormDisabled(form)" translate="announcements.send.button"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</cms-block>

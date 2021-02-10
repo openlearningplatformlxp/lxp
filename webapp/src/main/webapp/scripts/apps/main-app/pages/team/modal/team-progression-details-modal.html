@@ -1,0 +1,82 @@
+<div class="team-manager-modal">
+    <div class="modal-body pad">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="modal-title"><span ng-bind="ctrl.data.member.firstName |
+                    capitalize"></span> <span ng-bind="ctrl.data.member.lastName | capitalize"></span> :
+                    <span ng-bind="ctrl.data.program.title"></span></h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="line-separator"></div>
+            </div>
+        </div>
+
+        <div ng-if="ctrl.data.displayType === 'COURSE'" ng-if="!ctrl.data.isLoading">
+
+            <div class="course-progression-box">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="program-text">
+                            <div class="title"><span ng-bind="ctrl.data.program.title"></span></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="percent-complete-text pull-right">
+                            <span ng-bind="ctrl.data.progressionOverview.percentComplete"></span>%
+                            Complete
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div ng-if="ctrl.data.displayType === 'PROGRAM' || ctrl.data.displayType === 'PROGRAM_LINK'" ng-if="!ctrl.data.isLoading">
+
+            <div class="courseset-group" ng-repeat="courseSetProgressionOverview in ctrl.data.progressionOverview">
+                <h1 class="courseset-title"><span ng-bind="courseSetProgressionOverview.courseSetName"></span></h1>
+                <div class="courseset-courselist">
+                    <div class="courseset-course" ng-repeat="courseProgressionOverview in courseSetProgressionOverview.progressionOverviews">
+
+                        <div class="team-card-container">
+                            <div class="team-card team-card-debug">
+                                <div class="team-card-icon">
+                                    <div class="team-card-icon-content-type">
+                                        <card-item item="courseProgressionOverview"></card-item>
+                                    </div>
+                                </div>
+                                <div class="team-card-text">
+                                    <div class="title"><span ng-bind="courseProgressionOverview.courseName"></span></div>
+                                </div>
+                                <div class="team-card-progress">
+                                    <div class="percent-text">
+                                        <em><span ng-bind="courseProgressionOverview.percentComplete"></span>%</em>
+                                        <span class="progression-status-box progression-status-box-notstarted" ng-if="courseProgressionOverview.percentComplete === 0">
+                                            <i class="fa fa-times-circle"></i> Enrolled</span>
+                                        <span class="progression-status-box progression-status-box-inprogress" ng-if="courseProgressionOverview.percentComplete !== 0 && courseProgressionOverview.percentComplete !== 100">
+                                            <i class="fa fa-circle-o-notch"></i> In progress</span>
+                                        <span class="progression-status-box progression-status-box-completed" ng-if="courseProgressionOverview.percentComplete === 100">
+                                            <i class="fa fa-check"></i> Completed</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center" ng-if="ctrl.data.isLoading">
+            <h3>Loading, please wait&nbsp;&nbsp;&nbsp;<div class="loader">
+                    loading
+                </div>
+            </h3>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="primary pull-right" type="button" ng-click="ctrl.close()" translate="global.buttons.Close"></button>
+    </div>
+</div>

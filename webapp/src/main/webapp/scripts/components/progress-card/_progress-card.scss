@@ -1,0 +1,73 @@
+/**
+ * Progress Card Directive styles.
+ */
+
+.progress-card-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: $card-radius;
+    margin-bottom: $scale3;
+    background: $card-course-color;
+}
+
+.progress-card {
+    position: relative;
+    padding: $scale1 0;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid $grey1;
+
+    .progress-card-image {
+        padding-right: $scale4;
+
+        img {
+            border-radius: $radius-base;
+        }
+    }
+
+    .progress-card-icon {
+        margin-right: $scale2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .progress-card-text {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: center;
+
+        .label {
+            background-color: $gray-light;
+        }
+    }
+}
+
+.progress-card-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .fa.fa-check-circle {
+        font-size: $font-size-lg;
+    }
+
+    .percent-bar {
+        position: relative;
+        background-color: lightgray;
+        height: 3px;
+        margin: 5px 0 5px 0;
+        border-radius: 50%;
+        width: 300px;
+
+        .percent-bar-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: black;
+            width: 50%;
+            height: 3px;
+        }
+    }
+}

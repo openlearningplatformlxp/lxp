@@ -1,0 +1,8 @@
+<div class="announcement announcement-danger" ng-if="announcement">
+    <div class="announcement-icon"><i class="fa fa-info"></i></div>
+    <div class="announcement-message">
+        <span ng-bind="announcement.message"></span>
+        <a ng-href="{{announcement.linkUrl}}" ng-if="announcement.linkUrl"><span ng-bind="announcement.linkText"></span> &gt;&gt;&gt;</a>
+    </div>
+    <div class="announcement-close" ng-click="dismiss(announcement.id)"><img class="svg" src="assets/images/x.svg"></div>
+</div>

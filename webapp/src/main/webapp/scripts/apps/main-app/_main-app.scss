@@ -1,0 +1,19 @@
+.main-app {
+    .header {
+        .site-header-secondary {
+            .site-header-nav {
+
+                a,
+                a:hover,
+                a:focus,
+                a:visited {
+                    color: white;
+
+                    .svg {
+                        fill: white;
+                    }
+                }
+            }
+        }
+    }
+}

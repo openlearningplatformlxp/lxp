@@ -1,0 +1,59 @@
+.common-app .login-view {
+    margin-top: $scale8;
+
+    ul.dev-logins {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            color: #105cb6;
+            display: inline;
+            font-size: smaller;
+            padding: 0px 5px;
+            text-decoration: underline;
+        }
+    }
+
+    .accordion {
+        background-color: #D8D8D8;
+        color:#333333;
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .active{
+        background-color: #ccc;
+    }
+    .accordion:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .active:after {
+        content: "\2796"; /* Unicode character for "minus" sign (-) */
+    }
+
+    .panel {
+        padding: 0 18px;
+        margin-top:10px;
+        margin-bottom: 10px;
+        background-color: #f3f3f3;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+    .panel .login-link {
+        margin: 10px;
+    }
+    .autologin-links .login-link {
+        margin: 0 0 5px 5px;
+    }
+}

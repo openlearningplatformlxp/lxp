@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <changeSet id="1" author="scarlson">
+    <createTable tableName="spring_session">
+      <column name="session_id" type="CHAR(36)">
+        <constraints primaryKey="true" primaryKeyName="pk_spring_session" nullable="false"/>
+      </column>
+      <column name="creation_time" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_access_time" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="max_inactive_interval" type="INT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="principal_name" type="VARCHAR(100)"/>
+    </createTable>
+    <createIndex tableName="spring_session" indexName="idx_spring_session_last_access_time" unique="false">
+      <column name="last_access_time" type="BIGINT"/>
+    </createIndex>
+  </changeSet>
+  <changeSet id="2" author="scarlson">
+    <createTable tableName="spring_session_attributes">
+      <column name="session_id" type="CHAR(36)">
+        <constraints foreignKeyName="fk_spring_session_attributes_session" nullable="false" deleteCascade="true" referencedTableName="spring_session" referencedColumnNames="session_id"/>
+      </column>
+      <column name="attribute_name" type="VARCHAR(200)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="attribute_bytes" type="BLOB"/>
+    </createTable>
+    <addPrimaryKey tableName="spring_session_attributes" columnNames="session_id, attribute_name" constraintName="pk_spring_session_attributes"/>
+    <createIndex tableName="spring_session_attributes" indexName="idx_spring_session_attributes_session" unique="false">
+      <column name="session_id" type="CHAR(36)"/>
+    </createIndex>
+  </changeSet>
+</databaseChangeLog>

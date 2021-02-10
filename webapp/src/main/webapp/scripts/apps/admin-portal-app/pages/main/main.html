@@ -1,0 +1,26 @@
+<div class="main-view" ng-cloak>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="hipster img-responsive img-rounded"></span>
+        </div>
+        <div class="col-md-8">
+            <h1 translate="main.title"></h1>
+            <p class="lead" translate="main.subtitle"></p>
+            <div ng-switch="ctrl.isAuthenticated">
+                <div class="alert alert-success" ng-switch-when="true" translate="main.logged.message" translate-values="{username: '{{ctrl.account.login}}'}"></div>
+                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated"></div>
+                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register"></div>
+            </div>
+            <p translate="main.question"></p>
+            <ul>
+                <li><a href="http://jhipster.github.io/" target="_blank" translate="main.link.homepage"></a></li>
+                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" translate="main.link.stackoverflow"></a></li>
+                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" translate="main.link.bugtracker"></a></li>
+                <li><a href="https://twitter.com/java_hipster" target="_blank" translate="main.link.contact"></a></li>
+            </ul>
+            <p>
+                <span translate="main.like"></span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github"></a>!
+            </p>
+        </div>
+    </div>
+</div>

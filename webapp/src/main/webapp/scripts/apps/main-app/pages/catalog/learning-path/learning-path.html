@@ -1,0 +1,726 @@
+<div class="learning-path-view" ng-class="{'personal-path-view': ctrl.data.personal}">
+
+    <div class="learning-path-hero-controls" ng-if="(ctrl.data.create || ctrl.data.personal || ctrl.data.returnPath) && !ctrl.data.program.archived">
+        <div class="return-to-parent" ng-if="ctrl.data.returnPath">
+            <button ng-click="ctrl.goBack()" class="button-rounded negative">
+                <i class="fa fa-arrow-left"></i> Return to
+                parent path
+            </button>
+        </div>
+        <div class="plp-controls container-fluid">
+            <div class="" ng-if="!ctrl.data.program.archived && ctrl.data.edit && ctrl.data.accountId != ctrl.data.ownerId">
+                <div class="editor-buttons">
+                    <button class="negative" ng-click="ctrl.clonePersonalPlan()">
+                        <i class="fa fa-copy"></i>
+                        Clone
+                    </button>
+                </div>
+            </div>
+            <div class="" ng-if="!ctrl.data.program.archived && ctrl.data.edit && ctrl.data.accountId == ctrl.data.ownerId">
+                <div class="editor-buttons">
+                    <button ng-click="ctrl.data.edit = false; ctrl.data.create = true" class="negative">
+                        <i class="fa fa-pencil"></i>
+                        Edit
+                    </button>
+                    <button ng-click="ctrl.openArchivePopup()" class="negative">
+                        <i class="fa fa-archive"></i>
+                        Archive
+                    </button>
+                    <button ng-if="!ctrl.data.shared || ctrl.data.account.manager" data-toggle="modal" data-target="#shareModal" ng-click="ctrl.openSharePopup" class="negative">
+                        <i class="fa fa-share-square-o"></i>
+                        Share
+                    </button>
+                </div>
+            </div>
+            <div class="" ng-if="!ctrl.data.program.archived && ctrl.data.create && ctrl.data.accountId == ctrl.data.ownerId">
+                <div class="editor-buttons">
+                    <button ng-click="ctrl.cancelCreate()" class="negative">
+                        <i class="fa fa-times"></i>Cancel
+                    </button>
+                    <button class="negative" ng-click="ctrl.savePersonalPlan()">
+                        <i class="fa fa-save"></i>Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header-section">
+        <div class="container-fluid">
+            <div class="hero-container">
+                <div class="site-hero-content">
+
+                    <div class="row">
+                        <div class="col-sm-8 overview-box">
+                            <button class="path-edit-icon" ng-if="ctrl.data.create" data-toggle="modal" data-target="#propertiesModal" ng-click="ctrl.cloneLP()">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <overview-card ng-if="ctrl.data.learningPath" item="ctrl.data.learningPath" account="ctrl.data.accountId" show-resume="ctrl.data.showResume" on-resume-click="ctrl.resumePath()" on-drop-click="ctrl.dropPath()" show-enroll="ctrl.data.showEnroll" on-enroll-click="ctrl.enrollInProgram()"></overview-card>
+                        </div>
+
+                        <div class="col-sm-4" ng-if="ctrl.data.nextAppointments">
+                            <div class="path-next-steps-container">
+                                <ul class="path-next-steps-list">
+                                    <li class="step-text-title">
+                                        <h6>Up Next</h6>
+                                    </li>
+                                    <li class="step-next-action" ng-repeat="item in ctrl.data.nextAppointments" ng-click="ctrl.resumeAppointment(item)">
+                                        <div class="step-text">
+                                            <img class="svg" src="assets/images/book.svg" ng-if="item.itemType.name == 'COURSE'" />
+                                            <img class="svg" src="assets/images/book.svg" ng-if="item.itemType.name == 'READING'" />
+                                            <img class="svg" src="assets/images/video.svg" ng-if="item.itemType.name == 'VIDEO'" />
+                                            <img class="svg" src="assets/images/box.svg" ng-if="item.itemType.name == 'SCORM'" />
+                                            <img class="svg" src="assets/images/list.svg" ng-if="item.itemType.name == 'QUIZ'" />
+                                            <img class="svg" src="assets/images/box.svg" ng-if="item.itemType.name == 'FORUM'" />
+                                            <div class="step-content">
+                                                <span class="next-title" ng-bind="item.title"></span>
+                                                <span ng-if="item.duration" class="next-information">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    <span ng-if="item.duration.hours > 0"><span ng-bind="item.duration.hours |number:0"></span> <span ng-bind="(item.duration.hours === 1) ? 'hr' : 'hrs'"></span></span>
+                                                    <span ng-if="item.duration.minutes > 0"><span ng-bind="item.duration.minutes |number:0"></span> <span ng-bind="(item.duration.minutes === 1) ? 'min' : 'mins'"></span></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-header-extra-info">
+                <div ng-if="ctrl.data.totalDuration" class="page-header-extra-info__duration">
+                    <h6><i class="fa fa-clock-o"></i> Duration
+                        <span ng-if="ctrl.data.totalDuration.hours > 0"><span ng-bind="ctrl.data.totalDuration.hours |number:0"></span> <span ng-bind="(ctrl.data.totalDuration.hours === 1) ? 'hr' : 'hrs'"></span></span>
+                        <span ng-if="ctrl.data.totalDuration.minutes > 0"><span ng-bind="ctrl.data.totalDuration.minutes |number:0"></span> <span ng-bind="(ctrl.data.totalDuration.minutes === 1) ? 'min' : 'mins'"></span></span>
+                    </h6>
+                </div>
+
+                <div class="page-header-extra-info__activities">
+                    <h6><i class="fa fa-clone"></i> <span ng-bind="ctrl.data.totalNumOfCourses"></span> Activities</h6>
+                </div>
+
+                <div class="page-header-extra-info__activities" ng-if="ctrl.data.learningPath.dueDate">
+                    <h6><i class="fa fa-calendar-check-o"></i>
+                        Due Date
+                        <span ng-bind="ctrl.data.learningPath.dueDate | date: 'MM/dd/yyyy'"></span>
+                    </h6>
+                </div>
+                <div class="page-header-extra-info__activities path-overdue" ng-if="ctrl.isDueDate(ctrl.data.learningPath)">
+                    <h6><i class="fa fa-exclamation-triangle"></i>
+                        Overdue
+                    </h6>
+                </div>
+
+                <div class="page-header-extra-info__type" ng-if="ctrl.data.learningPath.sectionType">
+                    <button ng-click="ctrl.goToTopic(ctrl.data.learningPath.sectionType)" class="button-rounded overflow negative">
+                        <span ng-bind="ctrl.data.learningPath.sectionType"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row path-content-body">
+            <div class="col-xs-12 col-md-12">
+                <div class="stats-number-container" ng-if="ctrl.data.courseSets != null">
+                    <div class="stats-number-small legend-notstarted">
+                        <span><img class="svg" src="assets/images/circle.svg"> <em><span ng-bind="ctrl.getTotalCoursesNotStarted(ctrl.data.courseSets)"></span></em> Not started</span>
+                    </div>
+                    <div class="stats-number-small legend-inprogress">
+                        <span><img class="svg" src="assets/images/disc.svg"> <em><span ng-bind="ctrl.getTotalCoursesInProgress(ctrl.data.courseSets)"></span></em> In progress</span>
+                    </div>
+                    <div class="stats-number-small legend-complete">
+                        <span><img class="svg" src="assets/images/check.svg"> <em><span ng-bind="ctrl.getTotalCoursesComplete(ctrl.data.courseSets)"></span></em> Completed</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12" ng-if="ctrl.data.learningPath.description.length">
+                <div class="path-content-description" ng-bind-html="ctrl.data.learningPath.description">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+
+                <div ng-if="ctrl.data.courseSets" ng-repeat="courseSet in ctrl.data.courseSets track by $index" ng-init="courseSetIndex=$index" class="program-course-set" ng-class="{'edit-section':ctrl.data.create}">
+
+                    <div class="course-set-information">
+                        <div class="activity-edit-controls" ng-if="ctrl.data.create">
+                            <div class="path-edit-icon" ng-class="{'disabled': $index == 0}" ng-if="ctrl.data.create" ng-click="ctrl.moveSection(courseSet, courseSetIndex, $index - 1)">
+                                <i class="fa fa-chevron-up"></i>
+                            </div>
+                            <button class="path-edit-icon" ng-click="ctrl.editSection(courseSet, $index)" data-toggle="modal" data-target="#propertiesModal">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <div class="path-edit-icon" ng-class="{'disabled': $index == ctrl.data.courseSets.length - 1}" ng-click="ctrl.moveSection(courseSet, courseSetIndex, $index + 1)">
+                                <i class="fa fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="course-set-title">
+                            <a id="courseset{{courseSetIndex}}"></a>
+                            <h3><span ng-bind="courseSet.name"></span></h3>
+                            <div class="course-set-datedue" ng-if="courseSet.dueDate">
+                                <span><i class="fa fa-calendar-check-o"></i> Due date <span ng-bind="courseSet.dueDate"></span></span>
+                            </div>
+                            <div class="course-set--overdue" ng-if="ctrl.isDueDate(courseSet)"><span><i class="fa fa-exclamation-triangle"></i> Overdue</span></div>
+                        </div>
+                        <div class="course-set-duration" ng-if="courseSet.duration">
+                            <span><i class="fa fa-clock-o"></i> <span ng-bind="courseSet.duration / 60 / 60"></span> hours</span>
+                        </div>
+                    </div>
+
+
+                    <div class="learning-path-set" ng-class="{'personal-path-set': ctrl.data.personal}">
+
+                        <div class="course-set-summary" ng-bind-html="courseSet.summary" ng-if="courseSet.summary"></div>
+
+                        <div class="course-list">
+                            <div ng-repeat="course in courseSet.courses" class="course-box">
+
+                                <div class="course-list-container" ng-class="{ locked: ctrl.isCourseLocked(course), disabled: !ctrl.isIsLinkableActivity(course) }">
+                                    <div class="activity-edit-controls" ng-if="ctrl.data.create">
+                                        <div class="path-edit-icon" ng-class="{'disabled': $index == 0}" ng-if="ctrl.data.create" ng-click="ctrl.moveActivity(course, courseSetIndex, $index, $index - 1)">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </div>
+
+                                        <div class="path-edit-icon" ng-if="ctrl.data.create && course.type != 'COURSE'" data-toggle="modal" data-target="#activityModal" ng-click="ctrl.editActivity(course, courseSetIndex, $index)">
+                                            <i class="fa fa-pencil"></i>
+                                        </div>
+                                        <div class="path-edit-icon" ng-if="ctrl.data.create" ng-class="{'delete-course': course.type == 'COURSE'}">
+                                            <i class="fa fa-trash-o" ng-click="ctrl.removeActivity(course, courseSetIndex, $index)"></i>
+                                        </div>
+                                        <div class="path-edit-icon" ng-class="{'disabled': $index == courseSet.courses.length - 1}" ng-if="ctrl.data.create" ng-click="ctrl.moveActivity(course, courseSetIndex, $index, $index + 1)">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="activity-status">
+                                        <div class="{{ctrl.getCourseCompletionIconDisplayClass(course)}}" ng-if="!ctrl.data.create">
+                                            <img class="svg" src="assets/images/circle.svg" ng-if="ctrl.getCourseCompletionIconClass(course) == 'circle'" />
+                                            <img class="svg" src="assets/images/lock.svg" ng-if="ctrl.getCourseCompletionIconClass(course) == 'lock'" />
+                                            <img class="svg" src="assets/images/check.svg" ng-if="ctrl.getCourseCompletionIconClass(course) == 'check'" />
+                                            <img class="svg" src="assets/images/disc.svg" ng-if="ctrl.getCourseCompletionIconClass(course) == 'disc'" />
+                                        </div>
+                                    </div>
+
+                                    <div class="activity-content" ng-click="ctrl.isIsLinkableActivity(course)  ? ctrl.resumeCourse(course) : false">
+                                        <div class="course-list-icon">
+                                            <card-item item="course"></card-item>
+                                        </div>
+
+                                        <div class="course-list-text" ng-if="course.type != 'TEXT_ENTRY'">
+                                            <div>
+                                                <span class="course-name"><span ng-bind="course.fullName"></span></span>
+                                                <span ng-if="course.dueDate" class="activity-datedue"><i class="fa fa-calendar-check-o"></i>Due date <span ng-bind="course.dueDate"></span></span>
+
+                                                <span class="activity-overdue" ng-if="ctrl.isDueDate(course)"><i class="fa fa-exclamation-triangle"></i> Overdue</span>
+                                                <span class="activity-type" ng-bind="course.contentCaption"></span>
+                                            </div>
+                                            <div class="course-description">
+                                                <span ng-bind-html="course.description | characters: 200"></span>
+                                            </div>
+                                        </div>
+                                        <div class="course-list-text text-entry" ng-if=" course.type == 'TEXT_ENTRY'">
+                                            <div>
+                                                <span class="course-name" ng-bind="course.fullName"></span>
+                                            </div>
+                                            <div class="modal-body" ng-if="!ctrl.data.textEntry.success && course.activityValue && course.activityValue != ''">
+                                                <div class="textentry-message">
+                                                    <p ng-bind-html="course.activityMessage"></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="textentry-response-previous" ng-bind="course.activityValue"></label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body" ng-if="!ctrl.data.textEntry.success && (!course.activityValue || course.activityValue == '')">
+                                                <div class="textentry-message">
+                                                    <p ng-bind-html="course.activityMessage"></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Please enter your response. Once your response has been saved,
+                                                        you cannot change it.</label>
+                                                    <span class="pii-message">Please do not enter any personally identifiable information about yourself or other Red Hat associates.</span>
+                                                    <textarea type="text" class="textentry-textentryta form-control" cols="50" rows="5" ng-model="ctrl.data.textEntry.message" required></textarea>
+                                                </div>
+                                                <div class="error-message" ng-if="ctrl.data.textEntry.sent && !ctrl.data.textEntry.message">A
+                                                    response is required
+                                                </div>
+                                                <div class="textentry-button">
+                                                    <button class="primary" ng-click="ctrl.saveTextEntry(course)">Save
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-body" ng-if="ctrl.data.textEntry.success">
+                                                <div class="textentry-message-saved">
+                                                    Your response has been saved.
+                                                </div>
+                                            </div>
+                                            <div class="modal-body" ng-if="ctrl.isManualCompletable()">
+                                                <div class="textentry-button">
+                                                    <button class="primary" ng-click="ctrl.markAsComplete(course)">Mark as complete
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="activity-mark-complete" ng-if="ctrl.isManualCompletable(course)">
+                                        <button class="mark-complete-button" ng-class="{'completed': ctrl.isCourseCompleted(course)}" ng-click="ctrl.toggleManualCompletion(courseSet, courseSetIndex, $index, course)">
+                                            <span class="icon-notcomplete"><i class="fa fa-check-square-o"></i></span>
+                                            <span class="icon-complete"><i class="fa fa-times-rectangle-o"></i></span>
+                                            Mark Complete
+                                        </button>
+                                    </div>
+                                    <div class="activity-mark-complete" ng-if="!ctrl.isManualCompletable(course) && ctrl.data.personal  && !ctrl.data.create">
+                                        <span class="activity-complete-on-lms-message">Completion for this activity will be recorded on the LMS</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="" ng-if="ctrl.data.create">
+                            <div class="margin-top">
+                                <button data-toggle="modal" data-target="#activityModal" ng-click="ctrl.changeAndClearActivityStep('GENERAL', $index)" class="center-block cta-positive">
+                                    <i class="fa fa-plus"></i>
+                                    Add Activity
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="$index < ctrl.data.courseSets.length - 1 && !ctrl.data.personal">
+                        <div class="learning-path-separator-and" ng-if="courseSet.nextSetOperator === 'NEXTSETOPERATOR_AND'">
+                            <div class="learning-path-separator-box">
+                                <div class="learning-path-separator-line"></div>
+                                <div class="learning-path-separator-text-box">
+                                    <div class="learning-path-separator-text">AND</div>
+                                </div>
+                                <div class="learning-path-separator-line"></div>
+                            </div>
+                        </div>
+                        <div class="learning-path-separator-or" ng-if="courseSet.nextSetOperator === 'NEXTSETOPERATOR_OR'">
+                            <div>
+                                <div class="learning-path-separator-line"></div>
+                                <div class="learning-path-separator-text">OR</div>
+                                <div class="learning-path-separator-line"></div>
+                            </div>
+                        </div>
+                        <div class="learning-path-separator-then" ng-if="courseSet.nextSetOperator === 'NEXTSETOPERATOR_THEN'">
+                            <div>
+                                <div class="learning-path-separator-line"></div>
+                                <div class="learning-path-separator-text">THEN</div>
+                                <div class="learning-path-separator-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-course-set" ng-if="ctrl.data.create">
+                    <div class="col-sm-12 ">
+                        <div class="margin-top">
+                            <button class="center-block cta-positive" data-toggle="modal" data-target="#propertiesModal" ng-click="ctrl.buildSection()">
+                                <i class="fa fa-plus"></i>
+                                Add Section
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="learning-path-html-container" ng-if="ctrl.data.htmlBlock">
+
+                    <h4><span ng-bind="ctrl.data.htmlBlock.title"></span></h4>
+
+                    <div class="learning-path-html-block">
+                        <div ng-bind-html="ctrl.data.htmlBlock.htmlContent"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="properties-modal modal fade" id="propertiesModal" tabindex="-1" role="dialog" aria-labelledby="propertiesModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="header-title">
+                </div>
+                <div class="header-close">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <img class="svg svg-black" src="assets/images/x.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-body-title">
+                    <h4><span ng-bind="ctrl.data.popupLearningPath.popupHeader"></span></h4>
+                </div>
+
+                <div class="form-group">
+                    <label>Title <span class="required-star">*</span></label>
+                    <div class="">
+                        <input type="text" class="form-control" ng-model="ctrl.data.popupLearningPath.title" required max="200" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description <span class="text-muted">(Optional)</span></label>
+                    <textarea type="text" class="feedback-feedbackta form-control" cols="50" rows="5" ng-model="ctrl.data.popupLearningPath.description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Due Date <span class="text-muted">(Optional)</span></label>
+                    <input type="text" class="form-control" ng-model="ctrl.data.popupLearningPath.dueDate" datepicker date-input placeholder="mm/dd/yyyy" ng-change="ctrl.updatedDueDate(ctrl.data.popupLearningPath.dueDate)">
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-body-button-bar">
+                        <div class="pull-right">
+                            <button class="cta-negative" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+                            <button class="cta-positive" data-dismiss="modal" ng-click="ctrl.updateFromPopup()"><i class="fa fa-save"></i>Save</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- modal-content -->
+</div><!-- modal-dialog -->
+</div><!-- modal -->
+
+<div class="properties-modal modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="propertiesModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="header-title">
+                </div>
+                <div class="header-close">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <img class="svg svg-black" src="assets/images/x.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body" ng-if="ctrl.data.activityStep == 'GENERAL'">
+                <div class="modal-body-title">
+                    <h4>Add an activity</h4>
+                </div>
+
+                <div class="form-group">
+                    <h5 class="center-block">Select the type of activity you wish to add to your plan.</h5>
+                </div>
+
+                <div class="form-group activity-buttons">
+                    <div class="activity-button" ng-click="ctrl.changeActivityStep('COURSE', ctrl.data.courseSetIndex)">
+                        <div class="activity-button-text">Add a course from the <b>catalog</b></div>
+                    </div>
+                    <div class="activity-button" ng-click="ctrl.changeActivityStep('WEB_TASK', ctrl.data.courseSetIndex)">
+                        <div class="activity-button-text">Create an activity from a <b>web link</b></div>
+                    </div>
+                    <div class="activity-button" ng-click="ctrl.changeActivityStep('OFFLINE_TASK', ctrl.data.courseSetIndex)">
+                        <div class="activity-button-text">Create activity from an <b>offline task</b></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p>The catalog contains all of the content available in Red Hat University from the LMS, LinkedIn
+                        Learning,
+                        Allego and Kaltura. At this time, it does not contain ROLE materials such as ...</p>
+
+                    <p>TBD but more explanations about each of the types of activities.</p>
+                </div>
+            </div>
+            <div class="modal-body" ng-if="ctrl.data.activityStep == 'COURSE'">
+                <div class="modal-body-title">
+                    <h4>Activity from the Course Catalog Properties</h4>
+                </div>
+
+                <div class="form-group">
+                    <p>Search for a course or learning path from the LMS, LinkedIn Learning, Allego or Kalutra and add
+                        it
+                        to your plan. This activity with automatically show as completed when you finish it.</p>
+                </div>
+
+                <form>
+                    <div class="add-activity-box">
+                        <div class="add-activity-box-search">
+
+                            <div angucomplete-alt id="catalogPlaceHolder" placeholder="Search courses, programs..." pause="500" selected-object="ctrl.data.selectedCatalog" remote-url="api/search/simple-autocomplete/" remote-url-request-formatter="remoteUrlRequestFn" title-field="title" image-field="imageType" clear-selected="true" override-suggestions="false" minlength="1" input-class="form-control" match-class="highlight">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="catalog-result" ng-if="ctrl.data.selectedCatalog && ctrl.data.selectedCatalog.description">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <span ng-bind-html="ctrl.data.selectedCatalog.description.title"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Duration</label>
+                        <span ng-bind="ctrl.data.selectedCatalog.description.duration"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>CE Credits</label>
+                        <span ng-bind="ctrl.data.selectedCatalog.description.ceCredits"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <span ng-bind-html="ctrl.data.selectedCatalog.description.description"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Due Date <span class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" ng-model="ctrl.data.selectedCatalog.description.dueDate" datepicker date-input placeholder="mm/dd/yyyy" ng-change="ctrl.updatedDueDate(ctrl.data.selectedCatalog.description.dueDate)">
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="modal-body" ng-if="ctrl.data.activityStep == 'WEB_TASK'">
+                <div class="modal-body-title">
+                    <h4>Activity from Web Properties</h4>
+                </div>
+
+                <div class="form-group">
+                    <p>Create an activity using a link to any web site. Examples: video, article or blog.
+                        You will mark this activity complete yourself when you do it.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Title <span class="required-star">*</span></label>
+                    <div class="">
+                        <input type="text" class="form-control" ng-model="ctrl.data.webActivity.title" required max="200" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>URL <span class="required-star">*</span></label>
+                    <div class="">
+                        <input type="text" class="form-control" ng-model="ctrl.data.webActivity.url" required max="255" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description <span class="text-muted">(Optional)</span></label>
+                    <textarea type="text" class="feedback-feedbackta form-control" cols="50" rows="5" ng-model="ctrl.data.webActivity.description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Due Date <span class="text-muted">(Optional)</span></label>
+                    <input type="text" class="form-control" ng-model="ctrl.data.webActivity.dueDate" datepicker date-input placeholder="mm/dd/yyyy" ng-change="ctrl.updatedDueDate(ctrl.data.webActivity.dueDate)">
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body" ng-if="ctrl.data.activityStep == 'OFFLINE_TASK'">
+                <div class="modal-body-title">
+                    <h4>Task Activity Properties</h4>
+                </div>
+
+                <div class="form-group">
+                    <p>Create an activity from a task. Examples: have a discussion, practice a skill.
+                        You will mark this activity complete yourself when you do it.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Task Title</label>
+                    <input type="text" class="form-control" ng-model="ctrl.data.taskActivity.title" required max="200" />
+                </div>
+
+                <div class="form-group">
+                    <label>Task Description</label>
+                    <textarea type="text" class="feedback-feedbackta form-control" cols="50" rows="5" ng-model="ctrl.data.taskActivity.description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Due Date <span class="text-muted">(Optional)</span></label>
+                    <input type="text" class="form-control" ng-model="ctrl.data.taskActivity.dueDate" datepicker date-input placeholder="mm/dd/yyyy" ng-change="ctrl.updatedDueDate(ctrl.data.taskActivity.dueDate)">
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-button-bar">
+                    <div class="pull-left" ng-if="ctrl.data.activityStep != 'GENERAL'">
+                        <button class="negative-primary" ng-click="ctrl.changeActivityStep('GENERAL')"><i class="fa fa-chevron-left"></i>Back</button>
+                    </div>
+                    <div class="pull-right">
+                        <button class="cta-negative" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+                        <button class="cta-positive" data-dismiss="modal" ng-click="ctrl.saveActivity()" ng-if="ctrl.data.activityStep != 'GENERAL'"><i class="fa fa-save"></i>Save</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- modal-content -->
+</div><!-- modal-dialog -->
+</div><!-- modal -->
+
+
+<div class="properties-modal modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="propertiesModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="header-title">
+                </div>
+                <div class="header-close">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <img class="svg svg-black" src="assets/images/x.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="modal-body-title">
+                    <h4>Share Learning Path</h4>
+                </div>
+
+                <uib-tabset>
+                    <uib-tab index="0" ng-if="ctrl.data.account.manager">
+                        <uib-tab-heading>
+                            Share with Team
+                        </uib-tab-heading>
+
+                        <div class="form-group">
+                            <p>Learning plans may only be shared with your direct reports or manager.</p>
+                            <p class="small">Drag and drop the associate's name between the columns.</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6" ng-repeat="list in ctrl.data.shareLearningPathLists">
+                                <b><span ng-bind="list.name"></span></b>
+                                <ul dnd-list="list.items" ng-if="ctrl.data.account.manager">
+                                    <!-- The dnd-draggable directive makes an element draggable and will
+                                         transfer the object that was assigned to it. If an element was
+                                         dragged away, you have to remove it from the original list
+                                         yourself using the dnd-moved attribute -->
+                                    <li ng-repeat="item in list.items" dnd-draggable="item" dnd-moved="list.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="models.selected = item" class="draggable-item" ng-class="{'selected': models.selected === item}">
+                                        <span ng-bind="item.label"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea type="text" class="feedback-feedbackta form-control" cols="50" rows="5" ng-model="ctrl.data.shareLearningPath.messageReports" required></textarea>
+                        </div>
+
+                        <div class="form-group" ng-if="ctrl.data.account.manager">
+                            <label class="control-label">Due Date <span class="text-muted">(Optional)</span></label>
+                            <input type="text" class="form-control" ng-model="ctrl.data.shareLearningPath.dueDate" datepicker date-input placeholder="mm/dd/yyyy">
+                        </div>
+
+
+                        <div class="modal-body">
+                            <div class="modal-body-button-bar">
+                                <div class="pull-right">
+                                    <button class="cta-negative" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+                                    <button class="cta-positive" data-dismiss="modal" ng-click="ctrl.sharePersonalPlan('DIRECT_REPORTS')"><i class="fa fa-share-square-o"></i>Share</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </uib-tab>
+                    <uib-tab index="1" ng-if="ctrl.data.manager ">
+                        <uib-tab-heading>
+                            Share with Manager
+                        </uib-tab-heading>
+
+                        <div ng-if="!ctrl.data.sharedWithManager">
+                            <div class="form-group">
+                                <p>Share this learning path with your manager <b><span ng-bind="ctrl.data.manager"></span></b></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea type="text" class="feedback-feedbackta form-control" cols="50" rows="5" ng-model="ctrl.data.shareLearningPath.message" required></textarea>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="modal-body-button-bar">
+                                    <div class="pull-right">
+                                        <button class="cta-negative" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+                                        <button class="cta-positive" data-dismiss="modal" ng-click="ctrl.sharePersonalPlan('MANAGER')"><i class="fa fa-share-square-o"></i>Share</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="ctrl.data.sharedWithManager">
+                            <div class="form-group">
+                                <p>Already shared with your manager <b><span ng-bind="ctrl.data.manager"></span></b></p>
+                            </div>
+                        </div>
+
+                    </uib-tab>
+                </uib-tabset>
+
+            </div>
+        </div>
+
+    </div><!-- modal-content -->
+</div><!-- modal-dialog -->
+</div><!-- modal -->
+
+<div class="modal fade" id="shareReportsModal" tabindex="-1" role="dialog" aria-labelledby="shareReportsModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="header-title">
+                </div>
+                <div class="header-close">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <img class="svg svg-black" src="assets/images/x.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="modal-body-title">
+                    <h4>Shared with the following direct reports</h4>
+                </div>
+
+                <div>
+                    <p>First shared on: <span ng-bind="ctrl.data.shares[0].createdDate |date: 'MM/dd/yyyy'"></span></p>
+                    <div class="margin-bottom">
+                        <span class="tag-bold margin-right" ng-repeat="shares in ctrl.data.shareLearningPathLists[1].items"><span ng-bind="shares.label"></span></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-button-bar">
+                    <div class="pull-right">
+                        <button class="cta-negative" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- modal-content -->
+</div><!-- modal-dialog -->

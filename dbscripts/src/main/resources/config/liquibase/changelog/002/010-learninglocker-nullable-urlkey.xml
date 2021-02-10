@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="bkorbecki">
+    <dropNotNullConstraint tableName="job_execution_learning_locker_detail" columnName="url_key"/>
+  </changeSet>
+  <changeSet id="2" author="bkorbecki">
+    <dropNotNullConstraint tableName="job_execution_learning_locker_detail" columnName="url"/>
+    <dropNotNullConstraint tableName="job_execution_learning_locker_detail" columnName="author"/>
+    <dropNotNullConstraint tableName="job_execution_learning_locker_detail" columnName="verb"/>
+    <dropNotNullConstraint tableName="job_execution_learning_locker_detail" columnName="person_id"/>
+  </changeSet>
+</databaseChangeLog>

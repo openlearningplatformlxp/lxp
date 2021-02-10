@@ -1,0 +1,7 @@
+<div class="searchlist-directive">
+    <div ng-if="ctrl.pagedSearch.hasResults()">
+        <div ng-transclude></div>
+    </div>
+    <div ng-if="ctrl.pagedSearch.hasEmptyResults() && !ctrl.pagedSearch.isSearching()" class="no-results-container" ng-bind="ctrl.textNoResults"></div>
+    <div ng-if="ctrl.pagedSearch.isSearching() && !ctrl.pagedSearch.hasResults()" class="loading-container"><i class="fa fa-spinner fa-pulse"></i> <span ng-bind="ctrl.textLoading"></span></div>
+</div>

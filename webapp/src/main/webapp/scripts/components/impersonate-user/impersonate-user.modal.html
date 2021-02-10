@@ -1,0 +1,8 @@
+<div class="impersonate-user-modal-view">
+    <p translate="impersonate-user.modal.para1" translate-values="{userDisplayName: '{{ctrl.data.userDisplayName}}'}"></p>
+    <p translate="impersonate-user.modal.para2"></p>
+    <p>
+        <label for="password"><span translate="global.form.password"></span>: </label>
+        <input id="password" ng-change="ctrl.onPasswordChange()" ng-model="ctrl.data.password" type="password">
+    </p>
+</div>

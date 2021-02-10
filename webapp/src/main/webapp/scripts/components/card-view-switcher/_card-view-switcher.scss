@@ -1,0 +1,25 @@
+.card-view-switcher {
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 5px;
+
+    img.svg {
+        @extend .svg-blue-shade2;
+    }
+
+    &:hover {
+        background-color: $grey2;
+    }
+}
+
+.icon-selected {
+    background: $blue;
+
+    img.svg {
+        filter: invert(1);
+    }
+
+    &:hover {
+        background-color: $blue-shade1;
+    }
+}

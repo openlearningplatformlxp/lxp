@@ -1,0 +1,36 @@
+<div class="team-subheader-container">
+
+
+    <div class="team-subheader-nav">
+        <ul class="list-unstyled">
+            <li><a href="#/team/individual" ui-sref-active="active" ui-sref="team-individual">Associates</a></li>
+            <li><a href="#/team/learning-path" ui-sref-active="active" ui-sref="team-learning-path">Learning Paths</a></li>
+            <li><a href="#/team/course" ui-sref-active="active" ui-sref="team-course">Courses</a></li>
+        </ul>
+    </div>
+
+
+    <div class="team-subheader-filters">
+        <div class="team-subheader-search">
+            <form>
+                <input ng-model="searchValue" type="text" ng-change="search(searchValue)" placeholder="{{placeholderMessage}}">
+                <div class="icon-button-left">
+                    <i class="fa fa-search"></i>
+                </div>
+            </form>
+        </div>
+        <div class="team-subheader-date-picker input-group">
+            <input type="text" class="form-control text-center" uib-datepicker-popup="MM/dd/yyyy" ng-model="startDate" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" placeholder="Start Date" ng-change="getStartDate(startDate)" ng-readonly="true" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default calendar-container" ng-click="popup1.opened= !popup1.opened"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+
+        <div class="team-subheader-date-picker input-group">
+            <input type="text" class="form-control text-center" uib-datepicker-popup="MM/dd/yyyy" ng-model="endDate" is-open="popup2.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" placeholder="End Date" ng-change="getEndDate(endDate)" ng-readonly="true" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default calendar-container" ng-click="popup2.opened= !popup2.opened"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+    </div>
+</div>

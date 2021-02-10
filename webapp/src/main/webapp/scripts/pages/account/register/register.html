@@ -1,0 +1,71 @@
+<cms-block ctrl="ctrl" key="state-register" ng-cloak>
+    <div class="register-view">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 translate="register.title"></h1>
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+                <form ng-show="!ctrl.pageMessages.hasSuccessMessages()" name="form" role="form" novalidate ng-submit="ctrl.register()" show-validation>
+                    <div class="form-group">
+                        <label for="firstName" class="required" translate="global.form.firstName"></label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'global.form.firstName.placeholder' | translate}}" ng-disabled="ctrl.data.disableFirstName" ng-model="ctrl.data.registerAccount.firstName" ng-minlength="1" ng-maxlength="50" required>
+                        <div ng-show="form.firstName.$dirty && form.firstName.$invalid">
+                            <p class="help-block" ng-show="form.firstName.$error.required" translate="global.messages.validate.firstName.required"></p>
+                            <p class="help-block" ng-show="form.firstName.$error.minlength" translate="global.messages.validate.firstName.minlength"></p>
+                            <p class="help-block" ng-show="form.firstName.$error.maxlength" translate="global.messages.validate.firstName.maxlength"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="required" translate="global.form.lastName"></label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{'global.form.lastName.placeholder' | translate}}" ng-disabled="ctrl.data.disableLastName" ng-model="ctrl.data.registerAccount.lastName" ng-minlength="1" ng-maxlength="50" required>
+                        <div ng-show="form.lastName.$dirty && form.lastName.$invalid">
+                            <p class="help-block" ng-show="form.lastName.$error.required" translate="global.messages.validate.lastName.required"></p>
+                            <p class="help-block" ng-show="form.lastName.$error.minlength" translate="global.messages.validate.lastName.minlength"></p>
+                            <p class="help-block" ng-show="form.lastName.$error.maxlength" translate="global.messages.validate.lastName.maxlength"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="required" translate="global.form.email"></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}" ng-disabled="ctrl.data.disableEmail" ng-model="ctrl.data.registerAccount.email" ng-minlength=5 ng-maxlength=254 required>
+                        <div ng-show="form.email.$dirty && form.email.$invalid">
+                            <p class="help-block" ng-show="form.email.$error.required" translate="global.messages.validate.email.required"></p>
+                            <p class="help-block" ng-show="form.email.$error.email" translate="global.messages.validate.email.invalid"></p>
+                            <p class="help-block" ng-show="form.email.$error.minlength" translate="global.messages.validate.email.minlength"></p>
+                            <p class="help-block" ng-show="form.email.$error.maxlength" translate="global.messages.validate.email.maxlength"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="login" class="required" translate="global.form.username"></label>
+                        <input type="text" class="form-control" id="login" name="login" placeholder="{{'global.form.username.placeholder' | translate}}" ng-disabled="ctrl.data.disableLogin" ng-model="ctrl.data.registerAccount.login" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[a-z0-9]*$/" required>
+                        <div ng-show="form.login.$dirty && form.login.$invalid">
+                            <p class="help-block" ng-show="form.login.$error.required" translate="register.messages.validate.login.required"></p>
+                            <p class="help-block" ng-show="form.login.$error.minlength" translate="register.messages.validate.login.minlength"></p>
+                            <p class="help-block" ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength"></p>
+                            <p class="help-block" ng-show="form.login.$error.pattern" translate="register.messages.validate.login.pattern"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="required" translate="global.form.password"></label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="{{'global.form.password.placeholder' | translate}}" ng-model="ctrl.data.registerAccount.password" ng-minlength=5 ng-maxlength=50 required>
+                        <div ng-show="form.password.$dirty && form.password.$invalid">
+                            <p class="help-block" ng-show="form.password.$error.required" translate="global.messages.validate.password.required"></p>
+                            <p class="help-block" ng-show="form.password.$error.minlength" translate="global.messages.validate.password.minlength"></p>
+                            <p class="help-block" ng-show="form.password.$error.maxlength" translate="global.messages.validate.password.maxlength"></p>
+                        </div>
+                        <password-strength-bar password-to-check="ctrl.data.registerAccount.password"></password-strength-bar>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="required" translate="global.form.confirmPassword"></label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="{{'global.form.confirmPassword.placeholder' | translate}}" ng-model="ctrl.data.confirmPassword" ng-minlength=5 ng-maxlength=50 required>
+                        <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
+                            <p class="help-block" ng-show="form.confirmPassword.$error.required" translate="global.messages.validate.confirmPassword.required"></p>
+                            <p class="help-block" ng-show="form.confirmPassword.$error.minlength" translate="global.messages.validate.confirmPassword.minlength"></p>
+                            <p class="help-block" ng-show="form.confirmPassword.$error.maxlength" translate="global.messages.validate.confirmPassword.maxlength"></p>
+                        </div>
+                    </div>
+                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" translate="register.form.button"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</cms-block>

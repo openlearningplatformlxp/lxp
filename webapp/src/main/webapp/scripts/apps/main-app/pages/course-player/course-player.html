@@ -1,0 +1,47 @@
+<div class="course-player-view">
+    <div class="cover">
+        <div class="course-details-box">
+
+            <i ng-click="ctrl.goBack()" class="fa fa-arrow-left return-button" aria-hidden="true"></i>
+
+            <div class="card-content">
+
+                <h1 class="title" ng-bind-html="ctrl.data.courseData.fullName"></h1>
+
+                <div class="card-progress">
+                    <div class="status-progress-bar">
+                        <div class="status-progress-bar-bar" style="width: {{ctrl.data.percentComplete}}%"></div>
+                    </div>
+                    <span class="text-muted"><span ng-bind="ctrl.data.percentComplete"></span>% Complete</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="course-nav-box">
+            <div class="nav-content">
+                <div ng-repeat="section in ctrl.data.sections" ng-if="section.activities && section.activities.length">
+                    <div ng-click="section.showActivities = !section.showActivities" class="nav-section">
+                        <i class="fa expander-icon" aria-hidden="true" ng-class="{'fa-angle-down': section.showActivities, 'fa-angle-right': !section.showActivities}"></i>&#xA0;&#xA0;<span ng-bind="section.name"></span>
+                    </div>
+                    <div ng-if="section.showActivities">
+                        <div ng-repeat="activity in section.activities" ng-click="ctrl.goToCoursePlayer(section, activity)" class="nav-activity" ng-class="{ selected: activity.id === ctrl.data.selectedActivityId, locked: ctrl.isActivityLocked(activity) }">
+                            <div class="activities-left">
+                                <span><i class="fa" ng-class="ctrl.getActivityTypeIconClass(activity)" aria-hidden="true"></i></span>
+                                <span ng-bind="activity.name"></span>
+                            </div>
+                            <div class="activities-right">
+                                <i class="pull-right fa completion-icon" ng-class="ctrl.getActivityCompletionIconClass(activity)" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <hr ng-if="!section.lastVisible" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lesson">
+        <div class="lesson-content">
+            <div ui-view="activity" class="activity-view"></div>
+        </div>
+    </div>
+</div>

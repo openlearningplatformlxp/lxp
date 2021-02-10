@@ -1,0 +1,55 @@
+<cms-block ctrl="ctrl" key="state-announcements" ng-cloak>
+    <div class="admin-announcements-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="announcements.title"></h2>
+                <div class="search-buttons-container">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.goToSendAnnouncement()">
+                        <span translate="announcements.send.button"></span>
+                        <span class="fa fa-bullhorn"></span>
+                    </button>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'announcements.noAnnouncementsFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="createdDate" label="{{'global.labels.createdDate' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="message" label="{{'global.labels.Message' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="linkUrl" label="{{'global.labels.URL' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in ctrl.pagedSearch.getContent()">
+                                            <td ng-bind="item.createdDate|date:'short'"></td>
+                                            <td ng-bind="item.message"></td>
+                                            <td><span ng-bind="item.linkUrl"></span></td>
+                                            <td class="st-actions">
+                                                <a class="affordance" href="javascript:;" ng-click="ctrl.deleteAnnouncement(item.id, $event)">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

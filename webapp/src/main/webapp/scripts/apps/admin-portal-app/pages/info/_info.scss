@@ -1,0 +1,17 @@
+/**
+ * Node Info View styles.
+ */
+
+.common-app .info-view {
+    .info-cap {
+        text-transform: capitalize;
+    }
+
+    .info-name {
+        min-width: 175px;
+    }
+
+    table {
+        margin-bottom: 0px;
+    }
+}

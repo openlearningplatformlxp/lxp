@@ -1,0 +1,78 @@
+<cms-block ctrl="ctrl" key="state-user-role-add-edit" ng-cloak>
+    <div class="admin-user-role-add-edit-view">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+                <h2 ng-if="ctrl.isAdd()" class="page-title" translate="user-role.user-role-add-edit.title.add"></h2>
+                <h2 ng-if="ctrl.isEdit() && ctrl.isEditable() && !ctrl.data.deleted" class="page-title" translate="user-role.user-role-add-edit.title.edit" translate-values="{roleName: '{{ctrl.mangleRoleName(ctrl.data.roleName)}}'}"></h2>
+                <h2 ng-if="ctrl.isEdit() && !ctrl.isEditable() && !ctrl.data.deleted" class="page-title" translate="user-role.user-role-add-edit.title.view" translate-values="{roleName: '{{ctrl.mangleRoleName(ctrl.data.roleName)}}'}"></h2>
+            </div>
+        </div>
+        <br>
+        <form ng-if="!ctrl.data.deleted" name="form" ng-submit="ctrl.save(form)" role="form" novalidate show-validation>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-7">
+                    <div ng-if="ctrl.isLoaded()">
+                        <div ng-if="ctrl.isAdd()" class="form-group" ng-class="{'has-error': form.name.$invalid && !form.name.$pristine, 'has-success': form.name.$valid && !form.name.$pristine}">
+                            <label for="name" class="required" translate="global.form.authority.name"></label>
+                            <input type="text" class="form-control text-uppercase" id="name" name="name" placeholder="{{'global.form.authority.name.placeholder' | translate}}" ng-model="ctrl.data.authority.name" maxlength=51 ng-maxlength=50 ng-pattern="/^[a-zA-Z_]*$/" required>
+                            <div ng-show="form.name.$dirty && form.name.$invalid">
+                                <p class="help-block" ng-show="form.name.$error.required" translate="user-role.user-role-add-edit.messages.validate.name.required"></p>
+                                <p class="help-block" ng-show="form.name.$error.maxlength" translate="user-role.user-role-add-edit.messages.validate.name.maxlength"></p>
+                                <p class="help-block" ng-show="form.name.$error.pattern" translate="user-role.user-role-add-edit.messages.validate.name.pattern"></p>
+                            </div>
+                        </div>
+                        <div ng-repeat="permissionGroup in ctrl.data.permissionGroups" class="panel panel-default">
+                            <div class="panel-heading" ng-bind="permissionGroup.groupName"></div>
+                            <div class="panel-body">
+                                <div ng-repeat="permissionName in permissionGroup.permissionNames" class="permission-container">
+                                    <div class="permission-title" ng-bind="permissionName.permissionName"></div>
+                                    <span ng-repeat="permission in permissionName.permissions">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" ng-disabled="!ctrl.isEditable()" ng-model="permission.selected">
+                                            <span ng-bind="permission.operation"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <p ng-if="ctrl.isEditable()">
+                            <button type="submit" ng-disabled="ctrl.isFormDisabled(form)" class="btn btn-primary" translate="global.buttons.save"></button>
+                            <button type="button" class="btn btn-default" ng-click="ctrl.cancel(form)">Cancel</button>
+                        </p>
+                        <p ng-if="!ctrl.isEditable()">
+                            <button type="button" class="btn btn-primary" ng-click="ctrl.goToAdminUsers()" translate="global.buttons.OK"></button>
+                        </p>
+                    </div>
+                </div>
+                <div ng-if="ctrl.isLoaded() && ctrl.isEdit()" class="col-md-3">
+                    <div class="well info-well">
+                        <div ng-if="ctrl.data.authority.createdDate" class="form-group">
+                            <label translate="global.labels.createdDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.authority.createdDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.authority.createdBy" class="form-group">
+                            <label translate="global.labels.createdBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.authority.createdBy"></p>
+                        </div>
+                        <div ng-if="ctrl.data.authority.lastModifiedDate" class="form-group">
+                            <label translate="global.labels.lastModifiedDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.authority.lastModifiedDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.authority.lastModifiedBy" class="form-group">
+                            <label translate="global.labels.lastModifiedBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.authority.lastModifiedBy"></p>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.hasActions()" class="actions-container well">
+                        <b>Actions</b>
+                        <p ng-if="ctrl.canDelete()" class="text-center"><a class="btn btn-danger" ng-click="ctrl.deleteRole()" ng-disabled="form.$dirty" translate="user-role.user-role-add-edit.buttons.delete"></a></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div ng-if="ctrl.data.deleted || ctrl.data.isError">
+            <button type="button" class="btn btn-primary" ng-click="ctrl.goToAdminUsers()" translate="global.buttons.OK"></button>
+        </div>
+    </div>
+</cms-block>

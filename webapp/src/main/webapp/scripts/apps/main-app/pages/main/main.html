@@ -1,0 +1,243 @@
+<div class="main-view">
+
+    <div class="page-header-section">
+        <div class="container-fluid">
+            <div class="hero-container">
+                <div class="site-hero-content">
+                    <div class="banner-message negative" ng-if="notification && notification.message">
+                        <div class="banner-message-icon">
+                            <img class="svg" src="assets/images/info.svg" />
+                        </div>
+                        <div class="banner-message-message">
+                            <h1><span ng-bind="notification.title"></span></h1>
+                            <p><span ng-bind="notification.message"></span></p>
+                        </div>
+                        <div class="banner-message-cta">
+                            <button ng-repeat="button in notification.buttons " ng-class="{'negative-primary': button.text == 'Approve','negative': button.text != 'Approve'}" ng-click="ctrl.onButtonClick(button)"><span ng-bind="button.text"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-nav-section">
+                        <ul class="list-unstyled nav-ul">
+                            <li><a ui-sref-active="active" ui-sref="home">
+                                    Overview
+                                    <div></div>
+                                </a></li>
+                            <li><a ui-sref-active="active" ui-sref="discover">
+                                    Discover
+                                    <div></div>
+                                </a></li>
+                            <li ng-if="account.manager"><a ui-sref-active="active" ui-sref="team-individual">Team
+                                    <div></div>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <div class="row hero-resume-message" ng-if="home.currentItem">
+                        <div class="col-sm-12">
+                            <h4>
+                                Resume your most recent path
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row hero-main-content" ng-if="home.currentItem">
+                        <div class="col-sm-8" ng-if="!loading">
+                            <div class="hero-main-message">
+                                <h1><span ng-bind="home.currentItem.title"></span></h1>
+                            </div>
+
+                            <div class="percent-bar percent-bar-dark">
+                                <div class="percent-bar-bar" style="width:{{home.currentItemProgression}}%"></div>
+                            </div>
+                            <span ng-bind="home.currentItemProgression"></span>% Complete
+                            <span ng-if="home.currentItemTimeLeft" class="hero-time-left">
+                                <i class="fa fa-clock-o"></i>
+                                <span ng-if="home.currentItemTimeLeft.hours > 0"><span ng-bind="home.currentItemTimeLeft.hours |number:0"></span> <span ng-bind="(home.currentItemTimeLeft.hours === 1) ? 'hr' : 'hrs'"></span></span>
+                                <span ng-if="home.currentItemTimeLeft.minutes > 0"><span ng-bind="home.currentItemTimeLeft.minutes |number:0"></span> <span ng-bind="(home.currentItemTimeLeft.minutes === 1) ? 'min' : 'mins'"></span></span>
+                                <span> remaining</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-8" ng-if="loading">
+                            <div class="skeleton-view ">
+                                <div class="skeleton-row">
+                                    <div class="skeleton-column">
+                                        <h4></h4>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="skeleton-row">
+                                    <div class="skeleton-column">
+                                        <h1></h1>
+                                        <h2></h2>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="skeleton-row">
+                                    <div class="skeleton-column">
+                                        <h2></h2>
+                                        <h3></h3>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="skeleton-row">
+                                    <div class="skeleton-column">
+                                        <p class="xl"></p>
+                                        <p class="xl"></p>
+                                        <p class="md"></p>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="skeleton-row">
+                                    <div class="skeleton-column">
+                                        <h5></h5>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="path-next-steps-container">
+                                <ul class="path-next-steps-list">
+                                    <li class="step-text-title">
+                                        <h6>Up Next</h6>
+                                    </li>
+                                    <li class="step-next-action" ng-repeat="item in home.nextAppointments" ng-click="ctrl.resumeAppointment(item)">
+                                        <div class="step-text">
+                                            <img class="svg" src="assets/images/book.svg" ng-if="item.itemType.name == 'COURSE'" />
+                                            <img class="svg" src="assets/images/book.svg" ng-if="item.itemType.name == 'READING'" />
+                                            <img class="svg" src="assets/images/video.svg" ng-if="item.itemType.name == 'VIDEO'" />
+                                            <img class="svg" src="assets/images/box.svg" ng-if="item.itemType.name == 'SCORM'" />
+                                            <img class="svg" src="assets/images/list.svg" ng-if="item.itemType.name == 'QUIZ'" />
+                                            <img class="svg" src="assets/images/box.svg" ng-if="item.itemType.name == 'FORUM'" />
+                                            <div class="step-content">
+                                                <span class="next-title" ng-bind="item.title"></span>
+                                                <span ng-if="item.duration" class="next-information">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    <span ng-if="item.duration.hours > 0">
+                                                        <span ng-bind="item.duration.hours |number:0"></span> <span ng-bind="(item.duration.hours === 1) ? 'hr' : 'hrs'"></span>
+                                                    </span>
+                                                    <span ng-if="item.duration.minutes > 0"><span ng-bind="item.duration.minutes |number:0"></span> <span ng-bind="(item.duration.minutes === 1) ? 'min' : 'mins'"></span></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row " ng-if="!loading && home.currentItem">
+                        <div class="col-md-12 button-container">
+                            <button class="negative-primary" ui-sref="course-overview" ng-click="ctrl.resumePath()">
+                                <img class="svg" src="assets/images/fast-forward.svg">Resume Path
+                            </button>
+                            <button class="negative" ng-click="ctrl.goToCurrentItem()">
+                                <img class="svg" src="assets/images/eye.svg">View Path
+                            </button>
+                            <button class="negative" ng-click="ctrl.dropCurrentItem()">
+                                <img class="svg" src="assets/images/x-octagon.svg">Unenroll Path
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content-section">
+        <div class="container-fluid">
+            <div class="learning-path-section">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h5 class="card-section-header">
+                            Learning Paths in progress
+                            <div class="label"><span ng-bind="home.totalLearningPaths"></span></div>
+                        </h5>
+                    </div>
+                    <div class="pull-right card-section-options">
+                        <card-view-switcher></card-view-switcher>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="!loading">
+                    <div class="card-container-{{cardView}}" ng-repeat="card in learningPathCards track by $index">
+                        <card item="card"></card>
+                    </div>
+                </div>
+                <div class="row" ng-if="loading">
+                    <card-fake amount="3" card-view="cardView"></card-fake>
+                </div>
+                <div ng-if="learningPathCards.length > 0" class="text-center">
+                    <button ng-click="ctrl.searchByType('LEARNING_PATH')">See more paths</button>
+                </div>
+                <div ng-if="learningPathCards.length == 0" class="text-center no-enrolled-container">
+                    You don't have any enrolled learning paths. Visit the <a ui-sref="discover">Discover</a> or <span style="color: #16b9e1;">Catalog</span> to find content that interests you.
+                </div>
+            </div>
+
+            <div class="course-section">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h5 class="card-section-header">
+                            Courses in progress
+                            <div class="label"><span ng-bind="home.totalCourses"></span></div>
+                        </h5>
+                    </div>
+                    <div class="pull-right card-section-options">
+                        <card-view-switcher></card-view-switcher>
+                    </div>
+                </div>
+                <div class="row" ng-if="!loading">
+
+                    <div class="card-container-{{cardView}}" ng-repeat="card in courseCards track by $index">
+                        <card item="card" return-path="ctrl.data.returnPath" show-open-in-lms="ctrl.data.showOpenInLms" source="'home'"></card>
+                    </div>
+                </div>
+                <div class="row" ng-if="loading">
+                    <card-fake amount="3" card-view="cardView"></card-fake>
+                </div>
+                <div ng-if="courseCards.length > 0" class="text-center">
+                    <button ng-click="ctrl.searchByType('COURSE')">See more courses</button>
+                </div>
+                <div ng-if="courseCards.length == 0" class="text-center no-enrolled-container">
+                    You don't have any enrolled courses. Visit the <a ui-sref="discover">Discover</a> or <span style="color: #16b9e1;">Catalog</span> to find content that interests you.
+                </div>
+            </div>
+            <div class="class-section">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h5 class="card-section-header">
+                            Upcoming classes
+                            <div class="label"><span ng-bind="home.totalClassrooms"></span></div>
+                        </h5>
+                    </div>
+                    <div class="pull-right card-section-options">
+                        <card-view-switcher></card-view-switcher>
+                    </div>
+                </div>
+                <div class="row" ng-if="!loading">
+
+                    <div class="card-container-{{cardView}}" ng-repeat="card in classroomCards track by $index">
+                        <card type="'classroom'" item="card" return-path="ctrl.data.returnPath" source="'home'"></card>
+                    </div>
+
+                </div>
+                <div class="row" ng-if="loading">
+                    <card-fake amount="3" card-view="cardView"></card-fake>
+                </div>
+                <div ng-if="classroomCards.length > 0" class="text-center">
+                    <button ng-click="ctrl.searchByType('CLASSROOM')">See more classes</button>
+                </div>
+                <div ng-if="classroomCards.length == 0" class="text-center no-enrolled-container">
+                    You don't have any upcoming classes.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

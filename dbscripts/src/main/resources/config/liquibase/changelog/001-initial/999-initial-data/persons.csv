@@ -1,0 +1,6 @@
+id;login;password;first_name;last_name;email;activated;disabled;lang_key;created_by
+1;system;$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG;System;System;system@localhost;true;false;en;system
+2;anonymousUser;$2a$10$j8S5d7Sr7.8VTOYNviDPOeWX8KcYILUVJBsYV83Y5NtECayypx9lO;Anonymous;User;anonymous@localhost;true;false;en;system
+3;admin1;$2a$10$44KaoaspadUwPtqPTgtsnO3BPujTq784E.FGeHjP2RKh7DCyXD6pK;Administrator;Administrator;admin@localhost;true;false;en;system
+4;user;$2a$10$d6E9iNpM8Ji6QJq04ORRA.SIHuEAaKYoTx6RnHvJv9LqUN0.40/Te;User;User;user@localhost;true;false;en;system
+5;cmseditor;$2a$10$zilIT.OxZMJb3B73ml825eKxm464ssBLuLZehGg.Ra4HJen5yCLIC;CMS;Editor;cmseditor@localhost;true;false;en;system

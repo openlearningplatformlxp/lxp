@@ -1,0 +1,30 @@
+<div class="calendar-view">
+    <div class="page-header-hero-general">
+        <div class="container-fluid">
+            <div class="hero-container">
+                <div class="support-title-container">
+                    <h1 class="search-title">Global Calendar</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content-section">
+
+        <div class="container-fluid">
+            <locationfilter ng-if="ctrl.data.filterTags.locations && ctrl.data.filterTags.locations.length !== 0" title="Location" open="true" tags="ctrl.data.filterTags.locations" filters="ctrl.data.filters" filter="location" refresh="ctrl.rerenderCalendar()"></locationfilter>
+            <!--  Calendar created at this point in calendar.controller.js -->
+            <div class='calendar'></div>
+            <div class="calendar-legend">
+                <h6>Legend</h6>
+                <ul>
+                    <li class="manager">Manager Development and Team Leadership</li>
+                    <li class="professional">Professional Development and Individual Leadership </li>
+                    <li class="sales">Sales</li>
+                    <li class="technical">Technical</li>
+                </ul>
+            </div>
+            <div style='clear:both'></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+<div class="discover-view">
+    <div class="page-header-section">
+        <div class="container-fluid">
+            <div class="hero-container">
+                <div class="site-hero-content">
+                    <div class="hero-nav-section">
+                        <ul class="list-unstyled nav-ul">
+                            <li><a ui-sref-active="active" ui-sref="home">Overview
+                                    <div></div>
+                                </a></li>
+                            <li><a ui-sref-active="active" ui-sref="discover">Discover
+                                    <div></div>
+                                </a></li>
+                            <li ng-if="account.manager"><a ui-sref-active="active" ui-sref="team-learning-path">Team
+                                    <div></div>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-container">
+            <div class="site-hero-content">
+                <div class="hero-cards">
+                    <div class="hero-cards-container" ng-if="loading">
+                        <ui-carousel slides="[{},{},{},{}]" slides-to-show="2" slides-to-scroll="1" initial-slide="0" autoplay="true" autoplay-speed="5000" infinite="true" dots="false">
+                            <carousel-item>
+                                <card-fake amount="1" card-view="'hero'"></card-fake>
+                            </carousel-item>
+                            <carousel-prev></carousel-prev>
+                            <carousel-next></carousel-next>
+                        </ui-carousel>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="hero-cards-container" ng-if="discoverProgramsItems">
+                        <ui-carousel slides="discoverProgramsItems" slides-to-show="discoverProgramsNumSlidesToShow" slides-to-scroll="1" initial-slide="0" autoplay="true" autoplay-speed="5000" infinite="true" dots="true">
+                            <carousel-item>
+                                <card type="'hero'" item="item" return-path="item.returnPath"></card>
+                            </carousel-item>
+                            <carousel-prev></carousel-prev>
+                            <carousel-next></carousel-next>
+                        </ui-carousel>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="page-content-section">
+        <div class="container-fluid">
+
+            <div class="text-center no-interests-container" ng-if="nullContent">
+                Visit your <a ui-sref="profile-preferences">Profile</a> to choose a target role and areas of interest. Content
+                that matches your selections will be recommended here.
+            </div>
+
+            <div class="course-section" ng-if="loading">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <div class="skeleton-view">
+                            <div class="skeleton-row">
+                                <div class="skeleton-column">
+                                    <h3></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right card-section-options">
+                        <card-view-switcher></card-view-switcher>
+                    </div>
+                </div>
+                <div class="row">
+                    <card-fake amount="3" card-view="cardView"></card-fake>
+                </div>
+            </div>
+
+            <div class="course-section" ng-repeat="interest in discover.interests track by $index">
+                <div ng-if="interest.programs.totalElements > 0">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h5 class="card-section-header">
+                                Because you're interested in <span class="discover-recommended-tag"><span ng-bind="interest.tag.name"></span></span>
+                            </h5>
+                        </div>
+                        <div class="pull-right card-section-options">
+                            <button ng-if="interest.programs.totalElements > 6 " ng-click="ctrl.searchByTopic(interest.tag.name)">See all
+                                <span ng-bind="interest.programs.totalElements"></span><i class="fa fa-arrow-right"></i></button>
+                            <card-view-switcher></card-view-switcher>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card-container-{{cardView}}" ng-repeat="course in interest.programs.courses track by $index">
+                            <card item="course" return-path="returnPath" show-open-in-lms="showOpenInLms"></card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="course-section" ng-repeat="interest in discover.roles track by $index">
+                <div ng-if="interest.programs.totalElements > 0">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h5 class="card-section-header">
+                                Because you have the <span class="discover-recommended-tag" ng-bind="interest.tag.name"></span> role
+                            </h5>
+                        </div>
+                        <div class="pull-right card-section-options">
+                            <button ng-if="interest.programs.totalElements > 6 " ng-click="ctrl.searchByRole(interest.tag)">See all
+                                <span ng-bind="interest.programs.totalElements"></span> <i class="fa fa-arrow-right"></i></button>
+                            <card-view-switcher></card-view-switcher>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card-container-{{cardView}}" ng-repeat="course in interest.programs.courses track by $index">
+                            <card item="course" return-path="returnPath" show-open-in-lms="showOpenInLms"></card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

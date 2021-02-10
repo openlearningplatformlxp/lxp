@@ -1,0 +1,42 @@
+<div class="overview-card card-hero card-overview">
+
+    <div class="card-content">
+        <div class="info">
+            <h2 class="subtitle" ng-bind="item.type | capitalize"></h2>
+        </div>
+        <h1 class="title" ng-bind-html="item.title"></h1>
+
+        <div ng-if="item.ownerId === account && item.personal">
+            <p ng-if="!item.shared"><span class="dim-tag-white"><i class="fa fa-eye-slash"></i> Private not shared</span></p>
+            <p ng-if="item.shared && item.sharedWithManager" style="color: white">
+                <span class="dim-tag-white"><i class="fa fa-user"></i> Shared with <strong><span ng-bind="item.manager"></span></strong> on <span ng-bind="item.sharedWithManagerOn| date: 'MM/dd/yyyy'"></span></span>
+            </p>
+            <p ng-if="item.shared && item.sharedWithReports && item.shares.length > 0" style="color: white;">
+                <span class="dim-tag-white" style="cursor: pointer" data-toggle="modal" data-target="#shareReportsModal"><i class="fa fa-users"></i> Shared with <strong><span ng-bind="item.shares.length"></span></strong> direct report(s) on <span ng-bind="item.shares[0].createdDate | date: 'MM/dd/yyyy'"></span></span>
+            </p>
+        </div>
+
+        <div class="card-progress">
+            <div class="percent-bar percent-bar-dark">
+                <div class="percent-bar-bar" ng-style="{ width: item.percentComplete + '%'}"></div>
+            </div>
+            <span ng-bind="item.percentComplete"></span>% Complete
+        </div>
+
+        <div class="card-cta">
+            <button ng-if="showResume && item.percentComplete > 0" class="negative-primary" ng-click="resumeClicked()">
+                <img class="svg" src="assets/images/fast-forward.svg">Resume Path
+            </button>
+            <button ng-if="showResume && item.percentComplete == 0" class="negative-primary" ng-click="resumeClicked()">
+                <img class="svg" src="assets/images/play.svg">Start Path
+            </button>
+            <button ng-if="showResume" class="negative" ng-click="dropClicked()">
+                <img class="svg" src="assets/images/x-octagon.svg">Unenroll from Path
+            </button>
+            <button ng-if="showEnroll" class="negative-primary" ng-click="enrollClicked()">
+                <img class="svg" src="assets/images/plus-square.svg">Enroll in Path
+            </button>
+        </div>
+
+    </div>
+</div>

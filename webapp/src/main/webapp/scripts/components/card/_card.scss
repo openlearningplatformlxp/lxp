@@ -1,0 +1,709 @@
+.show-grid {
+    display: none;
+}
+
+.show-list {
+    display: none;
+}
+
+.card-container-grid {
+    @extend .col-sm-4;
+
+    .show-grid {
+        display: block;
+        width: 100%;
+    }
+
+    .show-list {
+        display: none;
+    }
+
+}
+
+.card-container-list {
+    @extend .col-sm-12;
+
+    .card-icon {
+        .svg {
+            @extend .svg-black;
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+
+        img.logo {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .card-dark {
+        .card-icon {
+            .svg {
+                @extend .svg-white;
+            }
+        }
+    }
+
+    .show-grid {
+        display: none;
+    }
+
+    .show-list {
+        display: block;
+    }
+}
+
+.card {
+    @extend .card-base;
+    height: $card-height;
+    margin-bottom: $scale3;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+
+    .card-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        width: 100%;
+    }
+
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+
+        .card-icon {
+            @extend .icon-content-type;
+            flex-grow: 1;
+            align-content: start;
+        }
+
+        .card-subtitle {
+            display: none;
+        }
+
+        .card-duration {
+            align-content: end;
+            text-align: right;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-sm;
+            color: $text-dim-color;
+
+            .card-cl-credits {
+                @extend .card-metadata-label;
+            }
+
+            .card-duration-values {
+                @extend .card-metadata-label;
+                margin-left: $base-value-half;
+            }
+        }
+    }
+
+
+
+    .card-content {
+        justify-content: flex-end;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: $scale5;
+        vertical-align: center;
+
+        h1 {
+            @extend .h5;
+            margin-bottom: $scale4;
+            line-height: $scale4;
+            font-weight: 600;
+            /* Word break */
+            -ms-word-break: break-all;
+            word-break: break-all;
+            /* Non standard for WebKit */
+            word-break: break-word;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            hyphens: auto;
+        }
+
+        .card-classroom-location {
+            span {
+                font-weight: 300;
+                margin-right: $scale0;
+                padding: 2px $base-value-half;
+                border-radius: $radius-base;
+                background-color: $blue-shade2;
+            }
+
+            em {
+                font-style: normal;
+                font-size: 1rem;
+                color: white;
+
+                i {
+                    margin-right: $base-value-half;
+                }
+
+            }
+        }
+
+        .info {
+            h2 {
+                display: inline-block;
+            }
+
+            .label {
+                display: inline-block;
+                background-color: $text-dim-color;
+                margin-left: $scale-2;
+                margin-right: 2px;
+            }
+        }
+
+        h2 {
+            @extend .h6;
+            margin-bottom: $scale1;
+            line-height: 1rem;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-sm;
+            color: $gray-light;
+
+        }
+
+        p {
+            margin-bottom: 0;
+            color: $text-dim-color;
+            /* Word break */
+            -ms-word-break: break-all;
+            word-break: break-all;
+            /* Non standard for WebKit */
+            word-break: break-word;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            hyphens: auto;
+        }
+
+
+    }
+
+    .card-classroom-meta {
+        width: 100%;
+    }
+
+    .card-footer {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        .card-cta {
+            flex-grow: 1;
+            align-content: start;
+
+            .card-tag {
+                @extend .card-metadata-label;
+            }
+        }
+
+        .card-lms-status {
+            @extend .tag-bold;
+            position: relative;
+            margin-top: $scale0;
+            font-size: 0.8rem;
+
+            img.svg {
+                position: relative;
+                top: -1px;
+                width: 13px;
+                height: 13px;
+                margin-right: $base-value-quarter;
+            }
+        }
+
+        .card-lms-status-Enrolled {
+            @extend .card-lms-status;
+            background-color: $class-color-inprogress;
+        }
+
+        .card-lms-status-Completed {
+            @extend .card-lms-status;
+            background-color: $class-color-completed;
+        }
+
+        .card-icon {
+            align-content: end;
+            text-align: right;
+            display: flex;
+            align-items: center;
+
+            .svg {
+                @extend .svg-black;
+            }
+        }
+    }
+
+    &.card-lynda {}
+
+    &.card-kaltura {}
+
+    &.card-allego {}
+}
+
+.card:hover {
+    @extend .card-hover-active-base;
+}
+
+// Only used on Discover as card-dark and card-hero
+.card-dark {
+    background-color: $blue-shade2;
+    color: white;
+
+    .card-header {
+        .card-subtitle .subtitle {
+            @extend .dim-tag-white;
+        }
+
+        .card-duration {
+            color: $text-dim-color-negative;
+            font-weight: $font-weight-light;
+
+            .card-cl-credits {
+                @extend .dim-tag-white;
+            }
+
+            .card-duration-values {
+                @extend .dim-tag-white;
+            }
+        }
+
+        .card-icon {
+            background-color: $blue-shade2;
+
+            img.svg {
+                // White icon
+                filter: invert(1) !important;
+            }
+        }
+    }
+
+    .card-content {
+        h2 {
+            color: white;
+            font-weight: $font-weight-light;
+        }
+
+        p span {
+            color: white;
+        }
+    }
+
+    .card-footer {
+        .card-cta {
+            .card-tag {
+                color: white;
+            }
+        }
+
+        .card-icon {
+            .svg {
+                @extend .svg-white;
+            }
+        }
+
+        .card-lms-status {
+            @extend .tag-bold-white;
+            margin-top: $scale0;
+            font-size: 0.8rem;
+        }
+
+        .card-lms-status-Enrolled {
+            @extend .tag-bold;
+            margin-top: $scale0;
+            font-size: 0.8rem;
+            background-color: $class-color-inprogress;
+        }
+
+        .card-lms-status-Completed {
+            @extend .tag-bold;
+            margin-top: $scale0;
+            font-size: 0.8rem;
+            background-color: $class-color-completed;
+        }
+
+    }
+}
+
+.card-hero {
+    @extend .papershadow-xl;
+
+    .card-content {
+        justify-content: center;
+
+        h1 {
+            font-size: $font-size-xl;
+            line-height: $scale6;
+        }
+    }
+}
+
+.card-cover {
+    height: 90vh;
+    min-height: 550px;
+    overflow-y: scroll;
+    border-radius: 0;
+
+    .card-content {
+        justify-content: center;
+        width: 100%;
+
+        h1 {
+            font-size: $font-size-xl;
+            line-height: $scale6;
+        }
+    }
+}
+
+.card-overview {
+    box-shadow: none;
+    background: none;
+    padding: 0;
+}
+
+.card-new {
+    border: 2px dashed $gray-dark;
+    background-color: $grey2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label-share {
+    @extend .card-metadata-label;
+}
+
+.card-container-grid {
+    .card {
+        .card-header {
+            .card-icon {
+                flex-grow: 0;
+                margin-right: 10px;
+            }
+        }
+
+        .card-subtitle {
+            display: block;
+            flex-grow: 1;
+            align-content: left;
+
+            .subtitle {
+                @extend .card-metadata-label;
+            }
+
+            .personal-label {
+                display: inline-block;
+                background-color: $blue;
+                color: #ffffff;
+                margin-left: $scale-2;
+            }
+        }
+    }
+
+    .card-dark {
+        .card-subtitle {
+            h2 {
+                color: $text-dim-color-negative;
+            }
+
+            .personal-label {
+                background-color: #ffffff;
+                color: $blue;
+            }
+        }
+    }
+}
+
+.card-container-list {
+    .card {
+        @extend .card-row-base;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+
+        .card-header {
+            margin-bottom: $base-value-half;
+        }
+
+        // Hidden due to layout differences with grid card view
+        .card-icon {
+            display: none;
+        }
+
+        .card-list-icon {
+            .card-icon {
+                display: block;
+                @extend .icon-content-type;
+                //.icon-3x {
+                //    font-size: $font-size-lg;
+                //}
+            }
+
+            margin-right: $scale0;
+        }
+
+        .card-subtitle {
+            display: block;
+            flex-grow: 1;
+            align-content: start;
+
+            .subtitle {
+                @extend .card-metadata-label;
+            }
+
+            .personal-label {
+                @extend .card-metadata-label;
+            }
+        }
+
+        .card-content {
+            margin-bottom: 0;
+            justify-content: center;
+
+            h1 {
+                min-height: 0;
+                margin-bottom: $scale-2;
+            }
+
+            .info {
+                .subtitle {
+                    display: none;
+                }
+            }
+        }
+
+        button.overflow {
+            max-width: inherit;
+        }
+    }
+
+
+
+    .card-classroom {
+        .card-classroom-meta {
+            width: 40%;
+            align-self: center;
+        }
+    }
+
+    &:last-of-type {
+        margin-bottom: $scale3;
+    }
+
+    .card-dark {
+        .card-subtitle {
+            h2 {
+                color: $text-dim-color-negative;
+            }
+
+            .personal-label {
+                background-color: #ffffff;
+                color: $blue;
+            }
+        }
+    }
+}
+
+.card-container-list-fake,
+.card-container-grid-fake,
+.card-container-hero-fake {
+    .card-fake {
+        border-radius: $card-radius;
+        background: $card-course-color;
+        position: relative;
+        padding: $scale4;
+        margin-bottom: $scale3;
+        display: flex;
+        flex-direction: column;
+
+        & .card-fake-top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+        background-color: lightgrey;
+        opacity: 0.5;
+        height: 1em;
+        background-image: linear-gradient(90deg, #a4a4a4 0px, rgba(191, 191, 191, 0.8) 40px, #a4a4a4 80px);
+        background-size: 600px;
+    }
+
+    h1 {
+        width: 100%;
+        margin-bottom: 20px;
+        animation: shine-lines 2s infinite ease-out;
+    }
+
+    h2 {
+        width: 80%;
+        margin-bottom: $scale6;
+        animation: shine-lines 2s infinite ease-out;
+    }
+
+    h5 {
+        opacity: 0.5;
+        height: 0.7em;
+        width: 20%;
+        margin-bottom: $scale6;
+        animation: shine-lines 2s infinite ease-out;
+    }
+
+    p.complete {
+        width: 100%;
+        margin-bottom: 10px;
+        animation: shine-lines 2s infinite ease-out;
+    }
+
+    p {
+        width: 95%;
+        margin-bottom: 10px;
+        animation: shine-description 2s infinite ease-out;
+    }
+}
+
+.card-container-list-fake {
+    .card-fake {
+        height: $card-height-list;
+
+        h5:first-child {
+            width: 5%;
+        }
+
+        .card-fake-title {
+            margin-top: 50px;
+        }
+
+        .card-fake-body {
+            display: none;
+        }
+    }
+}
+
+.card-container-grid-fake {
+    @extend .col-sm-4;
+
+    .card-fake {
+        height: $card-height;
+    }
+}
+
+.card-container-hero-fake {
+    margin-right: $scale0;
+    margin-left: $scale0;
+
+    .card-fake {
+        height: $card-height;
+        background-color: $blue-shade2;
+        width: 100%;
+
+    }
+}
+
+.card-selected {
+}
+
+.path-overdue {
+    @extend .tag-warning;
+    padding: $base-value-quarter $scale0;
+
+    h6 {
+        color: #fff !important;
+    }
+}
+
+.course-set--overdue {
+    @extend .tag-warning;
+}
+
+.activity-overdue {
+    @extend .tag-warning;
+}
+
+// For both card views (list, grid) in responsive mode we will use same height
+@media (max-width: $screen-xs-max) {
+    .card {
+        height: unset;
+        padding: $scale4 $scale0;
+    }
+
+    .card-container-list {
+        .card {
+            height: unset;
+            padding: $scale4 $scale0;
+        }
+
+        .card-classroom {
+            .classroom-session-info {
+                width: 50%;
+                word-break: break-all;
+
+                i.fa {
+                    display: none;
+                }
+
+                .start-time {
+                    font-size: 1.2rem;
+                }
+
+                .timezone,
+                .weekday {
+                    display: block;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    .card {
+        height: unset;
+        padding: $scale4 $scale0;
+    }
+
+    .card-container-list {
+        .card {
+            height: unset;
+            padding: $scale4 $scale0;
+        }
+
+        .card-classroom {
+            .classroom-session-info {
+                width: 50%;
+                word-break: break-all;
+
+                i.fa {
+                    display: none;
+                }
+
+                .start-time {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {}
+
+@media (min-width: $screen-lg-min) {}

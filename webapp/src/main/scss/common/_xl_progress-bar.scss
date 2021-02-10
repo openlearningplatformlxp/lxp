@@ -1,0 +1,48 @@
+//<div class="percent-bar">
+//<div class="percent-bar-bar" ng-style="{ width: achievement.progress + '%'}" ng-if="achievement.progress < 100"></div>
+//<div class="percent-bar-bar percent-bar-bar-completed" ng-style="{ width: achievement.progress + '%'}" ng-if="achievement.progress == 100"></div>
+//</div>
+
+// From _achievements.scss
+
+// Replaced on
+// Profile > Achivements
+// Main / Overview
+// Learning path / Overview card
+.percent-bar {
+    position: relative;
+    background-color: $progress-bar-color-track;
+    margin: 5px 0 5px 0;
+    height: $progress-bar-height;
+    border-radius: $progress-bar-height;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .1);
+    overflow: hidden;
+
+    .percent-bar-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: $progress-bar-color-inprogress;
+        width: 50%; // default overridden by inline style
+        height: $progress-bar-height;
+        border-radius: 10px;
+        box-shadow: -2px 0 5px 2px #fff;
+    }
+
+    .percent-bar-bar-completed {
+        background-color: $progress-bar-color-completed;
+    }
+}
+
+.percent-bar-dark {
+    background-color: $progress-bar-color-track-dark;
+
+    .percent-bar-bar {
+        background-color: $progress-bar-color-inprogress-dark;
+        box-shadow: -2px 0 5px 2px rgba(0, 0, 0, .2);
+    }
+
+    .percent-bar-bar-completed {
+        background-color: $progress-bar-color-completed-dark;
+    }
+}

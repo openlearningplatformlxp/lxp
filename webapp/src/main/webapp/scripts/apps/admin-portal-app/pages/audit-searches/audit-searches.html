@@ -1,0 +1,69 @@
+<cms-block ctrl="ctrl" key="state-audit-searches" ng-cloak>
+    <div class="admin-audit-searches-view">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="header-container col-xs-6">
+                    <h2 class="page-title" translate="auditSearch.auditSearches.title"></h2>
+                </div>
+                <div class="header-container col-xs-6 rh-flex rh-flex-justify-content-end">
+                    <a ng-click="ctrl.triggerReindex()" class="download-link margin-right" ng-if="ctrl.data.indexEnabled">
+                        <button>Re-index</button>
+                    </a>
+                    <a ng-href="api/csv/audit-searches" class="download-link" target="_blank">
+                        <button>Download</button>
+                    </a>
+                </div>
+                <div class="header-container col-xs-12" ng-if="ctrl.data.lastIndex && ctrl.data.lastIndex.time && ctrl.data.lastIndex.time > 0">
+
+                    <p>Last index run on <span ng-bind="ctrl.data.lastIndex.time | date : 'medium'"></span>. <span ng-if="!ctrl.data.indexEnabled">Indexing may only be run once every 2 hours.</span></p>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'auditSearch.auditSearches.noFeedbacksFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="st-min-width"><span translate="auditSearch.auditSearches.id"></span>
+                                            </th>
+                                            <th class="" style="width: 155px;">
+                                                <searchsort search-state="ctrl.pagedSearch" field="createdDate" label="{{'global.labels.createdDate' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-min-width">
+                                                <searchsort search-state="ctrl.pagedSearch" field="type" label="{{'auditSearch.auditSearches.userId' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-min-width"><span translate="auditSearch.auditSearches.searchTerm"></span></th>
+                                            <th class="st-min-width"><span translate="auditSearch.auditSearches.results"></span>
+                                            </th>
+                                            <th class=""><span translate="auditSearch.auditSearches.filters"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="auditSearch in ctrl.pagedSearch.getContent()" ng-if="!auditSearch['_empty_']">
+                                            <td ng-bind="auditSearch.id"></td>
+                                            <td ng-bind="auditSearch.createdDate |date:'short'"></td>
+                                            <td ng-bind="auditSearch.personTotaraId"></td>
+                                            <td ng-bind="auditSearch.searchTerm"></td>
+                                            <td ng-bind="auditSearch.results"></td>
+                                            <td ng-bind="auditSearch.filters"></td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="auditSearch['_empty_']">
+                                            <td colspan="8">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

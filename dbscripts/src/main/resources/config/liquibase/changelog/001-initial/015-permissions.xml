@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="scarlson">
+    <createTable tableName="permission">
+      <column name="group_name" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="permission_name" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="operation" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addPrimaryKey tableName="permission" columnNames="group_name, permission_name, operation" constraintName="pk_permission"/>
+  </changeSet>
+  <changeSet id="2" author="scarlson">
+    <createTable tableName="authority_permission">
+      <column name="authority_name" type="VARCHAR(50)">
+        <constraints foreignKeyName="fk_authority_permission_authority" nullable="false" referencedTableName="authority" referencedColumnNames="name"/>
+      </column>
+      <column name="permission_group_name" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="permission_permission_name" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="permission_operation" type="VARCHAR(50)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="authority_name, permission_group_name, permission_permission_name, permission_operation" constraintName="pk_authority_permission" tableName="authority_permission"/>
+  </changeSet>
+</databaseChangeLog>

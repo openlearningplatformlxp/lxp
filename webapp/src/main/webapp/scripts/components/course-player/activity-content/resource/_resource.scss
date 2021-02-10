@@ -1,0 +1,27 @@
+.resource-activity {
+
+    .pdf-resource-box {
+
+        padding-bottom: 0px;
+
+        .instruction-box {
+            font-size: 14px;
+            padding: 15px 0px 15px 25px;
+            background-color: #edeff0;
+        }
+
+        .resource-iframe {
+            height: calc(100vh - 315px);
+
+            @media (max-width: 991px) {
+                height: calc(100vh - 215px);
+            }
+
+            min-height: 300px;
+            width: 100%;
+            border: 0;
+        }
+    }
+
+    .video-resource-box {}
+}

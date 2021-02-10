@@ -1,0 +1,40 @@
+/**
+ * Admin Notification Send View styles.
+ */
+
+.common-app .admin-featured-searches-create-view {
+    .actions-container {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+
+        .btn {
+            min-width: 140px;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+
+        .actions-container-title {}
+
+        .actions-container-body {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+    }
+}
+
+.admin-featured-searches-create-view {
+    .selections {
+        .selections-instances {
+            a {
+                color: red;
+                cursor: pointer;
+                font-size: 14px;
+                text-decoration: underline;
+            }
+        }
+    }
+}

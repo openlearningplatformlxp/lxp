@@ -1,0 +1,22 @@
+<div class="activity-footer">
+
+    <div ng-if="ctrl.data.nextActivity" class="next-activity-box">
+        <div class="row ">
+            <div class="col-xs-12">
+                <hr />
+            </div>
+        </div>
+        <div class="upcoming-box">
+            <div class="row">
+                <div class="col-xs-10">
+                    <div class="up-next-label">Up next</div>
+                    <div><i class="fa fa-list activity-type-icon" aria-hidden="true"></i>&#xA0;&#xA0;&#xA0;<span class="activity-title" ng-bind="ctrl.data.nextActivity.name"></span></div>
+                </div>
+                <div class="col-xs-2">
+                    <button class="next-activity-btn pull-right" ng-class="{ locked: ctrl.isNextActivityLocked() }" ng-click="ctrl.goToNextActivity()">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

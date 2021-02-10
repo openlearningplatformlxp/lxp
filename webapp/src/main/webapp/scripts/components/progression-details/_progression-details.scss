@@ -1,0 +1,49 @@
+.progression-details {
+
+    .progression-data-box {
+        margin-top: 20px;
+
+        .line-separator {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #DADADA;
+        }
+
+        .progression-table-header {
+            background-color: #0f2032;
+            color: #ffffff;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .progression-table-row {
+            margin-bottom: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+
+            .status-icon {
+                font-size: 20px;
+            }
+
+            .status-icon-notstarted {
+                color: $gray;
+            }
+
+            .status-icon-inprogress {
+                color: #00b3ee;
+            }
+
+            .status-icon-completed {
+                color: #4cae4c;
+            }
+        }
+
+        .progression-table-row-odd {
+            background-color: #ffffff;
+        }
+    }
+
+}

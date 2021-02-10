@@ -1,0 +1,20 @@
+/**
+ * Common Angular additions/overridden styles.
+ *
+ * User: scarlson
+ * Date: 2/29/15
+ * Time: 12:33 AM
+ */
+
+[ng-click] {
+    cursor: pointer;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}

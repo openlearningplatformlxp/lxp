@@ -1,0 +1,18 @@
+.last-question {
+    .question-number-block {
+        margin: 0.5px;
+        padding-top: 1px;
+
+        .question-not-answered {
+            background-color: #C48AA8;
+            width: 35px;
+            height: 30px;
+            text-align: center;
+            padding: 0px;
+
+            .question-number {
+                color: white;
+            }
+        }
+    }
+}

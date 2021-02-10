@@ -1,0 +1,61 @@
+<cms-block ctrl="ctrl" key="state-assets" ng-cloak>
+    <div class="admin-assets-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="asset.assets.title"></h2>
+                <div class="search-buttons-container">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.gotoNewUser()">
+                        <span class="glyphicon glyphicon-plus"></span> <span translate="asset.assets.newAsset"></span>
+                    </button>
+                </div>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'asset.assets.noAssetsFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="name" label="{{'global.labels.Name' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="path/filename" label="{{'global.labels.filename' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-min-width">
+                                                <searchsort search-state="ctrl.pagedSearch" field="assetSubtype" label="{{'global.labels.AssetType' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-min-width">
+                                                <searchsort search-state="ctrl.pagedSearch" field="assetStoreType" label="{{'global.labels.AssetStoreType' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="asset in ctrl.pagedSearch.getContent()" ng-if="!asset['_empty_']">
+                                            <td ng-bind="asset.name"></td>
+                                            <td><span ng-if="asset.path" ng-bind="asset.path"></span>/<span ng-bind="asset.filename"></span></td>
+                                            <td class="text-nowrap"><span translate="global.asset.type.{{asset.assetType.name}}.name"></span>: <span translate="global.asset.subtype.{{asset.assetType.name}}_{{asset.assetSubtype.name}}.name"></span></td>
+                                            <td class="text-nowrap" translate="global.asset.storeType.{{asset.assetStoreType.name}}.name"></td>
+                                            <td class="st-actions">
+                                                <a class="affordance" href="#editAsset" ng-click="ctrl.editAsset(asset, $event)">Edit</a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="asset['_empty_']">
+                                            <td colspan="4">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

@@ -1,0 +1,124 @@
+.catalog-view {
+
+    .title {
+        font-size: $font-size-h1;
+    }
+
+    .page-content-section {
+        padding-top: $scale4;
+        margin-bottom: $scale4;
+    }
+
+    .card-section-header {
+        line-height: 30px;
+
+        .label {
+            background-color: #7a8b8e;
+        }
+    }
+
+    .card-section-options {
+        padding-bottom: $scale1;
+
+        button {
+            margin-right: $scale0;
+        }
+
+        a {
+            display: inline-block;
+            padding: $scale0;
+            color: inherit;
+        }
+    }
+
+    .learning-path-section {
+        margin-top: $scale6;
+    }
+
+    .courses-section {
+        margin-top: $scale6;
+        margin-bottom: $scale6;
+    }
+
+    .topics-section {
+        @extend .card-grid-x4;
+        margin: $scale3 0;
+
+        h5 {
+            margin-bottom: 0;
+        }
+
+        h6 {
+            color: $gray-light;
+            font-weight: $font-weight-normal;
+        }
+
+        .topic {
+            @include transition-all(.15s);
+            @extend .panel-medium;
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            height: 135px;
+
+            .image {
+                width: 100%;
+                height: 75px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+
+                &:before {
+                    @include transition-all(1s);
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    @include content-gradient($teal-shade3, rgba(67, 173, 175, .5));
+                }
+
+                img {
+                    width: 100%;
+                    height: 75px;
+                }
+            }
+
+            .text {
+                display: grid;
+                align-items: center;
+                height: 100%;
+                @extend p;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                text-transform: capitalize;
+                @include content-gradient($teal-tint3, #fff);
+            }
+        }
+
+        .topic:hover {
+            @extend .card-hover-active-base;
+
+            .image {
+                &:before {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        a,
+        a:hover,
+        a:focus,
+        a:visited {
+            text-decoration: none;
+        }
+    }
+
+}

@@ -1,0 +1,30 @@
+div.well {
+    display: flex;
+    flex-direction: row;
+    background-color: $gray-dark;
+    border-radius: $radius-base;
+
+    .well-icon {
+        display: flex;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        padding: $scale0;
+    }
+
+    .well-text {
+        display: flex;
+        flex-direction: column;
+
+        .well-title {
+            color: white;
+            font-size: $font-size-sm;
+        }
+
+        .well-description {
+            margin-top: $scale-2;
+            color: $gray-light;
+            font-size: $font-size-sm;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<div class="searchsort-directive">
+    <div ng-if="ctrl.isSortable()" class="sortable" ng-click="ctrl.sort()">
+        <div class="sort-label" ng-bind="ctrl.getLabel()"></div>
+        <div class="sort-icon clearfix">
+            &nbsp;
+            <i ng-if="ctrl.isSortAsc()" class="fa fa-sort-asc"></i>
+            <i ng-if="ctrl.isSortDesc()" class="fa fa-sort-desc"></i>
+            <i ng-if="ctrl.isSortSecondaryAsc()" class="fa fa-sort-asc sort-secondary"></i>
+            <i ng-if="ctrl.isSortSecondaryDesc()" class="fa fa-sort-desc sort-secondary"></i>
+            <i class="fa fa-sort"></i>
+        </div>
+    </div>
+    <div ng-if="ctrl.isNotSortable()">
+        <div class="sort-label" ng-bind="ctrl.getLabel()"></div>
+    </div>
+</div>

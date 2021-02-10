@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="jzeilenga">
+    <createTable tableName="personal_plan">
+      <column name="id" type="BIGSERIAL" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_personal_plan" nullable="false"/>
+      </column>
+      <column name="userid" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(400)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="VARCHAR(1000)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="duedate" type="TIMESTAMP">
+        <constraints nullable="true"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP" defaultValueDate="${now}"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="jzeilenga">
+    <createTable tableName="personal_plan_section">
+      <column name="id" type="BIGSERIAL" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_personal_plan_section" nullable="false"/>
+      </column>
+      <column name="planid" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(400)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="VARCHAR(1000)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="duedate" type="TIMESTAMP">
+        <constraints nullable="true"/>
+      </column>
+      <column name="visibile" type="boolean">
+        <constraints nullable="true"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP" defaultValueDate="${now}"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="3" author="tdepriede">
+    <addForeignKeyConstraint baseColumnNames="planid" baseTableName="personal_plan_section" constraintName="fk_plp_sec_plan" referencedColumnNames="id" referencedTableName="personal_plan"/>
+  </changeSet>
+  <changeSet id="4" author="tdepriede">
+    <createTable tableName="personal_plan_section_course">
+      <column name="id" type="BIGSERIAL" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_personal_plan_section_course" nullable="false"/>
+      </column>
+      <column name="personal_plan_section_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="courseid" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="VARCHAR(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by" type="VARCHAR(50)"/>
+      <column name="last_modified_date" type="TIMESTAMP" defaultValueDate="${now}"/>
+    </createTable>
+    <addForeignKeyConstraint baseColumnNames="personal_plan_section_id" baseTableName="personal_plan_section_course" constraintName="fk_plp_sec_course" referencedColumnNames="id" referencedTableName="personal_plan_section"/>
+  </changeSet>
+  <changeSet id="5" author="tdepriede">
+    <addColumn tableName="personal_plan_section_course">
+      <column name="cms" type="VARCHAR(50)" afterColumn="type"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="6" author="tdepriede">
+    <addColumn tableName="personal_plan_section_course">
+      <column name="description" type="TEXT" afterColumn="cms"/>
+    </addColumn>
+    <addColumn tableName="personal_plan_section_course">
+      <column name="duedate" type="DATE" afterColumn="description"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="7" author="tdepriede">
+    <dropNotNullConstraint tableName="personal_plan_section_course" columnName="courseid"/>
+  </changeSet>
+  <changeSet id="8" author="tdepriede">
+    <addColumn tableName="personal_plan_section_course">
+      <column name="title" type="VARCHAR(255)" afterColumn="cms"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="9" author="tdepriede">
+    <addColumn tableName="personal_plan_section_course">
+      <column name="url" type="VARCHAR(255)" afterColumn="description"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="10" author="tdepriede">
+    <addColumn tableName="personal_plan">
+      <column name="archived" type="BOOLEAN" afterColumn="description" defaultValueBoolean="false"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="11" author="tdepriede">
+    <addColumn tableName="personal_plan_section">
+      <column name="sort_order" type="INT" afterColumn="description"/>
+    </addColumn>
+    <addColumn tableName="personal_plan_section_course">
+      <column name="sort_order" type="INT" afterColumn="description"/>
+    </addColumn>
+  </changeSet>
+  <changeSet id="12" author="tdepriede">
+    <dropColumn tableName="personal_plan">
+      <column name="duedate"/>
+    </dropColumn>
+    <addColumn tableName="personal_plan">
+      <column name="duedate" type="DATE" afterColumn="description"/>
+    </addColumn>
+    <dropColumn tableName="personal_plan_section">
+      <column name="duedate"/>
+    </dropColumn>
+    <addColumn tableName="personal_plan_section">
+      <column name="duedate" type="DATE" afterColumn="description"/>
+    </addColumn>
+  </changeSet>
+</databaseChangeLog>

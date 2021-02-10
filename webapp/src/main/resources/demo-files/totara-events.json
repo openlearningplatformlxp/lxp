@@ -1,0 +1,14 @@
+[
+  {
+    "eventId": "1",
+    "courseId": "1",
+    "sessionId": "1",
+    "name": "Event 1",
+    "time": "1415",
+    "duration": "50",
+    "timezone": "UTC",
+    "city": "Chicago",
+    "country": "USA",
+    "categoryname": "Category"
+  }
+]

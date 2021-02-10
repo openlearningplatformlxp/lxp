@@ -1,0 +1,75 @@
+/**
+ * Search Filter container directive styles.
+ */
+
+.search-filter--box {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $scale1;
+
+    .search-filter--header {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid $grey1;
+        cursor: pointer;
+
+        .search-filter--title {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+
+            h5 {
+                margin-bottom: 0;
+            }
+        }
+
+        .search-filter--arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .search-filter--body {
+        margin-top: $scale0;
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+
+            li {
+                margin-top: 5px;
+                margin-left: 0;
+
+                a,
+                a:hover,
+                a:focus,
+                a:active,
+                a:visited {
+                    text-decoration: none;
+                    color: $gray-light;
+                }
+
+                button {
+                    height: 2rem;
+                    width: 2rem;
+                }
+
+            }
+
+            li.active {
+                font-weight: $font-weight-bold;
+
+                a,
+                a:hover,
+                a:focus,
+                a:active,
+                a:visited {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+        }
+    }
+}

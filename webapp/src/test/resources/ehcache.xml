@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" name="CM1" updateCheck="false" maxBytesLocalHeap="16M">
+  <diskStore path="java.io.tmpdir"/>
+  <defaultCache eternal="false" overflowToDisk="false"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Asset" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.AssetSubtype" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.AssetType" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Authority" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Authority.permissions" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.CmsBlock" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Email" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Permission" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.PersonActivationToken" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.PersistentAuditEvent" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.PersistentToken" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Person" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Person.authorities" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.Person.persistentTokens" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.PersonPasswordResetToken" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.SpringSession" timeToLiveSeconds="60"/>
+  <cache name="com.redhat.uxl.dataobjects.domain.SystemMutex" timeToLiveSeconds="1"/>
+</ehcache>

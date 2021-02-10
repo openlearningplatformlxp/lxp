@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+    </parent>
+
+    <groupId>com.redhat.uxl</groupId>
+    <artifactId>reduxl-parent</artifactId>
+    <version>5.0.1</version>
+    <packaging>pom</packaging>
+
+    <name>reduxl</name>
+
+    <prerequisites>
+        <maven>3.0.0</maven>
+    </prerequisites>
+
+    <modules>
+        <module>commonjava</module>
+        <module>dbscripts</module>
+        <module>dataobjects</module>
+        <module>datalayer</module>
+        <module>services</module>
+        <module>webapp</module>
+    </modules>
+
+    <properties>
+        <!--<project.version>5.0.1</project.version>-->
+
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+
+        <awaitility.version>1.4.0</awaitility.version>
+        <aws-java-sdk.version>1.11.747</aws-java-sdk.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-io.version>2.6</commons-io.version>
+        <!--<commons-lang3.version>3.8.1</commons-lang3.version>-->
+        <commons-text.version>1.8</commons-text.version>
+        <flying-saucer-pdf-itext5.version>9.1.20</flying-saucer-pdf-itext5.version>
+        <!--<gson.version>2.8.6</gson.version>-->
+        <!--<hibernate-envers.version>5.4.12.Final</hibernate-envers.version>-->
+        <!--<hibernate-validator.version>6.0.18.Final</hibernate-validator.version>-->
+        <!--<hibernate.version>5.4.12.Final</hibernate.version>-->
+        <!--<httpclient.version>4.5.3</httpclient.version>-->
+        <!--<jackson.version>2.9.8</jackson.version>-->
+        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+        <javassist.version>3.26.0-GA</javassist.version>
+        <!--<java.version>1.8</java.version>-->
+        <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
+        <javax.inject.version>1</javax.inject.version>
+        <joda-time-hibernate.version>1.4</joda-time-hibernate.version>
+        <jsoup.version>1.13.1</jsoup.version>
+        <kalturaClient.version>3.2.1</kalturaClient.version>
+        <!--<liquibase.version>3.8.7</liquibase.version>-->
+        <liquibase-hibernate5.version>3.7</liquibase-hibernate5.version>
+        <liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
+        <!--<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>-->
+        <metrics-spark-reporter.version>1.2</metrics-spark-reporter.version>
+        <metrics-spring.version>3.1.3</metrics-spring.version>
+        <opensaml.version>2.6.4</opensaml.version>
+        <pherialize.version>1.2.4</pherialize.version>
+        <!--<postgresql.version>9.4-1203-jdbc42</postgresql.version>-->
+        <projectlombok.version>1.18.12</projectlombok.version>
+        <slf4j-api.version>1.7.30</slf4j-api.version><!-- keep in sync w/ version included in liquibase-slf4j -->
+        <solr-solrj.version>8.2.0</solr-solrj.version>
+        <sonar-maven-plugin.version>3.6.0.1398</sonar-maven-plugin.version>
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <!--<spring-boot-starter-data-jpa.version>2.2.5.RELEASE</spring-boot-starter-data-jpa.version>-->
+        <spring-data-commons.version>2.2.5.RELEASE</spring-data-commons.version>
+        <spring-data-solr.version>4.1.5.RELEASE</spring-data-solr.version>
+        <spring-security-saml2-core.version>1.0.10.RELEASE</spring-security-saml2-core.version>
+        <spring-webmvc-velocity.version>4.3.18.RELEASE</spring-webmvc-velocity.version>
+        <usertype-core.version>7.0.0.CR1</usertype-core.version>
+        <velocity.version>1.7</velocity.version>
+        <velocity-tools.version>2.0</velocity-tools.version>
+        <yeoman-maven-plugin.version>0.4</yeoman-maven-plugin.version>
+
+        <!-- Maven build properties -->
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <run.addResources>false</run.addResources>
+
+        <!-- Sonar properties -->
+        <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
+        <sonar.exclusions>src/main/webapp/assets/**/*.*, src/main/webapp/bower_components/**/*.*, src/main/webapp/dist/**/*.*</sonar.exclusions>
+        <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+        <sonar.jacoco.itReportPath>${project.testresult.directory}/coverage/jacoco/jacoco-it.exec</sonar.jacoco.itReportPath>
+        <sonar.jacoco.reportPath>${project.testresult.directory}/coverage/jacoco/jacoco.exec</sonar.jacoco.reportPath>
+
+        <sonar.javascript.jstestdriver.reportsPath>${project.testresult.directory}/karma</sonar.javascript.jstestdriver.reportsPath>
+        <sonar.javascript.lcov.reportPath>${project.testresult.directory}/coverage/report-lcov/lcov.info</sonar.javascript.lcov.reportPath>
+
+        <sonar.sources>${project.basedir}/src/main/</sonar.sources>
+        <sonar.surefire.reportsPath>${project.testresult.directory}/surefire-reports</sonar.surefire.reportsPath>
+        <sonar.tests>${project.basedir}/src/test/</sonar.tests>
+
+        <!-- DB Properties -->
+        <db.url>jdbc:postgresql://localhost:5432/reduxl</db.url>
+        <db.username>localuser</db.username>
+        <db.password>localuser</db.password>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies />
+    </dependencyManagement>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.15</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <configLocation>checkstyle-rules.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- For deployment of release builds to Synegen Nexus -->
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <url>http://developers.synegen.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>jrebel</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.zeroturnaround</groupId>
+                        <artifactId>jrebel-maven-plugin</artifactId>
+                        <version>1.1.5</version>
+                        <executions>
+                            <execution>
+                                <id>generate-rebel-xml</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <relativePath>./</relativePath>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

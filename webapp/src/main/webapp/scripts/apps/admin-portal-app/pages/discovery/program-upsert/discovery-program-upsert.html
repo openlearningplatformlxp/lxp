@@ -1,0 +1,58 @@
+<!--
+    Upsert Discovery Program by Admin.
+-->
+<cms-block ctrl="ctrl" key="state-discovery-program-add-edit" ng-cloak>
+    <div class="admin-discovery-program-upsert-view">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h2 ng-if="!ctrl.data.discoveryProgramItem.id" class="page-title" translate="discovery.upsert.addTitle"></h2>
+                <h2 ng-if="ctrl.data.discoveryProgramItem.id" class="page-title" translate="discovery.upsert.editTitle"></h2>
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+            </div>
+        </div>
+        <form name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-6">
+                    <div>
+                        <div class="form-group">
+                            <label for="type" translate="discovery.upsert.form.type"></label><span class="required-star">*</span>
+                            <select id="type" name="type" class="form-control" ng-model="ctrl.data.discoveryProgramItem.type" ng-change="ctrl.isAbleToSave()">
+                                <option value="">{{'discovery.upsert.form.placeholder.typeSelect' | translate}}</option>
+                                <option ng-repeat="option in ctrl.data.types" value={{option}}>{{option}}</option>
+                            </select>
+                        </div>
+                        <div ng-if="ctrl.data.discoveryProgramItem.type == 'PROGRAM'">
+                            <div class="form-group">
+                                <label for="programId" translate="discovery.upsert.form.programId"></label><span class="required-star">*</span>
+                                <input type="text" class="form-control" id="programId" name="programId" placeholder="{{'discovery.upsert.form.placeholder.programId' | translate}}" ng-model="ctrl.data.discoveryProgramItem.programId" ng-maxlength=50 ng-change="ctrl.isAbleToSave()">
+                            </div>
+                            <div class="form-group">
+                                <select id="programSelect" name="programSelect" class="form-control" ng-model="ctrl.data.discoveryProgramItem.programId" ng-change="ctrl.isAbleToSave()">
+                                    <option value="">{{'discovery.upsert.form.placeholder.select' | translate}}</option>
+                                    <option ng-repeat="option in ctrl.data.programs" value="{{option.id}}">({{option.id}}) - {{option.title}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="ctrl.data.discoveryProgramItem.type == 'TEXT'">
+                            <label translate="discovery.upsert.form.textField"></label><span class="required-star">*</span>
+                            <text-angular ng-model="ctrl.data.discoveryProgramItem.textField" ng-change="ctrl.isAbleToSave()"> </text-angular>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-check-input" type="checkbox" value="" id="isActive" ng-model="ctrl.data.discoveryProgramItem.active">
+                            <label class="form-check-label" for="isActive" translate="discovery.upsert.form.active"></label>
+                        </div>
+                    </div>
+                    <div class="actions-container well">
+                        <div class="actions-container-title">
+                            <h6>Actions</h6>
+                        </div>
+                        <div class="actions-container-body">
+                            <a type="button" class="btn btn-default" ng-click="ctrl.cancel(form)" translate="global.buttons.cancel"></a>
+                            <a class="btn btn-primary" ng-click="ctrl.save(form)" ng-disabled="!ctrl.data.isAbleToSave" translate="discovery.upsert.saveButton"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</cms-block>

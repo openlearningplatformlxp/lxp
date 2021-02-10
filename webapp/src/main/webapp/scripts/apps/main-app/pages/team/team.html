@@ -1,0 +1,55 @@
+<div class="team-view">
+    <div class="page-header-section">
+        <div class="container-fluid">
+            <div class="hero-container">
+                <div class="site-hero-content">
+                    <div class="hero-nav-section">
+                        <ul class="list-unstyled nav-ul">
+                            <li><a ui-sref-active="active" ui-sref="home">Overview
+                                    <div></div>
+                                </a></li>
+                            <li><a ui-sref-active="active" ui-sref="discover">Discover
+                                    <div></div>
+                                </a></li>
+                            <li><a ui-sref-active="active" ui-sref="team-learning-path">Team
+                                    <div></div>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content-section">
+        <div class="container-fluid">
+            <div ng-if="ctrl.data.notifications && ctrl.data.notifications.length" class="row">
+                <div class="col-sm-12">
+                    <div class="team-notifications-section">
+                        <div ng-repeat="notification in ctrl.data.notifications track by $index">
+
+                            <div class="banner-message negative" ng-if="notification && notification.message">
+                                <div class="banner-message-icon">
+                                    <img class="svg" src="assets/images/info.svg" />
+                                </div>
+                                <div class="banner-message-message">
+                                    <h1 ng-bind="notification.title"></h1>
+                                    <p ng-bind="notification.message"></p>
+                                </div>
+                                <div class="banner-message-cta">
+                                    <button ng-repeat="button in notification.buttons " ng-class="{'negative-primary': button.text == 'Approve','negative': button.text != 'Approve'}" ng-click="ctrl.onButtonClick($index, button)">
+                                        <span ng-bind="button.text"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div ui-view="team_content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

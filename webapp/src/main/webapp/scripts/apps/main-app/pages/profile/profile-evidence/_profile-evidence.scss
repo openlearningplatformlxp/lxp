@@ -1,0 +1,84 @@
+.evidence-view {
+    @extend .panel-low;
+    margin-bottom: $scale1;
+    margin-top: $scale4;
+
+    h1 {
+        @extend h3;
+    }
+
+    .container-fluid {
+        margin-top: $scale6;
+    }
+
+    .inline-groups {
+        @extend .rh-flex;
+        @extend .rh-flex-justify-content-space-between;
+        .form-group {
+            @extend .rh-flex-grow-1;
+        }
+
+        .form-group:last-child {
+            margin-left: 15px;
+        }
+
+    }
+
+    // Override the bootstrap styles
+    .form-horizontal .control-label {
+        text-align: right;
+        margin-bottom: 0;
+        padding-top: 0;
+        font-weight: normal;
+    }
+    .col-sm-2,
+    .col-sm-4,
+    .col-sm-8,
+    .col-sm-10 {
+        display: flex;
+        align-items: center;
+        padding-bottom: $base-value-half;
+        min-height: 42px;
+    }
+
+    .col-sm-4 {
+        justify-content: flex-end;
+    }
+
+    .required-star {
+        margin-left: 5px;
+    }
+
+    .file-thumbnails {
+        img {
+            width: 50px;
+            height: 50px;
+            margin: 10px 10px;
+        }
+    }
+
+    .evidence-button {
+        margin-top: $scale3;
+        text-align: right;
+    }
+
+    .error-message {
+        color: red;
+    }
+
+    .evidence-guidelines {
+        margin-top: $scale6;
+        background-color: rgba(0, 0, 0, .05);
+        padding: $scale2;
+        border-radius: $radius-base;
+
+        h3 {
+            @extend h4;
+        }
+
+        h4 {
+            @extend h5;
+            margin-bottom: $base-value-half;
+        }
+    }
+}

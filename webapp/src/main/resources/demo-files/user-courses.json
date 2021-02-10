@@ -1,0 +1,20 @@
+[
+  {
+    "userId": 1,
+    "courseId": 1,
+    "complete": false,
+    "locked": false
+  },
+  {
+    "userId": 1,
+    "courseId": 2,
+    "complete": false,
+    "locked": false
+  },
+  {
+    "userId": 1,
+    "courseId": 3,
+    "complete": false,
+    "locked": false
+  }
+]

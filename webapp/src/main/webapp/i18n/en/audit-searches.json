@@ -1,0 +1,17 @@
+{
+    "auditSearch": {
+        "auditSearches": {
+            "title": "Audit Searches",
+            "id": "Id",
+            "userId": "User ID",
+            "noEntriesFound": "No Entries Found!",
+            "results": "Results",
+            "filters": "Filters",
+            "searchTerm": "Search Term",
+            "searchSearches": {
+                "inputPlaceholder": "Search Audit entries...",
+                "totalSearchesCount": "Total Search entries: {{count}}"
+            }
+        }
+    }
+}

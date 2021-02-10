@@ -1,0 +1,39 @@
+<div class="upcoming-class-card-container">
+    <div class="upcoming-class-card">
+        <div class="upcoming-class-info">
+            <div class="upcoming-class-date">
+                <div class="upcoming-class-date-title">
+                    <h4 ng-bind="item.startTime | date: 'MMMM d, yyyy'"></h4>
+                </div>
+                <div class="upcoming-class-date-label" ng-if="item.verified">
+                    <div class="label">
+                        <i class="icon-check icon-2x"></i>
+                        <span>verified class</span>
+                    </div>
+                </div>
+            </div>
+            <div class="upcoming-class-time">
+                <span><span ng-bind="item.startTime | date: 'h:mm a' | lowercase"></span> - <span ng-bind="item.endTime | date: 'h:mm a' | lowercase"></span></span>
+            </div>
+            <div class="upcoming-class-location">
+                <span ng-if="item.city || item.state || item.country">
+                    <span ng-if="item.city" ng-bind="item.city | capitalize"></span>
+                    <span ng-if="item.city && (item.state || item.country)">,</span>
+                    <span ng-if="item.state" ng-bind="item.state | uppercase"></span>
+                    <span ng-if="item.state && item.country">• </span>
+                    <span ng-if="item.country" ng-bind="item.country"></span>
+                </span>
+            </div>
+        </div>
+        <div class="upcoming-class-action">
+            <div class="upcoming-class-button">
+                <button class="disabled" ng-if="item.status =='SESSION_OVER'" disabled>Session Over</button>
+                <button class="disabled" ng-if="item.status =='SOLD_OUT'" disabled>Sold out</button>
+                <button class="disabled" ng-if="item.status =='REQUESTED_APPROVAL'" disabled>Requested Approval</button>
+                <button class="primary" ng-if="item.status =='REQUIRES_MANAGER_APPROVAL'" ng-click="requireApproval()">Requires Approval</button>
+                <button class="primary" ng-if="item.status =='ACTIVE'" ng-click="signUp()">Sign Up</button>
+                <button class="disabled" ng-if="item.status =='ENROLLED'" disabled>Enrolled</button>
+            </div>
+        </div>
+    </div>
+</div>

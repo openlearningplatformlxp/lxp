@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="changelog/001-initial/001-setup.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/002-person.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/003-authority.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/004-person-authority.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/005-persistent-token.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/006-persistent-audit-event.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/007-persistent-audit-event-data.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/008-notification.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/009-person-activation-token.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/010-person-password-reset-token.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/011-email.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/012-spring-session.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/013-cms.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/014-asset.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/015-permissions.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/016-system-mutex.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001-initial/999-initial-data.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/01-messaging.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/002-scorm-values.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/003-feedback.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/004-learninglocker.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/005-personaccess.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/006-video-time.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/002-intro_course.xml" relativeToChangelogFile="true"/>
+     <include file="changelog/002/002-intro_course-up.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/007-discovery-screen.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/008-messaging-subject.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/009-allego.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/010-learninglocker-nullable-urlkey.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/02-messaging.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/011-feedback-update.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/012-discovery-programs-update.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/013-wikipage.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/014-announcements.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/015-person_search.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/016-featured_search.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/017-personal_plans.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/018-index_data.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/019-settings.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/020-personal_plan_manual.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/021-personal_plans_share.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002/022-personal_plans_clean.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/spring-upgrade-2_2_5/001-spring-session-upgrade.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

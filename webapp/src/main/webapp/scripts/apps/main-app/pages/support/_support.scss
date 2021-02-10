@@ -1,0 +1,121 @@
+.support-view {
+
+    .hero-container {
+        z-index: 100;
+        position: relative;
+    }
+
+    .support-title-container {
+        margin: $scale8 0 $scale8 0;
+
+        .search-title {
+            font-weight: $font-weight-bold;
+            margin-bottom: $scale0;
+        }
+
+        .search-text {
+            font-weight: $font-weight-light;
+            margin-bottom: $scale6;
+        }
+
+        .support-searchbar {
+            background-color: white;
+            margin: 0 auto;
+            max-width: 500px;
+            position: relative;
+            height: 50px;
+            border-radius: $radius-base;
+
+            i {
+                color: #333333;
+                position: absolute;
+                left: $scale0;
+                top: 15px;
+            }
+
+            input {
+                margin-left: 30px;
+                border: 0;
+                max-width: calc(100% - 30px);
+                height: 50px;
+            }
+
+            ::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: #7c8c8f;
+                opacity: 1;
+                /* Firefox */
+            }
+
+            :-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: #7c8c8f;
+            }
+
+            ::-ms-input-placeholder {
+                /* Microsoft Edge */
+                color: #7c8c8f;
+            }
+
+        }
+    }
+
+    .card-section {
+        margin: $scale9 0 $scale9 0;
+
+        a,
+        a:hover,
+        a:focus,
+        a:visited {
+            text-decoration: none;
+        }
+
+        .support-card {
+            @extend .dropshadow-m;
+            background: $card-course-color;
+            padding: $scale4;
+            text-align: center;
+            margin-bottom: $scale1;
+
+            .filler-img {
+                height: 100px;
+                width: 100px;
+                margin: 0 auto $scale0 auto;
+            }
+
+            div {
+                color: black;
+            }
+
+            span {
+                font-size: $font-size-sm;
+                font-weight: 300;
+                color: #bbbcb9;
+            }
+        }
+
+    }
+
+    .help-now-section {
+        margin: $scale9 0 $scale9 0;
+
+        .help-card {
+            @extend .dropshadow-m;
+            background: $card-course-color;
+            padding: $scale6;
+            text-align: center;
+            margin-bottom: $scale1;
+
+            h4 {
+                font-weight: 300;
+                margin-bottom: 0;
+            }
+
+            div {
+                margin-bottom: $scale4;
+            }
+
+        }
+    }
+
+}

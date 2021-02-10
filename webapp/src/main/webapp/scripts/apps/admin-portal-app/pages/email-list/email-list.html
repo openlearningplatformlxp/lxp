@@ -1,0 +1,62 @@
+<cms-block ctrl="ctrl" key="state-email-list" ng-cloak>
+    <div class="admin-email-list-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="email-list.title"></h2>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'email-list.noEmailFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>Status</td>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="lastModifiedDate" label="{{'global.labels.lastActivity' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="to" label="{{'global.labels.email.To' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="subject" label="{{'global.labels.email.Subject' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="attemptCount" label="{{'global.labels.attemptCount' | translate}}"></searchsort>
+                                            </th>
+                                            <th class="st-actions">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="email in ctrl.pagedSearch.getContent()" ng-if="!email['_empty_']">
+                                            <td>
+                                                <div class="label label-success" ng-show="ctrl.isStatusSent(email)" translate="global.labels.status.Sent"></div>
+                                                <div class="label label-warning" ng-show="ctrl.isStatusPending(email)" translate="global.labels.status.Pending"></div>
+                                                <div class="label label-danger" ng-show="ctrl.isStatusFailed(email)" translate="global.labels.status.Failed"></div>
+                                            </td>
+                                            <td ng-bind="ctrl.getLastActivityDate(email) | date : 'medium'"></td>
+                                            <td ng-bind="email.to"></td>
+                                            <td ng-bind="email.subject"></td>
+                                            <td ng-bind="email.attemptCount"></td>
+                                            <td class="st-actions">
+                                                <a class="affordance" ng-click="ctrl.viewEmail(email, $event)" translate="global.links.ViewEmail"></a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="email['_empty_']">
+                                            <td colspan="8">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

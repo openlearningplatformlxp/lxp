@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <property name="now" value="now()" dbms="mysql,h2"/>
+  <property name="now" value="current_timestamp" dbms="postgresql"/>
+  <changeSet id="1" author="tdepriede">
+    <sql>DELETE FROM personal_plan_share where 1 = 1; DELETE FROM personal_plan_manual_completion where 1 = 1; DELETE FROM personal_plan_section_course where 1 = 1; DELETE FROM personal_plan_section where 1 = 1; DELETE FROM personal_plan where 1 = 1;</sql>
+  </changeSet>
+  <changeSet id="2" author="tdepriede">
+    <sql>DELETE FROM personal_plan_share where owner_user_id in (select cast(login as integer) from person where email='mperkins@redhat.com' or email='tepatel@redhat.com'); DELETE FROM personal_plan_manual_completion where userid in (select cast(login as integer) from person where email='mperkins@redhat.com' or email='tepatel@redhat.com'); DELETE FROM personal_plan_section_course ppsc where ppsc.id in ( select ppsc.id from personal_plan_section_course ppsc join personal_plan_section pps on ppsc.personal_plan_section_id = pps.id where pps.planid in (select id from personal_plan where userid in (select cast(login as integer) from person where email='mperkins@redhat.com' or email='tepatel@redhat.com'))); DELETE FROM personal_plan_section where planid in (select id from personal_plan where userid in (select cast(login as integer) from person where email='mperkins@redhat.com' or email='tepatel@redhat.com')); DELETE FROM personal_plan where userid in (select cast(login as integer) from person where email='mperkins@redhat.com' or email='tepatel@redhat.com');</sql>
+  </changeSet>
+</databaseChangeLog>

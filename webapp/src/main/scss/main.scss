@@ -1,0 +1,209 @@
+$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$feather-font-path: "../../bower_components/feather-icons-sass/fonts";
+
+$syn_page_max_width: 1170px;
+
+// bower:scss
+@import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+@import 'font-awesome/scss/font-awesome.scss';
+// endbower
+
+@import 'feather-icons-sass/feather.scss';
+
+/*
+ * Common
+ */
+
+@import 'common/xl_vars';
+@import 'common/helpers';
+//@import 'common/responsive';
+@import 'common/shadows';
+@import 'common/animation';
+@import 'common/typography';
+@import "common/common";
+@import "common/common-html";
+@import "common/common-angular";
+@import "common/common-bootstrap";
+@import "common/common-app";
+@import "common/header";
+@import "common/footer";
+@import "common/xl_hero";
+@import "common/xl_components";
+@import "common/xl_progress-bar";
+@import "common/common-text";
+@import "common/common-checkbox";
+@import "common/common-buttons";
+@import "common/common-modal";
+@import "common/common-nav";
+@import "common/common-switch";
+@import "common/common-well";
+@import "common/wiki";
+
+
+/*
+ * Directives and Components
+ */
+@import "../webapp/scripts/components/directives/achievements/achievements";
+@import "../webapp/scripts/components/directives/cms-block/cms-block";
+@import "../webapp/scripts/components/iframe-resizer/iframe-resizer";
+@import "../webapp/scripts/components/impersonate-user/impersonate-user";
+@import "../webapp/scripts/components/messages/show-messages/show-messages";
+@import "../webapp/scripts/components/modal/alerts-service/alerts-service";
+@import "../webapp/scripts/components/readonly-checkbox/readonly-checkbox";
+@import "../webapp/scripts/components/search/searchbar/searchbar";
+@import "../webapp/scripts/components/search/locationfilter/locationfilter";
+@import "../webapp/scripts/components/search/searchfilter/searchfilter";
+@import "../webapp/scripts/components/search/searchlist/searchlist";
+@import "../webapp/scripts/components/search/searchsort/searchsort";
+
+
+/*
+ * Course Player Directives and components
+ */
+
+//@import "../webapp/scripts/components/course-player/activity-content/activity-header/activity-header";
+//@import "../webapp/scripts/components/course-player/activity-content/activity-footer/activity-footer";
+//@import "../webapp/scripts/components/course-player/activity-content/activity-manual-completion/activity-manual-completion";
+//@import "../webapp/scripts/components/course-player/activity-content/certificate/certificate";
+//@import "../webapp/scripts/components/course-player/activity-content/feedback/feedback";
+//@import "../webapp/scripts/components/course-player/activity-content/label/label";
+//@import "../webapp/scripts/components/course-player/activity-content/locked/locked";
+//@import "../webapp/scripts/components/course-player/activity-content/notsupported/notsupported";
+//@import "../webapp/scripts/components/course-player/activity-content/page/page";
+//@import "../webapp/scripts/components/course-player/activity-content/pdf/pdf";
+//@import "../webapp/scripts/components/course-player/activity-content/quiz/quiz";
+//@import "../webapp/scripts/components/course-player/activity-content/quiz/modal/last-question-modal";
+//@import "../webapp/scripts/components/course-player/activity-content/resource/resource";
+//@import "../webapp/scripts/components/course-player/activity-content/scorm/scorm";
+//@import "../webapp/scripts/components/course-player/activity-content/url/url";
+//@import "../webapp/scripts/components/course-player/activity-content/video/video";
+//@import "../webapp/scripts/components/course-player/activity-content/video/video-player/video-player";
+//@import "../webapp/scripts/components/course-player/activity-content/choice/choice";
+
+
+/*
+ * Course Player External Directives and components
+ */
+
+@import "../webapp/scripts/components/course-player-external/activity-content-external/locked/locked";
+@import "../webapp/scripts/components/course-player-external/activity-content-external/notsupported/notsupported";
+@import "../webapp/scripts/components/course-player-external/activity-content-external/scorm/scorm";
+
+/*
+ * General
+ */
+
+@import "../webapp/scripts/components/ng-quill/quill.snow";
+@import "../webapp/scripts/components/ng-quill/quill.core";
+@import "../webapp/scripts/components/breadcrumbs/breadcrumbs";
+@import "../webapp/scripts/components/card/card";
+@import "../webapp/scripts/components/card-view-switcher/card-view-switcher";
+@import "../webapp/scripts/components/datepicker/datepicker";
+@import "../webapp/scripts/components/overview-card/overview-card";
+@import "../webapp/scripts/components/download-card/download-card";
+@import "../webapp/scripts/components/progress-card/progress-card";
+@import "../webapp/scripts/components/headers/header-main/header-main";
+@import "../webapp/scripts/components/progression-details/progression-details";
+@import "../webapp/scripts/components/message-card/message-card";
+@import "../webapp/scripts/components/search-box/search-box";
+@import "../webapp/scripts/components/team-subheader/team-subheader";
+@import "../webapp/scripts/components/team-manager-list/team-manager-list";
+@import "../webapp/scripts/components/team-card/team-card";
+@import "../webapp/scripts/components/team-course-card/team-course-card";
+@import "../webapp/scripts/components/team-individual-card/team-individual-card";
+@import "../webapp/scripts/components/upcoming-class-card/upcoming-class-card";
+@import "../webapp/scripts/components/code-editor/code-editor";
+@import "../webapp/scripts/components/search/search";
+
+/*
+ *
+ */
+
+@import "../webapp/scripts/components/content-containers/full-page/full-page";
+@import "../webapp/scripts/components/content-containers/left-sidebar/left-sidebar";
+
+/*
+ * Common Pages
+ */
+@import "../webapp/scripts/pages/account/activate/activate";
+@import "../webapp/scripts/pages/account/login/login";
+@import "../webapp/scripts/pages/account/password/password";
+@import "../webapp/scripts/pages/account/register/register";
+@import "../webapp/scripts/pages/account/sessions/sessions";
+@import "../webapp/scripts/pages/account/settings/settings";
+
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/asset/asset-add-edit/asset-add-edit";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/asset/assets/assets";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/audits/audits";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/cms/cms-block-add-edit/cms-block-add-edit";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/cms/cms-blocks/cms-blocks";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/configuration/configuration";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/email-list/email-list";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/feedback/feedbacks/feedbacks";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/health/health";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/info/info";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/logs/logs";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/metrics/metrics";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/discovery/discovery";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/discovery/program-upsert/discovery-program-upsert";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/notifications/notifications";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/notifications/send/notifications-send";
+@import "../webapp/scripts/apps/admin-portal-app/pages/announcements/announcements";
+@import "../webapp/scripts/apps/admin-portal-app/pages/announcements/send/announcements-send";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/audit-searches/audit-searches";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/featured-searches/featured-searches";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/featured-searches/create/featured-search-create";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/user-add-edit/user-add-edit";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/users/users";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/user-role/user-role-add-edit/user-role-add-edit";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/user-role/user-roles/user-roles";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/wikipage/wikipage";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/wikipage/create/wikipage-create";
+@import "src/main/webapp/scripts/apps/admin-portal-app/pages/wikipage/tree/wikipage-tree";
+
+@import "../webapp/scripts/pages/error/error";
+
+@import "../webapp/scripts/pages/email/email-view/email-view";
+
+/*
+ * Applications
+ */
+
+@import "../webapp/scripts/apps/admin-portal-app/admin-portal-app";
+@import "../webapp/scripts/apps/main-app/main-app";
+
+/*
+ * Applications Pages
+ */
+
+@import "../webapp/scripts/apps/admin-portal-app/pages/main/main";
+@import "../webapp/scripts/apps/main-app/pages/main/main";
+@import "../webapp/scripts/apps/main-app/pages/discover/discover";
+@import "../webapp/scripts/apps/main-app/pages/catalog/catalog";
+@import "../webapp/scripts/apps/main-app/pages/catalog/course/course";
+@import "../webapp/scripts/apps/main-app/pages/catalog/course/overview/catalog-course-overview";
+@import "../webapp/scripts/apps/main-app/pages/catalog/course/activity/catalog-course-activity";
+@import "../webapp/scripts/apps/main-app/pages/catalog/course/totara/catalog-course-totara";
+@import "../webapp/scripts/apps/main-app/pages/catalog/course/upcoming/catalog-course-upcoming";
+@import "../webapp/scripts/apps/main-app/pages/catalog/course/requirements/catalog-course-requirements";
+@import "../webapp/scripts/apps/main-app/pages/catalog/course/resources/catalog-course-resources";
+@import "../webapp/scripts/apps/main-app/pages/course-player/course-player";
+@import "../webapp/scripts/apps/main-app/pages/course-player/activity/course-player-activity";
+@import "../webapp/scripts/apps/main-app/pages/course-player-external/course-player-external";
+@import "../webapp/scripts/apps/main-app/pages/catalog/learning-path/learning-path";
+@import "../webapp/scripts/apps/main-app/pages/calendar/calendar";
+@import "../webapp/scripts/apps/main-app/pages/support/support";
+@import "../webapp/scripts/apps/main-app/pages/notifications/notifications";
+@import "../webapp/scripts/apps/main-app/pages/profile/profile";
+@import "../webapp/scripts/apps/main-app/pages/profile/profile-main/profile-main";
+@import "../webapp/scripts/apps/main-app/pages/profile/profile-learning/profile-learning";
+@import "../webapp/scripts/apps/main-app/pages/profile/profile-preferences/profile-preferences";
+@import "../webapp/scripts/apps/main-app/pages/profile/profile-evidence/profile-evidence";
+@import "../webapp/scripts/apps/main-app/pages/search/search";
+@import "../webapp/scripts/apps/main-app/pages/team/team";
+
+
+
+
+// Redhat Custom
+//@import "redhat/index";

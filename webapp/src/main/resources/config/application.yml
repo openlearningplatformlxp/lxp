@@ -1,0 +1,232 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overriden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+# Disable the spring security default configuration from spring-boot-actuator
+management.security.enabled: true
+security.basic.enabled: false
+
+# Disable Jolokia - An http/json bridge for remote JMX access
+endpoints.jolokia.enabled: false
+
+# security configuration (this key should be unique for your application, and kept secret)
+jhipster.security.rememberme.key: 5654473507e856501k49220c61fa6d9a38145966 # Required JHipster key.
+
+# Disable the spring endpoint metrics from spring-boot-actuator
+management.endpoint.metrics.enabled: false
+
+app:
+    kaltura:
+        api:
+            enabled: false
+            url:
+            partnerID: 0
+            categoryID:
+            metadataProfileID: 0
+            metadataProfileName:
+            secret:
+    allego:
+        api:
+            recipient:
+                url: https://reports.allego.com/reports/query/getContentRecipients
+            search:
+                url: https://reports.allego.com/reports/query/content
+            key:
+                auth:
+    linkedin:
+        api:
+            auth:
+                url: https://www.linkedin.com/oauth/v2/accessToken
+            assets:
+                url: https://api.linkedin.com/v2/learningAssets
+            client:
+                id:
+                secret:
+    learninglocker:
+        api:
+            auth:
+            version: 1.0.3
+            base: https://redhat.learninglocker.net/api/connection/statement
+        lynda:
+            id:
+            oid:
+        kaltura:
+            id:
+            oid:
+        allego:
+            id:
+            oid:
+        pullJob:
+            enabled: true
+            cronSchedule: 0 1 1 * * ?
+    analytics:
+        googleAnalytics:
+            domainName:
+            trackingId:
+
+    assets:
+        storage:
+            enabled: true
+            storageDirectory: /mnt/asset.tmp.storage
+
+    aws:
+        s3:
+            accessKey:
+            bucket:
+            endpoint:
+            environment:
+            secretKey:
+            urlPrefix:
+
+    healthCheck:
+        externalUrls:
+
+    mail:
+        sendEmailJob:
+            enabled: false
+            maxAttempts: 10
+            sendDelayMS: 1000
+            taskDelayMS: 60000
+            taskInitialDelayMS: 60000
+
+    path:
+        personal:
+            duedate:
+                passed:
+                    enabled: true
+                    cronSchedule: 0 0 07 * * ?
+
+    passwordResetTokens:
+        removeExpiredJob:
+            enabled: false
+            cronSchedule: 0 0 1 * * ?
+
+    persistentTokens:
+        removeOldJob:
+            enabled: false
+            cronSchedule: 0 0 0 * * ?
+
+    persons:
+        removeNotActivatedJob:
+            enabled: false
+            cronSchedule: 0 0 1 * * ?
+
+    scheduling:
+        corePoolSize: 5
+
+    security:
+        activation:
+            hoursTokenValid: 8760
+        client:
+            session:
+                timeout:
+                    idleSecsBeforeWarning: 28800 # 8 hrs minutes minus 30 secs
+                    secsBeforeLogout: 30
+                cookie:
+                    domainNamePattern:
+                    httpOnly: true
+                    name:
+                    path:
+                    secure: true
+        csrf:
+            enabled: false # is CSRF protection enabled - turned off because it causes problems
+        impersonate:
+            enabled: true
+            password: $2a$08$C0Oop6FUiMNlPHpTkYErt.oSMrB.P6SrZ4vn0LkMjs1mxuVEc4bsO
+            passwordRequired: true
+            targetURL: /
+        password:
+            reset:
+                hoursTokenValid: 24
+    solr:
+        manualKey: 55a4a592-8894-4169-8c4a-7bde0315ccac
+        indexJob:
+            enabled: true
+            cronSchedule: 0 0 03 * * ?
+
+async:
+    corePoolSize: 2
+    maxPoolSize: 50
+    queueCapacity: 10000
+
+mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+    protocol: smtp
+    tls: false
+    auth: false
+    from:
+        email: reduxl@localhost
+        name: reduxl
+
+management:
+    context-path: /admin/manage
+
+metrics:
+    jmx.enabled: true
+    spark:
+        enabled: false
+        host: localhost
+        port: 9999
+    graphite:
+        enabled: false
+        host: localhost
+        port: 2003
+        prefix: reduxl
+
+spring:
+    jmx:
+        default_domain: webapp
+
+    jpa:
+        properties:
+            hibernate.default_batch_fetch_size: 16
+
+    mvc:
+        favicon:
+            enabled: false
+    http:
+        multipart:
+            max-file-size: 5MB
+            max-request-size: 5MB
+
+swagger:
+    apiDocsLocation: http://localhost:8080
+    contact:
+    description: reduxl applications and beyond!
+    version: 0.0.1
+    includePatterns: /api/.*
+    license: Apache 2.0
+    licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+    termsOfServiceUrl: http://jhipster.github.io/
+    title: reduxl API
+
+messages:
+    constants:
+        courseEnrollmentRequest: Course Enrollment Request
+        approve: Approve
+        reject: Reject
+        approveMessage: Your request for enrollment in course {course} has been approved
+        rejectMessage: Your request for enrollment in course {course} has been rejected
+        plp:
+            title:
+                shared: '%s shared a learning path with you'
+                unshared: '%s unshared a learning path with you'
+                dueDateItemsHasChanged: '%s changed the due date on a shared path'
+                dueDateItemsHasPassed: The Personal Learning Path due dates have been passed!
+            sharedWithManager: '%s - %s. Due %s'
+            sharedWithDirectReport: '%s - %s. Due %s'
+            unsharedWithDirectReport: '%s - %s. Due %s'
+            dueDateItemsHasChanged: '%s - the new due date is %s'
+            dueDateItemsHasPassed: You didn't complete the path in the due date.

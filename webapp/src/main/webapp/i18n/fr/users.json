@@ -1,0 +1,47 @@
+{
+    "user": {
+        "user-add-edit": {
+            "never": "<i>never</i>",
+            "title.add": "Add User:",
+            "title.edit": "Edit User: <b>{{username}}</b>",
+            "buttons": {
+                "deleteUser": "Delete User",
+                "impersonateUser": "Impersonate User"
+            },
+            "deleteUser": {
+                "text": "Are you sure you want to delete user <b>{{username}}</b>?",
+                "success": "User has been deleted.",
+                "title": "Delete User"
+            },
+            "form": {
+                "accountOptions": "Account Options",
+                "userAuthorities": "Authorities"
+            },
+            "labels": {
+                "lastLoginDate": "Last Login Date"
+            }
+        },
+        "users": {
+            "title": "Users",
+            "noUsersFound": "No Users Found!",
+            "buttons": {
+                "deleteUser": "Delete User",
+                "deleteUsers": "Delete <b>{{selectedCount}}</b> Users"
+            },
+            "deleteUsers": {
+                "text": "Are you sure you want to delete the selected user?",
+                "success": "User successfully deleted.",
+                "title": "Delete User",
+                "plural": {
+                    "text": "Are you sure you want to delete <b>{{selectedCount}}</b> selected users?",
+                    "success": "All selected users successfully deleted.",
+                    "title": "Delete Users"
+                }
+            },
+            "searchUsers": {
+                "inputPlaceholder": "Search Users...",
+                "totalUsersCount": "Total Users: {{count}}"
+            }
+        }
+    }
+}

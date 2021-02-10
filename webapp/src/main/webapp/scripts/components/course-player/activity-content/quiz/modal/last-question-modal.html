@@ -1,0 +1,21 @@
+<div class="last-question">
+    <div class="modal-header">
+        <h2 class="modal-title" translate="lesson.quiz.last-question-complete-not-finish-all-title"></h2>
+    </div>
+    <div class="modal-body pad">
+        <div translate="lesson.quiz.last-question-complete-not-finish-all-text"></div>
+        <br>
+        <div class="row">
+            <div ng-repeat="question in ctrl.data.unansweredQuestions" class="col-md-1 col-sm-1 col-xs-1">
+                <div class="question-number-block text-center">
+                    <div><button class="btn btn-primary question-not-answered" ng-click="ctrl.jumpToQuestion(question.id)"><span ng-bind="question.id" class="question-number"></span></button></div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" ng-click="ctrl.close()" translate="global.buttons.Close"></button>
+        <button class="btn btn-primary pull-right" type="button" ng-click="ctrl.jumpToFirstUnansweredQuestion()" translate="global.buttons.OK"></button>
+    </div>
+</div>

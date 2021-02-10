@@ -1,0 +1,76 @@
+.page-activity {
+
+    .resource-box {
+
+        padding-bottom: 0px;
+
+        .instruction-box {
+            font-size: 14px;
+            padding: 15px 0px 15px 25px;
+            margin-bottom: 20px;
+            background-color: #edeff0;
+        }
+
+        hr {
+            background-color: #BABABA;
+            border: 0 none;
+            color: #BABABA;
+            height: 1px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .resource-content-box {
+            table {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 10px;
+                border-collapse: separate;
+                border-spacing: 0 2px;
+                background-color: transparent;
+                border: #cac6b0;
+            }
+
+            table caption {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin: .5em 0;
+                line-height: 1.4;
+                text-transform: uppercase;
+                letter-spacing: normal;
+                text-align: left;
+            }
+
+            table tr {
+                border-bottom: 1px solid #000;
+            }
+
+            table th {
+                padding: 10px 5px;
+                vertical-align: top;
+                border: #fff;
+                text-align: left;
+                font-weight: 700;
+            }
+
+            table th,
+            table th.header {
+                background-color: #4c4c4c;
+            }
+
+            table tr th,
+            table tr th.header {
+                color: #fff;
+                font-weight: 700;
+            }
+
+            table td {
+                padding: 10px 5px;
+                vertical-align: top;
+                border: #fff;
+                text-align: left;
+                background-color: transparent;
+            }
+        }
+    }
+}

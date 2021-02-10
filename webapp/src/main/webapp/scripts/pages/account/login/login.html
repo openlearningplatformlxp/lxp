@@ -1,0 +1,72 @@
+<cms-block ctrl="ctrl" key="state-login" ng-cloak>
+    <div class="login-view">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-4">
+                <h3 translate="login.title"></h3>
+
+                <button class="accordion">Admin Login Only</button>
+                <div class="panel">
+                    <div class="alert alert-danger" ng-show="ctrl.getAuthenticationError()" translate="login.messages.error.authentication"></div>
+                    <div class="alert alert-danger" ng-if="ctrl.getAuthenticationError() == 'account'" translate="login.messages.error.authentication"></div>
+                    <form class="form" role="form" ng-submit="ctrl.login($event)">
+                        <div class="form-group">
+                            <label for="username" translate="global.form.username"></label>
+                            <input type="text" class="form-control" id="username" placeholder="{{'global.form.username.placeholder' | translate}}" ng-model="ctrl.data.username">
+                            <ul ng-if="ctrl.hasLogins()" class="dev-logins">
+                                <li ng-repeat="login in ctrl.getLogins()" ng-click="ctrl.setLogin(login)" ng-bind="login.name" tabindex="1000"></li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" translate="login.form.password"></label>
+                            <input type="password" class="form-control" id="password" placeholder="{{'login.form.password.placeholder' | translate}}" ng-model="ctrl.data.password">
+                        </div>
+                        <div class="form-group">
+                            <label for="rememberMe">
+                                <input type="checkbox" id="rememberMe" ng-model="ctrl.data.rememberMe" checked>
+                                <span translate="login.form.rememberme"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" translate="login.form.button"></button>
+
+                </div>
+
+                <h6 translate="login.demolinks"></h6>
+
+                    <p></p>
+                <div class="autologin-links">
+                    <div class="login-link">
+                        <a class="affordance" href="" ng-click="ctrl.managerLogin()">Log in as a Manager</a>
+                    </div>
+                    <div class="login-link">
+                        <a class="affordance" ng-click="ctrl.userLogin()">Log in as a User</a>
+                    </div>
+                </div>
+
+
+                </form>
+
+<!--                <div class="alert alert-warning">-->
+<!--                    <a class="affordance" ui-sref="requestReset" translate="login.password.forgot"></a>-->
+<!--                </div>-->
+<!--                <div class="alert alert-warning" translate="global.messages.info.register"></div>-->
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+</cms-block>

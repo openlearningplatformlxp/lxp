@@ -1,0 +1,27 @@
+.notifications-view {
+    min-height: 500px;
+    height: 100%;
+    overflow: scroll !important;
+    -webkit-overflow-scrolling: touch !important;
+
+    iframe {
+        width: 100%;
+        height: calc(100vh - 55px);
+        min-height: 700px;
+        display: block;
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+    .notifications-view {
+        iframe {}
+    }
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-lg-min) {
+    .notifications-view {
+        iframe {
+            height: calc(100vh - 160px);
+        }
+    }
+}

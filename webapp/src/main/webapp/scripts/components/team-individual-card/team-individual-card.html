@@ -1,0 +1,25 @@
+<div class="team-card" ng-class="{'opened': open, 'manager': teamMember.manager}" ng-click="open = !open">
+    <div class="team-card-icon">
+        <div class="team-card-icon-user-profile">
+            <p><span ng-bind="teamMember.firstName.charAt(0) | capitalize"></span><span ng-bind="teamMember.lastName.charAt(0) | capitalize"></span></p>
+        </div>
+    </div>
+    <div class="team-card-text">
+        <div class="title"><span ng-bind="teamMember.firstName | capitalize"></span> <span ng-bind="teamMember.lastName | capitalize"></span><span ng-if="teamMember.cecredits !== null && teamMember.cecredits !== undefined" class="team-card-text-meta">YTD CL Total <span ng-bind="teamMember.cecredits"></span></span></div>
+    </div>
+    <div class="team-card-manager" ng-if="teamMember.manager" ng-click="goToManagerView($event)">
+        View sub-team<i class="fa fa-sitemap"></i>
+    </div>
+    <div class="team-card-arrow">
+        <i class="fa fa-chevron-down" ng-if="!open"></i>
+        <i class="fa fa-chevron-up" ng-if="open"></i>
+    </div>
+</div>
+<div class="team-individual-card-content" ng-if="open">
+    <div class="team-individual-card" ng-repeat="progressionOverview in teamMember.progressionOverview | orderBy: 'program.title' track by $index">
+        <team-card team="progressionOverview" on-program-click="goToMemberView(program)"></team-card>
+    </div>
+    <div class="team-individual-card-empty" ng-if="teamMember.progressionOverview.length === 0">
+        <div class="team-individual-card-empty-text">This member has no course or program progression.</div>
+    </div>
+</div>

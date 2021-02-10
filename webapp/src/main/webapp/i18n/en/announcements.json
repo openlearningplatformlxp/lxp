@@ -1,0 +1,28 @@
+{
+    "announcements": {
+        "title": "Announcements",
+        "noAnnouncementsFound": "No Announcements Found!",
+        "send": {
+            "button": "Send announcement"
+        },
+        "form":{
+            "message": "Message",
+            "linkText": "Link text",
+            "linkUrl": "Link URL",
+            "placeholder": {
+                "message": "Insert the message for the users",
+                "linkText": "More details",
+                "linkUrl": "/more-details"
+            },
+            "validate":{
+                "message":{
+                    "required": "The message is a required field"
+                }
+            }
+        },
+        "searchAnnouncements": {
+            "inputPlaceholder": "Search Announcements...",
+            "totalAnnouncementsCount": "Total Announcements: {{count}}"
+        }
+    }
+}

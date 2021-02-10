@@ -1,0 +1,52 @@
+<cms-block ctrl="ctrl" key="state-spring-session-list" ng-cloak>
+    <div class="admin-spring-session-list-view">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title" translate="spring-session-list.title"></h2>
+                <div class="search-panel panel panel-default">
+                    <div class="panel-heading">
+                        <searchbar search-state="ctrl.pagedSearch" options="ctrl.searchbarOptions"></searchbar>
+                    </div>
+                    <div class="panel-body">
+                        <searchlist search-state="ctrl.pagedSearch" text-loading="{{'global.text.LoadingDDD' | translate}}" text-no-results="{{'spring-session-list.noSessionsFound' | translate}}">
+                            <div class="table-responsive-plain">
+                                <table class="search-table table table-condensed table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="principalName" label="{{'spring-session-list.labels.principalName' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="sessionId" label="{{'spring-session-list.labels.sessionId' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="lastAccessTime" label="{{'spring-session-list.labels.lastAccessTime' | translate}}"></searchsort>
+                                            </th>
+                                            <th>
+                                                <searchsort search-state="ctrl.pagedSearch" field="creationTime" label="{{'spring-session-list.labels.creationTime' | translate}}"></searchsort>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="session in ctrl.pagedSearch.getContent()" ng-if="!session['_empty_']">
+                                            <td ng-bind="session.principalName"></td>
+                                            <td ng-bind="session.sessionId"></td>
+                                            <td ng-bind="session.lastAccessTime | date : 'medium'"></td>
+                                            <td ng-bind="session.creationTime | date : 'medium'"></td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="session['_empty_']">
+                                            <td colspan="6">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </searchlist>
+                    </div>
+                    <div ng-if="ctrl.pagedSearch.hasResults()" class="panel-footer">
+                        <searchbar search-state="ctrl.pagedSearch" pager-only="true"></searchbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cms-block>

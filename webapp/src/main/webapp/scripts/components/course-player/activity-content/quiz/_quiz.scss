@@ -1,0 +1,154 @@
+.quiz-activity {
+
+    .intro-box {
+        .instruction-box {
+            font-size: 14px;
+            padding: 15px 0px 15px 25px;
+            background-color: #edeff0;
+        }
+
+        .intro-content-box {
+            padding: 50px 0px 50px 0px;
+            border: 1px solid #edeff0;
+
+            .intro-description-box {
+                padding: 0px 10px 10px 10px;
+            }
+
+            .attempt-quiz-btn {
+                outline: none;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .questions {
+
+        .question {
+
+            .question-box {
+                background-color: #edeff0;
+                padding: 15px;
+
+                .question-number {
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                }
+
+                .question-text {
+                    font-size: 18px;
+                    font-weight: bold;
+                    line-height: 25px;
+                    margin-bottom: 20px;
+                }
+
+                .instruction-text {
+                    font-size: 14px;
+                    font-weight: lighter;
+                }
+
+                .next-question-btn {
+                    margin-top: 20px;
+                    margin-right: 20px;
+                    height: 30px;
+                    padding: 10px 15px 30px 15px;
+                    line-height: unset;
+                    background-color: #000000;
+                    color: #FFFFFF;
+                    border: 1px solid transparent;
+                }
+
+                .next-question-btn:disabled {
+                    background-color: #CCCCCC;
+                    opacity: 0.5;
+                }
+            }
+
+            .answers-box {
+
+                .question-answer-display {
+                    border: 1px solid #edeff0;
+                }
+
+                .answers {
+
+                    border-bottom: 2px solid lightgray;
+                    margin: 0 20px 0 20px;
+
+                    table {
+                        width: 100%;
+                    }
+
+                    tr {
+                        border: 2px solid white;
+                        cursor: pointer;
+
+                        .answerLetter {
+                            width: 75px;
+                            text-align: center;
+                            vertical-align: middle;
+                            color: white;
+                            font-size: 18px;
+                            padding: 40px;
+                            position: relative;
+
+                            .answerCircle {
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 50%;
+                                border: 2px solid black;
+                                color: black;
+                                position: absolute;
+                                text-align: center;
+                                line-height: 50px;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%, -50%);
+                                -webkit-transform: translate(-50%, -50%);
+                                -moz-transform: translate(-50%, -50%);
+                                -ms-transform: translate(-50%, -50%);
+                                -o-transform: translate(-50%, -50%);
+                            }
+                        }
+
+                        .answerText {
+                            padding: 0 15px 0 15px;
+                            vertical-align: middle;
+
+                            p {
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    tr.selectedChoice {
+                        .answerLetter {
+                            background-color: #7c164b;
+                        }
+
+                        .answerText {
+                            background-color: #C48AA8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .results-box {
+        .instruction-box {
+            font-size: 14px;
+            padding: 15px 0px 15px 25px;
+            background-color: #edeff0;
+        }
+
+        .results-content-box {
+            padding: 50px 0px 50px 0px;
+            border: 1px solid #edeff0;
+
+            .results-description-box {
+                padding: 0px 10px 10px 10px;
+            }
+        }
+    }
+}

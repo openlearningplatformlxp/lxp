@@ -1,0 +1,155 @@
+<div class="card" ng-click="goToCard()" ng-class="{'card-selected': item.selected,'card-dark': type == 'dark' || type == 'cover' || type == 'hero', 'card-hero': type == 'hero' || type  ==  'overview', 'card-cover': type == 'cover', 'card-overview': type  ==  'overview',
+     'card-classroom': type  ==  'classroom',
+        'card-lynda': item.cms =='LYNDA','card-kaltura': item.cms =='KALTURA','card-allego': item.cms =='ALLEGO'}" ng-if="type != 'new'">
+
+    <div class="card-list-icon show-list">
+        <card-item item="item"></card-item>
+    </div>
+
+    <div class="card-inner">
+        <div ng-if="item.discoveryProgramType && item.discoveryProgramType == 'TEXT'" ng-bind-html="item.discoveryProgramText"></div>
+
+        <div class="card-header" ng-if="type != 'cover' && type !='overview'">
+            <card-item item="item"></card-item>
+            <div class="card-subtitle">
+                <span class="subtitle" ng-if="item.type != 'CLASSROOM' && item.type != 'COURSE'">
+                    <span ng-if="item.cms != 'LMS'" ng-bind="item.cms | learnerSource"></span>
+                    <span ng-if="(item.cms == 'LMS')" ng-bind="item.type | capitalize"> </span>
+                </span>
+                <span class="subtitle" ng-if="item.type == 'COURSE'">
+                    <span ng-if="item.cms != 'LMS'" ng-bind="item.cms | learnerSource"></span>
+                    <span ng-if="item.type == 'COURSE' && (item.cms == 'LMS')" ng-bind="item.type | capitalize"></span>
+                </span>
+                <span class="subtitle" ng-if="item.type == 'CLASSROOM'">
+                    <span ng-if="item.city.toLowerCase() == 'virtual'">Virtual Instructor-Led </span>
+                    <span ng-if="item.city.toLowerCase() != 'virtual'">Instructor-Led</span>
+                </span>
+                <span class="subtitle" ng-if="item.type == 'CLASSROOM' && item.classType != null" ng-bind="item.classType.name | capitalize"></span>
+             </div>
+
+            <div class="card-duration" ng-if="type != 'classroom'">
+                <span class="card-cl-credits" ng-if="item.type == 'COURSE' && item.ceCredits !== '0' && item.ceCredits !== 'null' &&(item.cms == 'LMS')">
+                    <i class="fa fa-certificate"></i>
+                    <span ng-bind="item.ceCredits"></span> CL credits </span>
+                <span ng-if="item.status == 'ACTIVE' && item.duration" class="card-duration-values">
+                    <i class="fa fa-clock-o"></i>
+                    <span ng-if="item.duration.hours > 0"></span><span ng-bind="(item.duration.hours === 1) ? 'hr' : 'hrs'"></span> </span>
+                <span ng-if="item.duration.minutes > 0"><span ng-bind="item.duration.minutes |number:0"></span><span ng-bind="(item.duration.minutes === 1) ? 'min' : 'mins'"></span>
+                </span>
+                <span ng-if="item.status == 'IN_PROGRESS'"> <span ng-bind="item.remainingTime | amDifference:null:'hours'"></span> hours left</span>
+            </div>
+        </div>
+
+        <div class="card-header" ng-if="type === 'cover'">
+            <div ng-if="returnPath" class="card-icon">
+                <i ng-click="goBack()" class="fa fa-arrow-left return-button" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <div class="card-content">
+            <div class="info" ng-if="type == 'cover' || type=='overview'">
+                <span class="subtitle">
+                    <span ng-if="item.cms != 'LMS'" ng-bind="item.cms | capitalize"></span>
+                    <span ng-if="item.cms == 'LMS'" ng-bind="item.type | capitalize"></span>
+                </span>
+                <div class="label" ng-if="type != 'classroom'" ng-repeat="tag in item.tags track by $index"><span ng-bind="tag"></span>
+                </div>
+            </div>
+            <h1 class="title" ng-bind-html="item.title"></h1>
+            <div class="card-classroom-location" ng-if="item.type == 'CLASSROOM'">
+                <span ng-if="type == 'classroom' && item.city.toLowerCase() == 'virtual'">
+                    <em>
+                        <i class="fa fa-laptop"></i>
+                        <span ng-bind="item.city"></span>
+                    </em>
+                </span>
+                <span ng-if="type == 'classroom' && item.city.toLowerCase() != 'virtual'">
+                    <em>
+                        <i class="fa fa-map-marker"></i>
+                        <span ng-bind="item.city"></span>, <span ng-bind="item.country"></span>
+                    </em>
+                </span>
+            </div>
+            <p class="text-muted" ng-if="item.type != 'CLASSROOM'">
+                <span class="show-grid" ng-bind-html="item.description | words: 20"></span>
+                <span class="show-list" ng-bind-html="item.description | words: 280"></span>
+            </p>
+            <div class="card-progress" ng-if="type == 'cover' || type=='overview'">
+                <div class="status-progress-bar">
+                    <div class="status-progress-bar-bar" ng-style="{ width: item.percentComplete + '%'}"></div>
+                </div>
+                <span ng-bind="item.percentComplete"></span>% Complete
+            </div>
+            <div class="card-cta" ng-if="type == 'cover' || type=='overview'">
+                <button ng-if="showResume" class="negative-primary" ng-click="resumeClicked()">Resume Course</button>
+                <button ng-if="showEnroll" class="negative-primary" ng-click="enrollClicked()">Enroll in Course</button>
+            </div>
+        </div>
+        <div class="card-classroom-meta show-grid" ng-if="type == 'classroom'">
+            <div class="classroom-session-info">
+                <div class="classroom-session-info-time">
+                    <i class="fa fa-clock-o"></i>
+                    <span ng-if="item.city.toLowerCase() == 'virtual'"><span class="start-time" ng-bind="item.date | date: 'h:mm a' | lowercase"></span><span class="timezone">America/New York</span></span>
+                    <span ng-if="item.city.toLowerCase() != 'virtual'"><span class="start-time" ng-bind="item.date | date: 'h:mm a' | lowercase"></span><span class="timezone" ng-bind="item.timeZone"></span></span>
+                </div>
+                <div class="classroom-session-info-date">
+                    <i class="fa fa-calendar"></i>
+                    <span><span class="weekday" ng-bind="item.date | date: 'EEEE'"></span><span class="date" ng-bind="item.date | date: 'MMMM d, yyyy'"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="card-cta show-grid" ng-if="showOpenInLmsBtn">
+            <button class="negative-primary" ng-click="goToCardInLms($event)">Open in LMS</button>
+        </div>
+        <div class="card-footer" ng-if="type != 'classroom' && type!='overview'">
+            <div class="card-cta">
+                <button ui-sref="course-overview" ng-if="item.status == 'IN_PROGRESS' && type != 'cover'" ng-class="{'negative-primary': type == 'dark' || type == 'cover' || type == 'hero', 'primary': type == 'white'}">
+                    Resume path
+                </button>
+                <div ng-if="item.dueDate">
+                    <div class="label-share label-share-reports">
+                        <span>Due date on <span ng-bind="item.dueDate | date: 'MM/dd/yyyy'"></span></span>
+                    </div>
+                    <span class="activity-overdue" ng-if="isDueDate(item)"><i class="fa fa-exclamation-triangle"></i> Overdue</span>
+                </div>
+                <div ng-if="item.shared">
+                    <div class="label-share label-share-manager" ng-if="item.sharedWithManager">
+                        <span>Shared with <span ng-bind="item.manager"></span> on <span ng-bind="item.sharedWithManagerOn | date: 'MM/dd/yyyy'"></span></span>
+                    </div>
+                    <div class="label-share label-share-reports" ng-if="item.shares && item.shares.length > 0">
+                        <span>Shared with <span ng-bind="item.shares.length"></span> reports on <span ng-bind="item.shares[0].createdDate | date: 'MM/dd/yyyy'"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-cta show-list" ng-if="showOpenInLmsBtn">
+                <button class="negative-primary" ng-click="goToCardInLms($event)">Open in LMS</button>
+            </div>
+            <div class="rh-flex rh-flex-justify-content-end" ng-if="item.courseStatus">
+                <span class="card-lms-status-{{item.courseStatus}}">
+                    <img ng-if="item.courseStatus == 'Enrolled'" class="svg" src="assets/images/disc.svg" />
+                    <img ng-if="item.courseStatus == 'Completed'" class="svg" src="assets/images/check.svg" />
+                    <span ng-bind="item.courseStatus"></span>
+                </span>
+            </div>
+          </div>
+    </div>
+    <div class="card-classroom-meta show-list" ng-if="type == 'classroom'">
+        <div class="classroom-session-info">
+            <div class="classroom-session-info-time">
+                <i class="fa fa-clock-o"></i>
+                <span ng-if="item.city.toLowerCase() == 'virtual'"><span class="start-time" ng-bind="item.date | date: 'h:mm a' | lowercase"></span><span class="timezone">America/New York</span></span>
+                <span ng-if="item.city.toLowerCase() != 'virtual'"><span class="start-time" ng-bind="item.date | date: 'h:mm a' | lowercase"></span><span class="timezone" ng-bind="item.timeZone"></span></span>
+            </div>
+            <div class="classroom-session-info-date">
+                <i class="fa fa-calendar"></i>
+                <span><span class="weekday" ng-bind="item.date | date: 'EEEE'"></span><span class="date" ng-bind="item.date | date: 'MMMM d, yyyy'"></span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-new" ng-if="type == 'new'">
+    <div class="">
+        <button class="secondary" ng-click="notYetImplemented($event)">Create path</button>
+    </div>
+</div>

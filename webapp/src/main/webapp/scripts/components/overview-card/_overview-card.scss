@@ -1,0 +1,109 @@
+/**
+ * Card Directive styles.
+ */
+
+.overview-card {
+    position: relative;
+    display: block;
+    padding: $scale4;
+    min-width: 100%;
+
+    .card-content {
+        justify-content: flex-end;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: $scale2;
+        vertical-align: center;
+
+        h1 {
+            @extend .h5;
+            margin-bottom: $scale4;
+            line-height: $scale4;
+            font-weight: 600;
+            min-height: 50px;
+        }
+
+        .info {
+            h2 {
+                display: inline-block;
+            }
+
+            .label {
+                display: inline-block;
+                background-color: #7a8b8e;
+                margin-left: $scale-2;
+                margin-right: 2px;
+            }
+        }
+
+        h2 {
+            @extend .h6;
+            margin-bottom: $scale1;
+            line-height: 1rem;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-sm;
+            color: $gray-light;
+
+        }
+
+        p {
+            margin-bottom: 0;
+            color: hsla(0, 0%, 100%, .65);
+            min-height: 50px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+
+            span {
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+            }
+        }
+    }
+}
+
+.card-hero {
+    .card-content {
+        justify-content: center;
+
+        h1 {
+            font-size: $font-size-xl;
+            line-height: $scale6;
+        }
+    }
+}
+
+.card-cover,
+.card-overview {
+    .card-content {
+        .card-progress {
+            margin: 0;
+            margin-bottom: $scale5;
+
+            .status-progress-bar {
+                position: relative;
+                background-color: rgba(255, 255, 255, .1);
+                margin-bottom: $scale1;
+                height: 7px;
+                border-radius: 10px;
+                overflow: hidden;
+
+                .status-progress-bar-bar {
+                    position: absolute;
+                    left: 0;
+                    background-color: #ffffff;
+                    height: 7px;
+                    border-radius: 10px;
+                    box-shadow: -2px 0 5px 2px #000;
+                }
+            }
+        }
+
+    }
+}
+
+.card-overview {
+    box-shadow: none;
+    background: none;
+    padding: 0;
+}

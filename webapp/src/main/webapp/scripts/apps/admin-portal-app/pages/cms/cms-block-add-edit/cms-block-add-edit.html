@@ -1,0 +1,83 @@
+<!--
+    Add/Edit CMS Block by Admin.
+-->
+<cms-block ctrl="ctrl" key="state-cms-block-add-edit" ng-cloak>
+    <div class="admin-cms-block-add-edit-view">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+                <h2 ng-if="ctrl.isAdd()" class="page-title" translate="cms-block-add-edit.title.add"></h2>
+                <h2 ng-if="ctrl.isEdit()" class="page-title" translate="cms-block-add-edit.title.edit" translate-values="{blockName: '{{ctrl.data.cmsBlock.name}}'}"></h2>
+            </div>
+        </div>
+        <form name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-6">
+                    <div ng-if="ctrl.isLoaded()">
+                        <div class="form-group">
+                            <label for="key" class="required" translate="global.labels.Key"></label>
+                            <input type="text" class="form-control" id="key" name="key" placeholder="{{'cms-block-add-edit.form.key.placeholder' | translate}}" ng-change="ctrl.onFormChange(form)" ng-model="ctrl.data.cmsBlock.key" ng-minlength=1 ng-maxlength="50" required>
+                            <div ng-show="form.login.$dirty && form.login.$invalid">
+                                <p class="help-block" ng-show="form.login.$error.required" translate="register.messages.validate.login.required"></p>
+                                <p class="help-block" ng-show="form.login.$error.minlength" translate="register.messages.validate.login.minlength"></p>
+                                <p class="help-block" ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="required" translate="global.labels.Name"></label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="{{'cms-block-add-edit.form.name.placeholder' | translate}}" ng-change="ctrl.onFormChange(form)" ng-model="ctrl.data.cmsBlock.name" ng-minlength=1 ng-maxlength="50" required>
+                            <div ng-show="form.login.$dirty && form.login.$invalid">
+                                <p class="help-block" ng-show="form.login.$error.required" translate="register.messages.validate.login.required"></p>
+                                <p class="help-block" ng-show="form.login.$error.minlength" translate="register.messages.validate.login.minlength"></p>
+                                <p class="help-block" ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" translate="global.labels.Description"></label>
+                            <textarea type="text" class="form-control" id="content" name="content" placeholder="{{'cms-block-add-edit.form.description.placeholder' | translate}}" ng-change="ctrl.onFormChange(form)" ng-model="ctrl.data.cmsBlock.description" rows="5"></textarea>
+                            <div ng-show="form.login.$dirty && form.login.$invalid">
+                                <p class="help-block" ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="ctrl.isLoaded() && ctrl.isEdit()" class="col-md-4">
+                    <div class="display-info well">
+                        <div ng-if="ctrl.data.cmsBlock.createdDate" class="form-group">
+                            <label translate="global.labels.createdDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.cmsBlock.createdDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.cmsBlock.createdBy" class="form-group">
+                            <label translate="global.labels.createdBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.cmsBlock.createdBy"></p>
+                        </div>
+                        <div ng-if="ctrl.data.cmsBlock.lastModifiedDate" class="form-group">
+                            <label translate="global.labels.lastModifiedDate"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.cmsBlock.lastModifiedDate | date : 'medium'"></p>
+                        </div>
+                        <div ng-if="ctrl.data.cmsBlock.lastModifiedBy" class="form-group">
+                            <label translate="global.labels.lastModifiedBy"></label>
+                            <p class="form-control-static" ng-bind="ctrl.data.cmsBlock.lastModifiedBy"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <div class="form-group">
+                        <div>
+                            <label translate="cms-block-add-edit.form.content"></label>
+                            <button type="button" class="btn btn-default btn-xs pull-right" ng-click="ctrl.editContent(form)" ng-disabled="ctrl.areButtonsDisabled()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button>
+                        </div>
+                        <pre ng-if="ctrl.data.cmsBlock.content" ng-bind="ctrl.data.cmsBlock.content"></pre>
+                        <pre class="no-content" ng-if="!ctrl.data.cmsBlock.content" translate="cms-block-add-edit.no-content"></pre>
+                    </div>
+                    <p>
+                        <button type="submit" ng-disabled="ctrl.isFormDisabled(form) || ctrl.areButtonsDisabled()" class="btn btn-primary" translate="global.buttons.save"></button>
+                        <button type="button" class="btn btn-default" ng-click="ctrl.cancel(form)" ng-disabled="ctrl.areButtonsDisabled()">Cancel</button>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</cms-block>

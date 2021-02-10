@@ -1,0 +1,237 @@
+/**
+ * Common Bootstrap additions/overridden styles.
+ *
+ * User: scarlson
+ * Date: 2/29/15
+ * Time: 12:33 AM
+ */
+
+/*
+ * https://angular-ui.github.io/bootstrap/
+ *
+ * Original Bootstrap's CSS depends on empty href attributes to style cursors for several components (pagination, tabs
+ * etc.). But in AngularJS adding empty href attributes to link tags will cause unwanted route changes. This is why we
+ * need to remove empty href attributes from directive templates and as a result styling is not applied correctly. The
+ * remedy is simple, just add the following styling to your application:
+ */
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+    cursor: pointer;
+}
+
+.container-fluid {
+    max-width: $syn_page_max_width;
+}
+
+form.disabled {
+
+    // _normalize.scss
+
+    button,
+    html input {
+        cursor: default;
+    }
+
+    // _forms.scss
+
+    .form-control {
+
+        &,
+        fieldset & {
+            cursor: $cursor-disabled;
+            background-color: $input-bg-disabled;
+            opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
+        }
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+
+        &,
+        fieldset & {
+            cursor: $cursor-disabled;
+        }
+    }
+
+    .radio-inline,
+    .checkbox-inline {
+
+        &,
+        fieldset & {
+            cursor: $cursor-disabled;
+        }
+    }
+
+    .radio,
+    .checkbox {
+
+        &,
+        fieldset & {
+            label {
+                cursor: $cursor-disabled;
+            }
+        }
+    }
+
+    // _buttons.scss
+
+    .btn {
+
+        &,
+        fieldset & {
+            cursor: $cursor-disabled;
+            pointer-events: none; // Future-proof disabling of clicks
+            @include opacity(.65);
+            @include box-shadow(none);
+        }
+    }
+
+    .btn-link {
+
+        &,
+        fieldset & {
+            background-color: transparent;
+            @include box-shadow(none);
+        }
+
+        &,
+        fieldset & {
+
+            &:hover,
+            &:focus {
+                color: $btn-link-disabled-color;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.input-group-overlay-addon:not(:first-child):not(:last-child) {
+    position: relative;
+
+    .glyphicon-remove-circle {
+        position: absolute;
+        right: 7px;
+        top: 11px;
+        height: 14px;
+        margin: auto;
+        font-size: 14px;
+        cursor: pointer;
+        color: #f00;
+        z-index: 1000;
+        opacity: 0.3;
+    }
+
+    .glyphicon-remove-circle:hover {
+        opacity: 1.0;
+    }
+
+    input {
+        padding-right: 25px;
+    }
+
+    input:first-child {
+        border-radius: 0;
+    }
+}
+
+.navbar {
+    border-radius: 0px;
+}
+
+.panel.panel-table>.panel-body {
+    padding-top: 5px;
+}
+
+.table-bordered-outer {
+    border: 1px solid $table-border-color;
+}
+
+.table-responsive-plain {
+    @extend .table-responsive;
+
+    border: none;
+    margin-bottom: 0px;
+}
+
+table.panel-table {
+    margin-bottom: 0px;
+
+    tr:last-child {
+        td {
+            border-bottom: 1px solid $table-border-color;
+        }
+    }
+}
+
+.well {
+    &.actions-container {
+        background-color: #FFFFFF;
+
+        .btn {
+            min-width: 140px;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+    }
+
+    &.info-well {
+        background-color: #FFFFFF;
+
+        &>.form-group:last-child {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+/**
+ * Use .no-gutter* classes to remove the gutters from rows. Add the class to the same location as the row:
+ *
+ * e.g.
+ *
+ *     <div class="row no-gutter">
+ *         <div class="col-md-8"> ... </div>
+ *         <div class="col-md-4"> ... </div>
+ *     </div>
+ *
+ * See the following link for origins of basic idea... plus more tips:
+ *
+ *     https://scotch.io/bar-talk/bootstrap-3-tips-and-tricks-you-still-might-not-know
+ */
+
+.no-gutter>[class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+@media (max-width: $screen-xs-max) {
+    .no-gutter-xs>[class*='col-'] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    .no-gutter-sm>[class*='col-'] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+    .no-gutter-md>[class*='col-'] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+    .no-gutter-lg>[class*='col-'] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

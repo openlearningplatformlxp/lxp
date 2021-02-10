@@ -1,0 +1,33 @@
+<div class="location-filter--box">
+    <div class="location-filter--header" ng-click="ctrl.toggleContent()">
+        <div class="location-filter--title">
+            <h5><span ng-bind="ctrl.title"></span></h5>
+        </div>
+        <div class="location-filter--arrow">
+            <img class="svg svg-black chevron-down" src="assets/images/chevron-down.svg" ng-if="!ctrl.open" />
+            <img class="svg svg-black chevron-up" src="assets/images/chevron-up.svg" ng-if="ctrl.open" />
+        </div>
+    </div>
+    <div class="location-filter--body" ng-if="ctrl.open">
+        <div>
+            <label>Filter by country</label>
+            <select id="country" name="country" class="form-control location-filter" ng-model="ctrl.filters['country']" ng-change="ctrl.onChangeCountry()">
+                <option value="">All countries</option>
+                <option ng-repeat="l in ctrl.tags" value="{{l.country}}">{{l.country}}</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Filter by city</label>
+            <select id="noCity" name="city" class="form-control" ng-model="city" ng-if="!ctrl.filters['country']" disabled="disabled">
+                <option value="">Select a country first</option>
+            </select>
+
+            <select id="city" name="city" class="form-control location-filter" ng-model="ctrl.filters['city']" ng-if="ctrl.filters['country']" ng-change="ctrl.onChangeCity()">
+                <option value="">All cities</option>
+                <option ng-repeat="city in ctrl.tags[ctrl.countryIndex].city" value="{{city}}">{{city}}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>

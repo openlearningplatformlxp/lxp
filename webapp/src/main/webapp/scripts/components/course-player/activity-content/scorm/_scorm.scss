@@ -1,0 +1,15 @@
+.scorm-activity {
+
+    .scorm-resource-box {
+
+        height: calc(100vh - 315px);
+
+        @media (max-width: 991px) {
+            height: calc(100vh - 215px);
+        }
+
+        min-height: 300px;
+        width: 100%;
+        border: 0;
+    }
+}

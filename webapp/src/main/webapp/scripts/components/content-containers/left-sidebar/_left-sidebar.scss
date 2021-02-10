@@ -1,0 +1,220 @@
+/**
+ * Left-Sidebar CSS.
+ *
+ * Based on: http://startbootstrap.com/template-overviews/simple-sidebar/
+ */
+
+$left_sidebar_background_color: #3e474f;
+$left_sidebar_text_color: #ffffff;
+$top_header_height: 64px;
+
+.content-containers.left-sidebar {
+    .sidebar-header {
+        background-color: #3e474f;
+
+        a {
+            color: #000;
+        }
+
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 1001;
+
+        .navbar {
+            background-color: transparent;
+            border-color: transparent;
+            margin-bottom: 0px;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #FFF;
+        }
+
+        .navbar-inverse .navbar-nav>.active>a,
+        .navbar-inverse .navbar-nav>.active>a:hover,
+        .navbar-inverse .navbar-nav>.active>a:focus {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .navbar-inverse .navbar-nav>li>a {
+            color: #FFF;
+        }
+
+        .navbar-inverse .navbar-nav>.open>a,
+        .navbar-inverse .navbar-nav>.open>a:hover,
+        .navbar-inverse .navbar-nav>.open>a:focus {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+            /* color: #FFF; TODO: SAC: */
+        }
+
+        .navbar-inverse .navbar-toggle {
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .navbar-inverse .navbar-toggle:hover,
+        .navbar-inverse .navbar-toggle:focus {
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .sidebar-toggle {
+            margin-left: 15px;
+            margin-right: 0px;
+        }
+    }
+
+    .sidebar-content {
+        margin-top: $top_header_height;
+
+        color: #616161;
+
+        /* Sidebar Styles */
+
+        .wrapper {
+            padding-left: 0;
+            transition: all 0.5s ease;
+
+            .sidebar-wrapper {
+                color: $left_sidebar_text_color;
+
+                hr.fading {
+                    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+
+                .sidebar-welcome {
+                    padding: 0px 20px;
+                    margin-top: 30px;
+                    margin-bottom: 22px;
+                    text-align: center;
+                }
+            }
+
+            .page-content-wrapper {}
+        }
+
+        .wrapper.toggled {
+            padding-left: 250px;
+        }
+
+        .sidebar-wrapper {
+            z-index: 1000;
+            position: fixed;
+            left: 250px;
+            width: 0;
+            height: calc(100% - #{$top_header_height});
+            margin-left: -250px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background: $left_sidebar_background_color;
+            transition: all 0.5s ease;
+
+            /*
+            background: #408140 url(../images/toe-photo.png) no-repeat center top;
+            background-size: 100%;
+            */
+
+            ul.sidebar-nav li.active {
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .wrapper.toggled .sidebar-wrapper {
+            width: 250px;
+        }
+
+        .page-content-wrapper {
+            width: 100%;
+            position: absolute;
+            padding: 15px 0;
+        }
+
+        .wrapper.toggled .page-content-wrapper {
+            position: absolute;
+            margin-right: -250px;
+        }
+
+        /* Sidebar Styles */
+
+        .sidebar-nav {
+            /* position: absolute; */
+            /* top: 0; */
+            width: 250px;
+            margin: 0 0 20px 0;
+            padding: 0;
+            list-style: none;
+
+            font-size: 18px;
+        }
+
+        .sidebar-nav li {
+            text-indent: 10px;
+            line-height: 40px;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            text-decoration: none;
+            color: $left_sidebar_text_color;
+        }
+
+        .sidebar-nav li a:hover {
+            text-decoration: none;
+            color: $left_sidebar_text_color;
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .sidebar-nav li a:active,
+        .sidebar-nav li a:focus {
+            text-decoration: none;
+        }
+
+        .sidebar-nav>.sidebar-brand {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+        }
+
+        .sidebar-nav>.sidebar-brand a {
+            color: #999999;
+        }
+
+        .sidebar-nav>.sidebar-brand a:hover {
+            color: $left_sidebar_text_color;
+            background: none;
+        }
+
+        @media(min-width: 768px) {
+            .wrapper {
+                padding-left: 250px;
+            }
+
+            .wrapper.toggled {
+                padding-left: 0;
+            }
+
+            .sidebar-wrapper {
+                width: 250px;
+            }
+
+            .wrapper.toggled .sidebar-wrapper {
+                width: 0;
+            }
+
+            .page-content-wrapper {
+                padding: 15px 0;
+                position: relative;
+            }
+
+            .wrapper.toggled .page-content-wrapper {
+                position: relative;
+                margin-right: 0;
+            }
+        }
+    }
+}

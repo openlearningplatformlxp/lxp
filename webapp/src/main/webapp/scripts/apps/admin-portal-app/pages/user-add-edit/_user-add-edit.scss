@@ -1,0 +1,45 @@
+/**
+ * Admin User Edit View styles.
+ */
+
+.common-app .admin-user-add-edit-view {
+    .actions-container {
+        background-color: #FFFFFF;
+
+        .btn {
+            min-width: 140px;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+    }
+
+    .options-container {
+        padding-left: 25px;
+
+        .authority-container {
+            input {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .password-container {
+        margin-left: 25px;
+        padding-top: 12px;
+
+        .form-group:last-child {
+            margin-bottom: 0px;
+        }
+    }
+
+    .person-info {
+        padding-top: 15px;
+        padding-left: 15px;
+        background-color: #FFFFFF;
+        border: 1px solid #e3e3e3;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        border-radius: 0.3125rem;
+    }
+}

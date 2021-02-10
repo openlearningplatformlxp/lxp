@@ -1,0 +1,23 @@
+{
+    "email-view": {
+        "title": "Email",
+        "label": {
+            "htmlEmailBody": "HTML Email Content",
+            "plainTextEmailBody": "Plain Text Email Content"
+        },
+        "resend": {
+            "buttonText": "Resend",
+            "confirm": {
+                "text": "Do you want to resend this email?",
+                "title": "Confirm Resend Email"
+            },
+            "error": {
+                "text": "Unable to resend email."
+            },
+            "sent": {
+                "text": "Email resent.",
+                "title": "Success"
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<!--
+    Send Notification by Admin.
+-->
+<cms-block ctrl="ctrl" key="state-user-add-edit" ng-cloak>
+    <div class="admin-notifications-send-view">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h2 class="page-title" translate="notifications.send.button"></h2>
+                <show-messages messages="ctrl.pageMessages"></show-messages>
+            </div>
+        </div>
+        <form name="form" role="form" novalidate ng-submit="ctrl.save(form)" show-validation>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-6">
+                    <div>
+                        <div class="form-group">
+                            <label for="title" translate="notifications.form.title"></label><span class="required-star">*</span>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="{{'notifications.form.placeholder.title' | translate}}" ng-model="ctrl.data.notification.title" ng-required="true" ng-maxlength=50>
+                            <div ng-show="form.title.$dirty && form.title.$invalid">
+                                <p class="help-block" ng-show="form.title.$error.required" translate="notifications.form.validate.title.required"></p>
+                                <p class="help-block" ng-show="form.title.$error.maxlength" translate="notifications.form.validate.title.maxlength"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" translate="notifications.form.message"></label><span class="required-star">*</span>
+                            <textarea type="text" class="form-control" id="message" name="message" placeholder="{{'notifications.form.placeholder.message' | translate}}" ng-model="ctrl.data.notification.message" ng-required="true"></textarea>
+                            <div ng-show="form.message.$dirty && form.message.$invalid">
+                                <p class="help-block" ng-show="form.message.$error.required" translate="notifications.form.validate.message.required"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-check-input" type="checkbox" value="" id="showPrograms" ng-model="ctrl.data.notification.showPrograms">
+                            <label class="form-check-label" for="showPrograms" translate="notifications.form.show.programs"></label>
+                        </div>
+                        <div class="form-group" ng-if="ctrl.data.notification.showPrograms">
+                            <select id="programId" name="programId" class="form-control" ng-model="ctrl.data.notification.programId">
+                                <option value="">{{'notifications.form.placeholder.select' | translate}}</option>
+                                <option ng-repeat="option in ctrl.data.programs" value="{{option.id}}">({{option.id}}) - {{option.title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="actions-container well">
+                        <div class="actions-container-title">
+                            <h6>Actions</h6>
+                        </div>
+                        <div class="actions-container-body">
+                            <a type="button" class="btn btn-default" ng-click="ctrl.cancel(form)" translate="global.buttons.cancel"></a>
+                            <a class="btn btn-primary" ng-click="ctrl.send(form)" ng-disabled="ctrl.isFormDisabled(form)" translate="notifications.send.button"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</cms-block>

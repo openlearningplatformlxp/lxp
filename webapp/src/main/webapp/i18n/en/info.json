@@ -1,0 +1,12 @@
+{
+    "info": {
+        "headersSectionTitle": "Request Headers",
+        "less": "less",
+        "more": "more",
+        "Name": "Name",
+        "page-warning": "The information on this page is specific to the server that you are accessing.",
+        "propertyInfoSectionTitle": "Environment Variables",
+        "title": "Node Info",
+        "Value": "Value"
+    }
+}

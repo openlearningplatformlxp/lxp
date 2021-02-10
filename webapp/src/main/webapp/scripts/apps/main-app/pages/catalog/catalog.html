@@ -1,0 +1,54 @@
+<div class="catalog-view">
+    <div class="page-header-hero-general">
+        <div class="container-fluid">
+            <div class="hero-container">
+                <div class="support-title-container">
+                    <h1 class="search-title">Catalog for <b><span ng-bind="ctrl.data.catalog.parentTag.name"></span></b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content-section">
+        <div class="container-fluid">
+            <div class="learning-path-section">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h5 class="card-section-header">
+                            Choose one of the categories below to view all of
+                            the courses and paths available.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topics-section">
+                <div class="topic" ng-click="ctrl.searchByTopic(topic.name)" ng-repeat="topic in ctrl.data.catalog.childTags track by $index">
+                    <div class="image">
+                        <img class="img-responsive" src="assets/images/categorycard-bg.png" />
+                    </div>
+                    <div class="text">
+                        <span ng-bind="topic.name"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topics-section" ng-if="ctrl.data.loading">
+                <div class="topic" ng-repeat="thing in ctrl.getNumArray(12) track by $index">
+                    <div class="image">
+                        <img class="img-responsive" src="assets/images/categorycard-bg.png" />
+                    </div>
+                    <div class="text skeleton-view">
+                        <div class="skeleton-row">
+                            <div class="skeleton-column center">
+                                <h3></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

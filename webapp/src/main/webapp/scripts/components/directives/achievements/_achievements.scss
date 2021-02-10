@@ -1,0 +1,68 @@
+/**
+ * Achievements styles.
+ */
+
+.achievements {
+    .pull-left {
+        font-size: 20px;
+        padding-top: 15px;
+    }
+
+    .dropdown-label {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .dropdown {
+        display: inline-block;
+    }
+}
+
+.achievements-header {
+    margin-bottom: $scale6;
+}
+
+.achievement-list {}
+
+.achievement {
+    display: grid;
+    grid-template-areas: "text status";
+    grid-template-columns: 1fr 150px;
+    align-items: center;
+    grid-gap: $scale3;
+
+    .achievement-text {
+        grid-area: text;
+
+        .text-title {
+            @extend p;
+            line-height: $scale0+$base-value-half;
+            margin-bottom: $scale1;
+        }
+
+        .text-type {
+            @extend .dim-tag;
+            display: inline-block;
+        }
+
+        .text-status {
+            @extend .meta-status;
+            display: inline-block;
+            margin-left: $scale2;
+        }
+    }
+
+    .achievement-status {
+        grid-area: status;
+
+        .percent-text {
+            @extend .meta-status;
+            text-align: right;
+        }
+
+        .percent-date {
+            font-style: italic;
+            text-align: right;
+        }
+    }
+}
