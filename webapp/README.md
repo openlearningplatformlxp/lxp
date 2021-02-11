@@ -1,4 +1,4 @@
-README for reduxl
+README
 ==========================
 Instructions and notes for reduxl.
 
@@ -40,7 +40,7 @@ If not set, the page title will default to the PAGE_TITLE_DEFAULT value set in t
 Docs from jHipster
 ==========================
 
-# Developing reduxl
+# Developing
 
 reduxl was generated using JHipster, you can find documentation and help at [JHipster][].
 
