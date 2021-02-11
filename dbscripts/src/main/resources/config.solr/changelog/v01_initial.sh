@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 BASE_SOLR_URL=http://localhost:8983/solr/reduxl
-#BASE_SOLR_URL=https://rhl.uat.synegen.com/solr/reduxl
-#BASE_SOLR_URL=https://start.learning.redhat.com/solr/reduxl
 SOLR_URL=${BASE_SOLR_URL}/schema
 
 curl_solr_json(){
