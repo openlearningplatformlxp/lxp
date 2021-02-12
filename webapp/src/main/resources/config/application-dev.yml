@@ -91,11 +91,6 @@ spring:
         datasource:
             # The following values are required by the application.
             dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-#            databaseName: postgres
-#            serverName: rhl-db.c2w1ugvbewyt.us-west-2.rds.amazonaws.com
-#            username: postgres
-#            password: synegen13
-#            maximumPoolSize: 3
             databaseName: reduxl
             serverName: localhost
             username: localuser
