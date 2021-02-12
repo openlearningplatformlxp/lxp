@@ -17,6 +17,8 @@ This innovative open source platform, winner of the [2019 Totara Best Technology
 3. **Install** - [Install](https://www.synegen.com/open-learning-platform-install-guide) Open Learning Platform within your Totara Learn environment. 
 4. **Configure** - Configure options available to modify Open Learning Platform to your brand guidelines and desired learner experience.
 
+Only interested in the WAR file?  Please download the latest version [here](https://openlearn.s3.amazonaws.com/download.war)
+
 ## Need Assistance?
 
 Synegen and their team of developers and Totara Learn experts are capable of providing assistance and professional services around the use of Open Learning Platform including: installation assistance, technical support, and continued enhancements to align to your specific training requirements.
